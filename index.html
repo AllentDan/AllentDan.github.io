@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-My-New-Test" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/08/My-New-Test/" class="article-date">
+  <time datetime="2019-05-08T11:18:12.695Z" itemprop="datePublished">2019-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="工具和环境"><a href="#工具和环境" class="headerlink" title="工具和环境"></a>工具和环境</h3><ul>
+<li>Windows10；</li>
+<li>VS2017；</li>
+<li>CUDA9.0；</li>
+<li>CUDnn9.0(v7 for CUDA9.0);</li>
+<li>eigen3；</li>
+<li>bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)；</li>
+<li>Anaconda3 64bit 地址 <a href="https://www.anaconda.com/download/#windows；" target="_blank" rel="noopener">https://www.anaconda.com/download/#windows；</a></li>
+</ul>
+<h1 id="Readme-md"><a href="#Readme-md" class="headerlink" title="Readme.md"></a>Readme.md</h1><p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png" alt></p>
+<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/forks/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/tag/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/release/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/issues/pandao/editor.md.svg" alt> <img src="https://img.shields.io/bower/v/editor.md.svg" alt></p>
+<p><strong>目录 (Table of Contents)</strong></p>
+<p>[TOCM]</p>
+<p>[TOC]</p>
+<h1 id="Bazel编译Tensorflow的Visual-C-环境"><a href="#Bazel编译Tensorflow的Visual-C-环境" class="headerlink" title="Bazel编译Tensorflow的Visual C++环境"></a>Bazel编译Tensorflow的Visual C++环境</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><ul>
+<li>按照第二个参考博客安装并配置Bazel，并放入MSYS2根目录C:\msys64；设置两个环境变量 BAZEL_SH，BAZEL_VC，结果在后面下载并编译Tensorflow环节，执行python configure.py发现无反应，遂直接将Bazel.exe复制到Tensorflow文件夹里面，后续需要Bazel的也是直接复制到对应的文件夹</li>
+</ul>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><ul>
+<li>安装Anaconda3，使用3.6的虚拟环境，在conda Prompt终端输入conda create -n py36 python=3.6</li>
+</ul>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><ul>
+<li>启动 VS2017 x64 命令行，，激活Anaconda环境，在命令行内执行如下语句cmd.exe “/K” C:\Users\Intel\Anaconda3\Scripts\activate.bat，其中activate.bat文件所在位置需要根据具体情况更改，切换到python36环境，语句为：conda activate py36使用 anaconda 安装 numpy, cython,keras，语句为：conda install numpy cython keras</li>
+</ul>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><ul>
+<li><p>编译(仍在上面的命令行下)：下载 tensorflow到 d:/lib，并切换当前目录到 d:/lib/tensorflow此时采用第一个参考博客，Bazel编译部分，编译libtensorflow_cc.so、libtensorflow_framework.so和install_headers，此处主要注意切换目录到相应位置，是切换到里面的tensorflow文件夹，然后将Bazel.exe复制到该目录下，或者不切换，build时候在build后面添加目录也行</p>
+<pre><code>cd tensorflow
+bazel build :libtensorflow_cc.so //（BUILD文件tf_cc_shared_object(name=&quot;libtensorflow_cc.so&quot;)）
+bazel build :libtensorflow_framework.so（//BUILD文件tf_cc_shared_object(name=&quot;libtensorflow_framework.so&quot;)）
+bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;install_headers&quot;)）
+</code></pre></li>
+</ul>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><ul>
+<li>多次编译失败后终于成功编译，主要是配置选项设置，可以多做尝试，反正肯定不会一次成功，注意每次尝试将之前的编译产生的bazel_bin等四个文件夹删除</li>
+</ul>
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><ul>
+<li>仍旧安照第一篇博客，将编译后的库文件等文件配置到VS2017，添加H文件引用没变照抄，lib文件因为每个人编译环境和编译选项不同，不要用别人的，自己将要bazel-bin中所有.lib文件都列出来，这需要写一个批量处理程序，可以用python写一个，就很快然后，链接器-&gt;输入-&gt;附加依赖项添加.lib，链接器-&gt;常规-&gt;附加库目录添加lib路径，bazel-bin\tensorflow\core\文件下所有lib文件以及子目录下的所有lib文件最后，将core文件夹里面的lib文件添加到链接器-&gt;命令行-&gt;其他选项添加/WHOLEARCHIVE:*.lib</li>
+</ul>
+<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><ul>
+<li>结果仍然是失败，显示很多未解析的外部符号，问csdn网友得到回答是bazel没有把其他的lb连接到libtensorflow_cc.lib的问题最后选择放弃，直接用第三个博客里面网友编译好的Release版本，我放到Release文件夹了，可直接获取使用。</li>
+</ul>
+<p>##参考链接</p>
+<p>#####资料一 <a href="https://blog.csdn.net/robothn/article/details/86157724" target="_blank" rel="noopener">TensorFlow 1.13 在 windows 上的构建</a></p>
+<p>#####资料二 <a href="https://blog.csdn.net/jin739738709/article/details/86705735" target="_blank" rel="noopener">【软件安装】WIN10 + Tensorflow1.12 C++接口 + Cmake编译 + Bazel编译 + C++接口</a></p>
+<p>#####资料三 <a href="https://blog.csdn.net/dageda1991/article/details/79721333" target="_blank" rel="noopener">windows10+vs2015下编译GPU版本tensorflow得到lib和dll（附带C++ inference示例）</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/08/My-New-Test/" data-id="cjvf756p10001g8v006mqjjyq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/08/hello-world/" class="article-date">
+  <time datetime="2019-05-08T10:52:11.654Z" itemprop="datePublished">2019-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/08/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/08/hello-world/" data-id="cjvf756oo0000g8v0b3hnhdbv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/08/My-New-Test/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/08/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
