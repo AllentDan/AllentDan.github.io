@@ -6,15 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>Allent&#39;s Blogs</title>
+  <title>用InceptionV3迁移学习进行客流检测 | Allent&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Allent&#39;s Blogs">
-<meta property="og:url" content="http://yoursite.com/child/index.html">
+  <meta name="description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
+<meta name="keywords" content="迁移学习 客流检测 滑动窗口 Inception v3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用InceptionV3迁移学习进行客流检测">
+<meta property="og:url" content="http://yoursite.com/child/2019/05/10/用InceptionV3迁移学习进行客流检测/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
+<meta property="og:description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png">
+<meta property="og:image" content="https://img.shields.io/github/stars/pandao/editor.md.svg">
+<meta property="og:image" content="https://img.shields.io/github/forks/pandao/editor.md.svg">
+<meta property="og:image" content="https://img.shields.io/github/tag/pandao/editor.md.svg">
+<meta property="og:image" content="https://img.shields.io/github/release/pandao/editor.md.svg">
+<meta property="og:image" content="https://img.shields.io/github/issues/pandao/editor.md.svg">
+<meta property="og:image" content="https://img.shields.io/bower/v/editor.md.svg">
+<meta property="og:image" content="http://yoursite.com/images/Inception%20v3.jpg">
+<meta property="og:image" content="http://yoursite.com/images/flower_0003.jpg">
+<meta property="og:image" content="http://yoursite.com/images/guitar0001.jpg">
+<meta property="og:image" content="http://yoursite.com/images/试用Inception.jpg">
+<meta property="og:updated_time" content="2019-05-10T14:02:47.778Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allent&#39;s Blogs">
+<meta name="twitter:title" content="用InceptionV3迁移学习进行客流检测">
+<meta name="twitter:description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
+<meta name="twitter:image" content="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png">
   
     <link rel="alternative" href="/atom.xml" title="Allent&#39;s Blogs" type="application/atom+xml">
   
@@ -150,16 +167,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-用InceptionV3迁移学习进行客流检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-用InceptionV3迁移学习进行客流检测" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/用InceptionV3迁移学习进行客流检测/">用InceptionV3迁移学习进行客流检测</a>
+    <h1 class="article-title" itemprop="name">
+      用InceptionV3迁移学习进行客流检测
     </h1>
   
 
@@ -195,6 +210,37 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你又拯救了一个贫穷的人~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -213,16 +259,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/10/用InceptionV3迁移学习进行客流检测/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2019/05/10/用InceptionV3迁移学习进行客流检测/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Tensorflow_gpu训练手写数字pb模型文件，C++调用预测</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -242,254 +347,45 @@
 
 
 
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="用InceptionV3迁移学习进行客流检测" data-title="用InceptionV3迁移学习进行客流检测" data-url="http://yoursite.com/child/2019/05/10/用InceptionV3迁移学习进行客流检测/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
-    <article id="post-Tensorflow-gpu训练手写数字pb模型文件，C-调用预测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/">Tensorflow_gpu训练手写数字pb模型文件，C++调用预测</a>
-    </h1>
   
-
-        
-        <a href="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/" class="archive-article-date">
-  	<time datetime="2019-05-10T02:47:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Anaconda-Tensorflow-gpu配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/Anaconda-Tensorflow-gpu配置/">Anaconda+Tensorflow_gpu配置</a>
-    </h1>
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/child/2019/05/10/用InceptionV3迁移学习进行客流检测/", 
+    sourceId: "用InceptionV3迁移学习进行客流检测",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        
-        <a href="/2019/05/10/Anaconda-Tensorflow-gpu配置/" class="archive-article-date">
-  	<time datetime="2019-05-10T01:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="工具和环境"><a href="#工具和环境" class="headerlink" title="工具和环境"></a>工具和环境</h3><ul>
-<li>Windows10；</li>
-<li>Anaconda3 64bit 地址 <a href="https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）" target="_blank" rel="noopener">https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）</a></li>
-</ul>
-<h2 id="Anaconda-Tensorflow-gpu配置md"><a href="#Anaconda-Tensorflow-gpu配置md" class="headerlink" title="Anaconda-Tensorflow-gpu配置md"></a>Anaconda-Tensorflow-gpu配置md</h2><p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png" alt></p>
-<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/forks/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/tag/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/release/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/issues/pandao/editor.md.svg" alt> <img src="https://img.shields.io/bower/v/editor.md.svg" alt></p>
-<p><strong>目录 (Table of Contents)</strong></p>
-<p>[TOCM]</p>
-<p>[TOC]</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为前面配置Visual Studio平台下Tensorflow C++Api调用，已经安装好Anaconda，并且添加路径<br>C:\yourInstallPlace\anaconda3<br>C:\yourInstallPlace\anaconda3\Scripts<br>C:\yourInstallPlace\anaconda3\Library\bin<br>并且已经安装使用了Tensorflow（不带cpu或gpu字样即默认cpu），发现训练模型很慢，原来还需要特别安装GPU版的tensorflow，所以开始重新配置。注意：开始前，最好先按照下面<a href="https://www.cnblogs.com/guoyaohua/p/9265268.html" target="_blank" rel="noopener">参考博文一</a>测试下自己电脑的显卡，我的是两张Nvidia的GTX1080系列。</p>
-<h1 id="安装TensorFlow-GPU"><a href="#安装TensorFlow-GPU" class="headerlink" title="安装TensorFlow-GPU"></a>安装TensorFlow-GPU</h1><p>如果你不会使用Anaconda的切换环境功能，并且有先安装过tensorflow的最好先卸载（此处要选择你安装对应的spyder，如果不知道，先谷歌或百度下Anaconda环境切换，spyder，就会明白可以换个环境之间安装）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall tensorflow</span><br><span class="line">pip list</span><br><span class="line">conda uninstall tensorflow</span><br><span class="line">conda list</span><br></pre></td></tr></table></figure></p>
-<p>都尝试一次，然后调用list看看有没有卸载干净。卸载以后，直接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install tensorflow_gpu==<span class="number">1.5</span><span class="comment">//为了和之前安装好的cuda9.0和cudnn9.0配合使用，直接conda install tensorflow_gpu会给你分配一个不合适的可能，如果你不是cuda9.0和cudnn9.0，请先查找相应的tensorflow_gpu</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>如果你前面步骤都成功了，需要先测试下到底能不能使用。还是上面的命令行，输入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line"><span class="keyword">import</span> tensorflow</span><br></pre></td></tr></table></figure></p>
-<p>如果成功后再进入IDE，我的是spyder（此处要选择你安装对应的spyder，如果不知道，先谷歌或百度下Anaconda环境切换，spyderIDE），输入<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.python.client <span class="keyword">import</span> device_lib</span><br><span class="line">device_lib.list_local_devices()</span><br></pre></td></tr></table></figure></p>
-<p>毫无反应就是失败，有GPU字样就是成功</p>
-<p>[参考博文一：Win10 Anaconda下TensorFlow-GPU环境搭建详细教程（包含CUDA+cuDNN安装过程）][anchor-id]<br>[anchor-id]: <a href="https://www.cnblogs.com/guoyaohua/p/9265268.html" target="_blank" rel="noopener">https://www.cnblogs.com/guoyaohua/p/9265268.html</a></p>
-<p>[参考博文二：Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)][anchor-id]<br>[anchor-id]: <a href="https://allentdan.github.io/2019/05/08/My-New-Test/" target="_blank" rel="noopener">https://allentdan.github.io/2019/05/08/My-New-Test/</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/10/Anaconda-Tensorflow-gpu配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-My-New-Test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/08/My-New-Test/">Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)</a>
-    </h1>
   
 
-        
-        <a href="/2019/05/08/My-New-Test/" class="archive-article-date">
-  	<time datetime="2019-05-08T11:18:12.695Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="工具和环境"><a href="#工具和环境" class="headerlink" title="工具和环境"></a>工具和环境</h3><ul>
-<li>Windows10；</li>
-<li>VS2017；</li>
-<li>CUDA9.0；</li>
-<li>CUDnn9.0(v7 for CUDA9.0);</li>
-<li>eigen3；</li>
-<li>bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)；</li>
-<li>Anaconda3 64bit 地址 <a href="https://www.anaconda.com/download/#windows；" target="_blank" rel="noopener">https://www.anaconda.com/download/#windows；</a></li>
-</ul>
-<h1 id="Readme-md"><a href="#Readme-md" class="headerlink" title="Readme.md"></a>Readme.md</h1><p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png" alt></p>
-<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/forks/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/tag/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/release/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/issues/pandao/editor.md.svg" alt> <img src="https://img.shields.io/bower/v/editor.md.svg" alt></p>
-<p><strong>目录 (Table of Contents)</strong></p>
-<p>[TOCM]</p>
-<p>[TOC]</p>
-<h1 id="Bazel编译Tensorflow的Visual-C-环境"><a href="#Bazel编译Tensorflow的Visual-C-环境" class="headerlink" title="Bazel编译Tensorflow的Visual C++环境"></a>Bazel编译Tensorflow的Visual C++环境</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><ul>
-<li>按照第二个参考博客安装并配置Bazel，并放入MSYS2根目录C:\msys64；设置两个环境变量 BAZEL_SH，BAZEL_VC，结果在后面下载并编译Tensorflow环节，执行python configure.py发现无反应，遂直接将Bazel.exe复制到Tensorflow文件夹里面，后续需要Bazel的也是直接复制到对应的文件夹</li>
-</ul>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><ul>
-<li>安装Anaconda3，使用3.6的虚拟环境，在conda Prompt终端输入conda create -n py36 python=3.6</li>
-</ul>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><ul>
-<li>启动 VS2017 x64 命令行，，激活Anaconda环境，在命令行内执行如下语句cmd.exe “/K” C:\Users\Intel\Anaconda3\Scripts\activate.bat，其中activate.bat文件所在位置需要根据具体情况更改，切换到python36环境，语句为：conda activate py36使用 anaconda 安装 numpy, cython,keras，语句为：conda install numpy cython keras</li>
-</ul>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><ul>
-<li>编译(仍在上面的命令行下)：下载 tensorflow到 d:/lib，并切换当前目录到 d:/lib/tensorflow此时采用第一个参考博客，Bazel编译部分，编译libtensorflow_cc.so、libtensorflow_framework.so和install_headers，此处主要注意切换目录到相应位置，是切换到里面的tensorflow文件夹，然后将Bazel.exe复制到该目录下，或者不切换，build时候在build后面添加目录也行<pre><code>cd tensorflow
-bazel build :libtensorflow_cc.so //（BUILD文件tf_cc_shared_object(name=&quot;libtensorflow_cc.so&quot;)）
-bazel build :libtensorflow_framework.so（//BUILD文件tf_cc_shared_object(name=&quot;libtensorflow_framework.so&quot;)）
-bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;install_headers&quot;)）
-</code></pre></li>
-</ul>
-<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><ul>
-<li>多次编译失败后终于成功编译，主要是配置选项设置，可以多做尝试，反正肯定不会一次成功，注意每次尝试将之前的编译产生的bazel_bin等四个文件夹删除</li>
-</ul>
-<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><ul>
-<li>仍旧安照第一篇博客，将编译后的库文件等文件配置到VS2017，添加H文件引用没变照抄，lib文件因为每个人编译环境和编译选项不同，不要用别人的，自己将要bazel-bin中所有.lib文件都列出来，这需要写一个批量处理程序，可以用python写一个，就很快然后，链接器-&gt;输入-&gt;附加依赖项添加.lib，链接器-&gt;常规-&gt;附加库目录添加lib路径，bazel-bin\tensorflow\core\文件下所有lib文件以及子目录下的所有lib文件最后，将core文件夹里面的lib文件添加到链接器-&gt;命令行-&gt;其他选项添加/WHOLEARCHIVE:*.lib</li>
-</ul>
-<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><ul>
-<li>结果仍然是失败，显示很多未解析的外部符号，问csdn网友得到回答是bazel没有把其他的lb连接到libtensorflow_cc.lib的问题最后选择放弃，直接用第三个博客里面网友编译好的Release版本，我放到Release文件夹了，可直接获取使用。</li>
-</ul>
-<p>##参考链接</p>
-<p>#####资料一 <a href="https://blog.csdn.net/robothn/article/details/86157724" target="_blank" rel="noopener">TensorFlow 1.13 在 windows 上的构建</a></p>
-<p>#####资料二 <a href="https://blog.csdn.net/jin739738709/article/details/86705735" target="_blank" rel="noopener">【软件安装】WIN10 + Tensorflow1.12 C++接口 + Cmake编译 + Bazel编译 + C++接口</a></p>
-<p>#####资料三 <a href="https://blog.csdn.net/dageda1991/article/details/79721333" target="_blank" rel="noopener">windows10+vs2015下编译GPU版本tensorflow得到lib和dll（附带C++ inference示例）</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/08/My-New-Test/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -512,8 +408,8 @@ bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;insta
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

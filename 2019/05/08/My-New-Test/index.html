@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://img.shields.io/github/release/pandao/editor.md.svg">
 <meta property="og:image" content="https://img.shields.io/github/issues/pandao/editor.md.svg">
 <meta property="og:image" content="https://img.shields.io/bower/v/editor.md.svg">
-<meta property="og:updated_time" content="2019-05-10T01:28:04.137Z">
+<meta property="og:updated_time" content="2019-05-10T04:38:35.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)">
 <meta name="twitter:description" content="工具和环境 Windows10； VS2017； CUDA9.0； CUDnn9.0(v7 for CUDA9.0); eigen3； bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；  Readme.md       目录 (">
@@ -91,11 +91,11 @@
 				
 					<a class="github" target="_blank" href="https://github.com/AllentDan" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 					<a class="bilibili" target="_blank" href="https://space.bilibili.com/65234485" title="bilibili"><i class="icon-bilibili"></i></a>
+		        
+					<a class="mail" target="_blank" href="/AllentDan@yeah.net" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -132,11 +132,11 @@
 					
 						<a class="github" target="_blank" href="https://github.com/AllentDan" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 						<a class="bilibili" target="_blank" href="https://space.bilibili.com/65234485" title="bilibili"><i class="icon-bilibili"></i></a>
+			        
+						<a class="mail" target="_blank" href="/AllentDan@yeah.net" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -206,8 +206,7 @@
 <li>启动 VS2017 x64 命令行，，激活Anaconda环境，在命令行内执行如下语句cmd.exe “/K” C:\Users\Intel\Anaconda3\Scripts\activate.bat，其中activate.bat文件所在位置需要根据具体情况更改，切换到python36环境，语句为：conda activate py36使用 anaconda 安装 numpy, cython,keras，语句为：conda install numpy cython keras</li>
 </ul>
 <h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><ul>
-<li><p>编译(仍在上面的命令行下)：下载 tensorflow到 d:/lib，并切换当前目录到 d:/lib/tensorflow此时采用第一个参考博客，Bazel编译部分，编译libtensorflow_cc.so、libtensorflow_framework.so和install_headers，此处主要注意切换目录到相应位置，是切换到里面的tensorflow文件夹，然后将Bazel.exe复制到该目录下，或者不切换，build时候在build后面添加目录也行</p>
-<pre><code>cd tensorflow
+<li>编译(仍在上面的命令行下)：下载 tensorflow到 d:/lib，并切换当前目录到 d:/lib/tensorflow此时采用第一个参考博客，Bazel编译部分，编译libtensorflow_cc.so、libtensorflow_framework.so和install_headers，此处主要注意切换目录到相应位置，是切换到里面的tensorflow文件夹，然后将Bazel.exe复制到该目录下，或者不切换，build时候在build后面添加目录也行<pre><code>cd tensorflow
 bazel build :libtensorflow_cc.so //（BUILD文件tf_cc_shared_object(name=&quot;libtensorflow_cc.so&quot;)）
 bazel build :libtensorflow_framework.so（//BUILD文件tf_cc_shared_object(name=&quot;libtensorflow_framework.so&quot;)）
 bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;install_headers&quot;)）
@@ -239,9 +238,19 @@ bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;insta
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你又拯救了一个贫穷的人~<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -329,11 +338,6 @@ bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;insta
     </a>
   
   
-    <a href="/2019/05/08/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
 </nav>
 
 
@@ -378,6 +382,17 @@ bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;insta
   
   
   
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/child/2019/05/08/My-New-Test/", 
+    sourceId: "My-New-Test",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
 
   
 
@@ -414,7 +429,7 @@ bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;insta
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -474,6 +489,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">迁移学习 客流检测 滑动窗口 Inception v3</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -524,7 +543,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://github.com/AllentDan/PedestrianDetection" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
             </li>
           
             <li class="search-li">
@@ -555,7 +574,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">上海交通大学控制工程硕士在读&lt;br&gt;南京航空航天大学学士&lt;br&gt;控制工程 图像处理 Vitex算法工程师</div>
   	  	
     	</section>
     
