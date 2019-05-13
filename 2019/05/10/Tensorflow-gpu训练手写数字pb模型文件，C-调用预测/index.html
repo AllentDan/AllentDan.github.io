@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="Python训练手写数字识别模型没啥好说，直接上代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="e:/Git/Gitee/C-use-Tensorflow-pb-to-predict/code/3.png">
-<meta property="og:image" content="c:/Users/Allent_Computer/Downloads/normal.PNG">
-<meta property="og:image" content="c:/Users/Allent_Computer/Downloads/abnormal.PNG">
-<meta property="og:image" content="c:/Users/Allent_Computer/Downloads/c++预测.PNG">
-<meta property="og:updated_time" content="2019-05-13T09:19:00.804Z">
+<meta property="og:image" content="http://yoursite.com/images/3_mnist.png">
+<meta property="og:image" content="http://yoursite.com/images/normal.PNG">
+<meta property="og:image" content="http://yoursite.com/images/abnormal.PNG">
+<meta property="og:image" content="http://yoursite.com/images/c++预测.PNG">
+<meta property="og:updated_time" content="2019-05-13T10:28:27.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测">
 <meta name="twitter:description" content="Python训练手写数字识别模型没啥好说，直接上代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091">
-<meta name="twitter:image" content="e:/Git/Gitee/C-use-Tensorflow-pb-to-predict/code/3.png">
+<meta name="twitter:image" content="http://yoursite.com/images/3_mnist.png">
   
     <link rel="alternative" href="/atom.xml" title="Allent&#39;s Blogs" type="application/atom+xml">
   
@@ -42,6 +42,8 @@
   
 
 </head>
+<script src="https://leancloud.cn/scripts/lib/av-0.4.6.min.js"></script>
+  <script>AV.initialize("oRezRueEbj8u90wGd9rroas8-gzGzoHsz", "mKspRuKgxwIYmC94JswgzTE1");</script>
 </html>
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -184,16 +186,20 @@
 <p>训练会生成pb文件，到e:\model.pb，随后用python调用，调用代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon May  6 10:21:40 2019</span><br><span class="line"></span><br><span class="line">@author: admin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">from PIL import Image</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.python.platform import gfile</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">im = Image.open(&apos;C:\\Users\\admin\\Pictures\\3.png&apos;)</span><br><span class="line">data = list(im.getdata())</span><br><span class="line">result = [(255-x)*1.0/255.0 for x in data] </span><br><span class="line">#print(result)</span><br><span class="line"></span><br><span class="line"># 为输入图像和目标输出类别创建节点</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line">#x = tf.placeholder(&quot;float&quot;, shape=[None, 784]) # 训练所需数据  占位符</span><br><span class="line"></span><br><span class="line"># *************** 开始识别 *************** #</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    with gfile.FastGFile(&apos;e:\\model.pb&apos;, &apos;rb&apos;) as f:</span><br><span class="line">        graph_def = tf.GraphDef()</span><br><span class="line">        graph_def.ParseFromString(f.read())</span><br><span class="line">        sess.graph.as_default()</span><br><span class="line">        tf.import_graph_def(graph_def, name=&apos;&apos;)</span><br><span class="line">    x = sess.graph.get_tensor_by_name(&quot;x:0&quot;)</span><br><span class="line">    y = sess.graph.get_tensor_by_name(&quot;y:0&quot;)</span><br><span class="line">    keep_prob = sess.graph.get_tensor_by_name(&quot;keep_prob:0&quot;)</span><br><span class="line">   # print(test) </span><br><span class="line">    #saver.restore(sess, &quot;./save/model.ckpt&quot;)#这里使用了之前保存的模型参数</span><br><span class="line"></span><br><span class="line">    prediction = tf.argmax(y,1)</span><br><span class="line">    predint = prediction.eval(feed_dict=&#123;x: [result],keep_prob: 1.0&#125;, session=sess)</span><br><span class="line"></span><br><span class="line">    print(&quot;recognize result: %d&quot; %predint[0])</span><br></pre></td></tr></table></figure>
 <p>使用到的图片是这个，你可以自己下载直接用，也可以手写然后用OpenCV处理得到28*28的灰度图片。</p>
-<p><img src="E:\Git\Gitee\C-use-Tensorflow-pb-to-predict\code\3.png" alt="3"></p>
+<div align="center"><br><img src="\images\3_mnist.png" alt="3"><br></div>
+
 <h1 id="Visual-C-调用pb文件预测"><a href="#Visual-C-调用pb文件预测" class="headerlink" title="Visual C++调用pb文件预测"></a>Visual C++调用pb文件预测</h1><p>也是直接上代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">#define COMPILER_MSVC</span><br><span class="line">#define NOMINMAX</span><br><span class="line">#define PLATFORM_WINDOWS</span><br><span class="line"></span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;utility&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;opencv2/opencv.hpp&gt;</span><br><span class="line">#include&quot;tensorflow/core/public/session.h&quot;</span><br><span class="line">#include &quot;tensorflow/core/platform/env.h&quot;</span><br><span class="line">#include &quot;tensorflow/core/graph/default_device.h&quot;</span><br><span class="line">#include &quot;tensorflow/cc/ops/standard_ops.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace tensorflow;</span><br><span class="line">using tensorflow::Tensor;</span><br><span class="line">using std::cout;</span><br><span class="line">using std::endl;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	// 设置输入图像</span><br><span class="line">	cv::Mat img = cv::imread(&quot;C:\\Users\\admin\\Pictures\\3.png&quot;);</span><br><span class="line">	cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);</span><br><span class="line">	int height = img.rows;</span><br><span class="line">	int width = img.cols;</span><br><span class="line">	int depth = img.channels();</span><br><span class="line">	cv::Mat img_transpose = img.t();</span><br><span class="line"></span><br><span class="line">	// 取图像数据，赋给tensorflow支持的Tensor变量中</span><br><span class="line">	const float* source_data = (float*)img.data;</span><br><span class="line">	cout&lt;&lt;source_data[1]&lt;&lt;endl;</span><br><span class="line">	tensorflow::Tensor input_tensor(DT_FLOAT, TensorShape(&#123; 1, height, width ,1 &#125;)); //这里只输入一张图片，参考tensorflow的数据格式NHWC</span><br><span class="line">	auto input_tensor_mapped = input_tensor.tensor&lt;float,4&gt;(); // input_tensor_mapped相当于input_tensor的数据接口，“4”表示数据是4维的。后面取出最终结果时也能看到这种用法                                                                                                      </span><br><span class="line"></span><br><span class="line">	// 把数据复制到input_tensor_mapped中，实际上就是遍历opencv的Mat数据</span><br><span class="line">	for (int i = 0; i &lt; height; i++) &#123;</span><br><span class="line">		for (int j = 0; j &lt; width; j++) &#123;</span><br><span class="line">			input_tensor_mapped(0, i, j ,0) = (255- img.at&lt;uchar&gt;(i, j))/255.0;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 初始化tensorflow session</span><br><span class="line">	Session* session;</span><br><span class="line">	Status status = NewSession(SessionOptions(), &amp;session);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Session created successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 读取二进制的模型文件到graph中</span><br><span class="line">	GraphDef graph_def;</span><br><span class="line">	status = ReadBinaryProto(Env::Default(), &quot;e:\\model.pb&quot;, &amp;graph_def);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Load graph protobuf successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 将graph加载到session</span><br><span class="line">	status = session-&gt;Create(graph_def);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Add graph to session successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tensorflow::Tensor keep_prob(DT_FLOAT, TensorShape());</span><br><span class="line">	keep_prob.scalar&lt;float&gt;()() = 1.0;</span><br><span class="line">	std::vector&lt;std::pair&lt;std::string, tensorflow::Tensor&gt;&gt; inputs = &#123;</span><br><span class="line">		&#123; &quot;x&quot;, input_tensor &#125;,</span><br><span class="line">		&#123; &quot;keep_prob&quot;, keep_prob &#125;,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	// 输出outputs</span><br><span class="line">	std::vector&lt;tensorflow::Tensor&gt; outputs;</span><br><span class="line"></span><br><span class="line">	// 运行会话，计算输出&quot;x_predict&quot;，即我在模型中定义的输出数据名称，最终结果保存在outputs中</span><br><span class="line">	auto input_shape = input_tensor.shape();</span><br><span class="line">	status = session-&gt;Run(inputs, &#123; &quot;y&quot; &#125;, &#123;&#125;, &amp;outputs);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		system(&quot;pause&quot;);</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Run session successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	// 下面进行输出结果的可视化</span><br><span class="line">	tensorflow::Tensor output = std::move(outputs.at(0)); // 模型只输出一个结果，这里首先把结果移出来（也为了更好的展示）</span><br><span class="line">	auto out_shape = output.shape(); // 这里的输出结果为1x4x16</span><br><span class="line">	auto out_val = output.tensor&lt;float, 2&gt;(); // 与开头的用法对应，3代表结果的维度</span><br><span class="line">	// cout &lt;&lt; out_val.argmax(2) &lt;&lt; &quot; &quot;; // 预测结果，与python一致，但具体数值有差异，猜测是计算精度不同造成的</span><br><span class="line">	cout &lt;&lt;&quot;Output tensor shape:&quot;&lt;&lt; output.shape()&lt;&lt;endl;</span><br><span class="line">	for (int j = 0; j &lt; out_shape.dim_size(1); j++) &#123;</span><br><span class="line">		cout &lt;&lt; out_val(0, j) &lt;&lt; &quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; &quot;size:&quot; &lt;&lt; out_shape.dim_size(1)&lt;&lt;endl;</span><br><span class="line">	cout &lt;&lt;&quot;Prediction value:&quot;&lt;&lt; out_val.argmax(1)&lt;&lt;endl;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>相关配置都有在前两篇博客写过，就不赘述了。这里要说下CUDA配置完Tensorflow C++使用坑爹的地方，如果你同时开着python的tensorflowIDE环境，它会分出部分GPU内存给该环境，但是如果你用上面的代码运行测试，会发现报内存超出的错。</p>
-<p><img src="C:\Users\Allent_Computer\Downloads\normal.PNG" alt="normal"></p>
+<div align="center"><br><img src="\images\normal.PNG" alt="normal"><br></div>
+
 <p>正常调用会这样，但是开着其他环境，就报错：</p>
-<p><img src="C:\Users\Allent_Computer\Downloads\abnormal.PNG" alt="abnormal"></p>
+<div align="center"><br><img src="\images\abnormal.PNG" alt="abnormal"><br></div>
+
 <p>CUDA_ERROR_OF_MEMORY，然后更坑爹的是我的c++无法同python一样指定gpu内存分配，会报unresolved external symbol错误，也就是未解析的外部符号。解决办法就一个，关掉其他gpu进程。</p>
 <p>预测结果如下：</p>
-<p><img src="C:\Users\Allent_Computer\Downloads\c++预测.PNG" alt="c++预测"></p>
+<div align="center"><br><img src="\images\c++预测.PNG" alt="c++预测"><br></div>
+
 <p>细节回去再更….</p>
 
       
@@ -329,6 +335,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python训练手写数字识别模型"><span class="toc-number">1.</span> <span class="toc-text">Python训练手写数字识别模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Visual-C-调用pb文件预测"><span class="toc-number">2.</span> <span class="toc-text">Visual C++调用pb文件预测</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -372,6 +391,22 @@
   
 
   
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
   
 
@@ -404,7 +439,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: true
+		showTags: false
 	}
 </script>
 
@@ -467,6 +502,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">迁移学习 客流检测 滑动窗口 Inception v3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Tensorflow</a>
               </li>
             
             <div class="clearfix"></div>
