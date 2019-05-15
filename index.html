@@ -154,6 +154,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-试用SVM-slideMask做客流检测-失败" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/15/试用SVM-slideMask做客流检测-失败/">试用SVM+slideMask做客流检测(失败)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/15/试用SVM-slideMask做客流检测-失败/" class="archive-article-date">
+  	<time datetime="2019-05-15T08:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><ul>
+<li>刚刚用谷歌的Inception V3尝试检测行人，效果一般，想看得点<a href="[https://allentdan.github.io/2019/05/10/%E7%94%A8InceptionV3%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/](https://allentdan.github.io/2019/05/10/用InceptionV3迁移学习进行客流检测/">这</a>)</li>
+<li>不死心，还想用传统方法挣扎下，因为传统方法计算很快，就尝试用HOG+SVM训练自己的样本集，再进行测试，主要参考<a href="https://blog.csdn.net/oxuzhenyi/article/details/72818404" target="_blank" rel="noopener">这篇博客</a>，但是不得不说，该博客用的python2，泡在Python3里面问题相当的多，代码也不知道从哪搬运过来的，被中英混合这注释各种改，但是初始代码想必是官方给的example</li>
+<li>如果想直接看yolo检测，可以左转出门，下方有，后面更</li>
+</ul>
+<h1 id="SVM-md"><a href="#SVM-md" class="headerlink" title="SVM.md"></a>SVM.md</h1><div align="center"><br><img src="https://github.com/AllentDan/PedestrianDetection/blob/master/images/failure.jpg" alt="failure"><br></div>
+
+<p>[TOCM]</p>
+<p>[TOC]</p>
+<h1 id="还原参考博客内容"><a href="#还原参考博客内容" class="headerlink" title="还原参考博客内容"></a>还原参考博客内容</h1><h2 id="下载修改"><a href="#下载修改" class="headerlink" title="下载修改"></a>下载修改</h2><p>不多说，weget指令就是好，linux就是牛逼。但是Windows也不差，直接选中weget的目标url右键转到（不确定其他浏览器，谷歌chrome安装迅雷插件）就可以跳出迅雷下载了，完了用IDE打开，一堆错误，毕竟是篇远古博客了，而且涂改也是相当严重。不过大部分就是print问题，花点功夫的事情</p>
+<h2 id="修改统一图片尺寸"><a href="#修改统一图片尺寸" class="headerlink" title="修改统一图片尺寸"></a>修改统一图片尺寸</h2><p>还是上篇博客弄好的样本集，只不过这次先统一尺寸，因为OpenCV的SVM需要读入图片是64*128，虽然最后训练也都是一维的1024向量。没啥多说的，直接po代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line">from os.path import dirname, join, basename</span><br><span class="line">from glob import glob</span><br><span class="line"> </span><br><span class="line">num=0</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/nega&apos;,&apos;*.jpg&apos;)):    #获取位置的nega文件夹下所有的jpg图片，nega文件夹下面是我存放的所有负样本</span><br><span class="line">    print(fn)</span><br><span class="line">    img = cv2.imread(fn)</span><br><span class="line">    res=cv2.resize(img,(64,128),interpolation=cv2.INTER_AREA)#线性插值并统一尺寸</span><br><span class="line">    cv2.imwrite(&apos;E:\\Python\\SVM4Pedestrian\\nega_resized\\&apos;+str(num)+&apos;.jpg&apos;,res)#新建nega_resized文件夹，将所有处理后的图片写到该文件夹</span><br><span class="line">    num=num+1</span><br><span class="line"> </span><br><span class="line">print (&apos;all done!&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="train-predict-py"><a href="#train-predict-py" class="headerlink" title="train+predict.py"></a>train+predict.py</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line">#from matplotlib import pyplot as plt</span><br><span class="line">from os.path import dirname, join, basename</span><br><span class="line">import sys</span><br><span class="line">from glob import glob</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin_n = 16*16 # Number of bins</span><br><span class="line"></span><br><span class="line">def hog(img):</span><br><span class="line">    x_pixel,y_pixel=194,259</span><br><span class="line">    gx = cv2.Sobel(img, cv2.CV_32F, 1, 0)</span><br><span class="line">    gy = cv2.Sobel(img, cv2.CV_32F, 0, 1)</span><br><span class="line">    mag, ang = cv2.cartToPolar(gx, gy)</span><br><span class="line">    bins = np.int32(bin_n*ang/(2*np.pi))   </span><br><span class="line">    x_pixel_int=int(x_pixel/2)</span><br><span class="line">    y_pixel_int=int(y_pixel/2)</span><br><span class="line">    bin_cells = bins[:x_pixel_int,:y_pixel_int], bins[x_pixel_int:,:y_pixel_int], bins[:x_pixel_int,y_pixel_int:], bins[x_pixel_int:,y_pixel_int:]</span><br><span class="line">    mag_cells = mag[:x_pixel_int,:y_pixel_int], mag[x_pixel_int:,:y_pixel_int], mag[:x_pixel_int,y_pixel_int:], mag[x_pixel_int:,y_pixel_int:]</span><br><span class="line">    hists = [np.bincount(b.ravel(), m.ravel(), bin_n) for b, m in zip(bin_cells, mag_cells)]</span><br><span class="line">    hist = np.hstack(hists)     # hist is a 64 bit vector</span><br><span class="line">    return hist</span><br><span class="line"></span><br><span class="line">img=&#123;&#125;</span><br><span class="line">num=0</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/posi_resized&apos;, &apos;*.jpg&apos;)):</span><br><span class="line">    img[num] = cv2.imread(fn,0)#参数加0，只读取黑白数据，去掉0，就是彩色读取。</span><br><span class="line">#    print img[num].shape</span><br><span class="line">    num=num+1</span><br><span class="line">positive=num</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/nega_resized&apos;, &apos;*.jpg&apos;)):</span><br><span class="line">    img[num] = cv2.imread(fn,0)#参数加0，只读取黑白数据，去掉0，就是彩色读取。</span><br><span class="line">#    print img[num].shape</span><br><span class="line">    num=num+1</span><br><span class="line"></span><br><span class="line">trainpic=[]</span><br><span class="line">for i in img:</span><br><span class="line">#    print type(i)</span><br><span class="line">    trainpic.append(img[i])</span><br><span class="line"></span><br><span class="line">#hogdata = [map(hog,img[i]) for i in img]</span><br><span class="line">hogdata=list(map(hog,trainpic))</span><br><span class="line">trainData = np.float32(hogdata).reshape(-1,bin_n*4)</span><br><span class="line">responses = np.int32(np.repeat(1.0,trainData.shape[0])[:,np.newaxis])</span><br><span class="line">responses[positive:trainData.shape[0]]=-1.0</span><br><span class="line">#print (type(trainData))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">svm = cv2.ml.SVM_create() #创建SVM model</span><br><span class="line">#属性设置</span><br><span class="line">svm.setType(cv2.ml.SVM_C_SVC)</span><br><span class="line">svm.setKernel(cv2.ml.SVM_LINEAR)</span><br><span class="line">svm.setC(0.01)</span><br><span class="line">#训练</span><br><span class="line">result = svm.train(trainData,cv2.ml.ROW_SAMPLE,responses)</span><br><span class="line">svm.save(&apos;svm_cat_data.dat&apos;)</span><br><span class="line">######测试</span><br><span class="line">test_temp=[]</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/predict_resized&apos;, &apos;*.jpg&apos;)):</span><br><span class="line">    img=cv2.imread(fn,0)#参数加0，只读取黑白数据，去掉0，就是彩色读取。</span><br><span class="line">    test_temp.append(img)</span><br><span class="line">testdata=list(map(hog,test_temp))</span><br><span class="line">testData = np.float32(testdata).reshape(-1,bin_n*4)</span><br><span class="line">re=svm.predict(testData)</span><br></pre></td></tr></table></figure>
+<h2 id="报错修改"><a href="#报错修改" class="headerlink" title="报错修改"></a>报错修改</h2><p>train.py跑通后，尝试测试下训练集里面的第一个，一般都会预测准确，不然SVM也不用混了。除去一些可以立马解决的小问题，主要问题其实就三个：</p>
+<p>第一个是里面的map函数，会报错TypeError: float() argument must be a string or a number, not ‘map’，老版本Python可以没有问题，但是3以后的基本需要外面套个list()，参考<a href="https://blog.csdn.net/shangxiaqiusuo1/article/details/84336339" target="_blank" rel="noopener">这个大哥的方法</a>；</p>
+<p>第二个就是集中在OpenCV更新后，SVM相关的函数都发生了变化，被移动到ml属性下面了，需要先调用ml再调用SVM，此外创建SVM和配置SVM都发生了变化；</p>
+<p>第三个就是保存SVM模型后，调用模型文件预测会出问题，而且我没有解决，只好不保存，直接训练完后测试，最后直接和训练泡在一个py文件里面了。</p>
+<h1 id="SVM分类结果"><a href="#SVM分类结果" class="headerlink" title="SVM分类结果"></a>SVM分类结果</h1><p>非常心痛，测试了28个图片，错了三个，和神经网络跑出来准确率天差地别。可能原因其实很多，图片本身信息不够，区分度也不会好。SVM算法本身和神经网络准确率差别在那。不用做滑动窗口了，直接放弃，白瞎一下午功夫。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>可能先用CNN提取特征再用SVM分类识别会提高准确率，但是已经不想浪费精力了，直接yolo走起。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/15/试用SVM-slideMask做客流检测-失败/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-用InceptionV3迁移学习进行客流检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -641,10 +722,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">迁移学习 客流检测 滑动窗口 Inception v3</a>
-              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tensorflow</a>

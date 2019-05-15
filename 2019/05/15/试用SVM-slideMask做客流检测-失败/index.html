@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>Archives: 2019/5 | Allent&#39;s Blogs</title>
+  <title>试用SVM+slideMask做客流检测(失败) | Allent&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Allent&#39;s Blogs">
-<meta property="og:url" content="http://yoursite.com/child/archives/2019/05/index.html">
+  <meta name="description" content="项目背景 刚刚用谷歌的Inception V3尝试检测行人，效果一般，想看得点这) 不死心，还想用传统方法挣扎下，因为传统方法计算很快，就尝试用HOG+SVM训练自己的样本集，再进行测试，主要参考这篇博客，但是不得不说，该博客用的python2，泡在Python3里面问题相当的多，代码也不知道从哪搬运过来的，被中英混合这注释各种改，但是初始代码想必是官方给的example 如果想直接看yolo检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="试用SVM+slideMask做客流检测(失败)">
+<meta property="og:url" content="http://yoursite.com/child/2019/05/15/试用SVM-slideMask做客流检测-失败/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
+<meta property="og:description" content="项目背景 刚刚用谷歌的Inception V3尝试检测行人，效果一般，想看得点这) 不死心，还想用传统方法挣扎下，因为传统方法计算很快，就尝试用HOG+SVM训练自己的样本集，再进行测试，主要参考这篇博客，但是不得不说，该博客用的python2，泡在Python3里面问题相当的多，代码也不知道从哪搬运过来的，被中英混合这注释各种改，但是初始代码想必是官方给的example 如果想直接看yolo检测">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/AllentDan/PedestrianDetection/blob/master/images/failure.jpg">
+<meta property="og:updated_time" content="2019-05-15T09:23:23.008Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allent&#39;s Blogs">
+<meta name="twitter:title" content="试用SVM+slideMask做客流检测(失败)">
+<meta name="twitter:description" content="项目背景 刚刚用谷歌的Inception V3尝试检测行人，效果一般，想看得点这) 不死心，还想用传统方法挣扎下，因为传统方法计算很快，就尝试用HOG+SVM训练自己的样本集，再进行测试，主要参考这篇博客，但是不得不说，该博客用的python2，泡在Python3里面问题相当的多，代码也不知道从哪搬运过来的，被中英混合这注释各种改，但是初始代码想必是官方给的example 如果想直接看yolo检测">
+<meta name="twitter:image" content="https://github.com/AllentDan/PedestrianDetection/blob/master/images/failure.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Allent&#39;s Blogs" type="application/atom+xml">
   
@@ -152,168 +158,244 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-试用SVM-slideMask做客流检测-失败" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      试用SVM+slideMask做客流检测(失败)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/15/试用SVM-slideMask做客流检测-失败/" class="archive-article-date">
+
+        
+        <a href="/2019/05/15/试用SVM-slideMask做客流检测-失败/" class="archive-article-date">
   	<time datetime="2019-05-15T08:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/15/试用SVM-slideMask做客流检测-失败/">试用SVM+slideMask做客流检测(失败)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><ul>
+<li>刚刚用谷歌的Inception V3尝试检测行人，效果一般，想看得点<a href="[https://allentdan.github.io/2019/05/10/%E7%94%A8InceptionV3%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/](https://allentdan.github.io/2019/05/10/用InceptionV3迁移学习进行客流检测/">这</a>)</li>
+<li>不死心，还想用传统方法挣扎下，因为传统方法计算很快，就尝试用HOG+SVM训练自己的样本集，再进行测试，主要参考<a href="https://blog.csdn.net/oxuzhenyi/article/details/72818404" target="_blank" rel="noopener">这篇博客</a>，但是不得不说，该博客用的python2，泡在Python3里面问题相当的多，代码也不知道从哪搬运过来的，被中英混合这注释各种改，但是初始代码想必是官方给的example</li>
+<li>如果想直接看yolo检测，可以左转出门，下方有，后面更</li>
+</ul>
+<h1 id="SVM-md"><a href="#SVM-md" class="headerlink" title="SVM.md"></a>SVM.md</h1><div align="center"><br><img src="https://github.com/AllentDan/PedestrianDetection/blob/master/images/failure.jpg" alt="failure"><br></div>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>[TOCM]</p>
+<p>[TOC]</p>
+<h1 id="还原参考博客内容"><a href="#还原参考博客内容" class="headerlink" title="还原参考博客内容"></a>还原参考博客内容</h1><h2 id="下载修改"><a href="#下载修改" class="headerlink" title="下载修改"></a>下载修改</h2><p>不多说，weget指令就是好，linux就是牛逼。但是Windows也不差，直接选中weget的目标url右键转到（不确定其他浏览器，谷歌chrome安装迅雷插件）就可以跳出迅雷下载了，完了用IDE打开，一堆错误，毕竟是篇远古博客了，而且涂改也是相当严重。不过大部分就是print问题，花点功夫的事情</p>
+<h2 id="修改统一图片尺寸"><a href="#修改统一图片尺寸" class="headerlink" title="修改统一图片尺寸"></a>修改统一图片尺寸</h2><p>还是上篇博客弄好的样本集，只不过这次先统一尺寸，因为OpenCV的SVM需要读入图片是64*128，虽然最后训练也都是一维的1024向量。没啥多说的，直接po代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line">from os.path import dirname, join, basename</span><br><span class="line">from glob import glob</span><br><span class="line"> </span><br><span class="line">num=0</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/nega&apos;,&apos;*.jpg&apos;)):    #获取位置的nega文件夹下所有的jpg图片，nega文件夹下面是我存放的所有负样本</span><br><span class="line">    print(fn)</span><br><span class="line">    img = cv2.imread(fn)</span><br><span class="line">    res=cv2.resize(img,(64,128),interpolation=cv2.INTER_AREA)#线性插值并统一尺寸</span><br><span class="line">    cv2.imwrite(&apos;E:\\Python\\SVM4Pedestrian\\nega_resized\\&apos;+str(num)+&apos;.jpg&apos;,res)#新建nega_resized文件夹，将所有处理后的图片写到该文件夹</span><br><span class="line">    num=num+1</span><br><span class="line"> </span><br><span class="line">print (&apos;all done!&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="train-predict-py"><a href="#train-predict-py" class="headerlink" title="train+predict.py"></a>train+predict.py</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line">#from matplotlib import pyplot as plt</span><br><span class="line">from os.path import dirname, join, basename</span><br><span class="line">import sys</span><br><span class="line">from glob import glob</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin_n = 16*16 # Number of bins</span><br><span class="line"></span><br><span class="line">def hog(img):</span><br><span class="line">    x_pixel,y_pixel=194,259</span><br><span class="line">    gx = cv2.Sobel(img, cv2.CV_32F, 1, 0)</span><br><span class="line">    gy = cv2.Sobel(img, cv2.CV_32F, 0, 1)</span><br><span class="line">    mag, ang = cv2.cartToPolar(gx, gy)</span><br><span class="line">    bins = np.int32(bin_n*ang/(2*np.pi))   </span><br><span class="line">    x_pixel_int=int(x_pixel/2)</span><br><span class="line">    y_pixel_int=int(y_pixel/2)</span><br><span class="line">    bin_cells = bins[:x_pixel_int,:y_pixel_int], bins[x_pixel_int:,:y_pixel_int], bins[:x_pixel_int,y_pixel_int:], bins[x_pixel_int:,y_pixel_int:]</span><br><span class="line">    mag_cells = mag[:x_pixel_int,:y_pixel_int], mag[x_pixel_int:,:y_pixel_int], mag[:x_pixel_int,y_pixel_int:], mag[x_pixel_int:,y_pixel_int:]</span><br><span class="line">    hists = [np.bincount(b.ravel(), m.ravel(), bin_n) for b, m in zip(bin_cells, mag_cells)]</span><br><span class="line">    hist = np.hstack(hists)     # hist is a 64 bit vector</span><br><span class="line">    return hist</span><br><span class="line"></span><br><span class="line">img=&#123;&#125;</span><br><span class="line">num=0</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/posi_resized&apos;, &apos;*.jpg&apos;)):</span><br><span class="line">    img[num] = cv2.imread(fn,0)#参数加0，只读取黑白数据，去掉0，就是彩色读取。</span><br><span class="line">#    print img[num].shape</span><br><span class="line">    num=num+1</span><br><span class="line">positive=num</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/nega_resized&apos;, &apos;*.jpg&apos;)):</span><br><span class="line">    img[num] = cv2.imread(fn,0)#参数加0，只读取黑白数据，去掉0，就是彩色读取。</span><br><span class="line">#    print img[num].shape</span><br><span class="line">    num=num+1</span><br><span class="line"></span><br><span class="line">trainpic=[]</span><br><span class="line">for i in img:</span><br><span class="line">#    print type(i)</span><br><span class="line">    trainpic.append(img[i])</span><br><span class="line"></span><br><span class="line">#hogdata = [map(hog,img[i]) for i in img]</span><br><span class="line">hogdata=list(map(hog,trainpic))</span><br><span class="line">trainData = np.float32(hogdata).reshape(-1,bin_n*4)</span><br><span class="line">responses = np.int32(np.repeat(1.0,trainData.shape[0])[:,np.newaxis])</span><br><span class="line">responses[positive:trainData.shape[0]]=-1.0</span><br><span class="line">#print (type(trainData))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">svm = cv2.ml.SVM_create() #创建SVM model</span><br><span class="line">#属性设置</span><br><span class="line">svm.setType(cv2.ml.SVM_C_SVC)</span><br><span class="line">svm.setKernel(cv2.ml.SVM_LINEAR)</span><br><span class="line">svm.setC(0.01)</span><br><span class="line">#训练</span><br><span class="line">result = svm.train(trainData,cv2.ml.ROW_SAMPLE,responses)</span><br><span class="line">svm.save(&apos;svm_cat_data.dat&apos;)</span><br><span class="line">######测试</span><br><span class="line">test_temp=[]</span><br><span class="line">for fn in glob(join(dirname(__file__)+&apos;/predict_resized&apos;, &apos;*.jpg&apos;)):</span><br><span class="line">    img=cv2.imread(fn,0)#参数加0，只读取黑白数据，去掉0，就是彩色读取。</span><br><span class="line">    test_temp.append(img)</span><br><span class="line">testdata=list(map(hog,test_temp))</span><br><span class="line">testData = np.float32(testdata).reshape(-1,bin_n*4)</span><br><span class="line">re=svm.predict(testData)</span><br></pre></td></tr></table></figure>
+<h2 id="报错修改"><a href="#报错修改" class="headerlink" title="报错修改"></a>报错修改</h2><p>train.py跑通后，尝试测试下训练集里面的第一个，一般都会预测准确，不然SVM也不用混了。除去一些可以立马解决的小问题，主要问题其实就三个：</p>
+<p>第一个是里面的map函数，会报错TypeError: float() argument must be a string or a number, not ‘map’，老版本Python可以没有问题，但是3以后的基本需要外面套个list()，参考<a href="https://blog.csdn.net/shangxiaqiusuo1/article/details/84336339" target="_blank" rel="noopener">这个大哥的方法</a>；</p>
+<p>第二个就是集中在OpenCV更新后，SVM相关的函数都发生了变化，被移动到ml属性下面了，需要先调用ml再调用SVM，此外创建SVM和配置SVM都发生了变化；</p>
+<p>第三个就是保存SVM模型后，调用模型文件预测会出问题，而且我没有解决，只好不保存，直接训练完后测试，最后直接和训练泡在一个py文件里面了。</p>
+<h1 id="SVM分类结果"><a href="#SVM分类结果" class="headerlink" title="SVM分类结果"></a>SVM分类结果</h1><p>非常心痛，测试了28个图片，错了三个，和神经网络跑出来准确率天差地别。可能原因其实很多，图片本身信息不够，区分度也不会好。SVM算法本身和神经网络准确率差别在那。不用做滑动窗口了，直接放弃，白瞎一下午功夫。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>可能先用CNN提取特征再用SVM分类识别会提高准确率，但是已经不想浪费精力了，直接yolo走起。</p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你又拯救了一个贫穷的人~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2019/05/15/试用SVM-slideMask做客流检测-失败/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/10/用InceptionV3迁移学习进行客流检测/" class="archive-article-date">
-  	<time datetime="2019-05-10T11:26:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/10/用InceptionV3迁移学习进行客流检测/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用InceptionV3迁移学习进行客流检测</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/10/用InceptionV3迁移学习进行客流检测/">用InceptionV3迁移学习进行客流检测</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Tensorflow</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目背景"><span class="toc-number">1.</span> <span class="toc-text">项目背景</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#SVM-md"><span class="toc-number"></span> <span class="toc-text">SVM.md</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#还原参考博客内容"><span class="toc-number"></span> <span class="toc-text">还原参考博客内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载修改"><span class="toc-number"></span> <span class="toc-text">下载修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改统一图片尺寸"><span class="toc-number"></span> <span class="toc-text">修改统一图片尺寸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#train-predict-py"><span class="toc-number"></span> <span class="toc-text">train+predict.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报错修改"><span class="toc-number"></span> <span class="toc-text">报错修改</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SVM分类结果"><span class="toc-number"></span> <span class="toc-text">SVM分类结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结论"><span class="toc-number"></span> <span class="toc-text">结论</span></a>
+                    </li></div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/" class="archive-article-date">
-  	<time datetime="2019-05-10T02:47:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        </div>
-    	 
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="试用SVM-slideMask做客流检测-失败" data-title="试用SVM+slideMask做客流检测(失败)" data-url="http://yoursite.com/child/2019/05/15/试用SVM-slideMask做客流检测-失败/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/">Tensorflow_gpu训练手写数字pb模型文件，C++调用预测</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/child/2019/05/15/试用SVM-slideMask做客流检测-失败/", 
+    sourceId: "试用SVM-slideMask做客流检测-失败",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/10/Anaconda-Tensorflow-gpu配置/" class="archive-article-date">
-  	<time datetime="2019-05-10T01:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/10/Anaconda-Tensorflow-gpu配置/">Anaconda+Tensorflow_gpu配置</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/08/My-New-Test/" class="archive-article-date">
-  	<time datetime="2019-05-08T11:18:12.695Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/08/My-New-Test/">Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)</a>
-    </h1>
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -336,8 +418,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
