@@ -154,6 +154,338 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-AlexNet分类图片全纪录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/03/AlexNet分类图片全纪录/">AlexNet分类图片全纪录</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/03/AlexNet分类图片全纪录/" class="archive-article-date">
+  	<time datetime="2019-07-03T06:20:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AlexNet分类图片全纪录"><a href="#AlexNet分类图片全纪录" class="headerlink" title="AlexNet分类图片全纪录"></a>AlexNet分类图片全纪录</h1><p>###背景</p>
+<ul>
+<li>因为工作需要，之前用谷歌网络InceptionV3虽然分类图片成功，并且效果也很好，但是因为谷歌网络是并行网络，说是22层网络，实际上有152层，在项目中表现为：准确率很高，但是CPU处理预测一幅图片需要0.7s，耗时较多。</li>
+<li>考虑到AlexNet是只有8层的轻量级网络，也比较经典，尝试使用分类。事实上，使用AlexNet做迁移学习目前是非常少的，之前深度学习开始火的时候，倒是比较多，因为当时受限于算力，所以还是有很多人做了，但是也都是基于Caffe</li>
+<li>这次，在算力已经大力发展的现在，用AlexNet做迁移学习意义不大。因此，直接用AlexNet做分类任务</li>
+</ul>
+<p><img src="https://www.mdpi.com/remotesensing/remotesensing-09-00848/article_deploy/html/images/remotesensing-09-00848-g003.png" alt="AlexNet"></p>
+<h1 id="解读AlexNet"><a href="#解读AlexNet" class="headerlink" title="解读AlexNet"></a>解读AlexNet</h1><p>AlexNet的解读已经非常多，贴个<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">原文链接</a>吧，然后贴个中英文对照版的<a href="https://www.jianshu.com/p/ea922866e3be" target="_blank" rel="noopener">博客</a>.下面是一些公认的AlexNet所做的贡献：</p>
+<ul>
+<li>alexnet中使用relu作为cnn的激活函数，验证效果远远好于sigmoid，解决了网络较深时的梯度弥散问题，并且加快了训练速度，虽然很早relu激活函数就存在了，但是alexnet成功的把它发扬光大。</li>
+<li>训练时使用dropout来避免模型过拟合，dropout同样是已存在的技术，但是在alexnet验证了它的有效性，虽然之后有了BN之后一般不再使用dropout了</li>
+<li>使用最大池化，避免了平均池化的模糊效果（突出重点特征）</li>
+<li>提出了LRN层，对局部神经元的活动创建竞争机制，使得其中响应较大的值变得相对更大，并抑制其他较小的神经元，增强了模型的泛化能力</li>
+<li>基于GPU使用CUDA加速神经网络的训练</li>
+</ul>
+<p>#用TensorFlow实现AlexNet网络<br>首先，感谢这位前辈的<a href="https://blog.csdn.net/missayaaa/article/details/79119839" target="_blank" rel="noopener">博客</a>，基本代码都是来自于他，然后做了稍许改变。里面的注释也都很详细，可以根据自己的需求来修改。</p>
+<h1 id="重点内容-调参"><a href="#重点内容-调参" class="headerlink" title="重点内容-调参"></a>重点内容-调参</h1><p>我是做二分类任务，一类NG图片和二类OK图片各750张左右。即使AlexNet自身已经做了dropout防止过拟合，实际上和使用Inception做迁移学习比，AlexNet仍然存在着过拟合的问题。从头开始做二分类任务表现：为训练集上，batchSize设置8的时候，训练最后在训练集的准确率基本都是100%（8个里面对8个），但是在测试集上，只有90%的正确率。为此，我做了以下尝试来提高准确率：</p>
+<ul>
+<li>增加训练次数，调整batchSize大小，最后表现如下:<div><br><img src="https://github.com/AllentDan/PedestrianDetection/blob/master/AlexNetImage/precision.PNG?raw=true" alt="增加次数"><br></div></li>
+<li>增加其他种类的图片，提高模型的泛化能力，增加两类图片，guitar，motorbike各五百张，这样训练次数增加到8000次，批次大小8，测试结果出乎意料地提高很多，达到97.9%：<div><br><img src="https://github.com/AllentDan/PedestrianDetection/blob/master/AlexNetImage/%E5%8A%A0%E7%B1%BB%E5%88%AB%E5%9B%BE%E7%89%87%E5%90%8Eprecision.PNG?raw=true" alt="增加种类"><br></div></li>
+<li>增加OK和NG的训练样本个数，到各1200张图片，训练次数到40000，批次大小设置为2，最后预测结果准确率95.8%<div><br><img src="https://github.com/AllentDan/PedestrianDetection/blob/master/AlexNetImage/40000EpochesWIth2BatchSize.PNG?raw=true" alt="增加训练样本"><br></div></li>
+<li>再次增加图片种类，这次添加flowers，animal和airplane类别，共训练7类，即使是用AlexNet迁移学习，也只不过是先在cifar-10数据集上先分类了10类而已，基本差别不大，通过多次调整批次大小，增减训练周期，得到模型。但是最终结果，准确率也只有97.9%不再增加。<div><br><img src="https://github.com/AllentDan/PedestrianDetection/blob/master/AlexNetImage/final.PNG?raw=true" alt="增加训练样本"><br></div>
+
+</li>
+</ul>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><ul>
+<li>改变批次和增多训练次数可提高准确率，前者一般靠运气</li>
+<li>网络从头开始训练而非迁移学习的话，一般会存在过拟合，这是因为网络结构参数多于预测分类所需要的参数，这时可以通过增加样本类别提高泛化能力</li>
+<li>AlexNet用于图片分类还是有很大的局限性，本身全连接层较多，容易出现过拟合。另外网络只有8层，不够深，一般层数越多效果越好，所以分类能力有限</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TensorFlow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/03/AlexNet分类图片全纪录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python训练pb模型文件，C-使用模型预测生成dll，C-调用dll" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/03/python训练pb模型文件，C-使用模型预测生成dll，C-调用dll/">python训练pb模型文件，C++使用模型预测生成dll，C#调用dll</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/03/python训练pb模型文件，C-使用模型预测生成dll，C-调用dll/" class="archive-article-date">
+  	<time datetime="2019-07-03T06:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="python训练pb模型文件，C-使用模型预测生成dll，C-调用dll"><a href="#python训练pb模型文件，C-使用模型预测生成dll，C-调用dll" class="headerlink" title="python训练pb模型文件，C++使用模型预测生成dll，C#调用dll"></a>python训练pb模型文件，C++使用模型预测生成dll，C#调用dll</h1><p>###环境</p>
+<ul>
+<li>Anaconda+python3.6+Tensorflow-gpu 生成静态模型，也就是.pb模型</li>
+<li>VS2017+TensorFlow C++API+OpenCV4.0 预测模型，打包成dll</li>
+<li>具体C#版本没测，但是2013是失败了，2017成功调用dll</li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*IN1lRBQQ8jW70J_nBAjxfw.png" alt="Incpetion"></p>
+<h1 id="Inception-V3迁移学习"><a href="#Inception-V3迁移学习" class="headerlink" title="Inception V3迁移学习"></a>Inception V3迁移学习</h1><p>谷歌网络，在14年拿下当年imageNet分类冠军，深度只有22层，但是很胖，有多个并行网络，总共加起来有152层。Inception网络的迁移学习，之前的博客中已经提到，也给出了当时学习时候的视频。可以在前面的<a href="https://allentdan.github.io/2019/05/10/%E7%94%A8InceptionV3%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/" target="_blank" rel="noopener">博客</a>中看。</p>
+<p>用该网络迁移学习，做二分类任务。分类焊点，检测出有没有焊点，分为没有焊点的NG类和有焊点的OK类。</p>
+<p>#C++使用模型预测生成dll</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TensorFlow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/03/python训练pb模型文件，C-使用模型预测生成dll，C-调用dll/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-神经网络-运动目标检测统计上下车人数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/03/神经网络-运动目标检测统计上下车人数/">神经网络+运动目标检测统计上下车人数</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/03/神经网络-运动目标检测统计上下车人数/" class="archive-article-date">
+  	<time datetime="2019-07-03T06:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/03/神经网络-运动目标检测统计上下车人数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SSD训练数据集做客流检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/03/SSD训练数据集做客流检测/">SSD训练数据集做客流检测</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/03/SSD训练数据集做客流检测/" class="archive-article-date">
+  	<time datetime="2019-07-03T06:17:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/03/SSD训练数据集做客流检测/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-用YOLO3数人头" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -222,7 +554,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">yolo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
         		</li>
       		
 		</ul>
@@ -333,6 +665,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -392,7 +735,7 @@
 <li>刚刚给公司新买的GPU配置好<a href="https://allentdan.github.io/2019/05/10/Anaconda-Tensorflow-gpu%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Anaconda+Tensorflow_gpu环境</a></li>
 <li>学校《图像处理》课程结束大作业就是公交车上的行人检测，要求统计实时乘客流量并且款选出每个人，越准确越好</li>
 </ul>
-<h1 id="客流量检测-md"><a href="#客流量检测-md" class="headerlink" title="客流量检测.md"></a>客流量检测.md</h1><div align="center"><br><img src="https://github.com/AllentDan/PedestrianDetection/raw/master/good%20para/4.jpg?raw=true" alt="result.jpg"><br></div>
+<h1 id="客流量检测-md"><a href="#客流量检测-md" class="headerlink" title="客流量检测.md"></a>客流量检测.md</h1><div align="center"><br><img src="/images/good_para.jpg" alt="result.jpg"><br></div>
 
 <p><strong>目录 (Table of Contents)</strong></p>
 <p>[TOCM]</p>
@@ -420,7 +763,7 @@
 <h2 id="多建一个分类放负样本"><a href="#多建一个分类放负样本" class="headerlink" title="多建一个分类放负样本"></a>多建一个分类放负样本</h2><p>嘣~结果非常好，暂时就先不贴图了，后面再更，包括引入滑动窗口对整张图片做识别。</p>
 <p>………………………..</p>
 <p>好了，2019年5月13日下午，我又回来了。像我之前所说，同时截出正负样本进行训练，然后用滑动窗口复制出许许多多的测试图放入网络中测试。</p>
-<h1 id="滑动窗口对视频截图检测客流"><a href="#滑动窗口对视频截图检测客流" class="headerlink" title="滑动窗口对视频截图检测客流"></a>滑动窗口对视频截图检测客流</h1><h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><div align="center"><br><img src="https://img-blog.csdn.net/20180317200939851?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L1NtYWxsX011bmljaA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"><br></div><br><div align="center"><br>&gt; 图为：滑窗法的物体检测流程图<br></div>
+<h1 id="滑动窗口对视频截图检测客流"><a href="#滑动窗口对视频截图检测客流" class="headerlink" title="滑动窗口对视频截图检测客流"></a>滑动窗口对视频截图检测客流</h1><h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><div align="center"><br><img src="https://pic1.xuehuaimg.com/proxy/csdn/https://img-blog.csdnimg.cn/201812242005033.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3OTcwMjI0,size_16,color_FFFFFF,t_70" alt="img"><br></div><br><div align="center"><br>&gt; 图为：滑窗法的物体检测流程图<br></div>
 
 <p>可以发现滑窗的原理和实现都不难，比较关键的一步是需要非极大抑制，直接贴网上找来用的代码如下，helper.py给后面的主程序调用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Fri May 10 13:43:36 2019</span><br><span class="line"></span><br><span class="line">@author: Allent_Computer</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># import the necessary packages</span><br><span class="line">import imutils</span><br><span class="line">from skimage.transform import pyramid_gaussian</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">def pyramid(image, scale=1.5, minSize=(70, 70)):</span><br><span class="line">    # yield the original image</span><br><span class="line">    yield image</span><br><span class="line">    loop=1</span><br><span class="line">    # keep looping over the pyramid</span><br><span class="line">    while loop:</span><br><span class="line">        loop-=1</span><br><span class="line">        # compute the new dimensions of the image and resize it</span><br><span class="line">        w = int(image.shape[1] / scale)</span><br><span class="line">        image = imutils.resize(image, width=w)</span><br><span class="line"></span><br><span class="line">        # if the resized image does not meet the supplied minimum</span><br><span class="line">        # size, then stop constructing the pyramid</span><br><span class="line">        if image.shape[0] &lt; minSize[1] or image.shape[1] &lt; minSize[0]:</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">        # yield the next image in the pyramid</span><br><span class="line">        yield image</span><br><span class="line"></span><br><span class="line">def sliding_window(image, stepSize, windowSize):</span><br><span class="line">    # slide a window across the image</span><br><span class="line">    for y in range(0, image.shape[0], stepSize):</span><br><span class="line">        for x in range(0, image.shape[1], stepSize):</span><br><span class="line">            # yield the current window</span><br><span class="line">            yield (x, y, image[y:y + windowSize[1], x:x + windowSize[0]])</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    image = cv2.imread(&apos;E:/python/myInceptionProject/detected_image.jpg&apos;)  </span><br><span class="line">    # METHOD #2: Resizing + Gaussian smoothing.</span><br><span class="line">    for (i, resized) in enumerate(pyramid_gaussian(image, downscale=3)):</span><br><span class="line">        # if the image is too small, break from the loop</span><br><span class="line">        if resized.shape[0] &lt; 30 or resized.shape[1] &lt; 30:</span><br><span class="line">            break</span><br><span class="line">        # show the resized image</span><br><span class="line">        WinName = &quot;Layer &#123;&#125;&quot;.format(i + 1)</span><br><span class="line">#        cv2.imshow(WinName, resized)</span><br><span class="line">#        cv2.waitKey(10)</span><br><span class="line">        resized = resized*255</span><br><span class="line">        cv2.imwrite(&apos;./&apos;+WinName+&apos;.jpg&apos;,resized)</span><br></pre></td></tr></table></figure>
@@ -517,7 +860,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python训练手写数字识别模型"><a href="#Python训练手写数字识别模型" class="headerlink" title="Python训练手写数字识别模型"></a>Python训练手写数字识别模型</h1><p>没啥好说，直接上代码</p>
+        <h1 id="Tensorflow-gpu训练手写数字pb模型文件，C-调用预测"><a href="#Tensorflow-gpu训练手写数字pb模型文件，C-调用预测" class="headerlink" title="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测"></a>Tensorflow_gpu训练手写数字pb模型文件，C++调用预测</h1><p>没啥好说，直接上代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon May  6 09:50:41 2019</span><br><span class="line"></span><br><span class="line">@author: admin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># Python3</span><br><span class="line"></span><br><span class="line"># 使用LeNet5的七层卷积神经网络用于MNIST手写数字识别</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.examples.tutorials.mnist import input_data</span><br><span class="line"></span><br><span class="line">mnist = input_data.read_data_sets(&quot;MNIST_data&quot;, one_hot=True)</span><br><span class="line">pb_file_path = os.getcwd()   #获取当前代码路径</span><br><span class="line"></span><br><span class="line"># 为输入图像和目标输出类别创建节点</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line">x = tf.placeholder(tf.float32, shape=[None, 784],name=&apos;x&apos;) # 训练所需数据  占位符</span><br><span class="line">y_ = tf.placeholder(tf.float32, shape=[None, 10]) # 训练所需标签数据  占位符</span><br><span class="line"></span><br><span class="line"># *************** 构建多层卷积网络 *************** #</span><br><span class="line"></span><br><span class="line"># 权重、偏置、卷积及池化操作初始化,以避免在建立模型的时候反复做初始化操作</span><br><span class="line">def weight_variable(shape):</span><br><span class="line">  initial = tf.truncated_normal(shape, stddev=0.1) # 取随机值，符合均值为0，标准差stddev为0.1</span><br><span class="line">  return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">def bias_variable(shape):</span><br><span class="line">  initial = tf.constant(0.1, shape=shape)</span><br><span class="line">  return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"># x 的第一个参数为图片的数量，第二、三个参数分别为图片高度和宽度，第四个参数为图片通道数。</span><br><span class="line"># W 的前两个参数为卷积核尺寸，第三个参数为图像通道数，第四个参数为卷积核数量</span><br><span class="line"># strides为卷积步长，其第一、四个参数必须为1，因为卷积层的步长只对矩阵的长和宽有效</span><br><span class="line"># padding表示卷积的形式，即是否考虑边界。&quot;SAME&quot;是考虑边界，不足的时候用0去填充周围，&quot;VALID&quot;则不考虑</span><br><span class="line">def conv2d(x, W):</span><br><span class="line">  return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding=&apos;SAME&apos;)</span><br><span class="line"></span><br><span class="line"># x 参数的格式同tf.nn.conv2d中的x，ksize为池化层过滤器的尺度，strides为过滤器步长</span><br><span class="line">def max_pool_2x2(x):</span><br><span class="line">  return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&apos;SAME&apos;)</span><br><span class="line"></span><br><span class="line">#把x更改为4维张量，第1维代表样本数量，第2维和第3维代表图像长宽， 第4维代表图像通道数  </span><br><span class="line">x_image = tf.reshape(x, [-1,28,28,1]) # -1表示任意数量的样本数,大小为28x28，深度为1的张量</span><br><span class="line"></span><br><span class="line"># 第一层：卷积</span><br><span class="line">W_conv1 = weight_variable([5, 5, 1, 32]) # 卷积在每个5x5的patch中算出32个特征。</span><br><span class="line">b_conv1 = bias_variable([32])</span><br><span class="line"></span><br><span class="line">h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1) </span><br><span class="line"></span><br><span class="line"># 第二层：池化</span><br><span class="line">h_pool1 = max_pool_2x2(h_conv1)</span><br><span class="line"></span><br><span class="line"># 第三层：卷积</span><br><span class="line">W_conv2 = weight_variable([5, 5, 32, 64])</span><br><span class="line">b_conv2 = bias_variable([64])</span><br><span class="line"></span><br><span class="line">h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)</span><br><span class="line"></span><br><span class="line"># 第四层：池化</span><br><span class="line">h_pool2 = max_pool_2x2(h_conv2)</span><br><span class="line"></span><br><span class="line"># 第五层：全连接层</span><br><span class="line">W_fc1 = weight_variable([7 * 7 * 64, 1024])</span><br><span class="line">b_fc1 = bias_variable([1024])</span><br><span class="line"></span><br><span class="line">h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])</span><br><span class="line">h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)</span><br><span class="line"></span><br><span class="line"># 在输出层之前加入dropout以减少过拟合</span><br><span class="line">keep_prob = tf.placeholder(tf.float32, name=&quot;keep_prob&quot;)</span><br><span class="line">h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</span><br><span class="line"></span><br><span class="line"># 第六层：全连接层</span><br><span class="line">W_fc2 = weight_variable([1024, 10])</span><br><span class="line">b_fc2 = bias_variable([10])</span><br><span class="line"></span><br><span class="line"># 第七层：输出层</span><br><span class="line">y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2,name=&apos;y&apos;)</span><br><span class="line"></span><br><span class="line"># *************** 训练和评估模型 *************** #</span><br><span class="line"></span><br><span class="line"># 为训练过程指定最小化误差用的损失函数，即目标类别和预测类别之间的交叉熵</span><br><span class="line">cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))</span><br><span class="line"></span><br><span class="line"># 使用反向传播，利用优化器使损失函数最小化</span><br><span class="line">train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)</span><br><span class="line"></span><br><span class="line"># 检测我们的预测是否真实标签匹配(索引位置一样表示匹配)</span><br><span class="line"># tf.argmax(y_conv,dimension), 返回最大数值的下标 通常和tf.equal()一起使用，计算模型准确度</span><br><span class="line"># dimension=0 按列找  dimension=1 按行找</span><br><span class="line">correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))  </span><br><span class="line"></span><br><span class="line"># 统计测试准确率， 将correct_prediction的布尔值转换为浮点数来代表对、错，并取平均值。</span><br><span class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))</span><br><span class="line"></span><br><span class="line">saver = tf.train.Saver() # 定义saver</span><br><span class="line"></span><br><span class="line"># *************** 开始训练模型 *************** #</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">    for i in range(1002):</span><br><span class="line">      batch = mnist.train.next_batch(50)</span><br><span class="line">      if i%100 == 0:</span><br><span class="line">          </span><br><span class="line">          # 评估模型准确度，此阶段不使用Dropout</span><br><span class="line">          train_accuracy = accuracy.eval(feed_dict=&#123;x:batch[0], y_: batch[1], keep_prob: 1.0&#125;)</span><br><span class="line">          print(&quot;step %d, training accuracy %g&quot;%(i, train_accuracy))</span><br><span class="line">      # 训练模型，此阶段使用50%的Dropout</span><br><span class="line">      train_step.run(feed_dict=&#123;x: batch[0], y_: batch[1], keep_prob: 0.5&#125;) </span><br><span class="line">      if i%100 == 0:</span><br><span class="line">          constant_graph = tf.graph_util.convert_variables_to_constants(sess, sess.graph_def, [&apos;x&apos;,&apos;y&apos;,&apos;keep_prob&apos;])</span><br><span class="line">          with tf.gfile.FastGFile(&apos;e:\\model.pb&apos;, mode=&apos;wb&apos;) as f: #模型的名字是model.pb</span><br><span class="line">              f.write(constant_graph.SerializeToString())</span><br><span class="line">    saver.save(sess, &apos;./save/model.ckpt&apos;) #模型储存位置</span><br><span class="line"></span><br><span class="line">    print(&quot;test accuracy %g&quot;%accuracy.eval(feed_dict=&#123;x: mnist.test.images [0:2000], y_: mnist.test.labels [0:2000], keep_prob: 1.0&#125;))</span><br></pre></td></tr></table></figure>
 <p>训练会生成pb文件，到e:\model.pb，随后用python调用，调用代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon May  6 10:21:40 2019</span><br><span class="line"></span><br><span class="line">@author: admin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">from PIL import Image</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.python.platform import gfile</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">im = Image.open(&apos;C:\\Users\\admin\\Pictures\\3.png&apos;)</span><br><span class="line">data = list(im.getdata())</span><br><span class="line">result = [(255-x)*1.0/255.0 for x in data] </span><br><span class="line">#print(result)</span><br><span class="line"></span><br><span class="line"># 为输入图像和目标输出类别创建节点</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line">#x = tf.placeholder(&quot;float&quot;, shape=[None, 784]) # 训练所需数据  占位符</span><br><span class="line"></span><br><span class="line"># *************** 开始识别 *************** #</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    with gfile.FastGFile(&apos;e:\\model.pb&apos;, &apos;rb&apos;) as f:</span><br><span class="line">        graph_def = tf.GraphDef()</span><br><span class="line">        graph_def.ParseFromString(f.read())</span><br><span class="line">        sess.graph.as_default()</span><br><span class="line">        tf.import_graph_def(graph_def, name=&apos;&apos;)</span><br><span class="line">    x = sess.graph.get_tensor_by_name(&quot;x:0&quot;)</span><br><span class="line">    y = sess.graph.get_tensor_by_name(&quot;y:0&quot;)</span><br><span class="line">    keep_prob = sess.graph.get_tensor_by_name(&quot;keep_prob:0&quot;)</span><br><span class="line">   # print(test) </span><br><span class="line">    #saver.restore(sess, &quot;./save/model.ckpt&quot;)#这里使用了之前保存的模型参数</span><br><span class="line"></span><br><span class="line">    prediction = tf.argmax(y,1)</span><br><span class="line">    predint = prediction.eval(feed_dict=&#123;x: [result],keep_prob: 1.0&#125;, session=sess)</span><br><span class="line"></span><br><span class="line">    print(&quot;recognize result: %d&quot; %predint[0])</span><br></pre></td></tr></table></figure>
@@ -550,7 +893,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">配置</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">TensorFlow</a>
         		</li>
       		
 		</ul>
@@ -635,6 +978,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">配置</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -740,6 +1094,17 @@ bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;insta
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">配置</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -867,11 +1232,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">yolo</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,20 +16,20 @@
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/AllentDan/PedestrianDetection/raw/master/good%20para/4.jpg?raw=true">
+<meta property="og:image" content="http://yoursite.com/images/good_para.jpg">
 <meta property="og:image" content="http://yoursite.com/images/Inception%20v3.jpg">
 <meta property="og:image" content="http://yoursite.com/images/flower_0003.jpg">
 <meta property="og:image" content="http://yoursite.com/images/guitar0001.jpg">
 <meta property="og:image" content="http://yoursite.com/images/试用Inception.jpg">
-<meta property="og:image" content="https://img-blog.csdn.net/20180317200939851?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L1NtYWxsX011bmljaA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://pic1.xuehuaimg.com/proxy/csdn/https://img-blog.csdnimg.cn/201812242005033.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3OTcwMjI0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="http://yoursite.com/images/source_image.jpg">
 <meta property="og:image" content="http://yoursite.com/images/no_nms.jpg">
 <meta property="og:image" content="http://yoursite.com/images/bad_result.jpg">
-<meta property="og:updated_time" content="2019-05-20T11:35:26.459Z">
+<meta property="og:updated_time" content="2019-06-29T05:04:11.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用InceptionV3迁移学习进行客流检测">
 <meta name="twitter:description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
-<meta name="twitter:image" content="https://github.com/AllentDan/PedestrianDetection/raw/master/good%20para/4.jpg?raw=true">
+<meta name="twitter:image" content="http://yoursite.com/images/good_para.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Allent&#39;s Blogs" type="application/atom+xml">
   
@@ -192,7 +192,7 @@
 <li>刚刚给公司新买的GPU配置好<a href="https://allentdan.github.io/2019/05/10/Anaconda-Tensorflow-gpu%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">Anaconda+Tensorflow_gpu环境</a></li>
 <li>学校《图像处理》课程结束大作业就是公交车上的行人检测，要求统计实时乘客流量并且款选出每个人，越准确越好</li>
 </ul>
-<h1 id="客流量检测-md"><a href="#客流量检测-md" class="headerlink" title="客流量检测.md"></a>客流量检测.md</h1><div align="center"><br><img src="https://github.com/AllentDan/PedestrianDetection/raw/master/good%20para/4.jpg?raw=true" alt="result.jpg"><br></div>
+<h1 id="客流量检测-md"><a href="#客流量检测-md" class="headerlink" title="客流量检测.md"></a>客流量检测.md</h1><div align="center"><br><img src="/images/good_para.jpg" alt="result.jpg"><br></div>
 
 <p><strong>目录 (Table of Contents)</strong></p>
 <p>[TOCM]</p>
@@ -220,7 +220,7 @@
 <h2 id="多建一个分类放负样本"><a href="#多建一个分类放负样本" class="headerlink" title="多建一个分类放负样本"></a>多建一个分类放负样本</h2><p>嘣~结果非常好，暂时就先不贴图了，后面再更，包括引入滑动窗口对整张图片做识别。</p>
 <p>………………………..</p>
 <p>好了，2019年5月13日下午，我又回来了。像我之前所说，同时截出正负样本进行训练，然后用滑动窗口复制出许许多多的测试图放入网络中测试。</p>
-<h1 id="滑动窗口对视频截图检测客流"><a href="#滑动窗口对视频截图检测客流" class="headerlink" title="滑动窗口对视频截图检测客流"></a>滑动窗口对视频截图检测客流</h1><h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><div align="center"><br><img src="https://img-blog.csdn.net/20180317200939851?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L1NtYWxsX011bmljaA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"><br></div><br><div align="center"><br>&gt; 图为：滑窗法的物体检测流程图<br></div>
+<h1 id="滑动窗口对视频截图检测客流"><a href="#滑动窗口对视频截图检测客流" class="headerlink" title="滑动窗口对视频截图检测客流"></a>滑动窗口对视频截图检测客流</h1><h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><div align="center"><br><img src="https://pic1.xuehuaimg.com/proxy/csdn/https://img-blog.csdnimg.cn/201812242005033.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3OTcwMjI0,size_16,color_FFFFFF,t_70" alt="img"><br></div><br><div align="center"><br>&gt; 图为：滑窗法的物体检测流程图<br></div>
 
 <p>可以发现滑窗的原理和实现都不难，比较关键的一步是需要非极大抑制，直接贴网上找来用的代码如下，helper.py给后面的主程序调用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Fri May 10 13:43:36 2019</span><br><span class="line"></span><br><span class="line">@author: Allent_Computer</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># import the necessary packages</span><br><span class="line">import imutils</span><br><span class="line">from skimage.transform import pyramid_gaussian</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">def pyramid(image, scale=1.5, minSize=(70, 70)):</span><br><span class="line">    # yield the original image</span><br><span class="line">    yield image</span><br><span class="line">    loop=1</span><br><span class="line">    # keep looping over the pyramid</span><br><span class="line">    while loop:</span><br><span class="line">        loop-=1</span><br><span class="line">        # compute the new dimensions of the image and resize it</span><br><span class="line">        w = int(image.shape[1] / scale)</span><br><span class="line">        image = imutils.resize(image, width=w)</span><br><span class="line"></span><br><span class="line">        # if the resized image does not meet the supplied minimum</span><br><span class="line">        # size, then stop constructing the pyramid</span><br><span class="line">        if image.shape[0] &lt; minSize[1] or image.shape[1] &lt; minSize[0]:</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">        # yield the next image in the pyramid</span><br><span class="line">        yield image</span><br><span class="line"></span><br><span class="line">def sliding_window(image, stepSize, windowSize):</span><br><span class="line">    # slide a window across the image</span><br><span class="line">    for y in range(0, image.shape[0], stepSize):</span><br><span class="line">        for x in range(0, image.shape[1], stepSize):</span><br><span class="line">            # yield the current window</span><br><span class="line">            yield (x, y, image[y:y + windowSize[1], x:x + windowSize[0]])</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    image = cv2.imread(&apos;E:/python/myInceptionProject/detected_image.jpg&apos;)  </span><br><span class="line">    # METHOD #2: Resizing + Gaussian smoothing.</span><br><span class="line">    for (i, resized) in enumerate(pyramid_gaussian(image, downscale=3)):</span><br><span class="line">        # if the image is too small, break from the loop</span><br><span class="line">        if resized.shape[0] &lt; 30 or resized.shape[1] &lt; 30:</span><br><span class="line">            break</span><br><span class="line">        # show the resized image</span><br><span class="line">        WinName = &quot;Layer &#123;&#125;&quot;.format(i + 1)</span><br><span class="line">#        cv2.imshow(WinName, resized)</span><br><span class="line">#        cv2.waitKey(10)</span><br><span class="line">        resized = resized*255</span><br><span class="line">        cv2.imwrite(&apos;./&apos;+WinName+&apos;.jpg&apos;,resized)</span><br></pre></td></tr></table></figure>
@@ -555,11 +555,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">yolo</a>
+                <a href="javascript:void(0)" class="js-tag color1">TensorFlow</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
               </li>
              
               <li class="article-tag-list-item">
