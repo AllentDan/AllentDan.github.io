@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://files.gitee.com/group1/M00/08/7D/PaAvDF0kKtGAOaSsAAB6hGvGdaA083.jpg?token=31abd497b6edee80d78e8c815f52ab0e&ts=1562651346&attname=result.jpg&disposition=inline">
 <meta property="og:image" content="https://files.gitee.com/group1/M00/08/7A/PaAvDF0jA_6Af3kMAiHUvT4JuLs479.gif?token=f150191b52f5b3b2f6e50347565b46fc&ts=1562653729&attname=mytest6.gif&disposition=inline">
-<meta property="og:updated_time" content="2019-07-09T06:39:49.731Z">
+<meta property="og:updated_time" content="2019-07-09T08:22:50.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSD训练数据集做客流检测">
 <meta name="twitter:description" content="Windows下使用spyder训练SSD-TensorFlow，并进行客流检测背景 之前的尝试中，用yolo v3训练自己的模型并进行客流检测。得到的结果其实已经很好，增加训练样本和训练周期，最后也取得了如下的效果，但是实际在视频中检测时候，抖动现象还是比较严重的。 尝试使用另一种实时检测模型SSD，SSD综合了yolo的快捷和Faster RCNN的准确，同时兼备快捷和准确率。  过程 先后参">
@@ -187,11 +187,16 @@
 <h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><ol>
 <li><p>先后参考<a href="https://blog.csdn.net/zzz_cming/article/details/81131523" target="_blank" rel="noopener">博客一</a>，<a href="https://blog.csdn.net/duanyajun987/article/details/81564081" target="_blank" rel="noopener">博客二</a>和<a href="https://blog.csdn.net/ngy321/article/details/79901516" target="_blank" rel="noopener">博客三</a>以及对SSD迁移到TensorFlow上的<a href="https://github.com/balancap/SSD-Tensorflow" target="_blank" rel="noopener">工程</a>。其中第三篇博客对我帮助很大，主要是SSD-TensorFlow都是部署在Linux上，或者在windlows使用pycharm的IDE工具，所以对使用其他工具和环境的造成许多困扰。</p>
 </li>
-<li><p>可以完全按照第二篇博客一步一步向下做，直到第七步。因为不是使用的pycharm，导致无法直接转换文件生成tfrecord。就做了些修改，将linux下的.sn批处理文件改成Windows下的.bat批处理文件。文件内如如下：<br>python tf_convert_data.py ^<br>–dataset_name pascalvoc ^<br>–dataset_dir VOCdevkit/VOC2007/ ^<br>–output_name voc_2007_train ^<br>–output_dir tfrecords/<br>pause<br>读者可以新建TXT文件，然后输入上面内容，换成自己对应的路径，再修改文件名.txt为.bat文件。直接双击运行即可，报错的话，根据内容修改即可。</p>
-</li>
-<li><p>同样，受限于Windows环境和IDE的辣鸡，只好自己编写.bat批处理文件，内如如下：<br>python train_ssd_network.py ^<br> –train_dir log2/ ^<br> –dataset_dir tfrecords/ ^<br> –dataset_name pascalvoc_2007 ^<br> –dataset_split_name train ^<br> –model_name ssd_300_vgg ^<br> –checkpoint_path checkpoints/VGG_VOC0712_SSD_300x300_ft_iter_120000.ckpt ^<br> –save_summaries_secs 60 ^<br> –save_interval_secs 300 ^<br> –weight_decay 0.0005 ^<br> –optimizer adam ^<br> –learning_rate 0.00003 ^<br> –batch_size 16<br>pause<br>同样，参照上一个过程做你自己的修改，然后双击运行.bat文件即可，报错修改。训练过程中想终止，按Ctr+C即可。</p>
+<li><p>可以完全按照第二篇博客一步一步向下做，直到第七步。因为不是使用的pycharm，导致无法直接转换文件生成tfrecord。就做了些修改，将linux下的.sh批处理文件改成Windows下的.bat批处理文件。文件内如如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">python tf_convert_data.py ^</span><br><span class="line">--dataset_name pascalvoc ^</span><br><span class="line">--dataset_dir VOCdevkit/VOC2007/ ^</span><br><span class="line">--output_name voc_2007_train ^</span><br><span class="line">--output_dir tfrecords/</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>读者可以新建TXT文件，然后输入上面内容，换成自己对应的路径，再修改文件名.txt为.bat文件。直接双击运行即可，报错的话，根据内容修改即可。</p>
+<ol start="3">
+<li>同样，受限于Windows环境和IDE的辣鸡，只好自己编写.bat批处理文件，内如如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">python train_ssd_network.py ^</span><br><span class="line">    --train_dir log2/ ^</span><br><span class="line">    --dataset_dir tfrecords/ ^</span><br><span class="line">    --dataset_name pascalvoc_2007 ^</span><br><span class="line">    --dataset_split_name train ^</span><br><span class="line">    --model_name ssd_300_vgg ^</span><br><span class="line">    --checkpoint_path checkpoints/VGG_VOC0712_SSD_300x300_ft_iter_120000.ckpt ^</span><br><span class="line">    --save_summaries_secs 60 ^</span><br><span class="line">    --save_interval_secs 300 ^</span><br><span class="line">    --weight_decay 0.0005 ^</span><br><span class="line">    --optimizer adam ^</span><br><span class="line">    --learning_rate 0.00003 ^</span><br><span class="line">    --batch_size 16</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>同样，参照上一个过程做你自己的修改，然后双击运行.bat文件即可，报错修改。训练过程中想终止，按Ctr+C即可。</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
 <li>问题：训练不收敛，导致很容易像博客一中存在的问题。此外，我本人的训练不收敛情况严重许多，loss可以在10~150间抖动震荡。但是最后测试图片的时候，仍然像第一篇参考博客一样。</li>
 <li>办法：后面将所有的图片按最大可能生成tfrecords文件，并且增多图片数量和训练次数。中间还做了其他修改，但是已经忘记了，可以自行尝试。</li>
