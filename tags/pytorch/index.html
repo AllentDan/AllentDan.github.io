@@ -6,22 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>用yolo v3训练自己的模型并进行客流检测 | Allent&#39;s Blogs</title>
+  <title>Tag: pytorch | Allent&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="项目背景 前面我分别用谷歌网络Inception和svm+slidemask进行过客流检测的尝试，效果都一般，这个是由于Inception模型迁移学习后太大，而svm训练本身不容易，而且不稳定，容易误检测。这些都可以归因于two stages做目标检测的缺陷  前面几次的尝试我也有陆续做了部分记录，可以看看，当然效果都挺感人 svm+slideMask检测客流 Inception V3进行客流检测">
-<meta name="keywords" content="目标检测">
-<meta property="og:type" content="article">
-<meta property="og:title" content="用yolo v3训练自己的模型并进行客流检测">
-<meta property="og:url" content="http://yoursite.com/child/2019/06/08/用YOLO3数人头/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Allent&#39;s Blogs">
+<meta property="og:url" content="http://yoursite.com/child/tags/pytorch/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="项目背景 前面我分别用谷歌网络Inception和svm+slidemask进行过客流检测的尝试，效果都一般，这个是由于Inception模型迁移学习后太大，而svm训练本身不容易，而且不稳定，容易误检测。这些都可以归因于two stages做目标检测的缺陷  前面几次的尝试我也有陆续做了部分记录，可以看看，当然效果都挺感人 svm+slideMask检测客流 Inception V3进行客流检测">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/AllentDan/PedestrianDetection/blob/master/yoloImage/result.png?raw=true">
-<meta property="og:updated_time" content="2019-07-03T06:35:14.365Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用yolo v3训练自己的模型并进行客流检测">
-<meta name="twitter:description" content="项目背景 前面我分别用谷歌网络Inception和svm+slidemask进行过客流检测的尝试，效果都一般，这个是由于Inception模型迁移学习后太大，而svm训练本身不容易，而且不稳定，容易误检测。这些都可以归因于two stages做目标检测的缺陷  前面几次的尝试我也有陆续做了部分记录，可以看看，当然效果都挺感人 svm+slideMask检测客流 Inception V3进行客流检测">
-<meta name="twitter:image" content="https://github.com/AllentDan/PedestrianDetection/blob/master/yoloImage/result.png?raw=true">
+<meta name="twitter:title" content="Allent&#39;s Blogs">
   
     <link rel="alternative" href="/atom.xml" title="Allent&#39;s Blogs" type="application/atom+xml">
   
@@ -159,280 +152,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-用YOLO3数人头" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      用yolo v3训练自己的模型并进行客流检测
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/07/10/以AlexNet为例分析pytorch/" class="archive-article-date">
+  	<time datetime="2019-07-10T02:07:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/07/10/以AlexNet为例分析pytorch/">以AlexNet为例分析pytorch</a>
     </h1>
   
 
-        
-        <a href="/2019/06/08/用YOLO3数人头/" class="archive-article-date">
-  	<time datetime="2019-06-08T11:26:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><ul>
-<li><p>前面我分别用谷歌网络Inception和svm+slidemask进行过客流检测的尝试，效果都一般，这个是由于Inception模型迁移学习后太大，而svm训练本身不容易，而且不稳定，容易误检测。这些都可以归因于two stages做目标检测的缺陷</p>
-</li>
-<li><p>前面几次的尝试我也有陆续做了部分记录，可以看看，当然效果都挺感人</p>
-<p><a href="https://allentdan.github.io/2019/05/15/试用SVM-slideMask做客流检测-失败/" target="_blank" rel="noopener">svm+slideMask检测客流</a></p>
-<p><a href="https://allentdan.github.io/2019/05/10/用InceptionV3迁移学习进行客流检测/" target="_blank" rel="noopener">Inception V3进行客流检测</a></p>
-</li>
-<li><p>本次 keras yolo检测主要参考有<a href="https://blog.csdn.net/weixin_43472830/article/details/88320099" target="_blank" rel="noopener">YOLO基础教程（四）：yolo v3 训练自己的数据集</a>，<a href="https://blog.csdn.net/Patrick_Lxc/article/details/80615433" target="_blank" rel="noopener">Keras/Tensorflow+python+yolo3训练自己的数据集</a>以及<a href="https://blog.csdn.net/jesse_mx/article/details/53606897" target="_blank" rel="noopener">样本标注工具，图片标注工具LabelImg使用教程</a>。其他还有很多零零散散的，包括一些视频和yolo官方网站，就不一一列举了。</p>
-</li>
-</ul>
-<h1 id="keras-yolo客流量检测-md"><a href="#keras-yolo客流量检测-md" class="headerlink" title="keras yolo客流量检测.md"></a>keras yolo客流量检测.md</h1><div align="center"><br><img src="https://github.com/AllentDan/PedestrianDetection/blob/master/yoloImage/result.png?raw=true" alt="result.jpg"><br></div>
-
-<p><strong>目录 (Table of Contents)</strong></p>
-<p>[TOCM]</p>
-<p>[TOC]</p>
-<h1 id="下载使用yolo官方权重文件测试"><a href="#下载使用yolo官方权重文件测试" class="headerlink" title="下载使用yolo官方权重文件测试"></a>下载使用yolo官方权重文件测试</h1><h2 id="yolo介绍"><a href="#yolo介绍" class="headerlink" title="yolo介绍"></a>yolo介绍</h2><p>不多说，想知道yolo检测原理的直接看这篇<a href="https://www.jianshu.com/p/13ec2aa50c12" target="_blank" rel="noopener">YOLO文章详细解读</a>。yolo是美国某大学的研究生弄出来的一个端到端(end to end)网络，还上了TED做演讲，看看人家研究生，再看看我们哈哈哈。所谓端到端，我理解的在目标检测中也就是不用先分类，再切割图片识别，而是直接对图片预测目标位置和大小，也就是将two stages变成one stage检测。</p>
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>大家可以参考csdn博主<a href="https://me.csdn.net/weixin_43472830" target="_blank" rel="noopener">王氏小明</a>的<a href="https://blog.csdn.net/weixin_43472830/article/details/88022869" target="_blank" rel="noopener">YOLO基础教程（一）：Python环境搭建与测试</a>，也可以参考我前面的博客</p>
-<h2 id="直接yolo检测客流看看效果"><a href="#直接yolo检测客流看看效果" class="headerlink" title="直接yolo检测客流看看效果"></a>直接yolo检测客流看看效果</h2><p>不得不说，即使是高清的动物世界视频，yolo官方权重检测出的效果其实也还可以，但是还是有许多误检测。更不要说老师给的如上图所示的av画质视频效果了。当然，yolo检测的速度还是很快的，双GTX 1080 ti gpu下可以达到30fps。从输出看，它的bounding box也比two stages的滑动窗口更能准确表示物体的位置和大小。</p>
-<h1 id="用YOLO训练自己的权重文件"><a href="#用YOLO训练自己的权重文件" class="headerlink" title="用YOLO训练自己的权重文件"></a>用YOLO训练自己的权重文件</h1><h2 id="先做样本集"><a href="#先做样本集" class="headerlink" title="先做样本集"></a>先做样本集</h2><p>可以说，训练深度网络，大概是三分之一的时间做样本，三分之一的时间敲代码，还有三分之一的时间调参数。制作样本，因为班里老师给的是视频，而yolo使用的标注工具是读图片的，所以省去自己写脚本弄，需要先改成每帧或几十帧获取一幅图片放到一个文件夹里面。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//代码落公司电脑了，很简单，百度“python 视频转图片”然后自己调调就好了</span><br></pre></td></tr></table></figure>
-<h1 id="labelImage标注"><a href="#labelImage标注" class="headerlink" title="labelImage标注"></a>labelImage标注</h1><p>按照项目背景中的参考博客，创建好文件夹以后(其实里面部分文件夹似乎没有用，但是你还是按照他的来吧)，使用工具LabelImg，里面给的链接已经失效，所以我又在项目背景中列了另外一个，是labelImage的源码，它会教你使用。</p>
-<p>在labelImage工具图形界面三步走，标注玩完一百幅图片大概需要半个到一个小时。请尽量将尽可能多的不同的图片放进去标注。你可以选择就标注一个类别head，也可以多加几类其他的，如果你内存够的话。</p>
-<h2 id="多建一个分类放负样本"><a href="#多建一个分类放负样本" class="headerlink" title="多建一个分类放负样本"></a>多建一个分类放负样本</h2><p>嘣~结果非常好，暂时就先不贴图了，后面再更，包括引入滑动窗口对整张图片做识别。</p>
-<p>………………………..</p>
-<p>好了，2019年5月13日下午，我又回来了。像我之前所说，同时截出正负样本进行训练，然后用滑动窗口复制出许许多多的测试图放入网络中测试。</p>
-<h1 id="test-py生成训练时候的测试集和训练集"><a href="#test-py生成训练时候的测试集和训练集" class="headerlink" title="test.py生成训练时候的测试集和训练集"></a>test.py生成训练时候的测试集和训练集</h1><h2 id="test-py"><a href="#test-py" class="headerlink" title="test.py"></a>test.py</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import random</span><br><span class="line"> </span><br><span class="line">trainval_percent = 0.1</span><br><span class="line">train_percent = 0.9</span><br><span class="line">xmlfilepath = &apos;Annotations&apos;</span><br><span class="line">txtsavepath = &apos;ImageSets\Main&apos;</span><br><span class="line">total_xml = os.listdir(xmlfilepath)</span><br><span class="line"> </span><br><span class="line">num = len(total_xml)</span><br><span class="line">list = range(num)</span><br><span class="line">tv = int(num * trainval_percent)</span><br><span class="line">tr = int(tv * train_percent)</span><br><span class="line">trainval = random.sample(list, tv)</span><br><span class="line">train = random.sample(trainval, tr)</span><br><span class="line"> </span><br><span class="line">ftrainval = open(&apos;ImageSets/Main/trainval.txt&apos;, &apos;w&apos;)</span><br><span class="line">ftest = open(&apos;ImageSets/Main/test.txt&apos;, &apos;w&apos;)</span><br><span class="line">ftrain = open(&apos;ImageSets/Main/train.txt&apos;, &apos;w&apos;)</span><br><span class="line">fval = open(&apos;ImageSets/Main/val.txt&apos;, &apos;w&apos;)</span><br><span class="line"> </span><br><span class="line">for i in list:</span><br><span class="line">    name = total_xml[i][:-4] + &apos;\n&apos;</span><br><span class="line">    if i in trainval:</span><br><span class="line">        ftrainval.write(name)</span><br><span class="line">        if i in train:</span><br><span class="line">            ftest.write(name)</span><br><span class="line">        else:</span><br><span class="line">            fval.write(name)</span><br><span class="line">    else:</span><br><span class="line">        ftrain.write(name)</span><br><span class="line"> </span><br><span class="line">ftrainval.close()</span><br><span class="line">ftrain.close()</span><br><span class="line">fval.close()</span><br><span class="line">ftest.close()</span><br><span class="line">--------------------- </span><br><span class="line">作者：王氏小明 </span><br><span class="line">来源：CSDN </span><br><span class="line">原文：https://blog.csdn.net/weixin_43472830/article/details/88320099 </span><br><span class="line">不要脸地直接拿来用了</span><br></pre></td></tr></table></figure>
-<h2 id="一步步按教程来"><a href="#一步步按教程来" class="headerlink" title="一步步按教程来"></a>一步步按教程来</h2><p>说一下你可能遇到的问题，只有CPU的话直接加参考博客里os设置，我的是GPU，但是依然有问题。训练时候，第一个周期训练有时候是内存超了，然后黑屏或者闪退，这时候你可能需要减少你的训练集大小。改好以后，第一个周期依然很长时间，我第一次大概要20~40分钟，因为里面涉及到读取图片输入问题。然后后面每个周期就大概十几秒，每个step大概就几十ms。</p>
-<h1 id="我的权重文件"><a href="#我的权重文件" class="headerlink" title="我的权重文件"></a>我的权重文件</h1><p>最后将我自己的权重文件放上来，因为训练时候，输入的样本就100张，然后训练了大概30个周期就收敛完了，loss降到20几，所以效果一般。另外，预测时候的score和IOU设置也不够好，所以最后效果，可以在前面看到，还是有很多问题的。但是总体来说比前面的svm和Inception好很多了。</p>
-<p>我训练的权重文件在这：<a href="https://pan.baidu.com/s/178IL5IL3s-e0fafZg0kuJg，密码是：b2p5" target="_blank" rel="noopener">https://pan.baidu.com/s/178IL5IL3s-e0fafZg0kuJg，密码是：b2p5</a></p>
-<p>链接失效的话，可以在我blibli账号下留言哈哈。</p>
-<p>我的yolo预测文件，使用时候根据需要改变score下限和IOU大小，然后使用detect_video函数或者detect_img函数就好，找出你满意的。步骤大概是：</p>
-<p>1 终端python yolo.py或者在ide中打开运行</p>
-<p>2 yolo=YOLO()</p>
-<p>3 设置对应输入输出路径，调用detect_video函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Class definition of YOLO_v3 style detection model on image and video</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import colorsys</span><br><span class="line">import os</span><br><span class="line">from timeit import default_timer as timer</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">from keras import backend as K</span><br><span class="line">from keras.models import load_model</span><br><span class="line">from keras.layers import Input</span><br><span class="line">from PIL import Image, ImageFont, ImageDraw</span><br><span class="line"></span><br><span class="line">from yolo3.model import yolo_eval, yolo_body, tiny_yolo_body</span><br><span class="line">from yolo3.utils import letterbox_image</span><br><span class="line">import os</span><br><span class="line">from keras.utils import multi_gpu_model</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">class YOLO(object):</span><br><span class="line">    _defaults = &#123;</span><br><span class="line">        &quot;model_path&quot;: &apos;logs/000/trained_weights_stage_1.h5&apos;,</span><br><span class="line">        &quot;anchors_path&quot;: &apos;model_data/yolo_anchors.txt&apos;,</span><br><span class="line">        &quot;classes_path&quot;: &apos;model_data/coco_classes.txt&apos;,</span><br><span class="line">        &quot;score&quot; : 0.15,</span><br><span class="line">        &quot;iou&quot; : 0.3,</span><br><span class="line">        &quot;model_image_size&quot; : (416, 416),</span><br><span class="line">        &quot;gpu_num&quot; : 1,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def get_defaults(cls, n):</span><br><span class="line">        if n in cls._defaults:</span><br><span class="line">            return cls._defaults[n]</span><br><span class="line">        else:</span><br><span class="line">            return &quot;Unrecognized attribute name &apos;&quot; + n + &quot;&apos;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self, **kwargs):</span><br><span class="line">        self.__dict__.update(self._defaults) # set up default values</span><br><span class="line">        self.__dict__.update(kwargs) # and update with user overrides</span><br><span class="line">        self.class_names = self._get_class()</span><br><span class="line">        self.anchors = self._get_anchors()</span><br><span class="line">        self.sess = K.get_session()</span><br><span class="line">        self.boxes, self.scores, self.classes = self.generate()</span><br><span class="line"></span><br><span class="line">    def _get_class(self):</span><br><span class="line">        classes_path = os.path.expanduser(self.classes_path)</span><br><span class="line">        with open(classes_path) as f:</span><br><span class="line">            class_names = f.readlines()</span><br><span class="line">        class_names = [c.strip() for c in class_names]</span><br><span class="line">        return class_names</span><br><span class="line"></span><br><span class="line">    def _get_anchors(self):</span><br><span class="line">        anchors_path = os.path.expanduser(self.anchors_path)</span><br><span class="line">        with open(anchors_path) as f:</span><br><span class="line">            anchors = f.readline()</span><br><span class="line">        anchors = [float(x) for x in anchors.split(&apos;,&apos;)]</span><br><span class="line">        return np.array(anchors).reshape(-1, 2)</span><br><span class="line"></span><br><span class="line">    def generate(self):</span><br><span class="line">        model_path = os.path.expanduser(self.model_path)</span><br><span class="line">        assert model_path.endswith(&apos;.h5&apos;), &apos;Keras model or weights must be a .h5 file.&apos;</span><br><span class="line"></span><br><span class="line">        # Load model, or construct model and load weights.</span><br><span class="line">        num_anchors = len(self.anchors)</span><br><span class="line">        num_classes = len(self.class_names)</span><br><span class="line">        is_tiny_version = num_anchors==6 # default setting</span><br><span class="line">        try:</span><br><span class="line">            self.yolo_model = load_model(model_path, compile=False)</span><br><span class="line">        except:</span><br><span class="line">            self.yolo_model = tiny_yolo_body(Input(shape=(None,None,3)), num_anchors//2, num_classes) \</span><br><span class="line">                if is_tiny_version else yolo_body(Input(shape=(None,None,3)), num_anchors//3, num_classes)</span><br><span class="line">            self.yolo_model.load_weights(self.model_path) # make sure model, anchors and classes match</span><br><span class="line">        else:</span><br><span class="line">            assert self.yolo_model.layers[-1].output_shape[-1] == \</span><br><span class="line">                num_anchors/len(self.yolo_model.output) * (num_classes + 5), \</span><br><span class="line">                &apos;Mismatch between model and given anchor and class sizes&apos;</span><br><span class="line"></span><br><span class="line">        print(&apos;&#123;&#125; model, anchors, and classes loaded.&apos;.format(model_path))</span><br><span class="line"></span><br><span class="line">        # Generate colors for drawing bounding boxes.</span><br><span class="line">        hsv_tuples = [(x / len(self.class_names), 1., 1.)</span><br><span class="line">                      for x in range(len(self.class_names))]</span><br><span class="line">        self.colors = list(map(lambda x: colorsys.hsv_to_rgb(*x), hsv_tuples))</span><br><span class="line">        self.colors = list(</span><br><span class="line">            map(lambda x: (int(x[0] * 255), int(x[1] * 255), int(x[2] * 255)),</span><br><span class="line">                self.colors))</span><br><span class="line">        np.random.seed(10101)  # Fixed seed for consistent colors across runs.</span><br><span class="line">        np.random.shuffle(self.colors)  # Shuffle colors to decorrelate adjacent classes.</span><br><span class="line">        np.random.seed(None)  # Reset seed to default.</span><br><span class="line"></span><br><span class="line">        # Generate output tensor targets for filtered bounding boxes.</span><br><span class="line">        self.input_image_shape = K.placeholder(shape=(2, ))</span><br><span class="line">        if self.gpu_num&gt;=2:</span><br><span class="line">            self.yolo_model = multi_gpu_model(self.yolo_model, gpus=self.gpu_num)</span><br><span class="line">        boxes, scores, classes = yolo_eval(self.yolo_model.output, self.anchors,</span><br><span class="line">                len(self.class_names), self.input_image_shape,</span><br><span class="line">                score_threshold=self.score, iou_threshold=self.iou)</span><br><span class="line">        return boxes, scores, classes</span><br><span class="line"></span><br><span class="line">    def detect_image(self, image):</span><br><span class="line">        start = timer()</span><br><span class="line"></span><br><span class="line">        if self.model_image_size != (None, None):</span><br><span class="line">            assert self.model_image_size[0]%32 == 0, &apos;Multiples of 32 required&apos;</span><br><span class="line">            assert self.model_image_size[1]%32 == 0, &apos;Multiples of 32 required&apos;</span><br><span class="line">            boxed_image = letterbox_image(image, tuple(reversed(self.model_image_size)))</span><br><span class="line">        else:</span><br><span class="line">            new_image_size = (image.width - (image.width % 32),</span><br><span class="line">                              image.height - (image.height % 32))</span><br><span class="line">            boxed_image = letterbox_image(image, new_image_size)</span><br><span class="line">        image_data = np.array(boxed_image, dtype=&apos;float32&apos;)</span><br><span class="line"></span><br><span class="line">        print(image_data.shape)</span><br><span class="line">        image_data /= 255.</span><br><span class="line">        image_data = np.expand_dims(image_data, 0)  # Add batch dimension.</span><br><span class="line"></span><br><span class="line">        out_boxes, out_scores, out_classes = self.sess.run(</span><br><span class="line">            [self.boxes, self.scores, self.classes],</span><br><span class="line">            feed_dict=&#123;</span><br><span class="line">                self.yolo_model.input: image_data,</span><br><span class="line">                self.input_image_shape: [image.size[1], image.size[0]],</span><br><span class="line">                K.learning_phase(): 0</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        print(&apos;Found &#123;&#125; boxes for &#123;&#125;&apos;.format(len(out_boxes), &apos;img&apos;))</span><br><span class="line"></span><br><span class="line">        font = ImageFont.truetype(font=&apos;font/FiraMono-Medium.otf&apos;,</span><br><span class="line">                    size=np.floor(3e-2 * image.size[1] + 0.5).astype(&apos;int32&apos;))</span><br><span class="line">        thickness = (image.size[0] + image.size[1]) // 300</span><br><span class="line"></span><br><span class="line">        for i, c in reversed(list(enumerate(out_classes))):</span><br><span class="line">            predicted_class = self.class_names[c]</span><br><span class="line">            box = out_boxes[i]</span><br><span class="line">            score = out_scores[i]</span><br><span class="line"></span><br><span class="line">            label = &apos;&#123;&#125; &#123;:.2f&#125;&apos;.format(predicted_class, score)</span><br><span class="line">            draw = ImageDraw.Draw(image)</span><br><span class="line">            label_size = draw.textsize(label, font)</span><br><span class="line"></span><br><span class="line">            top, left, bottom, right = box</span><br><span class="line">            top = max(0, np.floor(top + 0.5).astype(&apos;int32&apos;))</span><br><span class="line">            left = max(0, np.floor(left + 0.5).astype(&apos;int32&apos;))</span><br><span class="line">            bottom = min(image.size[1], np.floor(bottom + 0.5).astype(&apos;int32&apos;))</span><br><span class="line">            right = min(image.size[0], np.floor(right + 0.5).astype(&apos;int32&apos;))</span><br><span class="line">            print(label, (left, top), (right, bottom))</span><br><span class="line"></span><br><span class="line">            if top - label_size[1] &gt;= 0:</span><br><span class="line">                text_origin = np.array([left, top - label_size[1]])</span><br><span class="line">            else:</span><br><span class="line">                text_origin = np.array([left, top + 1])</span><br><span class="line"></span><br><span class="line">            # My kingdom for a good redistributable image drawing library.</span><br><span class="line">            for i in range(thickness):</span><br><span class="line">                draw.rectangle(</span><br><span class="line">                    [left + i, top + i, right - i, bottom - i],</span><br><span class="line">                    outline=self.colors[c])</span><br><span class="line">            draw.rectangle(</span><br><span class="line">                [tuple(text_origin), tuple(text_origin + label_size)],</span><br><span class="line">                fill=self.colors[c])</span><br><span class="line">            draw.text(text_origin, label, fill=(0, 0, 0), font=font)</span><br><span class="line">            del draw</span><br><span class="line">        draw = ImageDraw.Draw(image)</span><br><span class="line">        draw.text((3,15),&quot;All:&quot;+str(len(out_boxes)),(255,0,0))</span><br><span class="line">        del draw</span><br><span class="line">        end = timer()</span><br><span class="line">        print(end - start)</span><br><span class="line">        return image</span><br><span class="line"></span><br><span class="line">    def close_session(self):</span><br><span class="line">        self.sess.close()</span><br><span class="line"></span><br><span class="line">def detect_video(yolo, video_path, output_path=&quot;&quot;):</span><br><span class="line">#    import cv2</span><br><span class="line">    vid = cv2.VideoCapture(video_path)</span><br><span class="line">    if not vid.isOpened():</span><br><span class="line">        cv2.destroyAllWindows()</span><br><span class="line">        raise IOError(&quot;Couldn&apos;t open webcam or video&quot;)</span><br><span class="line">    video_FourCC    = int(vid.get(cv2.CAP_PROP_FOURCC))</span><br><span class="line">    video_fps       = vid.get(cv2.CAP_PROP_FPS)</span><br><span class="line">    video_size      = (int(vid.get(cv2.CAP_PROP_FRAME_WIDTH)),</span><br><span class="line">                        int(vid.get(cv2.CAP_PROP_FRAME_HEIGHT)))</span><br><span class="line">    isOutput = True if output_path != &quot;&quot; else False</span><br><span class="line">    if isOutput:</span><br><span class="line">        print(&quot;!!! TYPE:&quot;, type(output_path), type(video_FourCC), type(video_fps), type(video_size))</span><br><span class="line">        out = cv2.VideoWriter(output_path, video_FourCC, video_fps, video_size)</span><br><span class="line">    accum_time = 0</span><br><span class="line">    curr_fps = 0</span><br><span class="line">    fps = &quot;FPS: ??&quot;</span><br><span class="line">    prev_time = timer()</span><br><span class="line">    while True:</span><br><span class="line">        return_value, frame = vid.read()</span><br><span class="line">        image = Image.fromarray(frame)</span><br><span class="line">        image = yolo.detect_image(image)</span><br><span class="line">        result = np.asarray(image)</span><br><span class="line">        curr_time = timer()</span><br><span class="line">        exec_time = curr_time - prev_time</span><br><span class="line">        prev_time = curr_time</span><br><span class="line">        accum_time = accum_time + exec_time</span><br><span class="line">        curr_fps = curr_fps + 1</span><br><span class="line">        if accum_time &gt; 1:</span><br><span class="line">            accum_time = accum_time - 1</span><br><span class="line">            fps = &quot;FPS: &quot; + str(curr_fps)</span><br><span class="line">            curr_fps = 0</span><br><span class="line">#        cv2.putText(result, text=fps, org=(3, 15), fontFace=cv2.FONT_HERSHEY_SIMPLEX,</span><br><span class="line">#                    fontScale=0.50, color=(255, 0, 0), thickness=2)</span><br><span class="line">        cv2.namedWindow(&quot;result&quot;, cv2.WINDOW_NORMAL)</span><br><span class="line">        cv2.imshow(&quot;result&quot;, result)</span><br><span class="line">        if isOutput:</span><br><span class="line">            out.write(result)</span><br><span class="line">        if cv2.waitKey(1) &amp; 0xFF == ord(&apos;q&apos;):</span><br><span class="line">            break</span><br><span class="line">    yolo.close_session()</span><br><span class="line">def detect_img(yolo):</span><br><span class="line">    while True:</span><br><span class="line">        img = input(&apos;Input image filename:&apos;)</span><br><span class="line">        try:</span><br><span class="line">            image = Image.open(img)</span><br><span class="line">        except:</span><br><span class="line">            print(&apos;Open Error! Try again!&apos;)</span><br><span class="line">            continue</span><br><span class="line">        else:</span><br><span class="line">            r_image = yolo.detect_image(image)</span><br><span class="line">            r_image.show()</span><br><span class="line">    yolo.close_session()</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>你又拯救了一个贫穷的人~<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wechatpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">pytorch</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2019/06/08/用YOLO3数人头/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/07/03/SSD训练数据集做客流检测/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          SSD训练数据集做客流检测
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/05/15/试用SVM-slideMask做客流检测-失败/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">试用SVM+HOG+SlideWindows做客流检测(成功)</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目背景"><span class="toc-number">1.</span> <span class="toc-text">项目背景</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#keras-yolo客流量检测-md"><span class="toc-number"></span> <span class="toc-text">keras yolo客流量检测.md</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下载使用yolo官方权重文件测试"><span class="toc-number"></span> <span class="toc-text">下载使用yolo官方权重文件测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yolo介绍"><span class="toc-number"></span> <span class="toc-text">yolo介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置环境"><span class="toc-number"></span> <span class="toc-text">配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直接yolo检测客流看看效果"><span class="toc-number"></span> <span class="toc-text">直接yolo检测客流看看效果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用YOLO训练自己的权重文件"><span class="toc-number"></span> <span class="toc-text">用YOLO训练自己的权重文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#先做样本集"><span class="toc-number"></span> <span class="toc-text">先做样本集</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#labelImage标注"><span class="toc-number"></span> <span class="toc-text">labelImage标注</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#多建一个分类放负样本"><span class="toc-number"></span> <span class="toc-text">多建一个分类放负样本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#test-py生成训练时候的测试集和训练集"><span class="toc-number"></span> <span class="toc-text">test.py生成训练时候的测试集和训练集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#test-py"><span class="toc-number"></span> <span class="toc-text">test.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一步步按教程来"><span class="toc-number"></span> <span class="toc-text">一步步按教程来</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#我的权重文件"><span class="toc-number"></span> <span class="toc-text">我的权重文件</span></a>
-                    </li></div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="用YOLO3数人头" data-title="用yolo v3训练自己的模型并进行客流检测" data-url="http://yoursite.com/child/2019/06/08/用YOLO3数人头/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://yoursite.com/child/2019/06/08/用YOLO3数人头/", 
-    sourceId: "用YOLO3数人头",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-    <section id="comments">
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'true'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section>
-  
-
-  
+    
 
 
           </div>
@@ -455,9 +228,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
