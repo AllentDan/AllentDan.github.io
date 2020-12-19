@@ -183,14 +183,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="AlexNet分类图片全纪录"><a href="#AlexNet分类图片全纪录" class="headerlink" title="AlexNet分类图片全纪录"></a>AlexNet分类图片全纪录</h1><p>###背景</p>
+        <h1><span id="alexnet分类图片全纪录">AlexNet分类图片全纪录</span></h1><p>###背景</p>
 <ul>
 <li>因为工作需要，之前用谷歌网络InceptionV3虽然分类图片成功，并且效果也很好，但是因为谷歌网络是并行网络，说是22层网络，实际上有152层，在项目中表现为：准确率很高，但是CPU处理预测一幅图片需要0.7s，耗时较多。</li>
 <li>考虑到AlexNet是只有8层的轻量级网络，也比较经典，尝试使用分类。事实上，使用AlexNet做迁移学习目前是非常少的，之前深度学习开始火的时候，倒是比较多，因为当时受限于算力，所以还是有很多人做了，但是也都是基于Caffe</li>
 <li>这次，在算力已经大力发展的现在，用AlexNet做迁移学习意义不大。因此，直接用AlexNet做分类任务</li>
 </ul>
 <p><img src="https://www.mdpi.com/remotesensing/remotesensing-09-00848/article_deploy/html/images/remotesensing-09-00848-g003.png" alt="AlexNet"></p>
-<h1 id="解读AlexNet"><a href="#解读AlexNet" class="headerlink" title="解读AlexNet"></a>解读AlexNet</h1><p>AlexNet的解读已经非常多，贴个<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">原文链接</a>吧，然后贴个中英文对照版的<a href="https://www.jianshu.com/p/ea922866e3be" target="_blank" rel="noopener">博客</a>.下面是一些公认的AlexNet所做的贡献：</p>
+<h1><span id="解读alexnet">解读AlexNet</span></h1><p>AlexNet的解读已经非常多，贴个<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">原文链接</a>吧，然后贴个中英文对照版的<a href="https://www.jianshu.com/p/ea922866e3be" target="_blank" rel="noopener">博客</a>.下面是一些公认的AlexNet所做的贡献：</p>
 <ul>
 <li>alexnet中使用relu作为cnn的激活函数，验证效果远远好于sigmoid，解决了网络较深时的梯度弥散问题，并且加快了训练速度，虽然很早relu激活函数就存在了，但是alexnet成功的把它发扬光大。</li>
 <li>训练时使用dropout来避免模型过拟合，dropout同样是已存在的技术，但是在alexnet验证了它的有效性，虽然之后有了BN之后一般不再使用dropout了</li>
@@ -199,7 +199,7 @@
 <li>基于GPU使用CUDA加速神经网络的训练</li>
 </ul>
 <p>#用TensorFlow实现AlexNet网络<br>首先，感谢这位前辈的<a href="https://blog.csdn.net/missayaaa/article/details/79119839" target="_blank" rel="noopener">博客</a>，基本代码都是来自于他，然后做了稍许改变。里面的注释也都很详细，可以根据自己的需求来修改。</p>
-<h1 id="重点内容-调参"><a href="#重点内容-调参" class="headerlink" title="重点内容-调参"></a>重点内容-调参</h1><p>我是做二分类任务，一类NG图片和二类OK图片各750张左右。即使AlexNet自身已经做了dropout防止过拟合，实际上和使用Inception做迁移学习比，AlexNet仍然存在着过拟合的问题。从头开始做二分类任务表现：为训练集上，batchSize设置8的时候，训练最后在训练集的准确率基本都是100%（8个里面对8个），但是在测试集上，只有90%的正确率。为此，我做了以下尝试来提高准确率：</p>
+<h1><span id="重点内容-调参">重点内容-调参</span></h1><p>我是做二分类任务，一类NG图片和二类OK图片各750张左右。即使AlexNet自身已经做了dropout防止过拟合，实际上和使用Inception做迁移学习比，AlexNet仍然存在着过拟合的问题。从头开始做二分类任务表现：为训练集上，batchSize设置8的时候，训练最后在训练集的准确率基本都是100%（8个里面对8个），但是在测试集上，只有90%的正确率。为此，我做了以下尝试来提高准确率：</p>
 <ul>
 <li>增加训练次数，调整batchSize大小，最后表现如下:<div><br><img src="https://raw.githubusercontent.com/AllentDan/PedestrianDetection/master/AlexNetImage/precision.PNG" alt="增加次数"><br></div></li>
 <li>增加其他种类的图片，提高模型的泛化能力，增加两类图片，guitar，motorbike各五百张，这样训练次数增加到8000次，批次大小8，测试结果出乎意料地提高很多，达到97.9%：<div><br><img src="https://raw.githubusercontent.com/AllentDan/PedestrianDetection/master/AlexNetImage/%E5%8A%A0%E7%B1%BB%E5%88%AB%E5%9B%BE%E7%89%87%E5%90%8Eprecision.PNG" alt="增加种类"><br></div></li>
@@ -208,7 +208,7 @@
 
 </li>
 </ul>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><ul>
+<h1><span id="结论">结论</span></h1><ul>
 <li>改变批次和增多训练次数可提高准确率，前者一般靠运气</li>
 <li>网络从头开始训练而非迁移学习的话，一般会存在过拟合，这是因为网络结构参数多于预测分类所需要的参数，这时可以通过增加样本类别提高泛化能力</li>
 <li>AlexNet用于图片分类还是有很大的局限性，本身全连接层较多，容易出现过拟合。另外网络只有8层，不够深，一般层数越多效果越好，所以分类能力有限</li>
@@ -365,7 +365,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AlexNet分类图片全纪录"><span class="toc-number">1.</span> <span class="toc-text">AlexNet分类图片全纪录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解读AlexNet"><span class="toc-number">2.</span> <span class="toc-text">解读AlexNet</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重点内容-调参"><span class="toc-number">3.</span> <span class="toc-text">重点内容-调参</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结论"><span class="toc-number">4.</span> <span class="toc-text">结论</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">AlexNet分类图片全纪录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">解读AlexNet</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">重点内容-调参</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">结论</span></a></li></ol>
                     </div>
                 </span>
             </div>
