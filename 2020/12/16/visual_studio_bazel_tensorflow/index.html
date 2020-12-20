@@ -79,26 +79,18 @@
 
 
 
-<meta name="description" content="工具和环境 Windows10； VS2017； CUDA9.0； CUDnn9.0(v7 for CUDA9.0); eigen3； bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；  Readme.md       目录 (">
+<meta name="description" content="工具和环境 Windows10； VS2017； CUDA9.0； CUDnn9.0(v7 for CUDA9.0); eigen3； bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；Bazel编译Tensorflow的Visu">
 <meta name="keywords" content="配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)">
-<meta property="og:url" content="https://allentdan.github.io/2020/12/16/My-New-Test/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2020/12/16/visual_studio_bazel_tensorflow/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="工具和环境 Windows10； VS2017； CUDA9.0； CUDnn9.0(v7 for CUDA9.0); eigen3； bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；  Readme.md       目录 (">
+<meta property="og:description" content="工具和环境 Windows10； VS2017； CUDA9.0； CUDnn9.0(v7 for CUDA9.0); eigen3； bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；Bazel编译Tensorflow的Visu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png">
-<meta property="og:image" content="https://img.shields.io/github/stars/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/forks/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/tag/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/release/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/issues/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/bower/v/editor.md.svg">
-<meta property="og:updated_time" content="2020-12-19T03:02:07.146Z">
+<meta property="og:updated_time" content="2020-12-20T08:43:47.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)">
-<meta name="twitter:description" content="工具和环境 Windows10； VS2017； CUDA9.0； CUDnn9.0(v7 for CUDA9.0); eigen3； bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；  Readme.md       目录 (">
-<meta name="twitter:image" content="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png">
+<meta name="twitter:description" content="工具和环境 Windows10； VS2017； CUDA9.0； CUDnn9.0(v7 for CUDA9.0); eigen3； bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；Bazel编译Tensorflow的Visu">
 
 
 
@@ -128,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2020/12/16/My-New-Test/">
+  <link rel="canonical" href="https://allentdan.github.io/2020/12/16/visual_studio_bazel_tensorflow/">
 
 
 
@@ -271,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/16/My-New-Test/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/16/visual_studio_bazel_tensorflow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Allent Dan">
@@ -319,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/12/16/My-New-Test/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/16/My-New-Test/" itemprop="commentsCount"></span>
+                <a href="/2020/12/16/visual_studio_bazel_tensorflow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/16/visual_studio_bazel_tensorflow/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,7 +320,7 @@
 
           
           
-             <span id="/2020/12/16/My-New-Test/" class="leancloud_visitors" data-flag-title="Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)">
+             <span id="/2020/12/16/visual_studio_bazel_tensorflow/" class="leancloud_visitors" data-flag-title="Wind10环境，Visual Studio2017下用Bazel编译Tensorflow(失败转调用编译好的包配置使用Tensorflowc++)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -371,14 +363,7 @@
 <li>CUDnn9.0(v7 for CUDA9.0);</li>
 <li>eigen3；</li>
 <li>bazel-0.24.1-windows-x86_64(版本不是关键，旧版的话会提示你更新)；</li>
-<li>Anaconda3 64bit 地址 <a href="https://www.anaconda.com/download/#windows；" target="_blank" rel="noopener">https://www.anaconda.com/download/#windows；</a></li>
-</ul>
-<h1><span id="readmemd">Readme.md</span></h1><p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png" alt></p>
-<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/forks/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/tag/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/release/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/issues/pandao/editor.md.svg" alt> <img src="https://img.shields.io/bower/v/editor.md.svg" alt></p>
-<p><strong>目录 (Table of Contents)</strong></p>
-<p>[TOCM]</p>
-<p>[TOC]</p>
-<h1><span id="bazel编译tensorflow的visual-c环境">Bazel编译Tensorflow的Visual C++环境</span></h1><h2><span id="步骤">步骤</span></h2><h3><span id="1">1</span></h3><ul>
+<li>Anaconda3 64bit 地址 <a href="https://www.anaconda.com/download/#windows；" target="_blank" rel="noopener">https://www.anaconda.com/download/#windows；</a><h1><span id="bazel编译tensorflow的visual-c环境">Bazel编译Tensorflow的Visual C++环境</span></h1><h2><span id="步骤">步骤</span></h2><h3><span id="1">1</span></h3></li>
 <li>按照第二个参考博客安装并配置Bazel，并放入MSYS2根目录C:\msys64；设置两个环境变量 BAZEL_SH，BAZEL_VC，结果在后面下载并编译Tensorflow环节，执行python configure.py发现无反应，遂直接将Bazel.exe复制到Tensorflow文件夹里面，后续需要Bazel的也是直接复制到对应的文件夹</li>
 </ul>
 <h3><span id="2">2</span></h3><ul>
@@ -641,7 +626,7 @@ bazel build :install_headers（//BUILD文件tf_cc_shared_object(name=&quot;insta
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">工具和环境</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Readme.md</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Bazel编译Tensorflow的Visual C++环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">7</span></a></li></ol></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">工具和环境</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Bazel编译Tensorflow的Visual C++环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">7</span></a></li></ol></li></ol></li></div>
             
 
           </div>
