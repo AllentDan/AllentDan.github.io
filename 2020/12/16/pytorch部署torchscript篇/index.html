@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="pytorch,">
 
 
 
@@ -79,13 +79,14 @@
 
 
 
-<meta name="description" content="[toc]引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡G">
+<meta name="description" content="引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡Gtx 10">
+<meta name="keywords" content="pytorch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pytorch部署torchscript篇">
-<meta property="og:url" content="http://yoursite.com/child/2020/12/16/pytorch部署torchscript篇/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2020/12/16/pytorch部署torchscript篇/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="[toc]引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡G">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡Gtx 10">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/libtorch_download_scene.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/my_dependency.PNG">
@@ -94,10 +95,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vsRelease64.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/include.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/lib.PNG">
-<meta property="og:updated_time" content="2020-12-19T15:37:18.313Z">
+<meta property="og:updated_time" content="2020-12-20T03:40:59.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pytorch部署torchscript篇">
-<meta name="twitter:description" content="[toc]引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡G">
+<meta name="twitter:description" content="引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡Gtx 10">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG">
 
 
@@ -106,7 +107,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -128,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/child/2020/12/16/pytorch部署torchscript篇/">
+  <link rel="canonical" href="https://allentdan.github.io/2020/12/16/pytorch部署torchscript篇/">
 
 
 
@@ -146,7 +147,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -169,7 +170,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -195,6 +196,36 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
           </a>
         </li>
       
@@ -241,12 +272,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/child/2020/12/16/pytorch部署torchscript篇/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/16/pytorch部署torchscript篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Allent Dan">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/selfie.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -258,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">pytorch部署torchscript篇</h1>
+          <h2 class="post-title" itemprop="name headline">pytorch部署torchscript篇</h2>
         
 
         <div class="post-meta">
@@ -281,14 +312,62 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pytorch/" itemprop="url" rel="index">
+                    <span itemprop="name">pytorch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/12/16/pytorch部署torchscript篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/16/pytorch部署torchscript篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
           
           
+             <span id="/2020/12/16/pytorch部署torchscript篇/" class="leancloud_visitors" data-flag-title="pytorch部署torchscript篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
           
 
           
@@ -308,7 +387,7 @@
       
 
       
-        <h2><span id="toc">[toc]</span></h2><h1><span id="引言">引言</span></h1><p>本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有<a href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs" target="_blank" rel="noopener">visual studio</a>，<a href="https://opencv.org/" target="_blank" rel="noopener">opencv</a>，<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">libtorch</a>。</p>
+        <h1><span id="引言">引言</span></h1><p>本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有<a href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs" target="_blank" rel="noopener">visual studio</a>，<a href="https://opencv.org/" target="_blank" rel="noopener">opencv</a>，<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">libtorch</a>。</p>
 <h1><span id="环境">环境</span></h1><p>本文环境如下：<br>win10平台<br>cuda10.2+cudnn7.6.5<br>双显卡Gtx 1080Ti<br>visual studio 2017 community version<br>opencv 4.5.0<br>libtorch 1.1<br>事实上，除了libtorch是版本有强制要求不低于pytorch版本外（主要是可能存在的api问题，否则也不必）和visual studio的版本要求外，其他如opencv并无版本要求，甚至如果只部署cpu的话，显卡都不是必须。</p>
 <h2><span id="visual-studio">visual studio</span></h2><p>visual studio版本最好在2015及以上，本文用2017版本。下载链接在<a href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs" target="_blank" rel="noopener">链接1</a>，具体安装过程可以参考<a href="https://www.jianshu.com/p/320aefbc582d" target="_blank" rel="noopener">链接2</a>。打开链接1下载社区版本即可，安装时对于c++程序设计只需安装对应部分，勾选如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG" alt><br>visual studio的安装并无太多需要赘述，按照教程操作就好。</p>
 <h2><span id="opencv">opencv</span></h2><p>截止成文时，opencv版本已到4.5.0。去<a href="https://opencv.org/releases/" target="_blank" rel="noopener">官网</a>下载你想要的版本即可，当然限定平台为Windows平台。opencv的版本如若读者没有特别需要均无影响，本文也试过不同版本，不影响部署。opencv安装也容易，虽然是exe文件，但是实际就是个压缩包，解压到你想要的目录最好。值得注意的是，好的编程习惯很重要，所有程序涉及路径以英文路径为佳，避免出错。</p>
@@ -354,10 +433,45 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+          
+        </div>
       
 
       
@@ -406,6 +520,13 @@
           
 
   
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
 
 
 
@@ -442,6 +563,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/selfie.jpg" alt="Allent Dan">
+            
               <p class="site-author-name" itemprop="name">Allent Dan</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -460,15 +583,24 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -476,6 +608,28 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AllentDan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allentdan@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/65234485" target="_blank" title="Bilibili">
+                      
+                        <i class="fa fa-fw fa-bilibili"></i>Bilibili</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -499,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">[toc]</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">visual studio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">libtorch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">生成.pt文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Visual Studio项目配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">新建Visual Studio工程项目。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">编译环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.</span> <span class="nav-text">配置项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.1.</span> <span class="nav-text">include</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.2.</span> <span class="nav-text">lib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.3.</span> <span class="nav-text">link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.4.</span> <span class="nav-text">dll</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.4.</span> <span class="nav-text">cpp代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">一些报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">错误1：无法使用GPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">错误2：编译时报错“std”: 不明确的符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">错误3：缺少dll</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">visual studio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.</span> <span class="nav-text">libtorch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">生成.pt文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">Visual Studio项目配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.1.</span> <span class="nav-text">新建Visual Studio工程项目。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.2.</span> <span class="nav-text">编译环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.3.</span> <span class="nav-text">配置项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">include</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">lib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.3.4.</span> <span class="nav-text">dll</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.4.</span> <span class="nav-text">cpp代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">一些报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.</span> <span class="nav-text">错误1：无法使用GPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.2.</span> <span class="nav-text">错误2：编译时报错“std”: 不明确的符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.3.</span> <span class="nav-text">错误3：缺少dll</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -529,20 +683,34 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -637,6 +805,13 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
@@ -692,17 +867,145 @@
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
   
 
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
 
   
 
 </body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
