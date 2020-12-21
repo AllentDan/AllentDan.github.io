@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="目录 (Table of Contents)[TOC] 项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+T">
+<meta name="description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
 <meta name="keywords" content="Tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用InceptionV3迁移学习进行客流检测">
 <meta property="og:url" content="https://allentdan.github.io/2019/05/10/用InceptionV3迁移学习进行客流检测/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="目录 (Table of Contents)[TOC] 项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+T">
+<meta property="og:description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://allentdan.github.io/images/good_para.jpg">
 <meta property="og:image" content="https://allentdan.github.io/images/Inception%20v3.jpg">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="https://allentdan.github.io/images/source_image.jpg">
 <meta property="og:image" content="https://allentdan.github.io/images/no_nms.jpg">
 <meta property="og:image" content="https://allentdan.github.io/images/bad_result.jpg">
-<meta property="og:updated_time" content="2020-12-17T12:33:06.054Z">
+<meta property="og:updated_time" content="2020-12-21T05:35:15.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用InceptionV3迁移学习进行客流检测">
-<meta name="twitter:description" content="目录 (Table of Contents)[TOC] 项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+T">
+<meta name="twitter:description" content="项目背景 很久以前自学过深度学习框架TensorFlow学习与应用，并且实现里面的大部分代码，其中就包括有Google深度学习模型Inception v3,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用 刚刚给公司新买的GPU配置好Anaconda+Tensorflow_gpu环境 学校《图像处理》课程结束">
 <meta name="twitter:image" content="https://allentdan.github.io/images/good_para.jpg">
 
 
@@ -366,8 +366,7 @@
       
 
       
-        <p><strong>目录 (Table of Contents)</strong><br>[TOC]</p>
-<h3><span id="项目背景">项目背景</span></h3><ul>
+        <h3><span id="项目背景">项目背景</span></h3><ul>
 <li>很久以前自学过<a href="https://www.bilibili.com/video/av20542427" target="_blank" rel="noopener">深度学习框架TensorFlow学习与应用</a>，并且实现里面的大部分代码，其中就包括有Google深度学习模型<a href="https://github.com/tensorflow/models/tree/master/research/inception" target="_blank" rel="noopener">Inception v3</a>,Incetption模型是谷歌基于开源项目Tensorflow的一款深度学习模型，能够识别千种以上的对象，并且进行过优化，适合迁移学习使用</li>
 <li>刚刚给公司新买的GPU配置好<a href="https://allentdan.github.io/2019/05/10/Anaconda-Tensorflow-gpu%E9%85%8D%E7%BD%AE/">Anaconda+Tensorflow_gpu环境</a></li>
 <li>学校《图像处理》课程结束大作业就是公交车上的行人检测，要求统计实时乘客流量并且款选出每个人，越准确越好</li>

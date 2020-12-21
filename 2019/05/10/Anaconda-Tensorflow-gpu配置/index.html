@@ -79,26 +79,18 @@
 
 
 
-<meta name="description" content="工具和环境 Windows10； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）  Anaconda-Tensorflow-gpu配置md       目录 (Table of Contents) [TOCM] [TOC] 前言因为前面配置Visual Studio平台下Tensorflow C">
+<meta name="description" content="工具和环境 Windows10； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）  前言因为前面配置Visual Studio平台下Tensorflow C++Api调用，已经安装好Anaconda，并且添加路径C:\yourInstallPlace\anaconda3C:\yourInstal">
 <meta name="keywords" content="配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Anaconda+Tensorflow_gpu配置">
 <meta property="og:url" content="https://allentdan.github.io/2019/05/10/Anaconda-Tensorflow-gpu配置/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="工具和环境 Windows10； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）  Anaconda-Tensorflow-gpu配置md       目录 (Table of Contents) [TOCM] [TOC] 前言因为前面配置Visual Studio平台下Tensorflow C">
+<meta property="og:description" content="工具和环境 Windows10； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）  前言因为前面配置Visual Studio平台下Tensorflow C++Api调用，已经安装好Anaconda，并且添加路径C:\yourInstallPlace\anaconda3C:\yourInstal">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png">
-<meta property="og:image" content="https://img.shields.io/github/stars/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/forks/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/tag/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/release/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/github/issues/pandao/editor.md.svg">
-<meta property="og:image" content="https://img.shields.io/bower/v/editor.md.svg">
-<meta property="og:updated_time" content="2020-12-20T04:04:46.050Z">
+<meta property="og:updated_time" content="2020-12-20T08:46:03.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Anaconda+Tensorflow_gpu配置">
-<meta name="twitter:description" content="工具和环境 Windows10； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）  Anaconda-Tensorflow-gpu配置md       目录 (Table of Contents) [TOCM] [TOC] 前言因为前面配置Visual Studio平台下Tensorflow C">
-<meta name="twitter:image" content="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png">
+<meta name="twitter:description" content="工具和环境 Windows10； Anaconda3 64bit 地址 https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）  前言因为前面配置Visual Studio平台下Tensorflow C++Api调用，已经安装好Anaconda，并且添加路径C:\yourInstallPlace\anaconda3C:\yourInstal">
 
 
 
@@ -368,11 +360,6 @@
 <li>Windows10；</li>
 <li>Anaconda3 64bit 地址 <a href="https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）" target="_blank" rel="noopener">https://www.anaconda.com/download/#windows；（直接利用上一篇博文配置）</a></li>
 </ul>
-<h2><span id="anaconda-tensorflow-gpu配置md">Anaconda-Tensorflow-gpu配置md</span></h2><p><img src="https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png" alt></p>
-<p><img src="https://img.shields.io/github/stars/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/forks/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/tag/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/release/pandao/editor.md.svg" alt> <img src="https://img.shields.io/github/issues/pandao/editor.md.svg" alt> <img src="https://img.shields.io/bower/v/editor.md.svg" alt></p>
-<p><strong>目录 (Table of Contents)</strong></p>
-<p>[TOCM]</p>
-<p>[TOC]</p>
 <h1><span id="前言">前言</span></h1><p>因为前面配置Visual Studio平台下Tensorflow C++Api调用，已经安装好Anaconda，并且添加路径<br>C:\yourInstallPlace\anaconda3<br>C:\yourInstallPlace\anaconda3\Scripts<br>C:\yourInstallPlace\anaconda3\Library\bin<br>并且已经安装使用了Tensorflow（不带cpu或gpu字样即默认cpu），发现训练模型很慢，原来还需要特别安装GPU版的tensorflow，所以开始重新配置。注意：开始前，最好先按照下面<a href="https://www.cnblogs.com/guoyaohua/p/9265268.html" target="_blank" rel="noopener">参考博文一</a>测试下自己电脑的显卡，我的是两张Nvidia的GTX1080系列。</p>
 <h1><span id="安装tensorflow-gpu">安装TensorFlow-GPU</span></h1><p>如果你不会使用Anaconda的切换环境功能，并且有先安装过tensorflow的最好先卸载（此处要选择你安装对应的spyder，如果不知道，先谷歌或百度下Anaconda环境切换，spyder，就会明白可以换个环境之间安装）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall tensorflow</span><br><span class="line">pip list</span><br><span class="line">conda uninstall tensorflow</span><br><span class="line">conda list</span><br></pre></td></tr></table></figure></p>
 <p>都尝试一次，然后调用list看看有没有卸载干净。卸载以后，直接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install tensorflow_gpu==<span class="number">1.5</span><span class="comment">//为了和之前安装好的cuda9.0和cudnn9.0配合使用，直接conda install tensorflow_gpu会给你分配一个不合适的可能，如果你不是cuda9.0和cudnn9.0，请先查找相应的tensorflow_gpu</span></span><br></pre></td></tr></table></figure></p>
@@ -611,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">工具和环境</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Anaconda-Tensorflow-gpu配置md</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">安装TensorFlow-GPU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">测试</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">工具和环境</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">安装TensorFlow-GPU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">测试</span></a></li></div>
             
 
           </div>
