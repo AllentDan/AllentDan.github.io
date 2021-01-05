@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vsRelease64.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/include.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/lib.PNG">
-<meta property="og:updated_time" content="2020-12-21T05:37:28.817Z">
+<meta property="og:updated_time" content="2020-12-21T07:40:55.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pytorch部署torchscript篇">
 <meta name="twitter:description" content="引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡Gtx 10">
@@ -388,11 +388,11 @@
 
       
         <h1><span id="引言">引言</span></h1><p>本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有<a href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs" target="_blank" rel="noopener">visual studio</a>，<a href="https://opencv.org/" target="_blank" rel="noopener">opencv</a>，<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">libtorch</a>。</p>
-<h1><span id="环境">环境</span></h1><p>本文环境如下：<br>win10平台<br>cuda10.2+cudnn7.6.5<br>双显卡Gtx 1080Ti<br>visual studio 2017 community version<br>opencv 4.5.0<br>libtorch 1.1<br>事实上，除了libtorch是版本有强制要求不低于pytorch版本外（主要是可能存在的api问题，否则也不必）和visual studio的版本要求外，其他如opencv并无版本要求，甚至如果只部署cpu的话，显卡都不是必须。</p>
+<h1><span id="环境">环境</span></h1><p>本文环境如下：<br>win10平台<br>cuda10.2+cudnn7.6.5<br>双显卡Gtx 1080Ti<br>visual studio 2017 community version<br>opencv 4.5.0<br>libtorch 1.7<br>事实上，除了libtorch是版本有强制要求不低于pytorch版本外（主要是可能存在的api问题，否则也不必）和visual studio的版本要求外，其他如opencv并无版本要求，甚至如果只部署cpu的话，显卡都不是必须。</p>
 <h2><span id="visual-studio">visual studio</span></h2><p>visual studio版本最好在2015及以上，本文用2017版本。下载链接在<a href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs" target="_blank" rel="noopener">链接1</a>，具体安装过程可以参考<a href="https://www.jianshu.com/p/320aefbc582d" target="_blank" rel="noopener">链接2</a>。打开链接1下载社区版本即可，安装时对于c++程序设计只需安装对应部分，勾选如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG" alt><br>visual studio的安装并无太多需要赘述，按照教程操作就好。</p>
 <h2><span id="opencv">opencv</span></h2><p>截止成文时，opencv版本已到4.5.0。去<a href="https://opencv.org/releases/" target="_blank" rel="noopener">官网</a>下载你想要的版本即可，当然限定平台为Windows平台。opencv的版本如若读者没有特别需要均无影响，本文也试过不同版本，不影响部署。opencv安装也容易，虽然是exe文件，但是实际就是个压缩包，解压到你想要的目录最好。值得注意的是，好的编程习惯很重要，所有程序涉及路径以英文路径为佳，避免出错。</p>
 <h2><span id="libtorch">libtorch</span></h2><p>libtorch使用所需要的环境和训练最好保持一致，其中cuda，显卡驱动以及libtorch版本配置一般不应低于训练环境。尤其是libtorch版本要求更为严格，否则部分pytorch的api无法在libtorch中使用。</p>
-<p>本文中以libtorch1.1为例介绍，读者也可以下载成文时最新版1.7.1使用，亲测可用。以下载时以release版本为佳，避免一些不必要的错误。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/libtorch_download_scene.PNG" alt><br>下载后同样解压到读者想要路径，可以更改好解压名称如下以方便版本管理。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/my_dependency.PNG" alt><br>这样下来就已经准备好部署所需要的依赖项。</p>
+<p>本文中以libtorch1.7为例介绍，读者最新版1.7.1使用，亲测可用。下载时以release版本为佳，避免一些不必要的错误。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/libtorch_download_scene.PNG" alt><br>下载后同样解压到读者想要路径，可以更改好解压名称如下以方便版本管理。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/my_dependency.PNG" alt><br>这样下来就已经准备好部署所需要的依赖项。</p>
 <h1><span id="例子">例子</span></h1><h2><span id="生成pt文件">生成.pt文件</span></h2><p>接下来以ResNet34分类模型为例尝试部署分类模型。准备一张图片用以判断是否部署成功，本文用例图如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/flower.jpg" alt><br>接下来先和官网类似生成torchscript模型，亦即本文中的pt文件。本文使用代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision.models <span class="keyword">import</span> resnet34</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取一张图片，并转换成[1,3,224,224]的float张量并归一化</span></span><br><span class="line">image = cv2.imread(<span class="string">"flower.jpg"</span>)</span><br><span class="line">image = cv2.resize(image,(<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">input_tensor = torch.tensor(image).permute(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>).unsqueeze(<span class="number">0</span>).float()/<span class="number">225.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义并加载resnet34模型在imagenet预训练的权重</span></span><br><span class="line">model = resnet34(pretrained=<span class="literal">True</span>)</span><br><span class="line">model.eval()</span><br><span class="line"><span class="comment">#查看模型预测该付图的结果</span></span><br><span class="line">output = model(input_tensor)</span><br><span class="line">output = F.softmax(output,<span class="number">1</span>)</span><br><span class="line">print(<span class="string">"模型预测结果为第&#123;&#125;类，置信度为&#123;&#125;"</span>.format(torch.argmax(output),output.max()))</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成pt模型，按照官网来即可</span></span><br><span class="line">model=model.to(torch.device(<span class="string">"cpu"</span>))</span><br><span class="line">model.eval()</span><br><span class="line">var=torch.ones((<span class="number">1</span>,<span class="number">3</span>,<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">traced_script_module = torch.jit.trace(model, var)</span><br><span class="line">traced_script_module.save(<span class="string">"resnet34.pt"</span>)</span><br></pre></td></tr></table></figure></p>
 <p>输出结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模型预测结果为第723类，置信度为0.5916505455970764</span><br></pre></td></tr></table></figure></p>
 <p>代码运行结束即可生成.pt文件。</p>
@@ -492,6 +492,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/12/20/L1,L2正则化与损失/" rel="prev" title="L1,L2损失与L1,L2正则化">
+                L1,L2损失与L1,L2正则化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -576,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -587,7 +591,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -598,7 +602,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -673,7 +677,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -996,6 +1000,8 @@
   
 
   
+  
+
 
   
   <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
