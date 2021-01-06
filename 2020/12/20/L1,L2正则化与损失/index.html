@@ -88,7 +88,7 @@
 <meta property="og:description" content="L1和L2是指范数，分别为1范数和2范数。 损失L1损失MAE(Mean absolute error)损失就是L1损失，目标值$\boldsymbol{y}$，目标函数$f(\cdot)$，输入值$\boldsymbol{x}$，则： $$\begin{aligned}    L_1 &amp;amp;= ||f(\boldsymbol{x}) - \boldsymbol{y}||_1\\">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/theory/L1L2.PNG">
-<meta property="og:updated_time" content="2021-01-05T10:35:02.520Z">
+<meta property="og:updated_time" content="2021-01-05T13:27:37.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="L1,L2损失与L1,L2正则化">
 <meta name="twitter:description" content="L1和L2是指范数，分别为1范数和2范数。 损失L1损失MAE(Mean absolute error)损失就是L1损失，目标值$\boldsymbol{y}$，目标函数$f(\cdot)$，输入值$\boldsymbol{x}$，则： $$\begin{aligned}    L_1 &amp;amp;= ||f(\boldsymbol{x}) - \boldsymbol{y}||_1\\">
@@ -365,8 +365,8 @@
 <p>$$<br>\begin{aligned}<br>    L_2 &amp;= ||f(\boldsymbol{x}) - \boldsymbol{y}||_2\\<br>        &amp;= {\sum\limits_i {(f({x_i}) - {y_i}})^2}<br>\end{aligned}<br>$$</p>
 <h1><span id="test">test</span></h1><h1><span id="正则化">正则化</span></h1><p>正则化与损失不同，借用某知乎网友<a href="https://www.zhihu.com/question/20924039" target="_blank" rel="noopener">回答</a>，就是Regularize。正则项对应就是个调节器Regularizer，使模型不过拟合罢了，中文翻译真的坑。至于为何使用L1或者L2损失，不过是希望使目标函数中的权重更稀疏罢了，这样参与计算的多项式的项更少。也就是希望权重向量$\boldsymbol{w}$中0元素更多（0范数）。<br>$$<br>\begin{aligned}<br>    f(\boldsymbol{x}) = w_1x_1+w_2x_2+…+w_nx_n<br>\end{aligned}<br>$$<br>$L1$或者$L2$正则只是使$\boldsymbol{w}$的某种几何度量更小，不能直接达到稀疏的期望。使得$\boldsymbol{w}$的范数更小，也算是某种平滑吧，这样就不会因为$|\boldsymbol{w}|$过大而过度偏向某个维度的$x_i$(即过拟合)，$w_i$值的增加会一定程度上($\lambda$)造成Loss的增加，从而避免过拟合。</p>
 <p>至于L1比L2正则“尖锐”之说可以认为在最优点附近，L1函数导数比L2导数大，更容易逼近0值，当然也容易不优而已，具体哪种正则好其实看任务本身。</p>
-<h2><span id="l1正则化">L1正则化</span></h2><p>正则项加入损失项中实现正则化，以L1损失加入L1正则为例。输入值$\boldsymbol{x}$，目标值$\boldsymbol{y}$，目标函数$f(\boldsymbol{x}) =\boldsymbol{w}\boldsymbol{x} $。则损失函数：<br>$$<br>\begin{aligned}<br>    L_{r1} &amp;= ||\boldsymbol{wx}-\boldsymbol{y}||_1+||\boldsymbol{w}||_1\\<br>        &amp;= \sum\limits_i {| {w_ix_i} - y_i|+ \lambda |w_i|}<br>\end{aligned}<br>$$</p>
-<h2><span id="l2正则化">L2正则化</span></h2><p>以L2损失加入L2正则为例。输入值$\boldsymbol{x}$，目标值$\boldsymbol{y}$，目标函数$f(\boldsymbol{x}) =\boldsymbol{w}\boldsymbol{x} $。则损失函数：<br>$$<br>\begin{aligned}<br>    L{r1} &amp;= ||\boldsymbol{w}\boldsymbol{x}-\boldsymbol{y}||_2+ ||\boldsymbol{w}||_2\\<br>         &amp;= \sum\limits_i {( {w_ix_i} - y_i)^2+\lambda (w_i)^2}<br>\end{aligned}<br>$$</p>
+<h2><span id="l1正则化">L1正则化</span></h2><p>正则项加入损失函数中实现正则化，以向L1损失加入L1正则为例。输入值$\boldsymbol{x}$，目标值$\boldsymbol{y}$，目标函数$f(\boldsymbol{x}) =\boldsymbol{w}\boldsymbol{x} $。则损失函数：<br>$$<br>\begin{aligned}<br>    L_{r1} &amp;= ||\boldsymbol{wx}-\boldsymbol{y}||_1+||\boldsymbol{w}||_1\\<br>        &amp;= \sum\limits_i {| {w_ix_i} - y_i|+ \lambda |w_i|}<br>\end{aligned}<br>$$</p>
+<h2><span id="l2正则化">L2正则化</span></h2><p>以L2损失加入L2正则为例。输入值$\boldsymbol{x}$，目标值$\boldsymbol{y}$，目标函数$f(\boldsymbol{x}) =\boldsymbol{w}\boldsymbol{x} $。则损失函数：<br>$$<br>\begin{aligned}<br>    L_{r2} &amp;= ||\boldsymbol{w}\boldsymbol{x}-\boldsymbol{y}||_2+ ||\boldsymbol{w}||_2\\<br>         &amp;= \sum\limits_i {( {w_ix_i} - y_i)^2+\lambda (w_i)^2}<br>\end{aligned}<br>$$</p>
 <h1><span id="解释">解释</span></h1><p>目前流行3种解释法说明L1比L2正则化更容易获得稀疏解，也就是更容易获得欠拟合（不过拟合）解。</p>
 <ul>
 <li>导数解释<br>$w_i$在0值附件时，L1范数的导数在左右震动，幅度为$2\lambda$，该震荡产生导数为0的次优解，即$w_i=0$变成次优解，即模型多了许多$w_i=0$的解。<br>$$<br>\begin{aligned}<br>  \frac{\partial{Loss}}{\partial{w_i}}|_0=d_0+\lambda或者 d_0-\lambda<br>\end{aligned}<br>$$<br>根据中值定理，该导数值必过0点，即次优解点，而这个点为$w_i=0$的点。</li>
@@ -442,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/12/23/computer_ABC_堆栈列/" rel="prev" title="堆，栈，队列">
-                堆，栈，队列 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/12/23/computer_ABC_堆栈列/" rel="prev" title="computer ABC">
+                computer ABC <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -552,7 +552,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -607,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">损失</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">L1损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">L2损失</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">L1正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">L2正则化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">解释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">code</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">损失</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">L1损失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">L2损失</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">L1正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">L2正则化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">解释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">code</span></a></li></ol></div>
             
 
           </div>
