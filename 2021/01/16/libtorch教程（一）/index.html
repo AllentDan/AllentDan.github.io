@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="libtorch,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Allent&#39;s Blogs">
-<meta property="og:url" content="https://allentdan.github.io/tags/目标检测/index.html">
+<meta name="description" content="前言本教程旨在教读者如何用c++写模型，训练模型，根据模型预测对象。为便于教学和使用，本文的c++模型均使用libtorch（或者pytorch c++ api）完成搭建和训练等。目前，国内各大平台似乎没有pytorch在c++上api的完整教学，也没有基于c++开发的完整的深度学习开源模型。可能原因很多：  c/c++的深度学习已经足够底层和落地，商用价值较高，开发难度偏大，一般不会开源； 基于">
+<meta name="keywords" content="libtorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="libtorch教程（一）">
+<meta property="og:url" content="https://allentdan.github.io/2021/01/16/libtorch教程（一）/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
+<meta property="og:description" content="前言本教程旨在教读者如何用c++写模型，训练模型，根据模型预测对象。为便于教学和使用，本文的c++模型均使用libtorch（或者pytorch c++ api）完成搭建和训练等。目前，国内各大平台似乎没有pytorch在c++上api的完整教学，也没有基于c++开发的完整的深度学习开源模型。可能原因很多：  c/c++的深度学习已经足够底层和落地，商用价值较高，开发难度偏大，一般不会开源； 基于">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-01-18T13:34:26.507Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allent&#39;s Blogs">
+<meta name="twitter:title" content="libtorch教程（一）">
+<meta name="twitter:description" content="前言本教程旨在教读者如何用c++写模型，训练模型，根据模型预测对象。为便于教学和使用，本文的c++模型均使用libtorch（或者pytorch c++ api）完成搭建和训练等。目前，国内各大平台似乎没有pytorch在c++上api的完整教学，也没有基于c++开发的完整的深度学习开源模型。可能原因很多：  c/c++的深度学习已经足够底层和落地，商用价值较高，开发难度偏大，一般不会开源； 基于">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/tags/目标检测/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/01/16/libtorch教程（一）/">
 
 
 
 
 
-  <title>Tag: 目标检测 | Allent's Blogs</title>
+  <title>libtorch教程（一） | Allent's Blogs</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,104 +249,225 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>目标检测<small>Tag</small>
-        </h2>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/16/libtorch教程（一）/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Allent Dan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/jiegeng.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Allent's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/07/03/SSD训练数据集做客流检测/" itemprop="url">
-              
-                <span itemprop="name">SSD训练数据集做客流检测</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">libtorch教程（一）</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-03T14:17:38+08:00" content="2019-07-03">
-          07-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-16T11:50:23+08:00">
+                2021-01-16
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/01/16/libtorch教程（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/16/libtorch教程（一）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2021/01/16/libtorch教程（一）/" class="leancloud_visitors" data-flag-title="libtorch教程（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/08/用YOLO3数人头/" itemprop="url">
-              
-                <span itemprop="name">用yolo v3训练自己的模型并进行客流检测</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-08T19:26:19+08:00" content="2019-06-08">
-          06-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/15/试用SVM-slideMask做客流检测-失败/" itemprop="url">
-              
-                <span itemprop="name">试用SVM+HOG+SlideWindows做客流检测(成功)</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-15T16:18:26+08:00" content="2019-05-15">
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1><span id="前言">前言</span></h1><p>本教程旨在教读者如何用c++写模型，训练模型，根据模型预测对象。为便于教学和使用，本文的c++模型均使用libtorch（或者pytorch c++ api）完成搭建和训练等。目前，国内各大平台似乎没有pytorch在c++上api的完整教学，也没有基于c++开发的完整的深度学习开源模型。可能原因很多：</p>
+<ol>
+<li>c/c++的深度学习已经足够底层和落地，商用价值较高，开发难度偏大，一般不会开源；</li>
+<li>基于python训练，libtorch预测的部署形式足够满足大多数项目的需求，如非产品级应用，不会有人愿意研究如何用c++从头搭建模型，实现模型训练功能；</li>
+<li>Tensorflow的市场份额，尤其时工业应用的部署下市场占比足够高，导致基于libtorch的开发和部署占比很小，所以未见开源。</li>
+</ol>
+<p>既然如此，笔者就做这第一人。本教程提供基于libtorch的c++开发的深度学习视觉模型教学，本教程的开发平台基于Windows环境和Visual Sutdio集成开发环境，实现三大深度视觉基本任务：分类，分割和检测。适用人群为：有c++基础，了解面向对象思维，有pytorch编程经验者，对模型落地部署等经验不足者尤为有用。</p>
+<h1><span id="章节安排">章节安排</span></h1><p>本教程分多个章节：</p>
+<ul>
+<li>第一章：开发环境搭建</li>
+<li>第二章：张量的常规操作</li>
+<li>第三章：简单模型搭建</li>
+<li>第四章：数据加载模块使用</li>
+<li>第五章：分类模型搭建，训练和预测</li>
+<li>第六章：分割模型搭建，训练和预测</li>
+<li>第七章：目标检测模型搭建，训练和预测</li>
+<li>第八章：总结和使用</li>
+</ul>
+<p>在第一章中，笔者将介绍教程使用的开发环境。第二章，笔者将介绍libtorch中的torch::Tensor类的常用操作，便于后续复杂算法的落地实施。第三章，笔者将以一个简单的线性模型为例，介绍如何在c++上创建一个分类或者回归模型。第四章，笔者将介绍如何使用libtorch的dataload模块，这对c++模型的训练极其重要。第五、六、七章中，教程将详细描述如何实现一个c++分类器，一个c++语义分割器，一个c++目标检测器，包含功能分别为：分类图片，语义分割图片，检测图片中的目标。第八章为全部教程的总结和展望。</p>
+<h1><span id="第一章">第一章</span></h1><p>事实上，在前面的<a href="https://allentdan.github.io/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87">pytorch部署博客</a>中笔者已经分享了自己搭建libtorch开发环境的记录。其余并无太多要赘述的。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/libtorch/" rel="tag"># libtorch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/06/一些cpp常见错误报错/" rel="next" title="一些cpp常见错误报错">
+                <i class="fa fa-chevron-left"></i> 一些cpp常见错误报错
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/16/libtorch教程（二）/" rel="prev" title="libtorch教程（二）">
+                libtorch教程（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -349,6 +475,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -369,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -387,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -454,6 +600,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">章节安排</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">第一章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -608,6 +770,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -787,26 +953,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

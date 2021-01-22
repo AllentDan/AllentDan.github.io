@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="computer_ABC,">
+  <meta name="keywords" content="c++,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="堆，栈，队列栈栈(stack)：栈像个桶，先进后出。1#include&amp;lt;stack&amp;gt; 队列队列(queue)：就像食堂打饭，先进先出 长期更新中…">
-<meta name="keywords" content="computer_ABC">
+<meta name="description" content="前言在阐述c++中函数传参之前，先说明一下为何写这篇博客。事实上，c++的传参方式的讨论已经很多，但是在解剑指 Offer 27. 二叉树的镜像（Leetcode 226翻转二叉树）时发现三种传参方式自己并没有完全弄清，在以树指针为对象时，就出现错误。 交换两个变量网上有三种常见的交换变量的方式，第一种创建临时变量存储其中一个待交换的值，这种方法最为常见。123auto tmp = a;a = b">
+<meta name="keywords" content="c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="computer ABC">
-<meta property="og:url" content="https://allentdan.github.io/2020/12/23/computer_ABC_堆栈列/index.html">
+<meta property="og:title" content="c++函数的传参">
+<meta property="og:url" content="https://allentdan.github.io/2021/01/18/c++函数的传参/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="堆，栈，队列栈栈(stack)：栈像个桶，先进后出。1#include&amp;lt;stack&amp;gt; 队列队列(queue)：就像食堂打饭，先进先出 长期更新中…">
+<meta property="og:description" content="前言在阐述c++中函数传参之前，先说明一下为何写这篇博客。事实上，c++的传参方式的讨论已经很多，但是在解剑指 Offer 27. 二叉树的镜像（Leetcode 226翻转二叉树）时发现三种传参方式自己并没有完全弄清，在以树指针为对象时，就出现错误。 交换两个变量网上有三种常见的交换变量的方式，第一种创建临时变量存储其中一个待交换的值，这种方法最为常见。123auto tmp = a;a = b">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-06T12:47:08.396Z">
+<meta property="og:updated_time" content="2021-01-22T11:48:15.240Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="computer ABC">
-<meta name="twitter:description" content="堆，栈，队列栈栈(stack)：栈像个桶，先进后出。1#include&amp;lt;stack&amp;gt; 队列队列(queue)：就像食堂打饭，先进先出 长期更新中…">
+<meta name="twitter:title" content="c++函数的传参">
+<meta name="twitter:description" content="前言在阐述c++中函数传参之前，先说明一下为何写这篇博客。事实上，c++的传参方式的讨论已经很多，但是在解剑指 Offer 27. 二叉树的镜像（Leetcode 226翻转二叉树）时发现三种传参方式自己并没有完全弄清，在以树指针为对象时，就出现错误。 交换两个变量网上有三种常见的交换变量的方式，第一种创建临时变量存储其中一个待交换的值，这种方法最为常见。123auto tmp = a;a = b">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2020/12/23/computer_ABC_堆栈列/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/01/18/c++函数的传参/">
 
 
 
 
 
-  <title>computer ABC | Allent's Blogs</title>
+  <title>c++函数的传参 | Allent's Blogs</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/23/computer_ABC_堆栈列/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/18/c++函数的传参/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Allent Dan">
@@ -280,7 +280,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">computer ABC</h2>
+          <h2 class="post-title" itemprop="name headline">c++函数的传参</h2>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-23T09:10:24+08:00">
-                2020-12-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-18T19:52:27+08:00">
+                2021-01-18
               </time>
             
 
@@ -311,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/12/23/computer_ABC_堆栈列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/23/computer_ABC_堆栈列/" itemprop="commentsCount"></span>
+                <a href="/2021/01/18/c++函数的传参/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/18/c++函数的传参/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2020/12/23/computer_ABC_堆栈列/" class="leancloud_visitors" data-flag-title="computer ABC">
+             <span id="/2021/01/18/c++函数的传参/" class="leancloud_visitors" data-flag-title="c++函数的传参">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -356,9 +356,21 @@
       
 
       
-        <h1><span id="堆栈队列">堆，栈，队列</span></h1><h2><span id="栈">栈</span></h2><p>栈(stack)：栈像个桶，先进后出。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<h2><span id="队列">队列</span></h2><p>队列(queue)：就像食堂打饭，先进先出</p>
-<p>长期更新中…</p>
+        <h1><span id="前言">前言</span></h1><p>在阐述c++中函数传参之前，先说明一下为何写这篇博客。事实上，c++的传参方式的讨论已经很多，但是在解剑指 Offer 27. 二叉树的镜像（Leetcode 226翻转二叉树）时发现三种传参方式自己并没有完全弄清，在以树指针为对象时，就出现错误。</p>
+<h2><span id="交换两个变量">交换两个变量</span></h2><p>网上有三种常见的交换变量的方式，第一种创建临时变量存储其中一个待交换的值，这种方法最为常见。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> tmp = a;</span><br><span class="line">a = b;</span><br><span class="line">b = tmp;</span><br></pre></td></tr></table></figure></p>
+<p>第二种不创建临时变量，利用四则运算，代码如下，但是可能会产生数值溢出，不建议使用。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = a + b;</span><br><span class="line">b = a - b;</span><br><span class="line">a = a - b;</span><br></pre></td></tr></table></figure></p>
+<p>第三种同样不创建临时变量，利用位运算，代码如下。这是因为 x ^ y ^ y = x，任意变量与其他变量异或两次结果等于自身。然而，该方法只适用于交换整型或者字符型数据交换，这是因为位运算的运算分量只能是这两者。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = a ^ b;</span><br><span class="line">b = a ^ b;</span><br><span class="line">a = a ^ b;</span><br></pre></td></tr></table></figure></p>
+<p>所以，最简单的才是最有用的，第一种方法虽然朴素，但是有效。</p>
+<h2><span id="问题描述">问题描述</span></h2><p>在翻转二叉树时，其实问题本身解答非常容易，Leetcode也是定级为简单。就是个普通的前序遍历或者后序遍历，前者自顶向下，后者自底向上。但是在交换两个TreeNode*变量时，自己写的交换函数竟不能通过。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> root;</span><br><span class="line">        TreeNode* tmp = root-&gt;left;</span><br><span class="line">        root-&gt;left = root-&gt;right;</span><br><span class="line">        root-&gt;right = tmp;</span><br><span class="line">        invertTree(root-&gt;left);</span><br><span class="line">        invertTree(root-&gt;right);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>自己的交换代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swapNode</span><span class="params">(TreeNode* left, TreeNode* right)</span></span>&#123;</span><br><span class="line">    TreeNode *tmp = left; </span><br><span class="line">    left = right;</span><br><span class="line">    right = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在invertTree函数中使用该函数，交换两个二叉树指针不能成功交换，而用c++自带的swap函数确又可以。</p>
+<h1><span id="分析问题">分析问题</span></h1><p>函数传参有三种：值传递，引用传参和指针传参。三者的主要区别为：值传参只传递实参的拷贝值，函数中的操作不影响实参，引用传参和指针传参均会影响实参，函数执行完毕相当于实参完成了函数内部的操作。引用传参和指针传参的不用在于，引用传参必须要先初始化实参，而指针传参不必。以交换变量为例，三中传参分别为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//值传参</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//引用传参</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//指针传参</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第一种不能完成实参的交换，后两种可以。这样分析下来，自己写的swapNode(TreeNode<em> left, TreeNode</em> right)函数看似也是指针传参呀，但是为何不行呢。这里就出现了偏差，TreeNode* 虽然是指针，但是被交换的两个变量也都是指针，相当于进行了值传参。如果想要真正让交换函数起到作用，应该进行引用传参或者指针传参。</p>
+<h1><span id="解决方法">解决方法</span></h1><p>引用传参交换两个TreeNode*指针变量表示为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swapNode</span><span class="params">(TreeNode*&amp; left, TreeNode*&amp; right)</span></span>&#123;</span><br><span class="line">    TreeNode *tmp = left; </span><br><span class="line">    left = right;</span><br><span class="line">    right = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果有TreeNode<em> a和TreeNode</em> b，直接调用swapNode(a, b)即可。</p>
+<p>指针传参交换两个TreeNode*指针变量表示为：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swapNode</span><span class="params">(TreeNode** left, TreeNode** right)</span></span>&#123;</span><br><span class="line">    TreeNode *tmp = *left; </span><br><span class="line">    *left = *right;</span><br><span class="line">    *right = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果有TreeNode<em> a和TreeNode</em> b，直接调用swapNode(&amp;a, &amp;b)即可。</p>
+<p>者两种传参方式传递树指针时，可能同时出现了*<em>或者同时出现了</em>&amp;略显怪异，但是事实确实如此。</p>
 
       
     </div>
@@ -405,7 +417,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/computer-ABC/" rel="tag"># computer_ABC</a>
+            <a href="/tags/c/" rel="tag"># c++</a>
           
         </div>
       
@@ -418,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/12/20/L1,L2正则化与损失/" rel="next" title="L1,L2损失与L1,L2正则化">
-                <i class="fa fa-chevron-left"></i> L1,L2损失与L1,L2正则化
+              <a href="/2021/01/18/libtorch教程（五）/" rel="next" title="libtorch教程（五）">
+                <i class="fa fa-chevron-left"></i> libtorch教程（五）
               </a>
             
           </div>
@@ -428,8 +440,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/12/24/NMS的几种写法/" rel="prev" title="NMS的几种写法">
-                NMS的几种写法 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/" rel="prev" title="QT Creator + Opencv + Libtorch +CUDA深度学习最全配置">
+                QT Creator + Opencv + Libtorch +CUDA深度学习最全配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -593,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">堆，栈，队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">队列</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">交换两个变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">分析问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></div>
             
 
           </div>
