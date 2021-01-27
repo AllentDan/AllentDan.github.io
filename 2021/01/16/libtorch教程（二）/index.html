@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="张量初始化libtorch(pytorch c++)的大多数api和pytorch保持一致，因此，libtorch中张量的初始化也和pytorch中的类似。本文介绍四种深度图像编程需要的初始化方法。第一种，固定尺寸和值的初始化。123456//常见固定值的初始化方式auto b = torch::zeros(&amp;#123;3,4&amp;#125;);b = torch::ones(&amp;#123;3,4&amp;#1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-22T11:24:56.305Z">
+<meta property="og:updated_time" content="2021-01-27T15:34:29.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="libtorch教程（二）">
 <meta name="twitter:description" content="张量初始化libtorch(pytorch c++)的大多数api和pytorch保持一致，因此，libtorch中张量的初始化也和pytorch中的类似。本文介绍四种深度图像编程需要的初始化方法。第一种，固定尺寸和值的初始化。123456//常见固定值的初始化方式auto b = torch::zeros(&amp;#123;3,4&amp;#125;);b = torch::ones(&amp;#123;3,4&amp;#1">
@@ -373,6 +373,7 @@
 <p>到这读者会发现，从pytorch到libtorch，掌握了[]到{}的变化就简单很多，大部分操作可以直接迁移。</p>
 <p>四则运算操作同理，像对应元素乘除直接用*和/即可，也可以用.mul和.div。矩阵乘法用.mm，加入批次就是.bmm。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> b = torch::rand(&#123;<span class="number">3</span>,<span class="number">4</span>&#125;);</span><br><span class="line"><span class="keyword">auto</span> c = torch::rand(&#123;<span class="number">3</span>,<span class="number">4</span>&#125;);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;b&lt;&lt;c&lt;&lt;b*c&lt;&lt;b/c&lt;&lt;b.mm(c.t());</span><br></pre></td></tr></table></figure></p>
 <p>其他一些操作像clamp，min，max这种都和pytorch类似，仿照上述方法可以自行探索。</p>
+<p>代码见<a href="https://github.com/AllentDan/LibtorchTutorials" target="_blank" rel="noopener">github</a></p>
 
       
     </div>
