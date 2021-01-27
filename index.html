@@ -753,8 +753,9 @@
       
         
           
-          
-          
+          本章将详细介绍如何使用libtorch自带的数据加载模块，使用该模块是实现模型训练的重要条件。除非这个数据加载模块功能不够，不然继承libtorch的数据加载类还是很有必要的，简单高效。
+使用前置条件libtorch提供了丰富的基类供用户自定义派生类，torch::data::Dataset就是其中
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/01/18/libtorch教程（四）/#more" rel="contents">
@@ -890,8 +891,9 @@
       
         
           
-          简单MLP简单CNN简单LSTM
-          
+          基本模块搭建模块化编程的思想非常重要，通过模块化编程可以大幅减少重复的敲代码过程，同时代码可读性也会增加。本章将讲述如何使用libtorch搭建一些MLP和CNN的基本模块。
+MLP基本单元首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下：123456789101112131415161
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/01/16/libtorch教程（三）/#more" rel="contents">
