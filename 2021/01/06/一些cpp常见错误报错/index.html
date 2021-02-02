@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/assertion_failed.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include2.jpg">
-<meta property="og:updated_time" content="2021-01-26T12:44:30.878Z">
+<meta property="og:updated_time" content="2021-02-01T13:31:42.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些cpp常见错误报错">
 <meta name="twitter:description" content="Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——亚像素提取使用时产生的错误。 环境：Windows 10Visual Studio 2017OpenCV 2.4.10 中间过程：用V">
@@ -360,7 +360,7 @@
       
 
       
-        <h1><span id="debug-assertion-failed-expression-_block_type_is_valid">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></h1><p>这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——<a href="https://github.com/songyuncen/EdgesSubPix" target="_blank" rel="noopener">亚像素提取</a>使用时产生的错误。</p>
+        <h2><span id="debug-assertion-failed-expression-_block_type_is_valid">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></h2><p>这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——<a href="https://github.com/songyuncen/EdgesSubPix" target="_blank" rel="noopener">亚像素提取</a>使用时产生的错误。</p>
 <p>环境：<br>Windows 10<br>Visual Studio 2017<br>OpenCV 2.4.10</p>
 <p>中间过程：<br>用Visual Studio打开，去除一些项目自带的用于Linux系统的编译代码，本文实现项目的正常编译。运行时读取了源项目自带的avatar.jpg图片并成功提取边缘，成功计算亚像素点。</p>
 <p>错误表现：<br>报错内容主要是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span><br></pre></td></tr></table></figure></p>
@@ -371,23 +371,34 @@
 <li>更换了OpenCV版本号，提升到3.x版本，可以正常编译运行通过。</li>
 </ol>
 <p>原因：<br>未知</p>
-<h1><span id="类型重定义或者使用了未定义类型">类型重定义或者使用了未定义类型</span></h1><h2><span id="原因分析">原因分析</span></h2><p>这种问题往往原因较多，</p>
+<h2><span id="类型重定义或者使用了未定义类型">类型重定义或者使用了未定义类型</span></h2><h3><span id="原因分析">原因分析</span></h3><p>这种问题往往原因较多，</p>
 <ol>
 <li>确实在代码中重复定义了某个函数或者某个类，同时代码中可能出现了未定义的函数或者类</li>
 <li>文件相互引用时，引用混乱，如果A.h同时被B.h和C引用，但是B.h也被C引用，相当于A.h被C引用多次，出现重定义。引用关系见下图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include.jpg" alt></li>
 </ol>
-<h2><span id="解决办法">解决办法</span></h2><p>第一种解决方法很简单，只要去除重定义或者定义好未定义的就可以了。第二种问题解决时分情况</p>
+<h3><span id="解决办法">解决办法</span></h3><p>第一种解决方法很简单，只要去除重定义或者定义好未定义的就可以了。第二种问题解决时分情况</p>
 <ul>
 <li>如果可以理清楚关系，并且不需要多重嵌套调用，类似上图中的结构，完全可以取消A.h被C的引用，编译将不出错。</li>
 <li>对于部分刚需嵌套调用的情况，如下图所示的调用中，D需要同时使用B.h和C.h中的内容，无法避免重复定义。此时可以在冲突头文件的最上方加入<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include2.jpg" alt><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>这个语句会告诉编译器只编译一次该文件中的内容，从而避免重复编译。或者使用#ifndef和#define，效果相同。</p>
-<h1><span id="error-0xc0000005-read-access-violation-at-0xffffffffffffffff-flags0x0">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></h1><h2><span id="环境">环境：</span></h2><p>Windows 10<br>QT creator4.11.0<br>OpenCV 4.5<br>LibTorch1.7</p>
-<h2><span id="问题描述">问题描述：</span></h2><p>程序在某段函数中断，无法用try catch抓取错误，中断位置代码为下段中的(*_Pnext)-&gt;_Myproxy = nullptr。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> _Container_base12::_Orphan_all() <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">if</span> _ITERATOR_DEBUG_LEVEL == 2</span></span><br><span class="line">        <span class="keyword">if</span> (_Myproxy != <span class="literal">nullptr</span>) &#123; <span class="comment">// proxy allocated, drain it</span></span><br><span class="line">            _Lockit _Lock(_LOCK_DEBUG);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (_Iterator_base12** _Pnext = &amp;_Myproxy-&gt;_Myfirstiter; *_Pnext != <span class="literal">nullptr</span>;</span><br><span class="line">                *_Pnext = (*_Pnext)-&gt;_Mynextiter) &#123;</span><br><span class="line">                (*_Pnext)-&gt;_Myproxy = <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            _Myproxy-&gt;_Myfirstiter = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="error-0xc0000005-read-access-violation-at-0xffffffffffffffff-flags0x0">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></h2><h3><span id="环境">环境：</span></h3><p>Windows 10<br>QT creator4.11.0<br>OpenCV 4.5<br>LibTorch1.7</p>
+<h3><span id="问题描述">问题描述：</span></h3><p>程序在某段函数中断，无法用try catch抓取错误，中断位置代码为下段中的(*_Pnext)-&gt;_Myproxy = nullptr。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> _Container_base12::_Orphan_all() <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">if</span> _ITERATOR_DEBUG_LEVEL == 2</span></span><br><span class="line">        <span class="keyword">if</span> (_Myproxy != <span class="literal">nullptr</span>) &#123; <span class="comment">// proxy allocated, drain it</span></span><br><span class="line">            _Lockit _Lock(_LOCK_DEBUG);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (_Iterator_base12** _Pnext = &amp;_Myproxy-&gt;_Myfirstiter; *_Pnext != <span class="literal">nullptr</span>;</span><br><span class="line">                *_Pnext = (*_Pnext)-&gt;_Mynextiter) &#123;</span><br><span class="line">                (*_Pnext)-&gt;_Myproxy = <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            _Myproxy-&gt;_Myfirstiter = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
 <p>同时输出错误有0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0。</p>
-<h2><span id="分析原因">分析原因</span></h2><p>根本原因是空图像指针传入libtorch中的torch::from_blob函数引发。表象为Debug模式下使用release版本的opencv读取图片失败。</p>
-<h2><span id="解决方法">解决方法</span></h2><p>项目模式调整为与库版本一致。</p>
+<h3><span id="分析原因">分析原因</span></h3><p>根本原因是空图像指针传入libtorch中的torch::from_blob函数引发。表象为Debug模式下使用release版本的opencv读取图片失败。</p>
+<h3><span id="解决方法">解决方法</span></h3><p>项目模式调整为与库版本一致。</p>
+<h2><span id="torchnnmoduleclone-not-accessible-because-blockimpl-uses-private-to-inherit-from-torchnnmodule">‘torch::nn::Module::clone’ not accessible because ‘BlockImpl’ uses ‘private’ to inherit from ‘torch::nn::Module’</span></h2><p>在写ResNet时出现上述错误，由于BasicBlock类是class定义而非struct定义，这就导致c++在处理时，默认父类的其他未override的函数均private，产生错误。</p>
+<h3><span id="解决方法">解决方法</span></h3><ol>
+<li>将BasicBlock前的class关键字改为struct关键字，BottleNeck同理。struct默认public，不产生错误。</li>
+<li>继续使用class关键字，但是继承父类时需要在父类前加入public限定。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlockImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module&#123;&#125;</span><br><span class="line"><span class="comment">//用struct</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BlockImpl</span> :</span> torch::nn::Module&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2><span id="class-already-defined-in-obj">class already defined in obj</span></h2><h3><span id="问题描述">问题描述</span></h3><p>写好ResNet类后，定义resnet18，resnet34等函数时，直接在.h文件下定义将产生该错误。</p>
+<h3><span id="解决方法">解决方法</span></h3><ol>
+<li>将函数的声明和定义分开，定义放到.cpp文件则不产生错误。</li>
+<li>不分离，直接在.h的定义前加inline关键字。</li>
+</ol>
 <p>长期更新中…</p>
 
       
@@ -623,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">类型重定义或者使用了未定义类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">分析原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">类型重定义或者使用了未定义类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">分析原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">‘torch::nn::Module::clone’ not accessible because ‘BlockImpl’ uses ‘private’ to inherit from ‘torch::nn::Module’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">class already defined in obj</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
             
 
           </div>
