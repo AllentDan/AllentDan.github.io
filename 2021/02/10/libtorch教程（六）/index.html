@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="libtorch,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本章简要介绍如何如何用C++实现一个语义分割器模型，该模型具有训练和预测的功能。本文的分割模型架构使用简单的U-Net结构，代码结构参考了qubvel segmentation中的U-Net部分，该项目简称SMP，是基于pytorch实现的开源语义分割项目。本文分享的c++模型几乎完美复现了python的版本。 模型简介简单介绍一下U-Net模型。U-Net模型的提出是在医学图像分割中，相比于当时">
+<meta name="keywords" content="libtorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="libtorch教程（六）">
+<meta property="og:url" content="https://allentdan.github.io/2021/02/10/libtorch教程（六）/index.html">
+<meta property="og:site_name" content="Allent&#39;s Blogs">
+<meta property="og:description" content="本章简要介绍如何如何用C++实现一个语义分割器模型，该模型具有训练和预测的功能。本文的分割模型架构使用简单的U-Net结构，代码结构参考了qubvel segmentation中的U-Net部分，该项目简称SMP，是基于pytorch实现的开源语义分割项目。本文分享的c++模型几乎完美复现了python的版本。 模型简介简单介绍一下U-Net模型。U-Net模型的提出是在医学图像分割中，相比于当时">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/OpenSource/U-Net.PNG">
+<meta property="og:updated_time" content="2021-02-10T11:48:38.878Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="libtorch教程（六）">
+<meta name="twitter:description" content="本章简要介绍如何如何用C++实现一个语义分割器模型，该模型具有训练和预测的功能。本文的分割模型架构使用简单的U-Net结构，代码结构参考了qubvel segmentation中的U-Net部分，该项目简称SMP，是基于pytorch实现的开源语义分割项目。本文分享的c++模型几乎完美复现了python的版本。 模型简介简单介绍一下U-Net模型。U-Net模型的提出是在医学图像分割中，相比于当时">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/OpenSource/U-Net.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://allentdan.github.io/2021/02/10/libtorch教程（六）/">
+
+
+
+
+
+  <title>libtorch教程（六） | Allent's Blogs</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Allent's Blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/02/10/libtorch教程（六）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Allent Dan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/jiegeng.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Allent's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">libtorch教程（六）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-10T13:42:23+08:00">
+                2021-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/02/10/libtorch教程（六）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/02/10/libtorch教程（六）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2021/02/10/libtorch教程（六）/" class="leancloud_visitors" data-flag-title="libtorch教程（六）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本章简要介绍如何如何用C++实现一个语义分割器模型，该模型具有训练和预测的功能。本文的分割模型架构使用简单的U-Net结构，代码结构参考了<a href="https://github.com/qubvel/segmentation_models.pytorch" target="_blank" rel="noopener">qubvel segmentation</a>中的U-Net部分，该项目简称SMP，是基于pytorch实现的开源语义分割项目。本文分享的c++模型几乎完美复现了python的版本。</p>
+<h2><span id="模型简介">模型简介</span></h2><p>简单介绍一下U-Net模型。U-Net模型的提出是在医学图像分割中，相比于当时的其他模型结构，U-Net的分割能力具有明显优势。一个经典的U-Net结构图如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/OpenSource/U-Net.PNG" alt><br>U-Net模型采用典型的编码器-解码器结构，左边的编码部分类似VGG模型，是双卷积+下采样的多次堆叠。U-Net模型右边的解码部分同样是双卷积，但是为了得到接近原始输入图像大小的输出图像，针对编码的下采样实施了对应的上采样。最重要的是，U-Net之所以效果突出，重要原因在于其在解码部分利用了编码环节的特征图，拼接编码和解码的特征图，再对拼接后特征图卷积上采样，重复多次得到解码输出。</p>
+<h2><span id="编码器resnet">编码器——ResNet</span></h2><p>本文介绍的编码器使用ResNet网络，同时可以像第五章一样加载预训练权重，即骨干网络为ImageNet预训练的ResNet。话不多说，直接上c++的ResNet代码。</p>
+<h3><span id="block搭建">Block搭建</span></h3><p>建议看本文代码时打开pytorch的torchvision中的resnet.py，对比阅读。</p>
+<p>首先是基础模块，pytorch针对resnet18，resne34和resnet50，resnet101，resnet152进行分类，resnet18与resnet34均使用BasicBlock，而更深的网络使用BottleNeck。我不想使用模板类编程，就直接将两个模块合为一体。声明如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlockImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    BlockImpl(<span class="keyword">int64_t</span> inplanes, <span class="keyword">int64_t</span> planes, <span class="keyword">int64_t</span> stride_ = <span class="number">1</span>,</span><br><span class="line">        torch::nn::Sequential downsample_ = <span class="literal">nullptr</span>, <span class="keyword">int</span> groups = <span class="number">1</span>, <span class="keyword">int</span> base_width = <span class="number">64</span>, <span class="keyword">bool</span> is_basic = <span class="literal">true</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line">    torch::nn::Sequential downsample&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">bool</span> is_basic = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">int64_t</span> stride = <span class="number">1</span>;</span><br><span class="line">    torch::nn::Conv2d conv1&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn1&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::Conv2d conv2&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn2&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::Conv2d conv3&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn3&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">TORCH_MODULE(Block);</span><br></pre></td></tr></table></figure></p>
+<p>可以发现，其实是直接声明了三个conv结构和一个is_basic标志位判断定义时进行BasicBlock定义还是BottleNeck定义。下面时其定义<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">BlockImpl::BlockImpl(<span class="keyword">int64_t</span> inplanes, <span class="keyword">int64_t</span> planes, <span class="keyword">int64_t</span> stride_,</span><br><span class="line">    torch::nn::Sequential downsample_, <span class="keyword">int</span> groups, <span class="keyword">int</span> base_width, <span class="keyword">bool</span> _is_basic)</span><br><span class="line">&#123;</span><br><span class="line">    downsample = downsample_;</span><br><span class="line">    stride = stride_;</span><br><span class="line">	<span class="keyword">int</span> width = <span class="keyword">int</span>(planes * (base_width / <span class="number">64.</span>)) * groups;</span><br><span class="line"></span><br><span class="line">    conv1 = torch::nn::Conv2d(conv_options(inplanes, width, <span class="number">3</span>, stride_, <span class="number">1</span>, groups, <span class="literal">false</span>));</span><br><span class="line">    bn1 = torch::nn::BatchNorm2d(torch::nn::BatchNorm2dOptions(width));</span><br><span class="line">    conv2 = torch::nn::Conv2d(conv_options(width, width, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, groups, <span class="literal">false</span>));</span><br><span class="line">    bn2 = torch::nn::BatchNorm2d(torch::nn::BatchNorm2dOptions(width));</span><br><span class="line">    is_basic = _is_basic;</span><br><span class="line">    <span class="keyword">if</span> (!is_basic) &#123;</span><br><span class="line">        conv1 = torch::nn::Conv2d(conv_options(inplanes, width, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>));</span><br><span class="line">        conv2 = torch::nn::Conv2d(conv_options(width, width, <span class="number">3</span>, stride_, <span class="number">1</span>, groups, <span class="literal">false</span>));</span><br><span class="line">        conv3 = torch::nn::Conv2d(conv_options(width, planes * <span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>));</span><br><span class="line">        bn3 = torch::nn::BatchNorm2d(torch::nn::BatchNorm2dOptions(planes * <span class="number">4</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    register_module(<span class="string">"conv1"</span>, conv1);</span><br><span class="line">    register_module(<span class="string">"bn1"</span>, bn1);</span><br><span class="line">    register_module(<span class="string">"conv2"</span>, conv2);</span><br><span class="line">    register_module(<span class="string">"bn2"</span>, bn2);</span><br><span class="line">    <span class="keyword">if</span> (!is_basic) &#123;</span><br><span class="line">        register_module(<span class="string">"conv3"</span>, conv3);</span><br><span class="line">        register_module(<span class="string">"bn3"</span>, bn3);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!downsample-&gt;is_empty()) &#123;</span><br><span class="line">        register_module(<span class="string">"downsample"</span>, downsample);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor BlockImpl::forward(torch::Tensor x) &#123;</span><br><span class="line">    torch::Tensor residual = x.clone();</span><br><span class="line"></span><br><span class="line">    x = conv1-&gt;forward(x);</span><br><span class="line">    x = bn1-&gt;forward(x);</span><br><span class="line">    x = torch::relu(x);</span><br><span class="line"></span><br><span class="line">    x = conv2-&gt;forward(x);</span><br><span class="line">    x = bn2-&gt;forward(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!is_basic) &#123;</span><br><span class="line">        x = torch::relu(x);</span><br><span class="line">        x = conv3-&gt;forward(x);</span><br><span class="line">        x = bn3-&gt;forward(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!downsample-&gt;is_empty()) &#123;</span><br><span class="line">        residual = downsample-&gt;forward(residual);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    x += residual;</span><br><span class="line">    x = torch::relu(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后不要忘了熟悉的conv_options函数，定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> torch::nn::<span class="function">Conv2dOptions <span class="title">conv_options</span><span class="params">(<span class="keyword">int64_t</span> in_planes, <span class="keyword">int64_t</span> out_planes, <span class="keyword">int64_t</span> kerner_size,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">int64_t</span> stride = <span class="number">1</span>, <span class="keyword">int64_t</span> padding = <span class="number">0</span>, <span class="keyword">int</span> groups = <span class="number">1</span>, <span class="keyword">bool</span> with_bias = <span class="literal">true</span>)</span> </span>&#123;</span><br><span class="line">    torch::nn::Conv2dOptions conv_options = torch::nn::Conv2dOptions(in_planes, out_planes, kerner_size);</span><br><span class="line">    conv_options.stride(stride);</span><br><span class="line">    conv_options.padding(padding);</span><br><span class="line">    conv_options.bias(with_bias);</span><br><span class="line">	conv_options.groups(groups);</span><br><span class="line">    <span class="keyword">return</span> conv_options;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>和之前章节中的相比，增加了groups参数，同时with_bias默认打开，使用需要注意修改。</p>
+<h3><span id="resnet主体搭建">ResNet主体搭建</span></h3><p>定义好Block模块后就可以设计ResNet了，c++中ResNet模型声明类似pytorch中的ResNet。但是初始化参数增加一个model_type，辅助判断采用哪种Block。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResNetImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ResNetImpl(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; layers, <span class="keyword">int</span> num_classes = <span class="number">1000</span>, <span class="built_in">std</span>::<span class="built_in">string</span> model_type = <span class="string">"resnet18"</span>,</span><br><span class="line">		<span class="keyword">int</span> groups = <span class="number">1</span>, <span class="keyword">int</span> width_per_group = <span class="number">64</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; features(torch::Tensor x);</span><br><span class="line">    torch::nn::Sequential _make_layer(<span class="keyword">int64_t</span> planes, <span class="keyword">int64_t</span> blocks, <span class="keyword">int64_t</span> stride = <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> expansion = <span class="number">1</span>; <span class="keyword">bool</span> is_basic = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">int64_t</span> inplanes = <span class="number">64</span>; <span class="keyword">int</span> groups = <span class="number">1</span>; <span class="keyword">int</span> base_width = <span class="number">64</span>;</span><br><span class="line">    torch::nn::Conv2d conv1&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn1&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::Sequential layer1&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::Sequential layer2&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::Sequential layer3&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::Sequential layer4&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::Linear fc&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">TORCH_MODULE(ResNet);</span><br></pre></td></tr></table></figure></p>
+<p>在实现初始化函数之前，需要实现_make_layer函数。实现好_make_layer函数后再实现ResNet初始化函数，代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">torch::nn::Sequential ResNetImpl::_make_layer(<span class="keyword">int64_t</span> planes, <span class="keyword">int64_t</span> blocks, <span class="keyword">int64_t</span> stride) &#123;</span><br><span class="line"></span><br><span class="line">    torch::nn::Sequential downsample;</span><br><span class="line">    <span class="keyword">if</span> (stride != <span class="number">1</span> || inplanes != planes * expansion) &#123;</span><br><span class="line">        downsample = torch::nn::Sequential(</span><br><span class="line">            torch::nn::Conv2d(conv_options(inplanes, planes *  expansion, <span class="number">1</span>, stride, <span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>)),</span><br><span class="line">            torch::nn::BatchNorm2d(planes *  expansion)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    torch::nn::Sequential layers;</span><br><span class="line">    layers-&gt;push_back(Block(inplanes, planes, stride, downsample, groups, base_width, is_basic));</span><br><span class="line">    inplanes = planes *  expansion;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int64_t</span> i = <span class="number">1</span>; i &lt; blocks; i++) &#123;</span><br><span class="line">        layers-&gt;push_back(Block(inplanes, planes, <span class="number">1</span>, torch::nn::Sequential(), groups, base_width,is_basic));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> layers;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ResNetImpl::ResNetImpl(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; layers, <span class="keyword">int</span> num_classes, <span class="built_in">std</span>::<span class="built_in">string</span> model_type, <span class="keyword">int</span> _groups, <span class="keyword">int</span> _width_per_group)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (model_type != <span class="string">"resnet18"</span> &amp;&amp; model_type != <span class="string">"resnet34"</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        expansion = <span class="number">4</span>;</span><br><span class="line">        is_basic = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	groups = _groups;</span><br><span class="line">	base_width = _width_per_group;</span><br><span class="line">    conv1 = torch::nn::Conv2d(conv_options(<span class="number">3</span>, <span class="number">64</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="literal">false</span>));</span><br><span class="line">    bn1 = torch::nn::BatchNorm2d(torch::nn::BatchNorm2dOptions(<span class="number">64</span>));</span><br><span class="line">    layer1 = torch::nn::Sequential(_make_layer(<span class="number">64</span>, layers[<span class="number">0</span>]));</span><br><span class="line">    layer2 = torch::nn::Sequential(_make_layer(<span class="number">128</span>, layers[<span class="number">1</span>], <span class="number">2</span>));</span><br><span class="line">    layer3 = torch::nn::Sequential(_make_layer(<span class="number">256</span>, layers[<span class="number">2</span>], <span class="number">2</span>));</span><br><span class="line">    layer4 = torch::nn::Sequential(_make_layer(<span class="number">512</span>, layers[<span class="number">3</span>], <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    fc = torch::nn::Linear(<span class="number">512</span> * expansion, num_classes);</span><br><span class="line">    register_module(<span class="string">"conv1"</span>, conv1);</span><br><span class="line">    register_module(<span class="string">"bn1"</span>, bn1);</span><br><span class="line">    register_module(<span class="string">"layer1"</span>, layer1);</span><br><span class="line">    register_module(<span class="string">"layer2"</span>, layer2);</span><br><span class="line">    register_module(<span class="string">"layer3"</span>, layer3);</span><br><span class="line">    register_module(<span class="string">"layer4"</span>, layer4);</span><br><span class="line">    register_module(<span class="string">"fc"</span>, fc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="前向传播及特征提取">前向传播及特征提取</span></h3><p>前向传播相对简单，直接根据定义好的层往下传播即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">torch::Tensor  ResNetImpl::forward(torch::Tensor x) &#123;</span><br><span class="line">    x = conv1-&gt;forward(x);</span><br><span class="line">    x = bn1-&gt;forward(x);</span><br><span class="line">    x = torch::relu(x);</span><br><span class="line">    x = torch::max_pool2d(x, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    x = layer1-&gt;forward(x);</span><br><span class="line">    x = layer2-&gt;forward(x);</span><br><span class="line">    x = layer3-&gt;forward(x);</span><br><span class="line">    x = layer4-&gt;forward(x);</span><br><span class="line"></span><br><span class="line">    x = torch::avg_pool2d(x, <span class="number">7</span>, <span class="number">1</span>);</span><br><span class="line">    x = x.view(&#123; x.sizes()[<span class="number">0</span>], <span class="number">-1</span> &#125;);</span><br><span class="line">    x = fc-&gt;forward(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> torch::log_softmax(x, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是本文是介绍分割用的，所以需要对不同的特征层进行提取，存储到std::vector<a href="torch::Tensor" target="_blank" rel="noopener">torch::Tensor</a>中。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; ResNetImpl::features(torch::Tensor x)&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; features;</span><br><span class="line">    features.push_back(x);</span><br><span class="line">    x = conv1-&gt;forward(x);</span><br><span class="line">    x = bn1-&gt;forward(x);</span><br><span class="line">    x = torch::relu(x);</span><br><span class="line">    features.push_back(x);</span><br><span class="line">    x = torch::max_pool2d(x, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    x = layer1-&gt;forward(x);</span><br><span class="line">    features.push_back(x);</span><br><span class="line">    x = layer2-&gt;forward(x);</span><br><span class="line">    features.push_back(x);</span><br><span class="line">    x = layer3-&gt;forward(x);</span><br><span class="line">    features.push_back(x);</span><br><span class="line">    x = layer4-&gt;forward(x);</span><br><span class="line">    features.push_back(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> features;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="u-net解码">U-Net解码</span></h2><p>上面的ResNet部分其实可以开单章详细讲解，但是参照源码读者应该容易理解，就直接放一起。如果上面的内容是对torchvision在libtorch中的优化，下面的部分可以看成直接对SMP中U-Net解码的c++复制。</p>
+<p>直接上声明：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//attention and basic</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SCSEModuleImpl</span>:</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    SCSEModuleImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> reduction=<span class="number">16</span>, <span class="keyword">bool</span> use_attention = <span class="literal">false</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">bool</span> use_attention = <span class="literal">false</span>;</span><br><span class="line">    torch::nn::Sequential cSE&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Sequential sSE&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;TORCH_MODULE(SCSEModule);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Conv2dReLUImpl</span>:</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Conv2dReLUImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels, <span class="keyword">int</span> kernel_size = <span class="number">3</span>, <span class="keyword">int</span> padding = <span class="number">1</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    torch::nn::Conv2d conv2d&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;TORCH_MODULE(Conv2dReLU);</span><br><span class="line"></span><br><span class="line"><span class="comment">//decoderblock and center block</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecoderBlockImpl</span>:</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    DecoderBlockImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> skip_channels, <span class="keyword">int</span> out_channels, <span class="keyword">bool</span> skip = <span class="literal">true</span>, <span class="keyword">bool</span> attention = <span class="literal">false</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x, torch::Tensor skip)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Conv2dReLU conv1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    Conv2dReLU conv2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    SCSEModule attention1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    SCSEModule attention2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Upsample upsample&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    <span class="keyword">bool</span> is_skip = <span class="literal">true</span>;</span><br><span class="line">&#125;;TORCH_MODULE(DecoderBlock);</span><br><span class="line"></span><br><span class="line">torch::nn::<span class="function">Sequential <span class="title">CenterBlock</span><span class="params">(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UNetDecoderImpl</span>:</span><span class="keyword">public</span> torch::nn::Module</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UNetDecoderImpl(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; encoder_channels, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; decoder_channels, <span class="keyword">int</span> n_blocks = <span class="number">5</span>,</span><br><span class="line">                <span class="keyword">bool</span> use_attention = <span class="literal">false</span>, <span class="keyword">bool</span> use_center=<span class="literal">false</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; features)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    torch::nn::Sequential center&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::ModuleList blocks = torch::nn::ModuleList();</span><br><span class="line">&#125;;TORCH_MODULE(UNetDecoder);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// UNETDECODER_H</span></span></span><br></pre></td></tr></table></figure></p>
+<p>直接上定义：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">SCSEModuleImpl::SCSEModuleImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> reduction, <span class="keyword">bool</span> _use_attention)&#123;</span><br><span class="line">    use_attention = _use_attention;</span><br><span class="line">    cSE = torch::nn::Sequential(</span><br><span class="line">            torch::nn::AdaptiveAvgPool2d(torch::nn::AdaptiveAvgPool2dOptions(<span class="number">1</span>)),</span><br><span class="line">            torch::nn::Conv2d(conv_options(in_channels, in_channels / reduction, <span class="number">1</span>)),</span><br><span class="line">            torch::nn::ReLU(torch::nn::ReLUOptions(<span class="literal">true</span>)),</span><br><span class="line">            torch::nn::Conv2d(conv_options(in_channels / reduction, in_channels, <span class="number">1</span>)),</span><br><span class="line">            torch::nn::Sigmoid());</span><br><span class="line">    sSE = torch::nn::Sequential(torch::nn::Conv2d(conv_options(in_channels, <span class="number">1</span>, <span class="number">1</span>)), torch::nn::Sigmoid());</span><br><span class="line">    register_module(<span class="string">"cSE"</span>,cSE);</span><br><span class="line">    register_module(<span class="string">"sSE"</span>,sSE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor SCSEModuleImpl::forward(torch::Tensor x)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!use_attention) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">return</span> x * cSE-&gt;forward(x) + x * sSE-&gt;forward(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Conv2dReLUImpl::Conv2dReLUImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels, <span class="keyword">int</span> kernel_size, <span class="keyword">int</span> padding)&#123;</span><br><span class="line">    conv2d = torch::nn::Conv2d(conv_options(in_channels,out_channels,kernel_size,<span class="number">1</span>,padding));</span><br><span class="line">    bn = torch::nn::BatchNorm2d(torch::nn::BatchNorm2dOptions(out_channels));</span><br><span class="line">    register_module(<span class="string">"conv2d"</span>, conv2d);</span><br><span class="line">    register_module(<span class="string">"bn"</span>, bn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor Conv2dReLUImpl::forward(torch::Tensor x)&#123;</span><br><span class="line">    x = conv2d-&gt;forward(x);</span><br><span class="line">    x = bn-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DecoderBlockImpl::DecoderBlockImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> skip_channels, <span class="keyword">int</span> out_channels, <span class="keyword">bool</span> skip, <span class="keyword">bool</span> attention)&#123;</span><br><span class="line">    conv1 = Conv2dReLU(in_channels + skip_channels, out_channels, <span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">    conv2 = Conv2dReLU(out_channels, out_channels, <span class="number">3</span>, <span class="number">1</span>);</span><br><span class="line">    register_module(<span class="string">"conv1"</span>, conv1);</span><br><span class="line">    register_module(<span class="string">"conv2"</span>, conv2);</span><br><span class="line">    upsample = torch::nn::Upsample(torch::nn::UpsampleOptions().scale_factor(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;(&#123;<span class="number">2</span>,<span class="number">2</span>&#125;)).mode(torch::kNearest));</span><br><span class="line"></span><br><span class="line">    attention1 = SCSEModule(in_channels + skip_channels, <span class="number">16</span>, attention);</span><br><span class="line">    attention2 = SCSEModule(out_channels, <span class="number">16</span>, attention);</span><br><span class="line">    register_module(<span class="string">"attention1"</span>, attention1);</span><br><span class="line">    register_module(<span class="string">"attention2"</span>, attention2);</span><br><span class="line">    is_skip = skip;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor DecoderBlockImpl::forward(torch::Tensor x, torch::Tensor skip)&#123;</span><br><span class="line">    x = upsample-&gt;forward(x);</span><br><span class="line">    <span class="keyword">if</span> (is_skip)&#123;</span><br><span class="line">        x = torch::cat(&#123;x, skip&#125;, <span class="number">1</span>);</span><br><span class="line">        x = attention1-&gt;forward(x);</span><br><span class="line">    &#125;</span><br><span class="line">    x = conv1-&gt;forward(x);</span><br><span class="line">    x = conv2-&gt;forward(x);</span><br><span class="line">    x = attention2-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::nn::<span class="function">Sequential <span class="title">CenterBlock</span><span class="params">(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> torch::nn::Sequential(Conv2dReLU(in_channels, out_channels, <span class="number">3</span>, <span class="number">1</span>),</span><br><span class="line">                                 Conv2dReLU(out_channels, out_channels, <span class="number">3</span>, <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">UNetDecoderImpl::UNetDecoderImpl(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; encoder_channels, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; decoder_channels, <span class="keyword">int</span> n_blocks,</span><br><span class="line">                         <span class="keyword">bool</span> use_attention, <span class="keyword">bool</span> use_center)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (n_blocks != decoder_channels.size()) <span class="keyword">throw</span> <span class="string">"Model depth not equal to your provided `decoder_channels`"</span>;</span><br><span class="line">    <span class="built_in">std</span>::reverse(<span class="built_in">std</span>::begin(encoder_channels),<span class="built_in">std</span>::end(encoder_channels));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// computing blocks input and output channels</span></span><br><span class="line">    <span class="keyword">int</span> head_channels = encoder_channels[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; out_channels = decoder_channels;</span><br><span class="line">    decoder_channels.pop_back();</span><br><span class="line">    decoder_channels.insert(decoder_channels.begin(),head_channels);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; in_channels = decoder_channels;</span><br><span class="line">    encoder_channels.erase(encoder_channels.begin());</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; skip_channels = encoder_channels;</span><br><span class="line">    skip_channels[skip_channels.size()<span class="number">-1</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(use_center)  center = CenterBlock(head_channels, head_channels);</span><br><span class="line">    <span class="keyword">else</span> center = torch::nn::Sequential(torch::nn::Identity());</span><br><span class="line">    <span class="comment">//the last DecoderBlock of blocks need no skip tensor</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; in_channels.size()<span class="number">-1</span>; i++) &#123;</span><br><span class="line">        blocks-&gt;push_back(DecoderBlock(in_channels[i], skip_channels[i], out_channels[i], <span class="literal">true</span>, use_attention));</span><br><span class="line">    &#125;</span><br><span class="line">    blocks-&gt;push_back(DecoderBlock(in_channels[in_channels.size()<span class="number">-1</span>], skip_channels[in_channels.size()<span class="number">-1</span>],</span><br><span class="line">            out_channels[in_channels.size()<span class="number">-1</span>], <span class="literal">false</span>, use_attention));</span><br><span class="line"></span><br><span class="line">    register_module(<span class="string">"center"</span>, center);</span><br><span class="line">    register_module(<span class="string">"blocks"</span>, blocks);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor UNetDecoderImpl::forward(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; features)&#123;</span><br><span class="line">    <span class="built_in">std</span>::reverse(<span class="built_in">std</span>::begin(features),<span class="built_in">std</span>::end(features));</span><br><span class="line">    torch::Tensor head = features[<span class="number">0</span>];</span><br><span class="line">    features.erase(features.begin());</span><br><span class="line">    <span class="keyword">auto</span> x = center-&gt;forward(head);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;blocks-&gt;size(); i++) &#123;</span><br><span class="line">        x = blocks[i]-&gt;as&lt;DecoderBlock&gt;()-&gt;forward(x, features[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不展开说了，内容较多。后续还有U-Net整体和封装…</p>
+<h2><span id="u-net整体设计">U-Net整体设计</span></h2><p>这是U-Net的声明，分为编码器，解码器和分割头。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UNetImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    UNetImpl(<span class="keyword">int</span> num_classes, <span class="built_in">std</span>::<span class="built_in">string</span> encoder_name = <span class="string">"resnet18"</span>, <span class="built_in">std</span>::<span class="built_in">string</span> pretrained_path = <span class="string">""</span>, <span class="keyword">int</span> encoder_depth = <span class="number">5</span>,</span><br><span class="line">             <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; decoder_channels=&#123;<span class="number">256</span>, <span class="number">128</span>, <span class="number">64</span>, <span class="number">32</span>, <span class="number">16</span>&#125;, <span class="keyword">bool</span> use_attention = <span class="literal">false</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ResNet encoder&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    UNetDecoder decoder&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    SegmentationHead segmentation_head&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> num_classes = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; BasicChannels = &#123;<span class="number">3</span>, <span class="number">64</span>, <span class="number">64</span>, <span class="number">128</span>, <span class="number">256</span>, <span class="number">512</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; BottleChannels = &#123;<span class="number">3</span>, <span class="number">64</span>, <span class="number">256</span>, <span class="number">512</span>, <span class="number">1024</span>, <span class="number">2048</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; name2layers = getParams();</span><br><span class="line">&#125;;TORCH_MODULE(UNet);</span><br></pre></td></tr></table></figure></p>
+<p>这是实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">UNetImpl::UNetImpl(<span class="keyword">int</span> _num_classes, <span class="built_in">std</span>::<span class="built_in">string</span> encoder_name, <span class="built_in">std</span>::<span class="built_in">string</span> pretrained_path, <span class="keyword">int</span> encoder_depth,</span><br><span class="line">                   <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; decoder_channels, <span class="keyword">bool</span> use_attention)&#123;</span><br><span class="line">    num_classes = _num_classes;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; encoder_channels = BasicChannels;</span><br><span class="line">    <span class="keyword">if</span>(!name2layers.count(encoder_name)) <span class="keyword">throw</span> <span class="string">"encoder name must in &#123;resnet18, resnet34, resnet50, resnet101&#125;"</span>;</span><br><span class="line">    <span class="keyword">if</span>(encoder_name!=<span class="string">"resnet18"</span> &amp;&amp; encoder_name!=<span class="string">"resnet34"</span>)&#123;</span><br><span class="line">        encoder_channels = BottleChannels;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    encoder = pretrained_resnet(<span class="number">1000</span>, encoder_name, pretrained_path);</span><br><span class="line">    decoder = UNetDecoder(encoder_channels,decoder_channels, encoder_depth, use_attention, <span class="literal">false</span>);</span><br><span class="line">    segmentation_head = SegmentationHead(decoder_channels[decoder_channels.size()<span class="number">-1</span>], num_classes, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    register_module(<span class="string">"encoder"</span>,encoder);</span><br><span class="line">    register_module(<span class="string">"decoder"</span>,decoder);</span><br><span class="line">    register_module(<span class="string">"segmentation_head"</span>,segmentation_head);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor UNetImpl::forward(torch::Tensor x)&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; features = encoder-&gt;features(x);</span><br><span class="line">    x = decoder-&gt;forward(features);</span><br><span class="line">    x = segmentation_head-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分割头：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegmentationHeadImpl</span>:</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    SegmentationHeadImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels, <span class="keyword">int</span> kernel_size=<span class="number">3</span>, <span class="keyword">double</span> upsampling=<span class="number">1</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    torch::nn::Conv2d conv2d&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Upsample upsampling&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;TORCH_MODULE(SegmentationHead);</span><br><span class="line"></span><br><span class="line">SegmentationHeadImpl::SegmentationHeadImpl(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels, <span class="keyword">int</span> kernel_size, <span class="keyword">double</span> _upsampling)&#123;</span><br><span class="line">    conv2d = torch::nn::Conv2d(conv_options(in_channels, out_channels, kernel_size, <span class="number">1</span>, kernel_size / <span class="number">2</span>));</span><br><span class="line">    upsampling = torch::nn::Upsample(upsample_options(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;&#123;_upsampling,_upsampling&#125;));</span><br><span class="line">    register_module(<span class="string">"conv2d"</span>,conv2d);</span><br><span class="line">&#125;</span><br><span class="line">torch::Tensor SegmentationHeadImpl::forward(torch::Tensor x)&#123;</span><br><span class="line">    x = conv2d-&gt;forward(x);</span><br><span class="line">    x = upsampling-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>内容过于多，博客写得比较费劲。直接将封装和测试代码放到GitHub上了，在<a href="https://github.com/AllentDan/SegmentationCpp" target="_blank" rel="noopener">这里</a>。里面集成了包括ResNet，ResNext和可能的ResNest为骨干网络，目前网络架构实现了FPN和U-Net。如果项目内容有帮到你请务必给个star，作者需要这份支持作为动力，实在没钱做推广呀…大家牛年快乐！！！</p>
+<p>实际测试U-Net在c++代码执行效率，发现与python在cpu下速度一致，GPU下快好几倍。c++真香。</p>
+<p>分享不易，如果有用请不吝给我一个👍，转载注明出处：<a href="https://allentdan.github.io/">https://allentdan.github.io/</a><br>代码见<a href="https://github.com/AllentDan/LibtorchTutorials" target="_blank" rel="noopener">LibtorchTutorials</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/libtorch/" rel="tag"># libtorch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/" rel="next" title="QT Creator + Opencv + Libtorch +CUDA深度学习最全配置">
+                <i class="fa fa-chevron-left"></i> QT Creator + Opencv + Libtorch +CUDA深度学习最全配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+            
+              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AllentDan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allentdan@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/65234485" target="_blank" title="Bilibili">
+                      
+                        <i class="fa fa-fw fa-bilibili"></i>Bilibili</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">模型简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">编码器——ResNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">Block搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">ResNet主体搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">前向传播及特征提取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">U-Net解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">U-Net整体设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Allent Dan</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
