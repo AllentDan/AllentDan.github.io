@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/assertion_failed.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include2.jpg">
-<meta property="og:updated_time" content="2021-02-01T13:31:42.209Z">
+<meta property="og:updated_time" content="2021-04-01T06:39:35.514Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些cpp常见错误报错">
 <meta name="twitter:description" content="Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——亚像素提取使用时产生的错误。 环境：Windows 10Visual Studio 2017OpenCV 2.4.10 中间过程：用V">
@@ -399,6 +399,9 @@
 <li>将函数的声明和定义分开，定义放到.cpp文件则不产生错误。</li>
 <li>不分离，直接在.h的定义前加inline关键字。</li>
 </ol>
+<h2><span id="error-c2672-torchnnanymodulemake_holder-no-matching-overloaded-function-found">Error    C2672    ‘torch::nn::AnyModule::make_holder’: no matching overloaded function found</span></h2><h3><span id="问题描述">问题描述</span></h3><p>使用torch::nn::Sequential时，编译产生7个errors。这是由Sequential里push_back另一个Sequential导致的。</p>
+<h3><span id="解决办法">解决办法</span></h3><p>这其实是libtorch的一个bug吧算是，c++设计问题，参考<a href="https://github.com/pytorch/pytorch/issues/22298" target="_blank" rel="noopener">c++ sequential in sequential</a>。</p>
+<p>如非必要，pytorch的代码尽量避免sequential in sequential结构，不然c++加载权重会很麻烦。完全可以用其他结构代替。</p>
 <p>长期更新中…</p>
 
       
@@ -557,7 +560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -579,7 +582,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -634,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">类型重定义或者使用了未定义类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">分析原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">‘torch::nn::Module::clone’ not accessible because ‘BlockImpl’ uses ‘private’ to inherit from ‘torch::nn::Module’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">class already defined in obj</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">类型重定义或者使用了未定义类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">分析原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">‘torch::nn::Module::clone’ not accessible because ‘BlockImpl’ uses ‘private’ to inherit from ‘torch::nn::Module’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">class already defined in obj</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Error    C2672    ‘torch::nn::AnyModule::make_holder’: no matching overloaded function found</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决办法</span></a></li></ol></li></ol></div>
             
 
           </div>

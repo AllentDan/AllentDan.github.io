@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="部署,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言先说一下，这个博客不涉及TensorRt加速，不涉及半精度或者int8精度加速，仅仅是libtorch部署时，NMS和RoI Pool的加速问题。当然，最后实操下来目前没有做到比python下调用torchvision的api做到的总体结果快，算是一次失败的双阶段网络搭建尝试，后续有时间再更新找找原因吧。 关注我的朋友可能都知道我最近在写libtorch教程，有一段时间没有更新最后的关键章节—">
+<meta name="keywords" content="部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Faster RCNN目标检测部署加速">
+<meta property="og:url" content="https://allentdan.github.io/2021/04/04/Faster-RCNN部署加速/index.html">
+<meta property="og:site_name" content="Allent&#39;s Blogs">
+<meta property="og:description" content="前言先说一下，这个博客不涉及TensorRt加速，不涉及半精度或者int8精度加速，仅仅是libtorch部署时，NMS和RoI Pool的加速问题。当然，最后实操下来目前没有做到比python下调用torchvision的api做到的总体结果快，算是一次失败的双阶段网络搭建尝试，后续有时间再更新找找原因吧。 关注我的朋友可能都知道我最近在写libtorch教程，有一段时间没有更新最后的关键章节—">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-05-03T03:36:55.243Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Faster RCNN目标检测部署加速">
+<meta name="twitter:description" content="前言先说一下，这个博客不涉及TensorRt加速，不涉及半精度或者int8精度加速，仅仅是libtorch部署时，NMS和RoI Pool的加速问题。当然，最后实操下来目前没有做到比python下调用torchvision的api做到的总体结果快，算是一次失败的双阶段网络搭建尝试，后续有时间再更新找找原因吧。 关注我的朋友可能都知道我最近在写libtorch教程，有一段时间没有更新最后的关键章节—">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://allentdan.github.io/2021/04/04/Faster-RCNN部署加速/">
+
+
+
+
+
+  <title>Faster RCNN目标检测部署加速 | Allent's Blogs</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Allent's Blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/04/04/Faster-RCNN部署加速/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Allent Dan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/jiegeng.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Allent's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Faster RCNN目标检测部署加速</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-04T15:59:38+08:00">
+                2021-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/04/04/Faster-RCNN部署加速/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/04/04/Faster-RCNN部署加速/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2021/04/04/Faster-RCNN部署加速/" class="leancloud_visitors" data-flag-title="Faster RCNN目标检测部署加速">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2><span id="前言">前言</span></h2><p>先说一下，这个博客不涉及TensorRt加速，不涉及半精度或者int8精度加速，仅仅是libtorch部署时，NMS和RoI Pool的加速问题。当然，最后实操下来目前没有做到比python下调用torchvision的api做到的总体结果快，算是一次失败的双阶段网络搭建尝试，后续有时间再更新找找原因吧。</p>
+<p>关注我的朋友可能都知道我最近在写libtorch教程，有一段时间没有更新最后的关键章节——目标检测章了。我自己是写过写单阶段的目标检测器的C++实现的，没有RoI Pooling或者RoI Align，没有高性能要求的NMS，写起来用起来都很爽。</p>
+<p>但是考虑到Faster RCNN毕竟是目标检测最最经典的方法（可能之一）了，还是硬着头皮整一下libtorch版本的Faster RCNN。过程果然如我所料，比单阶段的网络整起来麻烦很多，最后效果也不一定有（大概率没有）单阶段的目标检测网络好用。毕竟实际项目，速度为王，看YOLO系列多火就知道了。后面有机会整个YOLO全家桶吧….</p>
+<h2><span id="roi-pool">RoI Pool</span></h2><h3><span id="roi-pool的作用及原理">RoI Pool的作用及原理</span></h3><p>进入正题，今天主要有两个点需要重点说说，RoI Pool和NMS的加速问题。先说说RoI Pool，了解双阶段目标检测的，或者直白点，了解Faster RCNN的朋友应该都知道它或者用过它（不了解的可以去b站搜下，有bub开头的up主讲得挺不错的）。RoI Pool (or Region of Interest Pool)，它在Faster RCNN算法中扮演的角色相当于一个中间步骤吧，双阶段检测就靠它承上启下。</p>
+<p>RoI Pool之前，输入图像经过一个骨干网络卷积，得到特征图，这个特征图再经过一个RPN（Region Proposal Network）网络得到粗定位的一堆预测结果。其实这里涉及到一个点，就是卷积做分类的能力要高于做回归。早期的研究者尝试直接用卷积的方式做单阶段目标检测，直接通过特征图判断位置和类别，但是最后效果都不好。直到YOLO的横空出世，用了分治的思想，把单阶段目标检测算法提了一个台阶。</p>
+<p>这里的RPN网络就可以看作一个只有有无目标判断能力，定位效果相对不够的单阶段检测算法，通过卷积得到的特征图，配合预先设定好的先验框，得到位置的粗略信息。这些粗略信息可以看成是一堆建议框，框里就是目标，目标的类别未知。</p>
+<p>RoI Pool的作用就是将这些建议框从特征图中裁剪出来，然后经过池化(Pool)操作统一到同一个尺寸，再将这些相同尺寸的特征图拼接起来输出。后续就是第二阶段的分类和精定位了。</p>
+<h3><span id="几种python实现的roi-pool">几种python实现的RoI Pool</span></h3><p>在了解了RoI Pool的原理之后，我在GitHub上找到了一些python的实现，帮助进一步了解。<a href="https://github.com/SirLPS/roi_pooling" target="_blank" rel="noopener">这个项目</a>帮助我很多，里面有四种pytorch的RoI Pool实现，并且提供了速度对比。</p>
+<p>简单说下该项目的四种实现方式，具体细节及代码就不展开了。四种方式：cffi实现，cupy实现，chainer实现以及pytorch实现。下面是四个方式的速度测试结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use_cuda: True, has_backward: True</span><br><span class="line">method0: 0.0344547653198242, batch_size: 1, size: 50, num_rois: 300</span><br><span class="line">method1: 0.1322056961059570, batch_size: 1, size: 50, num_rois: 300</span><br><span class="line">method2: 0.1307379817962646, batch_size: 1, size: 50, num_rois: 300</span><br><span class="line">method3: 0.2016681671142578, batch_size: 1, size: 50, num_rois: 300</span><br></pre></td></tr></table></figure></p>
+<p>可以发现，cffi实现的速度是最快的，甚至比项目里提供的cupy方式还要快，cupy是python调用cuda编程加速。下面我先在RTX 2070s下pytorch版本的RoI Pool速度如何。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn, Tensor</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">roi_pooling</span><span class="params">(input, rois, size=<span class="params">(<span class="number">7</span>, <span class="number">7</span>)</span>, spatial_scale=<span class="number">1.0</span>)</span>:</span></span><br><span class="line">	<span class="keyword">assert</span> rois.dim() == <span class="number">2</span></span><br><span class="line">	<span class="keyword">assert</span> rois.size(<span class="number">1</span>) == <span class="number">5</span></span><br><span class="line">	output = []</span><br><span class="line">	rois = rois.data.float()</span><br><span class="line">	num_rois = rois.size(<span class="number">0</span>)</span><br><span class="line"> </span><br><span class="line">	rois[:, <span class="number">1</span>:].mul_(spatial_scale)</span><br><span class="line">	rois = rois.long()</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(num_rois):</span><br><span class="line">		roi = rois[i]</span><br><span class="line">		im_idx = roi[<span class="number">0</span>]</span><br><span class="line">		im = input.narrow(<span class="number">0</span>, im_idx, <span class="number">1</span>)[..., roi[<span class="number">2</span>]:(roi[<span class="number">4</span>] + <span class="number">1</span>), roi[<span class="number">1</span>]:(roi[<span class="number">3</span>] + <span class="number">1</span>)]</span><br><span class="line">		output.append(F.adaptive_max_pool2d(im, size))</span><br><span class="line"> </span><br><span class="line">	output = torch.cat(output, <span class="number">0</span>)</span><br><span class="line">	<span class="keyword">if</span> has_backward:</span><br><span class="line">		<span class="comment">#        output.backward(output.data.clone())</span></span><br><span class="line">		output.sum().backward()</span><br><span class="line">	<span class="keyword">return</span> output</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_rois</span><span class="params">(config)</span>:</span></span><br><span class="line">	rois = torch.rand((config[<span class="number">2</span>], <span class="number">5</span>))</span><br><span class="line">	rois[:, <span class="number">0</span>] = rois[:, <span class="number">0</span>] * config[<span class="number">0</span>]</span><br><span class="line">	rois[:, <span class="number">1</span>:] = rois[:, <span class="number">1</span>:] * config[<span class="number">1</span>]</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(config[<span class="number">2</span>]):</span><br><span class="line">		max_, min_ = max(rois[j, <span class="number">1</span>], rois[j, <span class="number">3</span>]), min(rois[j, <span class="number">1</span>], rois[j, <span class="number">3</span>])</span><br><span class="line">		rois[j, <span class="number">1</span>], rois[j, <span class="number">3</span>] = min_, max_</span><br><span class="line">		max_, min_ = max(rois[j, <span class="number">2</span>], rois[j, <span class="number">4</span>]), min(rois[j, <span class="number">2</span>], rois[j, <span class="number">4</span>])</span><br><span class="line">		rois[j, <span class="number">2</span>], rois[j, <span class="number">4</span>] = min_, max_</span><br><span class="line">	rois = torch.floor(rois)</span><br><span class="line">	rois = Variable(rois, requires_grad=<span class="literal">False</span>)</span><br><span class="line">	<span class="keyword">return</span> rois</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	<span class="comment"># batch_size, img_size, num_rois</span></span><br><span class="line">	config = [<span class="number">1</span>, <span class="number">50</span>, <span class="number">300</span>]</span><br><span class="line">	T = <span class="number">50</span></span><br><span class="line">	has_backward = <span class="literal">False</span></span><br><span class="line"> </span><br><span class="line">	start = time.time()</span><br><span class="line">	x = Variable(torch.rand((config[<span class="number">0</span>], <span class="number">512</span>, config[<span class="number">1</span>], config[<span class="number">1</span>])),requires_grad=<span class="literal">True</span>).cuda()</span><br><span class="line">	rois = create_rois(config).cuda()</span><br><span class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> range(T):</span><br><span class="line">		<span class="comment"># output = roi_pool_torchvision(x, rois, 7, 1.0)</span></span><br><span class="line">		output = roi_pooling(x,rois)</span><br><span class="line">	print(<span class="string">'time: &#123;&#125;, batch_size: &#123;&#125;, size: &#123;&#125;, num_rois: &#123;&#125;'</span>.format((time.time() - start) / T,</span><br><span class="line">		                                                                config[<span class="number">0</span>],</span><br><span class="line">		                                                                config[<span class="number">1</span>],</span><br><span class="line">		                                                                config[<span class="number">2</span>]))</span><br></pre></td></tr></table></figure></p>
+<p>以上代码基本是从项目中复制来的，没有太多改变，输出打印如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time: 0.12641457080841065, batch_size: 1, size: 50, num_rois: 300</span><br></pre></td></tr></table></figure></p>
+<p>耗时126ms，这比项目输出的速度要好一些。但是这显然不能用于生产环境中，而且还没算训练时的RoI Pool耗时，但是应该比这高得多。</p>
+<h3><span id="libtorch版本的roi-pool">libtorch版本的RoI Pool</span></h3><p>然后我不信邪，在C++里实现了上述的pytorch代码。代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoIPoolImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	RoIPoolImpl(<span class="keyword">int</span> output_size, <span class="keyword">float</span> spatial_scale);</span><br><span class="line">	torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor input, torch::Tensor rois)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">float</span> spatial_scale = <span class="number">1.0</span>;</span><br><span class="line">	<span class="keyword">int</span> output_size;</span><br><span class="line">&#125;; TORCH_MODULE(RoIPool);</span><br><span class="line"></span><br><span class="line">RoIPoolImpl::RoIPoolImpl(<span class="keyword">int</span> _output_size, <span class="keyword">float</span> _spatial_scale) &#123;</span><br><span class="line">	spatial_scale = _spatial_scale;</span><br><span class="line">	output_size = _output_size;</span><br><span class="line">&#125;</span><br><span class="line">torch::Tensor RoIPoolImpl::forward(torch::Tensor input, torch::Tensor rois) &#123;</span><br><span class="line">	assert(rois.dim() == <span class="number">2</span>);</span><br><span class="line">	assert(rois.size(<span class="number">1</span>) == <span class="number">5</span>);</span><br><span class="line">	<span class="keyword">int</span> num_rois = rois.size(<span class="number">0</span>);</span><br><span class="line">	rois.narrow(<span class="number">1</span>, <span class="number">1</span>, rois.size(<span class="number">1</span>)<span class="number">-1</span>) = rois.narrow(<span class="number">1</span>, <span class="number">1</span>, rois.size(<span class="number">1</span>) - <span class="number">1</span>).mul_(spatial_scale);</span><br><span class="line">	rois = rois.to(torch::kLong);</span><br><span class="line"></span><br><span class="line">	rois = torch::clamp(rois, <span class="number">0</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">1</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">1</span>), input.size(<span class="number">3</span>) <span class="number">-1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">2</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">2</span>), input.size(<span class="number">2</span>) - <span class="number">1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">3</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">3</span>), input.size(<span class="number">3</span>) - <span class="number">1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">4</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">4</span>), input.size(<span class="number">2</span>) - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">3</span>) = rois.select(<span class="number">1</span>, <span class="number">3</span>) - rois.select(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">4</span>) = rois.select(<span class="number">1</span>, <span class="number">4</span>) - rois.select(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">	rois = torch::clamp(rois, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; output;</span><br><span class="line">	<span class="keyword">auto</span> poolOption = torch::nn::functional::AdaptiveMaxPool2dFuncOptions(output_size);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num_rois; i++) &#123;<span class="comment">//此循环外可以将rois拷贝到数组，再循环内取数，应该提速</span></span><br><span class="line">		<span class="keyword">auto</span> roi = rois[i];</span><br><span class="line">		<span class="keyword">auto</span> im_idx = roi[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">int</span> x1 = roi[<span class="number">1</span>].item().toInt();</span><br><span class="line">		<span class="keyword">int</span> y1 = roi[<span class="number">2</span>].item().toInt();</span><br><span class="line">		<span class="keyword">int</span> w = roi[<span class="number">3</span>].item().toInt();</span><br><span class="line">		<span class="keyword">int</span> h = roi[<span class="number">4</span>].item().toInt();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">auto</span> im = input.narrow(<span class="number">0</span>, im_idx, <span class="number">1</span>).narrow(<span class="number">2</span>, y1, h + <span class="number">1</span>).narrow(<span class="number">3</span>, x1, w + <span class="number">1</span>);</span><br><span class="line">		output.push_back(torch::nn::functional::adaptive_max_pool2d(im, poolOption));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> torch::cat(output, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试了一下速度，测试代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">torch::<span class="function">Tensor <span class="title">create_rois</span><span class="params">(<span class="keyword">int</span> config[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> rois = torch::rand(&#123; config[<span class="number">2</span>], <span class="number">5</span> &#125;);</span><br><span class="line">	rois.select(<span class="number">1</span>,<span class="number">0</span>) = rois.select(<span class="number">1</span>, <span class="number">0</span>) * config[<span class="number">0</span>];</span><br><span class="line">	rois.narrow(<span class="number">1</span>, <span class="number">1</span>, rois.size(<span class="number">1</span>) - <span class="number">1</span>) = rois.narrow(<span class="number">1</span>, <span class="number">1</span>, rois.size(<span class="number">1</span>) - <span class="number">1</span>) * config[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; config[<span class="number">2</span>]; j++) &#123;</span><br><span class="line">		<span class="keyword">auto</span> max_ = max(rois[j][<span class="number">1</span>], rois[j][<span class="number">3</span>]);</span><br><span class="line">		<span class="keyword">auto</span> min_ = min(rois[j][<span class="number">1</span>], rois[j][<span class="number">3</span>]);</span><br><span class="line">		rois[j][<span class="number">1</span>] = min_;</span><br><span class="line">		rois[j][<span class="number">3</span>] = max_;</span><br><span class="line">		max_ = max(rois[j][<span class="number">2</span>], rois[j][<span class="number">4</span>]);</span><br><span class="line">		min_ = min(rois[j][<span class="number">2</span>], rois[j][<span class="number">4</span>]);</span><br><span class="line">		rois[j][<span class="number">2</span>] = min_;</span><br><span class="line">		rois[j][<span class="number">4</span>] = max_;</span><br><span class="line">	&#125;</span><br><span class="line">	rois = torch::<span class="built_in">floor</span>(rois);</span><br><span class="line">	<span class="keyword">return</span> rois;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> config[<span class="number">3</span>] = &#123; <span class="number">1</span>, <span class="number">50</span>, <span class="number">300</span> &#125;;</span><br><span class="line">	<span class="keyword">auto</span> roipool = RoIPool(<span class="number">7</span>, <span class="number">1.0</span>);</span><br><span class="line">	roipool-&gt;eval();</span><br><span class="line">	roipool-&gt;to(torch::Device(torch::kCUDA));</span><br><span class="line">	<span class="keyword">auto</span> x = torch::rand(&#123; config[<span class="number">0</span>], <span class="number">512</span>, config[<span class="number">1</span>], config[<span class="number">1</span>] &#125;).to(torch::Device(torch::kCUDA));</span><br><span class="line">	<span class="keyword">auto</span> rois = create_rois(config).to(torch::Device(torch::kCUDA));</span><br><span class="line">	roipool-&gt;forward(x, rois);</span><br><span class="line">	<span class="comment">//model-&gt;forward(inputs);</span></span><br><span class="line">	<span class="keyword">int</span> T = <span class="number">10</span>;</span><br><span class="line">	int64 t0 = cv::getCPUTickCount();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T; i++) &#123;</span><br><span class="line">		<span class="comment">//model-&gt;forward(inputs);</span></span><br><span class="line">		<span class="keyword">auto</span> output = roipool-&gt;forward(x, rois);</span><br><span class="line">	&#125;</span><br><span class="line">	int64 t1 = cv::getCPUTickCount();</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"execution time is "</span> &lt;&lt; (t1 - t0) / (<span class="keyword">double</span>)cv::getTickFrequency() / T &lt;&lt; <span class="string">" seconds"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码里用了libtorch和opencv，后者主要用于计时，如果不能运行可以参考网络的配置博客或者我自己的<a href="https://allentdan.github.io/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87">pytorch部署博客</a>和<a href="https://allentdan.github.io/2021/01/21/QT%20Creator%20+%20Opencv4.x%20+%20Libtorch1.7%E9%85%8D%E7%BD%AE/#more">libtorch的QT部署</a>。</p>
+<p>可以发现我的代码主要添加了一些安全性设置，原来的python代码，输入受create_rois影响，已经将rois内部的大小关系定义成方框的左上角点坐标小于右下角点。但是实际的Faster RCNN中，RPN网络出来的结果并非如此，所以加了安全性设置。</p>
+<p>在同样的RTX 2070s显卡上，该libtorch代码的执行速度高达0.08s，比python下同样代码快个50%吧。除去安全性代码可能还会更快。但是，我们发现，这个速度最多只能和开源项目中的cupy或者chainer相对提速优越一点点。（0.2s-&gt;0.13s和0.126s-&gt;0.08s）。它的速度依然是比cffi实现慢许多的，如果在同样显卡上甚至慢相当多。</p>
+<h3><span id="libtorch版本的roi-pool提速">libtorch版本的RoI Pool提速</span></h3><p>那我们对这个代码进行提速，看看最后能到什么效果。重新构建RoIPool类，代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoIPoolImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module &#123;<span class="comment">//our RoIPool should be a little slower than cuda version, not tested</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	RoIPoolImpl(<span class="keyword">int</span> output_size, <span class="keyword">float</span> spatial_scale);</span><br><span class="line">	torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor input, torch::Tensor rois)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">float</span> spatial_scale = <span class="number">1.0</span>;</span><br><span class="line">	<span class="keyword">int</span> output_size;</span><br><span class="line">	torch::nn::functional::AdaptiveMaxPool2dFuncOptions poolOption = torch::nn::functional::AdaptiveMaxPool2dFuncOptions(output_size);</span><br><span class="line">&#125;; TORCH_MODULE(RoIPool);</span><br><span class="line"></span><br><span class="line">RoIPoolImpl::RoIPoolImpl(<span class="keyword">int</span> _output_size, <span class="keyword">float</span> _spatial_scale) &#123;</span><br><span class="line">	spatial_scale = _spatial_scale;</span><br><span class="line">	output_size = _output_size;</span><br><span class="line">	poolOption = torch::nn::functional::AdaptiveMaxPool2dFuncOptions(output_size);</span><br><span class="line">&#125;</span><br><span class="line">torch::Tensor RoIPoolImpl::forward(torch::Tensor input, torch::Tensor rois) &#123;</span><br><span class="line">	assert(rois.dim() == <span class="number">2</span>);</span><br><span class="line">	assert(rois.size(<span class="number">1</span>) == <span class="number">5</span>);</span><br><span class="line">	<span class="keyword">int</span> num_rois = rois.size(<span class="number">0</span>);</span><br><span class="line">	rois.narrow(<span class="number">1</span>, <span class="number">1</span>, rois.size(<span class="number">1</span>)<span class="number">-1</span>) = rois.narrow(<span class="number">1</span>, <span class="number">1</span>, rois.size(<span class="number">1</span>) - <span class="number">1</span>).mul_(spatial_scale);</span><br><span class="line">	rois = rois.to(torch::kInt);</span><br><span class="line"></span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">1</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">1</span>), input.size(<span class="number">3</span>) <span class="number">-1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">2</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">2</span>), input.size(<span class="number">2</span>) - <span class="number">1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">3</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">3</span>), input.size(<span class="number">3</span>) - <span class="number">1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">4</span>) = torch::clamp_max(rois.select(<span class="number">1</span>, <span class="number">4</span>), input.size(<span class="number">2</span>) - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">3</span>) = rois.select(<span class="number">1</span>, <span class="number">3</span>) - rois.select(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	rois.select(<span class="number">1</span>, <span class="number">4</span>) = rois.select(<span class="number">1</span>, <span class="number">4</span>) - rois.select(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">	rois = torch::clamp(rois, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>* roi_p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span> * num_rois];</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">memcpy</span>(roi_p, rois.to(at::kCPU).detach().data_ptr(), <span class="number">5</span> * num_rois * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;torch::Tensor&gt; output;</span><br><span class="line">	output.reserve(num_rois);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num_rois; i++) &#123;</span><br><span class="line">		<span class="keyword">auto</span> roi = rois[i];</span><br><span class="line">		<span class="keyword">auto</span> im_idx = roi[<span class="number">0</span>];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> x1 = roi_p[i * <span class="number">5</span> + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> y1 = roi_p[i * <span class="number">5</span> + <span class="number">2</span>];</span><br><span class="line">		<span class="keyword">int</span> w = roi_p[i * <span class="number">5</span> + <span class="number">3</span>];</span><br><span class="line">		<span class="keyword">int</span> h = roi_p[i * <span class="number">5</span> + <span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">auto</span> im = input.narrow(<span class="number">0</span>, im_idx, <span class="number">1</span>).narrow(<span class="number">2</span>, y1, h + <span class="number">1</span>).narrow(<span class="number">3</span>, x1, w + <span class="number">1</span>);</span><br><span class="line">		output.push_back(torch::nn::functional::adaptive_max_pool2d(im, poolOption));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[] roi_p;</span><br><span class="line">	<span class="keyword">return</span> torch::cat(output, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这次，我们将从libtorch中tensor中取数的操作变化一下，先在循环外围将张量拷贝到数组指针中，然后再在循环内取数。重新计时，这次我们测试结果为：0.03s。显然，我们在2070s显卡上，将pytorch版本的代码转到libtorch中并添加安全性检查，速度变化为：0.126s-&gt;0.08s-&gt;0.03s。总体提速四倍以上。这个速度从值上要比项目中cffi实现更快，但是从比例上，cffi比pytorch实现提速高于四倍(0.2s-&gt;0.34s)。所以仍旧有差距，但是已经是本人目前的最优实现了。</p>
+<h3><span id="cuda编程提速roi-pool">cuda编程提速RoI Pool</span></h3><p>实际经验告诉我，pytorch实现的Faster RCNN执行速度应该可以比0.126s要更优。这是为何？我们定位到pytorch的RoI Pool，发现它其实也是通过调用cuda编程加速了该过程。那么显然，libtorch部署同样可以采用这个代码。</p>
+<p>直接用torchvision的源代码可能有些问题，要做些修改，主要是需要将FP16精度的部分代码注释掉，</p>
+<h2><span id="nms">NMS</span></h2><h3><span id="libtorch的nms">libtorch的NMS</span></h3><p>前面的博客<a href="https://allentdan.github.io/2020/12/24/NMS%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/#more">NMS的几种写法</a>中我有分享libtorch版本的NMS。代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入boxes：Nx4; socres: N; thresh:介于(0,1)的float变量</span></span><br><span class="line"><span class="comment">//输出vector&lt;int&gt;向量，存储保留的box的index值</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nms_libtorch(torch::Tensor boxes, torch::Tensor scores, <span class="keyword">float</span> thresh);\\函数声明</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nms_libtorch(torch::Tensor bboxes, torch::Tensor scores, <span class="keyword">float</span> thresh) &#123;\\函数定义</span><br><span class="line">	<span class="keyword">auto</span> x1 = bboxes.select(<span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">auto</span> y1 = bboxes.select(<span class="number">-1</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">auto</span> x2 = bboxes.select(<span class="number">-1</span>, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">auto</span> y2 = bboxes.select(<span class="number">-1</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">auto</span> areas = (x2 - x1)*(y2 - y1);   <span class="comment">//[N, ] 每个bbox的面积</span></span><br><span class="line">	<span class="keyword">auto</span> tuple_sorted = scores.sort(<span class="number">0</span>, <span class="literal">true</span>);    <span class="comment">//降序排列</span></span><br><span class="line">	<span class="keyword">auto</span> order = <span class="built_in">std</span>::get&lt;<span class="number">1</span>&gt;(tuple_sorted);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;	keep;</span><br><span class="line">	<span class="keyword">while</span> (order.numel() &gt; <span class="number">0</span>) &#123;<span class="comment">// torch.numel()返回张量元素个数</span></span><br><span class="line">		<span class="keyword">if</span> (order.numel() == <span class="number">1</span>) &#123;<span class="comment">//    保留框只剩一个</span></span><br><span class="line">			<span class="keyword">auto</span> i = order.item();</span><br><span class="line">			keep.push_back(i.toInt());</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">auto</span> i = order[<span class="number">0</span>].item();<span class="comment">// 保留scores最大的那个框box[i]</span></span><br><span class="line">			keep.push_back(i.toInt());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//计算box[i]与其余各框的IOU(思路很好)</span></span><br><span class="line">		<span class="keyword">auto</span> order_mask = order.narrow(<span class="number">0</span>, <span class="number">1</span>, order.size(<span class="number">-1</span>) - <span class="number">1</span>);</span><br><span class="line">		x1.index(&#123; order_mask &#125;);</span><br><span class="line">		x1.index(&#123; order_mask &#125;).clamp(x1[keep.back()].item().toFloat(), <span class="number">1e10</span>);</span><br><span class="line">		<span class="keyword">auto</span> xx1 = x1.index(&#123; order_mask &#125;).clamp(x1[keep.back()].item().toFloat(),<span class="number">1e10</span>);<span class="comment">// [N - 1, ]</span></span><br><span class="line">		<span class="keyword">auto</span> yy1 = y1.index(&#123; order_mask &#125;).clamp(y1[keep.back()].item().toFloat(), <span class="number">1e10</span>);</span><br><span class="line">		<span class="keyword">auto</span> xx2 = x2.index(&#123; order_mask &#125;).clamp(<span class="number">0</span>, x2[keep.back()].item().toFloat());</span><br><span class="line">		<span class="keyword">auto</span> yy2 = y2.index(&#123; order_mask &#125;).clamp(<span class="number">0</span>, y2[keep.back()].item().toFloat());</span><br><span class="line">		<span class="keyword">auto</span> inter = (xx2 - xx1).clamp(<span class="number">0</span>, <span class="number">1e10</span>) * (yy2 - yy1).clamp(<span class="number">0</span>, <span class="number">1e10</span>);<span class="comment">// [N - 1, ]</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">auto</span> iou = inter / (areas[keep.back()] + areas.index(&#123; order.narrow(<span class="number">0</span>,<span class="number">1</span>,order.size(<span class="number">-1</span>) - <span class="number">1</span>) &#125;) - inter);<span class="comment">//[N - 1, ]</span></span><br><span class="line">		<span class="keyword">auto</span> idx = (iou &lt;= thresh).nonzero().squeeze();<span class="comment">//注意此时idx为[N - 1, ] 而order为[N, ]</span></span><br><span class="line">		<span class="keyword">if</span> (idx.numel() == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		order = order.index(&#123; idx + <span class="number">1</span> &#125;); <span class="comment">//修补索引之间的差值</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> keep;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个代码，看似只有一个循环，时间复杂度近似为O(n)。但是实际上，每次循环内部，都要计算当前框与其他框的IOU，时间复杂度近似为O(n²)。如果框的数量一旦增加，速度上将大打折扣。对于单阶段的目标检测如YOLO，最后经过阈值筛选后再NMS时，框的数量已经很少，几乎不影响速度。但是对于双阶段目标检测如Faster RCNN而言，框的数量一定是很高的，一般可以指定到1000以上。两者不在一个量级上，NMS的速度将极慢，我的2070s上可能将近有几百毫秒。这无疑不能忍受。</p>
+<h3><span id="cuda编程提速nms">cuda编程提速NMS</span></h3><p>同样，我们想到了torchvision中的NMS实现，直接拷贝过来，嗯，真香。实操可能会有些编译错误，调试改改应该就能通过。</p>
+<p>最后，本文代码只经过速度测试，未上线到生产环境，可能有许多需要改进。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/部署/" rel="tag"># 部署</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/04/C++图像分割库/" rel="next" title="C++图像分割库">
+                <i class="fa fa-chevron-left"></i> C++图像分割库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/03/libtorch教程（七）/" rel="prev" title="libtorch教程（七）">
+                libtorch教程（七） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+            
+              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AllentDan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allentdan@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/65234485" target="_blank" title="Bilibili">
+                      
+                        <i class="fa fa-fw fa-bilibili"></i>Bilibili</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">RoI Pool</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">RoI Pool的作用及原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">几种python实现的RoI Pool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">libtorch版本的RoI Pool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">libtorch版本的RoI Pool提速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">cuda编程提速RoI Pool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">NMS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">libtorch的NMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">cuda编程提速NMS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Allent Dan</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
