@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="libtorch,">
+  <meta name="keywords" content="libtorch," />
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="基于LibTorch (Pytorch C++)的C++开源图像分割神经网络库.  分享一个C++的图像分割开源库libtorch segment，支持C++训练分割模型，可以训练自己的数据集。支持FPN，UNet，PAN，DeepLabV3和DeepLabV3+，支持ResNet系列和ResNext系列的编码器骨干网络。这个库具有以下优点:  高级的API (只需一行代码就可创建网络) 五种模型">
-<meta name="keywords" content="libtorch">
+<meta name="description" content="基于LibTorch (Pytorch C++)的C++开源图像分割神经网络库.     分享一个C++的图像分割开源库libtorch segment，支持C++训练分割模型，可以训练自己的数据集。支持FPN，UNet，PAN，DeepLabV3和DeepLabV3+，支持ResNet系列和ResNext系列的编码器骨干网络。这个库具有以下优点:  高级的API (只需一行代码就可创建网络)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++图像分割库">
-<meta property="og:url" content="https://allentdan.github.io/2021/03/04/C++图像分割库/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2021/03/04/C++%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E5%BA%93/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="基于LibTorch (Pytorch C++)的C++开源图像分割神经网络库.  分享一个C++的图像分割开源库libtorch segment，支持C++训练分割模型，可以训练自己的数据集。支持FPN，UNet，PAN，DeepLabV3和DeepLabV3+，支持ResNet系列和ResNext系列的编码器骨干网络。这个库具有以下优点:  高级的API (只需一行代码就可创建网络) 五种模型">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:description" content="基于LibTorch (Pytorch C++)的C++开源图像分割神经网络库.     分享一个C++的图像分割开源库libtorch segment，支持C++训练分割模型，可以训练自己的数据集。支持FPN，UNet，PAN，DeepLabV3和DeepLabV3+，支持ResNet系列和ResNext系列的编码器骨干网络。这个库具有以下优点:  高级的API (只需一行代码就可创建网络)">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/OpenSource/LibtorchSegment.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/SegmentationCpp/main/prediction.jpg">
-<meta property="og:updated_time" content="2021-03-05T12:55:01.247Z">
+<meta property="article:published_time" content="2021-03-04T12:07:14.000Z">
+<meta property="article:modified_time" content="2021-03-05T12:55:01.247Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="libtorch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++图像分割库">
-<meta name="twitter:description" content="基于LibTorch (Pytorch C++)的C++开源图像分割神经网络库.  分享一个C++的图像分割开源库libtorch segment，支持C++训练分割模型，可以训练自己的数据集。支持FPN，UNet，PAN，DeepLabV3和DeepLabV3+，支持ResNet系列和ResNext系列的编码器骨干网络。这个库具有以下优点:  高级的API (只需一行代码就可创建网络) 五种模型">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/OpenSource/LibtorchSegment.png">
 
 
@@ -100,7 +100,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2021/03/04/C++图像分割库/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/03/04/C++图像分割库/"/>
 
 
 
@@ -139,7 +139,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -157,7 +157,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -185,9 +185,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -195,9 +195,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -205,9 +205,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -215,9 +215,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -225,9 +225,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -266,11 +266,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/03/04/C++图像分割库/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/03/04/C++%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E5%BA%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -314,8 +314,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/03/04/C++图像分割库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/03/04/C++图像分割库/" itemprop="commentsCount"></span>
+                <a href="/2021/03/04/C++%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E5%BA%93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/03/04/C++%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E5%BA%93/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,7 +323,7 @@
 
           
           
-             <span id="/2021/03/04/C++图像分割库/" class="leancloud_visitors" data-flag-title="C++图像分割库">
+             <span id="/2021/03/04/C++%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E5%BA%93/" class="leancloud_visitors" data-flag-title="C++图像分割库">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,7 +338,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -359,9 +359,12 @@
       
 
       
-        <div align="center"><br><br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/OpenSource/LibtorchSegment.png" alt="logo"><br><strong>基于<a href="https://pytorch.org/" target="_blank" rel="noopener">LibTorch (Pytorch C++)</a>的C++开源图像分割神经网络库.</strong><br><br></div>
+        <div align="center">
 
-<p>分享一个C++的图像分割开源库<a href="https://github.com/AllentDan/SegmentationCpp" target="_blank" rel="noopener">libtorch segment</a>，支持C++训练分割模型，可以训练自己的数据集。支持FPN，UNet，PAN，DeepLabV3和DeepLabV3+，支持ResNet系列和ResNext系列的编码器骨干网络。这个库具有以下优点:</p>
+<p><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/OpenSource/LibtorchSegment.png" alt="logo"><br><strong>基于<a target="_blank" rel="noopener" href="https://pytorch.org/">LibTorch (Pytorch C++)</a>的C++开源图像分割神经网络库.</strong>  </p>
+</div>
+
+<p>分享一个C++的图像分割开源库<a target="_blank" rel="noopener" href="https://github.com/AllentDan/SegmentationCpp">libtorch segment</a>，支持C++训练分割模型，可以训练自己的数据集。支持FPN，UNet，PAN，DeepLabV3和DeepLabV3+，支持ResNet系列和ResNext系列的编码器骨干网络。这个库具有以下优点:</p>
 <ul>
 <li>高级的API (只需一行代码就可创建网络)</li>
 <li>五种模型架构可用于单类或者多类的分割任务 (包括Unet)</li>
@@ -369,7 +372,7 @@
 <li>所有的编码器都有预训练权重，可以更快更好地收敛</li>
 <li>相比于python下的GPU前向推理速度具有2倍或以上的优势, cpu下保持速度一致. (Unet测试于GTX 2070S).</li>
 </ul>
-<h3><span id="libtorch教程"></span></h3><p>如果你想对该开源项目有更多更详细的了解，请前往本人另一个开源项目：<a href="https://github.com/AllentDan/LibtorchTutorials/tree/master" target="_blank" rel="noopener">Libtorch教程</a> .</p>
+<h3><span id="libtorch教程"></span></h3><p>如果你想对该开源项目有更多更详细的了解，请前往本人另一个开源项目：<a target="_blank" rel="noopener" href="https://github.com/AllentDan/LibtorchTutorials/tree/master">Libtorch教程</a> .</p>
 <h3><span id="目录">📋 目录</span></h3><ol>
 <li><a href="#start">快速开始</a></li>
 <li><a href="#examples">例子</a></li>
@@ -385,64 +388,180 @@
 <li><a href="#license">证书</a></li>
 </ol>
 <h3><span id="快速开始">⏳ 快速开始 </span></h3><h4><span id="1-用-libtorch-segment-创建你的第一个分割网络">1. 用 Libtorch Segment 创建你的第一个分割网络</span></h4><p>分割模型是 LibTorch 的 torch::nn::Module的派生类, 可以很容易生成:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Segmentor.h"</span></span></span><br><span class="line"><span class="keyword">auto</span> model = UNet(<span class="number">1</span>, <span class="comment">/*num of classes*/</span></span><br><span class="line">                  <span class="string">"resnet34"</span>, <span class="comment">/*encoder name, could be resnet50 or others*/</span></span><br><span class="line">                  <span class="string">"path to resnet34.pt"</span><span class="comment">/*weight path pretrained on ImageNet, it is produced by torchscript*/</span></span><br><span class="line">                  );</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Segmentor.h&quot;</span></span></span><br><span class="line"><span class="keyword">auto</span> model = <span class="built_in">UNet</span>(<span class="number">1</span>, <span class="comment">/*num of classes*/</span></span><br><span class="line">                  <span class="string">&quot;resnet34&quot;</span>, <span class="comment">/*encoder name, could be resnet50 or others*/</span></span><br><span class="line">                  <span class="string">&quot;path to resnet34.pt&quot;</span><span class="comment">/*weight path pretrained on ImageNet, it is produced by torchscript*/</span></span><br><span class="line">                  );</span><br></pre></td></tr></table></figure>
 <ul>
 <li>见 <a href="#architectures">表</a> 查看所有支持的模型架构</li>
 <li>见 <a href="#encoders">表</a> 查看所有的编码器网络和相应的预训练权重</li>
 </ul>
 <h4><span id="2-生成自己的预训练权重">2. 生成自己的预训练权重</span></h4><p>所有编码器均具有预训练的权重。加载预训练权重，以相同的方式训练数据，可能会获得更好的结果（更高的指标得分和更快的收敛速度）。还可以在冻结主干的同时仅训练解码器和分割头。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment"># resnet50 for example</span></span><br><span class="line">model = models.resnet50(pretrained=<span class="literal">True</span>)</span><br><span class="line">model.eval()</span><br><span class="line">var=torch.ones((<span class="number">1</span>,<span class="number">3</span>,<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">traced_script_module = torch.jit.trace(model, var)</span><br><span class="line">traced_script_module.save(<span class="string">"resnet50.pt"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment"># resnet50 for example</span></span><br><span class="line">model = models.resnet50(pretrained=<span class="literal">True</span>)</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line">var=torch.ones((<span class="number">1</span>,<span class="number">3</span>,<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">traced_script_module = torch.jit.trace(model, var)</span><br><span class="line">traced_script_module.save(<span class="string">&quot;resnet50.pt&quot;</span>)</span><br></pre></td></tr></table></figure>
+
 <p>恭喜你！ 大功告成！ 现在，您可以使用自己喜欢的主干和分割框架来训练模型了。</p>
 <h3><span id="例子">💡 例子 </span></h3><ul>
-<li>使用来自PASCAL VOC数据集的图像进行人体分割数据训练模型. “voc_person_seg” 目录包含32个json标签及其相应的jpeg图像用于训练，还有8个json标签以及相应的图像用于验证。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Segmentor&lt;FPN&gt; segmentor;</span><br><span class="line">segmentor.Initialize(<span class="number">0</span><span class="comment">/*gpu id, -1 for cpu*/</span>,</span><br><span class="line">                    <span class="number">512</span><span class="comment">/*resize width*/</span>,</span><br><span class="line">                    <span class="number">512</span><span class="comment">/*resize height*/</span>,</span><br><span class="line">                    &#123;<span class="string">"background"</span>,<span class="string">"person"</span>&#125;<span class="comment">/*class name dict, background included*/</span>,</span><br><span class="line">                    <span class="string">"resnet34"</span><span class="comment">/*backbone name*/</span>,</span><br><span class="line">                    <span class="string">"your path to resnet34.pt"</span>);</span><br><span class="line">segmentor.Train(<span class="number">0.0003</span><span class="comment">/*initial leaning rate*/</span>,</span><br><span class="line">                <span class="number">300</span><span class="comment">/*training epochs*/</span>,</span><br><span class="line">                <span class="number">4</span><span class="comment">/*batch size*/</span>,</span><br><span class="line">                <span class="string">"your path to voc_person_seg"</span>,</span><br><span class="line">                <span class="string">".jpg"</span><span class="comment">/*image type*/</span>,</span><br><span class="line">                <span class="string">"your path to save segmentor.pt"</span>);</span><br></pre></td></tr></table></figure>
+<li><p>使用来自PASCAL VOC数据集的图像进行人体分割数据训练模型. “voc_person_seg” 目录包含32个json标签及其相应的jpeg图像用于训练，还有8个json标签以及相应的图像用于验证。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Segmentor&lt;FPN&gt; segmentor;</span><br><span class="line">segmentor.<span class="built_in">Initialize</span>(<span class="number">0</span><span class="comment">/*gpu id, -1 for cpu*/</span>,</span><br><span class="line">                    <span class="number">512</span><span class="comment">/*resize width*/</span>,</span><br><span class="line">                    <span class="number">512</span><span class="comment">/*resize height*/</span>,</span><br><span class="line">                    &#123;<span class="string">&quot;background&quot;</span>,<span class="string">&quot;person&quot;</span>&#125;<span class="comment">/*class name dict, background included*/</span>,</span><br><span class="line">                    <span class="string">&quot;resnet34&quot;</span><span class="comment">/*backbone name*/</span>,</span><br><span class="line">                    <span class="string">&quot;your path to resnet34.pt&quot;</span>);</span><br><span class="line">segmentor.<span class="built_in">Train</span>(<span class="number">0.0003</span><span class="comment">/*initial leaning rate*/</span>,</span><br><span class="line">                <span class="number">300</span><span class="comment">/*training epochs*/</span>,</span><br><span class="line">                <span class="number">4</span><span class="comment">/*batch size*/</span>,</span><br><span class="line">                <span class="string">&quot;your path to voc_person_seg&quot;</span>,</span><br><span class="line">                <span class="string">&quot;.jpg&quot;</span><span class="comment">/*image type*/</span>,</span><br><span class="line">                <span class="string">&quot;your path to save segmentor.pt&quot;</span>);</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<ul>
-<li>预测测试。项目中提供了以ResNet34为骨干网络的FPN网络，训练了一些周期得到segmentor.pt文件。 您可以直接测试分割结果:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cv::Mat image = cv::imread(<span class="string">"your path to voc_person_seg\\val\\2007_004000.jpg"</span>);</span><br><span class="line">Segmentor&lt;FPN&gt; segmentor;</span><br><span class="line">segmentor.Initialize(<span class="number">0</span>,<span class="number">512</span>,<span class="number">512</span>,&#123;<span class="string">"background"</span>,<span class="string">"person"</span>&#125;,</span><br><span class="line">                      <span class="string">"resnet34"</span>,<span class="string">"your path to resnet34.pt"</span>);</span><br><span class="line">segmentor.LoadWeight(<span class="string">"segmentor.pt"</span><span class="comment">/*the saved .pt path*/</span>);</span><br><span class="line">segmentor.Predict(image,<span class="string">"person"</span><span class="comment">/*class name for showing*/</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<li><p>预测测试。项目中提供了以ResNet34为骨干网络的FPN网络，训练了一些周期得到segmentor.pt文件。 您可以直接测试分割结果:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cv::Mat image = cv::<span class="built_in">imread</span>(<span class="string">&quot;your path to voc_person_seg\\val\\2007_004000.jpg&quot;</span>);</span><br><span class="line">Segmentor&lt;FPN&gt; segmentor;</span><br><span class="line">segmentor.<span class="built_in">Initialize</span>(<span class="number">0</span>,<span class="number">512</span>,<span class="number">512</span>,&#123;<span class="string">&quot;background&quot;</span>,<span class="string">&quot;person&quot;</span>&#125;,</span><br><span class="line">                      <span class="string">&quot;resnet34&quot;</span>,<span class="string">&quot;your path to resnet34.pt&quot;</span>);</span><br><span class="line">segmentor.<span class="built_in">LoadWeight</span>(<span class="string">&quot;segmentor.pt&quot;</span><span class="comment">/*the saved .pt path*/</span>);</span><br><span class="line">segmentor.<span class="built_in">Predict</span>(image,<span class="string">&quot;person&quot;</span><span class="comment">/*class name for showing*/</span>);</span><br></pre></td></tr></table></figure>
 <p>预测结果显示如下:</p>
-<p><img src="https://raw.githubusercontent.com/AllentDan/SegmentationCpp/main/prediction.jpg" alt></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/AllentDan/SegmentationCpp/main/prediction.jpg"></p>
 <h3><span id="训练自己的数据">🧑‍🚀 训练自己的数据 </span></h3><ul>
-<li><p>创建自己的数据集. 使用”pip install”安装<a href="https://github.com/wkentaro/labelme" target="_blank" rel="noopener">labelme</a>并标注你的图像. 将输出的json文件和图像分成以下文件夹：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Dataset</span><br><span class="line">├── train</span><br><span class="line">│   ├── xxx.json</span><br><span class="line">│   ├── xxx.jpg</span><br><span class="line">│   └......</span><br><span class="line">├── val</span><br><span class="line">│   ├── xxxx.json</span><br><span class="line">│   ├── xxxx.jpg</span><br><span class="line">│   └......</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>训练或测试。就像“ voc_person_seg”的示例一样，用自己的数据集路径替换“ voc_person_seg”。</p>
-</li>
+<li>创建自己的数据集. 使用”pip install”安装<a target="_blank" rel="noopener" href="https://github.com/wkentaro/labelme">labelme</a>并标注你的图像. 将输出的json文件和图像分成以下文件夹：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Dataset</span><br><span class="line">├── train</span><br><span class="line">│   ├── xxx.json</span><br><span class="line">│   ├── xxx.jpg</span><br><span class="line">│   └......</span><br><span class="line">├── val</span><br><span class="line">│   ├── xxxx.json</span><br><span class="line">│   ├── xxxx.jpg</span><br><span class="line">│   └......</span><br></pre></td></tr></table></figure></li>
+<li>训练或测试。就像“ voc_person_seg”的示例一样，用自己的数据集路径替换“ voc_person_seg”。</li>
 </ul>
 <h3><span id="models">📦 Models </span></h3><h4><span id="architectures">Architectures </span></h4><ul>
-<li style="list-style: none"><input type="checkbox" checked> Unet [<a href="https://arxiv.org/abs/1505.04597" target="_blank" rel="noopener">paper</a>]</li>
-<li style="list-style: none"><input type="checkbox" checked> FPN [<a href="http://presentations.cocodataset.org/COCO17-Stuff-FAIR.pdf" target="_blank" rel="noopener">paper</a>]</li>
-<li style="list-style: none"><input type="checkbox" checked> PAN [<a href="https://arxiv.org/abs/1805.10180" target="_blank" rel="noopener">paper</a>]</li>
-<li style="list-style: none"><input type="checkbox" checked> DeepLabV3 [<a href="https://arxiv.org/abs/1706.05587" target="_blank" rel="noopener">paper</a>]</li>
-<li style="list-style: none"><input type="checkbox" checked> DeepLabV3+ [<a href="https://arxiv.org/abs/1802.02611" target="_blank" rel="noopener">paper</a>]</li>
-<li style="list-style: none"><input type="checkbox"> PSPNet [<a href="https://arxiv.org/abs/1612.01105" target="_blank" rel="noopener">paper</a>]</li>
+<li><input checked disabled type="checkbox"> Unet [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1505.04597">paper</a>]</li>
+<li><input checked disabled type="checkbox"> FPN [<a target="_blank" rel="noopener" href="http://presentations.cocodataset.org/COCO17-Stuff-FAIR.pdf">paper</a>]</li>
+<li><input checked disabled type="checkbox"> PAN [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1805.10180">paper</a>]</li>
+<li><input checked disabled type="checkbox"> DeepLabV3 [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.05587">paper</a>]</li>
+<li><input checked disabled type="checkbox"> DeepLabV3+ [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1802.02611">paper</a>]</li>
+<li><input disabled type="checkbox"> PSPNet [<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1612.01105">paper</a>]</li>
 </ul>
 <h4><span id="encoders">Encoders </span></h4><ul>
-<li style="list-style: none"><input type="checkbox" checked> ResNet</li>
-<li style="list-style: none"><input type="checkbox" checked> ResNext</li>
-<li style="list-style: none"><input type="checkbox"> ResNest</li>
+<li><input checked disabled type="checkbox"> ResNet</li>
+<li><input checked disabled type="checkbox"> ResNext</li>
+<li><input disabled type="checkbox"> ResNest</li>
 </ul>
 <p>以下是该项目中受支持的编码器的列表。除resnest外，所有编码器权重都可以通过torchvision生成。选择适当的编码器，然后单击以展开表格，然后选择特定的编码器及其预训练的权重。</p>
-<details><br><summary style="margin-left: 25px;">ResNet</summary><br><div style="margin-left: 25px;"><br><br>|Encoder                         |Weights                         |Params, M                       |<br>|——————————–|:——————————:|:——————————:|<br>|resnet18                        |imagenet                        |11M                             |<br>|resnet34                        |imagenet                        |21M                             |<br>|resnet50                        |imagenet                        |23M                             |<br>|resnet101                       |imagenet                        |42M                             |<br>|resnet152                       |imagenet                        |58M                             |<br><br></div><br></details>
+<details>
+<summary style="margin-left: 25px;">ResNet</summary>
+<div style="margin-left: 25px;">
 
-<details><br><summary style="margin-left: 25px;">ResNeXt</summary><br><div style="margin-left: 25px;"><br><br>|Encoder                         |Weights                         |Params, M                       |<br>|——————————–|:——————————:|:——————————:|<br>|resnext50_32x4d                 |imagenet                        |22M                             |<br>|resnext101_32x8d                |imagenet                        |86M                             |<br><br></div><br></details>
+<table>
+<thead>
+<tr>
+<th>Encoder</th>
+<th align="center">Weights</th>
+<th align="center">Params, M</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>resnet18</td>
+<td align="center">imagenet</td>
+<td align="center">11M</td>
+</tr>
+<tr>
+<td>resnet34</td>
+<td align="center">imagenet</td>
+<td align="center">21M</td>
+</tr>
+<tr>
+<td>resnet50</td>
+<td align="center">imagenet</td>
+<td align="center">23M</td>
+</tr>
+<tr>
+<td>resnet101</td>
+<td align="center">imagenet</td>
+<td align="center">42M</td>
+</tr>
+<tr>
+<td>resnet152</td>
+<td align="center">imagenet</td>
+<td align="center">58M</td>
+</tr>
+</tbody></table>
+</div>
+</details>
 
-<details><br><summary style="margin-left: 25px;">ResNeSt</summary><br><div style="margin-left: 25px;"><br><br>|Encoder                         |Weights                         |Params, M                       |<br>|——————————–|:——————————:|:——————————:|<br>|timm-resnest14d                 |imagenet                        |8M                              |<br>|timm-resnest26d                 |imagenet                        |15M                             |<br>|timm-resnest50d                 |imagenet                        |25M                             |<br>|timm-resnest101e                |imagenet                        |46M                             |<br>|timm-resnest200e                |imagenet                        |68M                             |<br>|timm-resnest269e                |imagenet                        |108M                            |<br>|timm-resnest50d_4s2x40d         |imagenet                        |28M                             |<br>|timm-resnest50d_1s4x24d         |imagenet                        |23M                             |<br><br></div><br></details>
+<details>
+<summary style="margin-left: 25px;">ResNeXt</summary>
+<div style="margin-left: 25px;">
+
+<table>
+<thead>
+<tr>
+<th>Encoder</th>
+<th align="center">Weights</th>
+<th align="center">Params, M</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>resnext50_32x4d</td>
+<td align="center">imagenet</td>
+<td align="center">22M</td>
+</tr>
+<tr>
+<td>resnext101_32x8d</td>
+<td align="center">imagenet</td>
+<td align="center">86M</td>
+</tr>
+</tbody></table>
+</div>
+</details>
+
+<details>
+<summary style="margin-left: 25px;">ResNeSt</summary>
+<div style="margin-left: 25px;">
+
+<table>
+<thead>
+<tr>
+<th>Encoder</th>
+<th align="center">Weights</th>
+<th align="center">Params, M</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>timm-resnest14d</td>
+<td align="center">imagenet</td>
+<td align="center">8M</td>
+</tr>
+<tr>
+<td>timm-resnest26d</td>
+<td align="center">imagenet</td>
+<td align="center">15M</td>
+</tr>
+<tr>
+<td>timm-resnest50d</td>
+<td align="center">imagenet</td>
+<td align="center">25M</td>
+</tr>
+<tr>
+<td>timm-resnest101e</td>
+<td align="center">imagenet</td>
+<td align="center">46M</td>
+</tr>
+<tr>
+<td>timm-resnest200e</td>
+<td align="center">imagenet</td>
+<td align="center">68M</td>
+</tr>
+<tr>
+<td>timm-resnest269e</td>
+<td align="center">imagenet</td>
+<td align="center">108M</td>
+</tr>
+<tr>
+<td>timm-resnest50d_4s2x40d</td>
+<td align="center">imagenet</td>
+<td align="center">28M</td>
+</tr>
+<tr>
+<td>timm-resnest50d_1s4x24d</td>
+<td align="center">imagenet</td>
+<td align="center">23M</td>
+</tr>
+</tbody></table>
+</div>
+</details>
 
 <h3><span id="安装">🛠 安装 </span></h3><p>Windows:</p>
 <p>配置libtorch 开发环境. <a href="https://allentdan.github.io/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87">Visual studio</a> 和 <a href="https://allentdan.github.io/2021/01/21/QT%20Creator%20+%20Opencv4.x%20+%20Libtorch1.7%E9%85%8D%E7%BD%AE/#more">Qt Creator</a>已经通过libtorch1.7x release的验证. </p>
 <p>Linux &amp;&amp; MacOS:</p>
-<p>按照官方提供的pytorch c++ <a href="https://pytorch.org/tutorials/advanced/cpp_export.html" target="_blank" rel="noopener">部署</a>. 比Windows要简单许多.</p>
+<p>按照官方提供的pytorch c++ <a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/advanced/cpp_export.html">部署</a>. 比Windows要简单许多.</p>
 <h3><span id="感谢">🤝 感谢 </span></h3><p>这个项目还在施工，以下是目前给予帮助的项目.</p>
 <ul>
-<li><a href="https://github.com/pytorch/pytorch" target="_blank" rel="noopener">official pytorch</a></li>
-<li><a href="https://github.com/qubvel/segmentation_models.pytorch" target="_blank" rel="noopener">qubvel SMP</a></li>
-<li><a href="https://github.com/wkentaro/labelme" target="_blank" rel="noopener">wkentaro labelme</a></li>
-<li><a href="https://github.com/nlohmann/json" target="_blank" rel="noopener">nlohmann json</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch">official pytorch</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/qubvel/segmentation_models.pytorch">qubvel SMP</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/wkentaro/labelme">wkentaro labelme</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nlohmann/json">nlohmann json</a></li>
 </ul>
-<h3><span id="引用">📝 引用</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@misc&#123;Chunyu:2021,</span><br><span class="line">  Author = &#123;Chunyu Dong&#125;,</span><br><span class="line">  Title = &#123;Libtorch Segment&#125;,</span><br><span class="line">  Year = &#123;2021&#125;,</span><br><span class="line">  Publisher = &#123;GitHub&#125;,</span><br><span class="line">  Journal = &#123;GitHub repository&#125;,</span><br><span class="line">  Howpublished = &#123;\url&#123;https://github.com/AllentDan/SegmentationCpp&#125;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="️-证书">🛡️ 证书 </span></h3><p>该项目以 <a href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/LICENSE" target="_blank" rel="noopener">MIT License</a>开源。</p>
+<h3><span id="引用">📝 引用</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@misc&#123;Chunyu:2021,</span><br><span class="line">  Author = &#123;Chunyu Dong&#125;,</span><br><span class="line">  Title = &#123;Libtorch Segment&#125;,</span><br><span class="line">  Year = &#123;2021&#125;,</span><br><span class="line">  Publisher = &#123;GitHub&#125;,</span><br><span class="line">  Journal = &#123;GitHub repository&#125;,</span><br><span class="line">  Howpublished = &#123;\url&#123;https://github.com/AllentDan/SegmentationCpp&#125;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="️-证书">🛡️ 证书 </span></h3><p>该项目以 <a target="_blank" rel="noopener" href="https://github.com/qubvel/segmentation_models.pytorch/blob/master/LICENSE">MIT License</a>开源。</p>
 
       
     </div>
@@ -463,14 +582,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -502,7 +621,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/10/libtorch教程（六）/" rel="next" title="libtorch教程（六）">
+              <a href="/2021/02/10/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89/" rel="next" title="libtorch教程（六）">
                 <i class="fa fa-chevron-left"></i> libtorch教程（六）
               </a>
             
@@ -512,7 +631,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/04/04/Faster-RCNN部署加速/" rel="prev" title="Faster RCNN目标检测部署加速">
+              <a href="/2021/04/04/Faster-RCNN%E9%83%A8%E7%BD%B2%E5%8A%A0%E9%80%9F/" rel="prev" title="Faster RCNN目标检测部署加速">
                 Faster RCNN目标检测部署加速 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -587,9 +706,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -598,9 +719,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -622,7 +743,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -677,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">📋 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">⏳ 快速开始 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">1. 用 Libtorch Segment 创建你的第一个分割网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">2. 生成自己的预训练权重</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">💡 例子 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">🧑‍🚀 训练自己的数据 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">📦 Models </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">Architectures </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">Encoders </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">🛠 安装 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">🤝 感谢 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">📝 引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">🛡️ 证书 </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">📋 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">⏳ 快速开始 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">1. 用 Libtorch Segment 创建你的第一个分割网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">2. 生成自己的预训练权重</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">💡 例子 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">🧑‍🚀 训练自己的数据 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">📦 Models </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">Architectures </span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">Encoders </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">🛠 安装 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">🤝 感谢 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">📝 引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">🛡️ 证书 </span></a></li></ol></div>
             
 
           </div>
@@ -697,7 +818,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

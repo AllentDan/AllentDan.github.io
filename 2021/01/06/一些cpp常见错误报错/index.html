@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="c++,">
+  <meta name="keywords" content="c++," />
 
 
 
@@ -80,20 +80,20 @@
 
 
 <meta name="description" content="Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——亚像素提取使用时产生的错误。 环境：Windows 10Visual Studio 2017OpenCV 2.4.10 中间过程：用V">
-<meta name="keywords" content="c++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些cpp常见错误报错">
-<meta property="og:url" content="https://allentdan.github.io/2021/01/06/一些cpp常见错误报错/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2021/01/06/%E4%B8%80%E4%BA%9Bcpp%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%8A%A5%E9%94%99/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——亚像素提取使用时产生的错误。 环境：Windows 10Visual Studio 2017OpenCV 2.4.10 中间过程：用V">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/assertion_failed.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include2.jpg">
-<meta property="og:updated_time" content="2021-04-01T06:39:35.514Z">
+<meta property="article:published_time" content="2021-01-06T12:26:56.000Z">
+<meta property="article:modified_time" content="2021-04-01T06:39:35.514Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一些cpp常见错误报错">
-<meta name="twitter:description" content="Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——亚像素提取使用时产生的错误。 环境：Windows 10Visual Studio 2017OpenCV 2.4.10 中间过程：用V">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/assertion_failed.png">
 
 
@@ -101,7 +101,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2021/01/06/一些cpp常见错误报错/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/01/06/一些cpp常见错误报错/"/>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -158,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,9 +186,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -196,9 +196,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -206,9 +206,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -216,9 +216,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -226,9 +226,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -267,11 +267,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/06/一些cpp常见错误报错/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/06/%E4%B8%80%E4%BA%9Bcpp%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -315,8 +315,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/01/06/一些cpp常见错误报错/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/06/一些cpp常见错误报错/" itemprop="commentsCount"></span>
+                <a href="/2021/01/06/%E4%B8%80%E4%BA%9Bcpp%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%8A%A5%E9%94%99/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/06/%E4%B8%80%E4%BA%9Bcpp%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%8A%A5%E9%94%99/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -324,7 +324,7 @@
 
           
           
-             <span id="/2021/01/06/一些cpp常见错误报错/" class="leancloud_visitors" data-flag-title="一些cpp常见错误报错">
+             <span id="/2021/01/06/%E4%B8%80%E4%BA%9Bcpp%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%8A%A5%E9%94%99/" class="leancloud_visitors" data-flag-title="一些cpp常见错误报错">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -339,7 +339,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -360,11 +360,12 @@
       
 
       
-        <h2><span id="debug-assertion-failed-expression-_block_type_is_valid">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></h2><p>这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——<a href="https://github.com/songyuncen/EdgesSubPix" target="_blank" rel="noopener">亚像素提取</a>使用时产生的错误。</p>
+        <h2><span id="debug-assertion-failed-expression-_block_type_is_valid">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></h2><p>这个错误的产生原因较多，网上查询的结果多为重复删除指针导致的重复释放内存。然而本文遇到的并非如此，本文遇到的情况是clone了一个GitHub开源项目——<a target="_blank" rel="noopener" href="https://github.com/songyuncen/EdgesSubPix">亚像素提取</a>使用时产生的错误。</p>
 <p>环境：<br>Windows 10<br>Visual Studio 2017<br>OpenCV 2.4.10</p>
 <p>中间过程：<br>用Visual Studio打开，去除一些项目自带的用于Linux系统的编译代码，本文实现项目的正常编译。运行时读取了源项目自带的avatar.jpg图片并成功提取边缘，成功计算亚像素点。</p>
-<p>错误表现：<br>报错内容主要是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span><br></pre></td></tr></table></figure></p>
-<p>错误显示如图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/assertion_failed.png" alt><br>断点到代码内部，亚像素点提取完毕后可以成功断点到函数末尾，然后进入主函数时弹出该窗口。并且不能用try catch抓取。</p>
+<p>错误表现：<br>报错内容主要是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span><br></pre></td></tr></table></figure>
+<p>错误显示如图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/assertion_failed.png"><br>断点到代码内部，亚像素点提取完毕后可以成功断点到函数末尾，然后进入主函数时弹出该窗口。并且不能用try catch抓取。</p>
 <p>解决：</p>
 <ol>
 <li>尝试了加入vector变量的reserve函数预留一定空间，发现预留空间过小时将在更前的语句中产生同样错误，预留空间足够大将仍旧在返回主函数时报改错。</li>
@@ -374,33 +375,32 @@
 <h2><span id="类型重定义或者使用了未定义类型">类型重定义或者使用了未定义类型</span></h2><h3><span id="原因分析">原因分析</span></h3><p>这种问题往往原因较多，</p>
 <ol>
 <li>确实在代码中重复定义了某个函数或者某个类，同时代码中可能出现了未定义的函数或者类</li>
-<li>文件相互引用时，引用混乱，如果A.h同时被B.h和C引用，但是B.h也被C引用，相当于A.h被C引用多次，出现重定义。引用关系见下图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include.jpg" alt></li>
+<li>文件相互引用时，引用混乱，如果A.h同时被B.h和C引用，但是B.h也被C引用，相当于A.h被C引用多次，出现重定义。引用关系见下图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include.jpg"></li>
 </ol>
 <h3><span id="解决办法">解决办法</span></h3><p>第一种解决方法很简单，只要去除重定义或者定义好未定义的就可以了。第二种问题解决时分情况</p>
 <ul>
 <li>如果可以理清楚关系，并且不需要多重嵌套调用，类似上图中的结构，完全可以取消A.h被C的引用，编译将不出错。</li>
-<li>对于部分刚需嵌套调用的情况，如下图所示的调用中，D需要同时使用B.h和C.h中的内容，无法避免重复定义。此时可以在冲突头文件的最上方加入<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include2.jpg" alt><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br></pre></td></tr></table></figure>
-</li>
+<li>对于部分刚需嵌套调用的情况，如下图所示的调用中，D需要同时使用B.h和C.h中的内容，无法避免重复定义。此时可以在冲突头文件的最上方加入<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/cpp/cpp_include2.jpg"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br></pre></td></tr></table></figure>
+这个语句会告诉编译器只编译一次该文件中的内容，从而避免重复编译。或者使用#ifndef和#define，效果相同。</li>
 </ul>
-<p>这个语句会告诉编译器只编译一次该文件中的内容，从而避免重复编译。或者使用#ifndef和#define，效果相同。</p>
-<h2><span id="error-0xc0000005-read-access-violation-at-0xffffffffffffffff-flags0x0">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></h2><h3><span id="环境">环境：</span></h3><p>Windows 10<br>QT creator4.11.0<br>OpenCV 4.5<br>LibTorch1.7</p>
-<h3><span id="问题描述">问题描述：</span></h3><p>程序在某段函数中断，无法用try catch抓取错误，中断位置代码为下段中的(*_Pnext)-&gt;_Myproxy = nullptr。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> _Container_base12::_Orphan_all() <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">if</span> _ITERATOR_DEBUG_LEVEL == 2</span></span><br><span class="line">        <span class="keyword">if</span> (_Myproxy != <span class="literal">nullptr</span>) &#123; <span class="comment">// proxy allocated, drain it</span></span><br><span class="line">            _Lockit _Lock(_LOCK_DEBUG);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (_Iterator_base12** _Pnext = &amp;_Myproxy-&gt;_Myfirstiter; *_Pnext != <span class="literal">nullptr</span>;</span><br><span class="line">                *_Pnext = (*_Pnext)-&gt;_Mynextiter) &#123;</span><br><span class="line">                (*_Pnext)-&gt;_Myproxy = <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            _Myproxy-&gt;_Myfirstiter = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>同时输出错误有0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0。</p>
+<h2><span id="error-0xc0000005-read-access-violation-at-0xffffffffffffffff-flagsx3d0x0">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags&#x3D;0x0</span></h2><h3><span id="环境">环境：</span></h3><p>Windows 10<br>QT creator4.11.0<br>OpenCV 4.5<br>LibTorch1.7</p>
+<h3><span id="问题描述">问题描述：</span></h3><p>程序在某段函数中断，无法用try catch抓取错误，中断位置代码为下段中的(*_Pnext)-&gt;_Myproxy &#x3D; nullptr。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="type">void</span> _Container_base12::_Orphan_all() <span class="keyword">noexcept</span> &#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">if</span> _ITERATOR_DEBUG_LEVEL == 2</span></span><br><span class="line">        <span class="keyword">if</span> (_Myproxy != <span class="literal">nullptr</span>) &#123; <span class="comment">// proxy allocated, drain it</span></span><br><span class="line">            _Lockit _Lock(_LOCK_DEBUG);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (_Iterator_base12** _Pnext = &amp;_Myproxy-&gt;_Myfirstiter; *_Pnext != <span class="literal">nullptr</span>;</span><br><span class="line">                *_Pnext = (*_Pnext)-&gt;_Mynextiter) &#123;</span><br><span class="line">                (*_Pnext)-&gt;_Myproxy = <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            _Myproxy-&gt;_Myfirstiter = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>同时输出错误有0xc0000005: read access violation at: 0xffffffffffffffff, flags&#x3D;0x0。</p>
 <h3><span id="分析原因">分析原因</span></h3><p>根本原因是空图像指针传入libtorch中的torch::from_blob函数引发。表象为Debug模式下使用release版本的opencv读取图片失败。</p>
 <h3><span id="解决方法">解决方法</span></h3><p>项目模式调整为与库版本一致。</p>
 <h2><span id="torchnnmoduleclone-not-accessible-because-blockimpl-uses-private-to-inherit-from-torchnnmodule">‘torch::nn::Module::clone’ not accessible because ‘BlockImpl’ uses ‘private’ to inherit from ‘torch::nn::Module’</span></h2><p>在写ResNet时出现上述错误，由于BasicBlock类是class定义而非struct定义，这就导致c++在处理时，默认父类的其他未override的函数均private，产生错误。</p>
 <h3><span id="解决方法">解决方法</span></h3><ol>
 <li>将BasicBlock前的class关键字改为struct关键字，BottleNeck同理。struct默认public，不产生错误。</li>
-<li>继续使用class关键字，但是继承父类时需要在父类前加入public限定。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlockImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module&#123;&#125;</span><br><span class="line"><span class="comment">//用struct</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BlockImpl</span> :</span> torch::nn::Module&#123;&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>继续使用class关键字，但是继承父类时需要在父类前加入public限定。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BlockImpl</span> : <span class="keyword">public</span> torch::nn::Module&#123;&#125;</span><br><span class="line"><span class="comment">//用struct</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BlockImpl</span> : torch::nn::Module&#123;&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2><span id="class-already-defined-in-obj">class already defined in obj</span></h2><h3><span id="问题描述">问题描述</span></h3><p>写好ResNet类后，定义resnet18，resnet34等函数时，直接在.h文件下定义将产生该错误。</p>
 <h3><span id="解决方法">解决方法</span></h3><ol>
 <li>将函数的声明和定义分开，定义放到.cpp文件则不产生错误。</li>
 <li>不分离，直接在.h的定义前加inline关键字。</li>
 </ol>
-<h2><span id="error-c2672-torchnnanymodulemake_holder-no-matching-overloaded-function-found">Error    C2672    ‘torch::nn::AnyModule::make_holder’: no matching overloaded function found</span></h2><h3><span id="问题描述">问题描述</span></h3><p>使用torch::nn::Sequential时，编译产生7个errors。这是由Sequential里push_back另一个Sequential导致的。</p>
-<h3><span id="解决办法">解决办法</span></h3><p>这其实是libtorch的一个bug吧算是，c++设计问题，参考<a href="https://github.com/pytorch/pytorch/issues/22298" target="_blank" rel="noopener">c++ sequential in sequential</a>。</p>
+<h2><span id="errorc2672torchnnanymodulemake_holder-no-matching-overloaded-function-found">Error	C2672	‘torch::nn::AnyModule::make_holder’: no matching overloaded function found</span></h2><h3><span id="问题描述">问题描述</span></h3><p>使用torch::nn::Sequential时，编译产生7个errors。这是由Sequential里push_back另一个Sequential导致的。</p>
+<h3><span id="解决办法">解决办法</span></h3><p>这其实是libtorch的一个bug吧算是，c++设计问题，参考<a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/issues/22298">c++ sequential in sequential</a>。</p>
 <p>如非必要，pytorch的代码尽量避免sequential in sequential结构，不然c++加载权重会很麻烦。完全可以用其他结构代替。</p>
 <p>长期更新中…</p>
 
@@ -423,14 +423,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -462,7 +462,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/12/24/NMS的几种写法/" rel="next" title="NMS的几种写法">
+              <a href="/2020/12/24/NMS%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/" rel="next" title="NMS的几种写法">
                 <i class="fa fa-chevron-left"></i> NMS的几种写法
               </a>
             
@@ -472,7 +472,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/01/16/libtorch教程（一）/" rel="prev" title="libtorch教程（一）">
+              <a href="/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="libtorch教程（一）">
                 libtorch教程（一） <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -547,9 +547,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -558,9 +560,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -582,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -637,7 +639,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">类型重定义或者使用了未定义类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags=0x0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">分析原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">‘torch::nn::Module::clone’ not accessible because ‘BlockImpl’ uses ‘private’ to inherit from ‘torch::nn::Module’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">class already defined in obj</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Error    C2672    ‘torch::nn::AnyModule::make_holder’: no matching overloaded function found</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">解决办法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">Debug Assertion Failed! Expression: _BLOCK_TYPE_IS_VALID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">类型重定义或者使用了未定义类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">error 0xc0000005: read access violation at: 0xffffffffffffffff, flags&#x3D;0x0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">分析原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">‘torch::nn::Module::clone’ not accessible because ‘BlockImpl’ uses ‘private’ to inherit from ‘torch::nn::Module’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">class already defined in obj</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">Error	C2672	‘torch::nn::AnyModule::make_holder’: no matching overloaded function found</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">解决办法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -657,7 +659,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

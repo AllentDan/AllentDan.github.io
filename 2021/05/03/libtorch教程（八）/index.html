@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,24 +79,24 @@
 
 
 
-<meta name="description" content="这是个教程总结，libtorch教程一共八章，主要是实现了c++版本的分类，分割和检测工具吧。这对一些需要C++/C#/Java做项目的同志来说，想必是大大的福音了。 由于代码全程几乎手敲，不像现在许多python项目，可以直接从其他地方CV(ctr C + ctr V)过来，同时c++项目debug起来比python麻烦很多，光是项目大了以后编译一次都耗时很久….算不上诉苦，只能说干c++的都是">
+<meta name="description" content="这是个教程总结，libtorch教程一共八章，主要是实现了c++版本的分类，分割和检测工具吧。这对一些需要C++&#x2F;C#&#x2F;Java做项目的同志来说，想必是大大的福音了。 由于代码全程几乎手敲，不像现在许多python项目，可以直接从其他地方CV(ctr C + ctr V)过来，同时c++项目debug起来比python麻烦很多，光是项目大了以后编译一次都耗时很久….算不上诉苦，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="libtorch教程（八）">
-<meta property="og:url" content="https://allentdan.github.io/2021/05/03/libtorch教程（八）/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2021/05/03/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="这是个教程总结，libtorch教程一共八章，主要是实现了c++版本的分类，分割和检测工具吧。这对一些需要C++/C#/Java做项目的同志来说，想必是大大的福音了。 由于代码全程几乎手敲，不像现在许多python项目，可以直接从其他地方CV(ctr C + ctr V)过来，同时c++项目debug起来比python麻烦很多，光是项目大了以后编译一次都耗时很久….算不上诉苦，只能说干c++的都是">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-05-05T11:45:49.164Z">
+<meta property="og:description" content="这是个教程总结，libtorch教程一共八章，主要是实现了c++版本的分类，分割和检测工具吧。这对一些需要C++&#x2F;C#&#x2F;Java做项目的同志来说，想必是大大的福音了。 由于代码全程几乎手敲，不像现在许多python项目，可以直接从其他地方CV(ctr C + ctr V)过来，同时c++项目debug起来比python麻烦很多，光是项目大了以后编译一次都耗时很久….算不上诉苦，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-03T11:14:29.000Z">
+<meta property="article:modified_time" content="2021-05-05T11:45:49.164Z">
+<meta property="article:author" content="Allent Dan">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="libtorch教程（八）">
-<meta name="twitter:description" content="这是个教程总结，libtorch教程一共八章，主要是实现了c++版本的分类，分割和检测工具吧。这对一些需要C++/C#/Java做项目的同志来说，想必是大大的福音了。 由于代码全程几乎手敲，不像现在许多python项目，可以直接从其他地方CV(ctr C + ctr V)过来，同时c++项目debug起来比python麻烦很多，光是项目大了以后编译一次都耗时很久….算不上诉苦，只能说干c++的都是">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2021/05/03/libtorch教程（八）/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/05/03/libtorch教程（八）/"/>
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -153,7 +153,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -181,9 +181,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -191,9 +191,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -201,9 +201,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -211,9 +211,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -221,9 +221,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -262,11 +262,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/05/03/libtorch教程（八）/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/05/03/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -310,8 +310,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/05/03/libtorch教程（八）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/05/03/libtorch教程（八）/" itemprop="commentsCount"></span>
+                <a href="/2021/05/03/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/05/03/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -319,7 +319,7 @@
 
           
           
-             <span id="/2021/05/03/libtorch教程（八）/" class="leancloud_visitors" data-flag-title="libtorch教程（八）">
+             <span id="/2021/05/03/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89/" class="leancloud_visitors" data-flag-title="libtorch教程（八）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -334,7 +334,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -355,7 +355,7 @@
       
 
       
-        <p>这是个教程总结，libtorch教程一共八章，主要是实现了c++版本的分类，分割和检测工具吧。这对一些需要C++/C#/Java做项目的同志来说，想必是大大的福音了。</p>
+        <p>这是个教程总结，libtorch教程一共八章，主要是实现了c++版本的分类，分割和检测工具吧。这对一些需要C++&#x2F;C#&#x2F;Java做项目的同志来说，想必是大大的福音了。</p>
 <p>由于代码全程几乎手敲，不像现在许多python项目，可以直接从其他地方CV(ctr C + ctr V)过来，同时c++项目debug起来比python麻烦很多，光是项目大了以后编译一次都耗时很久….算不上诉苦，只能说干c++的都是脏活，让人头秃👨‍🦲。</p>
 <p>不过现在深度学习相关的岗位，尤其是CV岗，python的HC真的不多，大厂还好，有但是要求高，小厂要求低些但是也基本要求会部署之类的。一般大厂研究院可以搞训练和部署分开搞，中小厂一般还是c++和python都有要求的，甚至很多大厂也是同时要求训练部署一个人包。所以，做深度学习相关的，对c++有些要求，或者说会部署调优确实很重要了。</p>
 <p>有机会整整TensorRT也很有必要啊。</p>
@@ -363,12 +363,12 @@
 <p>关于libtorch的一些编程经验，总结下吧：</p>
 <ul>
 <li>libtorch有许多坑，比如sequential in sequential会报错，而且解决不了，除非另写个stack的sequential类….比如CPU比python有时候还要慢一些…虽然GPU一般会快个三成。</li>
-<li>libtorch中的sequential，不能堆叠std::vector\<a href="torch::Tensor\" target="_blank" rel="noopener">torch::Tensor\</a>为输入的模块，比如yolov5模型，就整了个ConCat模块，libtorch里面没法用啊。一时间不知道该怪yolov5作者代码规范差好，还是怪libtorch垃圾好，还是怪自己没资源好。所以最后整了个yolov4_tiny。</li>
+<li>libtorch中的sequential，不能堆叠std::vector&lt;torch::Tensor&gt;为输入的模块，比如yolov5模型，就整了个ConCat模块，libtorch里面没法用啊。一时间不知道该怪yolov5作者代码规范差好，还是怪libtorch垃圾好，还是怪自己没资源好。所以最后整了个yolov4_tiny。</li>
 <li>libtorch还是有许多待优化的东西的，比如提速啥的，后面要是能整个int8精度预测，一个api调用，可能TensorRT的市场份额又得缩小了。当然，应该没有TensorRt提速那么多，毕竟不可能比人家更了解Nvidia显卡了…</li>
 <li>有条件，还是自己整个配套的python模型，然后自己训练个预训练的权重，比到处找合适的开源项目及权重香多了。当然，要是真的精力好，自己从头训练libtorch的模型也未尝不可啊筒子们。或许等我项目完善起来，也可以实现libtorch从头训练吧，需要加许多东西，加许多数据增强，一些学习率调整策略也要自己实现，加上时间和资源，应该还是可以的。毕竟libtorch接过了caffe的大旗，而且有脸书大厂在维护。</li>
 <li>说到底，就是资源给够，花钱铺人，写个libtorch++都可以实现…想必许多公司应该就是这样干的，目前也在愉快融资啥的了。</li>
 </ul>
-<p>后续会将主要精力放在两个开源项目上了，<a href="https://github.com/AllentDan/LibtorchSegmentation" target="_blank" rel="noopener">LibtorchSegment</a>项目和<a href="https://github.com/AllentDan/LibtorchDetection" target="_blank" rel="noopener">LibtorchDetection</a>项目。争取提供尽量多的骨干网络，框架，数据增强和训练优化接口。有时间整个界面，最好Qt的，弄个QtorchCV项目也不错哈哈。</p>
+<p>后续会将主要精力放在两个开源项目上了，<a target="_blank" rel="noopener" href="https://github.com/AllentDan/LibtorchSegmentation">LibtorchSegment</a>项目和<a target="_blank" rel="noopener" href="https://github.com/AllentDan/LibtorchDetection">LibtorchDetection</a>项目。争取提供尽量多的骨干网络，框架，数据增强和训练优化接口。有时间整个界面，最好Qt的，弄个QtorchCV项目也不错哈哈。</p>
 <p>TensorRt也在学习中…</p>
 
       
@@ -390,14 +390,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -423,7 +423,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/05/03/libtorch教程（七）/" rel="next" title="libtorch教程（七）">
+              <a href="/2021/05/03/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%83%EF%BC%89/" rel="next" title="libtorch教程（七）">
                 <i class="fa fa-chevron-left"></i> libtorch教程（七）
               </a>
             
@@ -432,6 +432,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/05/04/%E5%8D%8A%E7%B2%BE%E5%BA%A6%E6%8E%89%E7%82%B9%E8%B0%83%E8%AF%95/" rel="prev" title="半精度调试总结">
+                半精度调试总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -495,9 +499,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -506,9 +512,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -530,7 +536,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -589,7 +595,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

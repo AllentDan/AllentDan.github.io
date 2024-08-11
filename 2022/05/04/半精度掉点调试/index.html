@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MMDeploy," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="问题描述MMOCR在MMDeploy中部署时，PANet模型在以TensorRT-fp16为后端的情况下会有精度损失。hmean-iou由原本的0.8-掉点到0.2-。此时需要相应的debug查找问题原因。 排除法查找节点首先请教了有相关经验的同事，被告知一般只能二分查找，没有更方便的工具。此外，如果ONNX中有reduce_sum和avg_pool节点，可以重点尝试排查。经过netron可视化O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="半精度调试总结">
+<meta property="og:url" content="https://allentdan.github.io/2022/05/04/%E5%8D%8A%E7%B2%BE%E5%BA%A6%E6%8E%89%E7%82%B9%E8%B0%83%E8%AF%95/index.html">
+<meta property="og:site_name" content="Allent&#39;s Blogs">
+<meta property="og:description" content="问题描述MMOCR在MMDeploy中部署时，PANet模型在以TensorRT-fp16为后端的情况下会有精度损失。hmean-iou由原本的0.8-掉点到0.2-。此时需要相应的debug查找问题原因。 排除法查找节点首先请教了有相关经验的同事，被告知一般只能二分查找，没有更方便的工具。此外，如果ONNX中有reduce_sum和avg_pool节点，可以重点尝试排查。经过netron可视化O">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-04T12:07:14.000Z">
+<meta property="article:modified_time" content="2022-05-17T10:00:45.235Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="MMDeploy">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://allentdan.github.io/2022/05/04/半精度掉点调试/"/>
+
+
+
+
+
+  <title>半精度调试总结 | Allent's Blogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Allent's Blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2022/05/04/%E5%8D%8A%E7%B2%BE%E5%BA%A6%E6%8E%89%E7%82%B9%E8%B0%83%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/jiegeng.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Allent's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">半精度调试总结</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-04T20:07:14+08:00">
+                2022-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/05/04/%E5%8D%8A%E7%B2%BE%E5%BA%A6%E6%8E%89%E7%82%B9%E8%B0%83%E8%AF%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/05/04/%E5%8D%8A%E7%B2%BE%E5%BA%A6%E6%8E%89%E7%82%B9%E8%B0%83%E8%AF%95/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2022/05/04/%E5%8D%8A%E7%B2%BE%E5%BA%A6%E6%8E%89%E7%82%B9%E8%B0%83%E8%AF%95/" class="leancloud_visitors" data-flag-title="半精度调试总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2><span id="问题描述">问题描述</span></h2><p>MMOCR在MMDeploy中部署时，PANet模型在以TensorRT-fp16为后端的情况下会有精度损失。hmean-iou由原本的0.8-掉点到0.2-。此时需要相应的debug查找问题原因。</p>
+<h2><span id="排除法查找节点">排除法查找节点</span></h2><p>首先请教了有相关经验的同事，被告知一般只能二分查找，没有更方便的工具。此外，如果ONNX中有reduce_sum和avg_pool节点，可以重点尝试排查。经过netron可视化ONNX文件，发现PANet中无以上两种节点。没办法，只能笨办法慢慢查。这时候，我首先想到的是，骨干网络应该不会出现数值溢出问题。而PANet中与其他常用的无此相关问题的模型的差异在于其neck部分是，FPEM-FFM结构。会不会是在这个结构中产生问题的呢？所以，我没有直接使用二分查找。</p>
+<h3><span id="卷积层映射">卷积层映射</span></h3><p>具体深入查看FPEM-FFM结构，发现有其他常用网络不用的卷积，深度可分离卷积。这时，很直觉的判断就是这个，所以，这时候我对该结构内的层采用的应对FP16数值溢出常用的解决方法。计算前减小数值，计算后恢复原来大小。那么对于卷积而言，一次卷积运算可以认为是：输入x，输出conv(x) &#x3D; wx+b,其中W是权重weight，b是偏移量bias。如果我想要保证卷积过程无数值溢出情况，只需要将输入减小，计算完成后再将结果映射成真实值。实际卷积的计算过程变成：conv(x&#x2F;p) &#x3D; w(x&#x2F;p)+b。卷积完成后，先乘以p再减去(p-1)b即可。亦即：p*conv(x&#x2F;p)-(p-1)b &#x3D; wx+b。很自然地，对于一个卷积层conv和输入张量x，进行如下变换:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">warp_conv</span>(<span class="params">x, conv, factor: <span class="built_in">int</span>=<span class="number">32</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;(W*(x/p)+b)*p-b*(p-1) == Wx+b</span></span><br><span class="line"><span class="string">    conv(x) == warp_conv(x, conv)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    x_tmp = conv(x / factor)</span><br><span class="line">    <span class="keyword">return</span> factor * x_tmp - (factor - <span class="number">1</span>) * conv.bias.reshape(</span><br><span class="line">        <span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).repeat(<span class="number">1</span>, <span class="number">1</span>, x_tmp.size(<span class="number">2</span>), x_tmp.size(<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<p>原始计算过程conv(x)被等效成 warp_conv(x, conv)，并且，等效过程不会出现数值溢出。</p>
+<h3><span id="归一化层映射">归一化层映射</span></h3><p>除了可能的卷积层中数值溢出外，归一化层出现问题的几率更高。归一化层的计算过程如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># input:x, output:out</span></span><br><span class="line">w = weight / torch.sqrt(running_var + eps)</span><br><span class="line">out = x * w + (bias - running_mean * w)</span><br></pre></td></tr></table></figure>
+<p>可以发现，归一化层bn的计算过程实际也是个线性运算：bn(x) &#x3D; wx+b，其中w &#x3D; weight &#x2F; torch.sqrt(running_var + eps)，而b &#x3D; bias - running_mean * w。那么类似卷积层的一个映射函数可以是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">warp_bn</span>(<span class="params">x, bn, factor: <span class="built_in">int</span>=<span class="number">32</span></span>):</span><br><span class="line">    <span class="keyword">import</span> torch</span><br><span class="line">    scale = bn.weight / torch.sqrt(bn.running_var + bn.eps)</span><br><span class="line">    bias = bn.bias - bn.running_mean * scale</span><br><span class="line">    bias_t = bias.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).repeat(<span class="number">1</span>, <span class="number">1</span>, x.size(<span class="number">2</span>), x.size(<span class="number">3</span>))</span><br><span class="line">    <span class="keyword">return</span> bn(x / factor) * factor - (factor - <span class="number">1</span>) * bias_t</span><br></pre></td></tr></table></figure>
+
+<h3><span id="验证">验证</span></h3><p>有了以上的分析，直接将FPEM-FFM结构中的所有的卷积和归一化层都替换一下。这样导出的模型再转换成TensorRT模型，进行精度测试后发现结果有很大提升，由原来的0.2-提升到0.6+。看起来验证是成功的，必然是其中的某个层出现了数值溢出，替换后可以进行fp16推理。可是，为什么精度没有对齐到fp32呢？难道上述的替换并不完全等效？为此我进行了如下实验：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(conv(x) - warp_conv(x, conv).sum())</span><br><span class="line">print(bn(x) - warp_bn(x, bn).sum())</span><br></pre></td></tr></table></figure>
+<p>发现对于卷积层，并无数值误差，而对归一化层，出现了一定的误差。而且，bn层的误差是随着映射函数中的变量factor增大而增大。“一定是多个归一化层累计效应，同时factor不应该设置太大”，我想。</p>
+<p>就这样，我减小了factor的大小，同时逐一验证是具体哪个归一化层有问题。最后却没有定位到一个具体的归一化层产生数值溢出。一时间，整个debug似乎卡住了，没法继续推进了，似乎只能二分法？</p>
+<h2><span id="整理思路">整理思路</span></h2><h3><span id="数值溢出的可能形式">数值溢出的可能形式</span></h3><p>不考虑TensorRT做层融合等情况，只考虑PyTorch做推理，数值溢出的可能形式有哪些呢？</p>
+<ul>
+<li>某个算子内部计算过程数值溢出，输入输出均可以用fp16表示</li>
+<li>跨内部连续多个算子出现数值溢出</li>
+<li>整个网络计算过程都有数值溢出<br>首先排除最后一种情况，一般的，输入是图像归一化后的结果，而输出一般需要对应到标签或者标签相关的值。所以，输入和输出都不可能出现数值溢出。而第一种情况中，PANet只有FPEM-FFM结构是迥异于其他模型的，替换其中的卷积层和归一化层都不能解决问题的话，数值溢出只剩下第二种情况了。</li>
+</ul>
+<h3><span id="多算子数值溢出">多算子数值溢出</span></h3><p>考虑到连续多个算子计算过程均出现数值溢出的可能，似乎直接进行单个算子映射已经无法解决问题了。同时，具体从哪个算子出现问题，我们仍然不知道。难道还是要寻求二分法的帮助？</p>
+<h2><span id="寻找fp16失效的算子">寻找fp16失效的算子</span></h2><p>没辙，只好二分法吧。可是如何二分法其实也很有考究。可行的debug方式：</p>
+<ul>
+<li>每次提前返回结果，二分地导出ONNX再导出TensorRT模型，未被导出的部分继续以PyTorch代码衔接到TensoRT的计算结果后。</li>
+<li>直接运行PyTorch模型，设置断点，查看哪些计算过程有数值异常地大。<br>第一种方法最为精准，肯定是可以找到具体的节点的。但是过程非常繁琐，同时需要大量的测试代码。<br>第二种方法最为直接，但是也同样繁琐，因为一个图的节点太多了。要断点查看的话，可能需要很久。而且不能保证结果一定找到，可能存在疏漏。</li>
+</ul>
+<p>第二种方法需要指导fp16数值表示的变化范围。IEEE标准中，fp32的取值范围是1.4e-45至3.4e38，fp16的取值范围是5.96e-8 ~ 65504。也就是说，fp16的最大值不超过65504。</p>
+<h3><span id="断点调试">断点调试</span></h3><p>权衡了下，选择断点查看是否有数值异常。最后找到了异常的起始位置为骨干网络输出的特征层的最后一层，里面有大量的点的数值大于65504。随后再逐步往前找到开始出现异常的节点，同时再逐步往后，找到异常结束的节点。结果发现起始位置在最后一层的最后一次归一化层，结束位置在FPEM-FFM结构的某个归一化完成后。</p>
+<h3><span id="优化">优化</span></h3><p>上面的方法仍然略显繁琐，有没有不用手动调试，直接用程序查找的方式呢？</p>
+<p>之前的断点调试本质是寻找图计算过程中，内部嵌套的nn.Module的推理过程中的张量是否超出65504的点罢了。我们完全可以用代码查找。直接对模型的每一层进行遍历，查看是否有异常点。</p>
+<p>一个可能的实现方式是利用PyTorch的钩子(hook)技术。所谓的钩子技术其实并非PyTorch所独有，事实上，很多的软件架构都有提供。钩子技术是在某个事件执行完成后，自动执行的函数。也就是说，我们只要在网络的每个层设置一个钩子，在该层推理完成后再对输入和输出进行查找是否有异常点即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyclbr <span class="keyword">import</span> Function</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Sequence</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fp16_check</span>(<span class="params">module: torch.nn.Module, <span class="built_in">input</span>: torch.Tensor, output: torch.Tensor</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(<span class="built_in">input</span>, <span class="built_in">dict</span>):</span><br><span class="line">        <span class="keyword">for</span> _, value <span class="keyword">in</span> <span class="built_in">input</span>.items():</span><br><span class="line">            fp16_check(module, value, output)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(<span class="built_in">input</span>, <span class="type">Sequence</span>):</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">            fp16_check(module, value, output)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(output, <span class="built_in">dict</span>):</span><br><span class="line">        <span class="keyword">for</span> _, value <span class="keyword">in</span> output.items():</span><br><span class="line">            fp16_check(module, <span class="built_in">input</span>, value)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(output, <span class="type">Sequence</span>):</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> output:</span><br><span class="line">            fp16_check(module, <span class="built_in">input</span>, value)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> torch.<span class="built_in">abs</span>(<span class="built_in">input</span>).<span class="built_in">max</span>()&lt;<span class="number">65504</span>  <span class="keyword">and</span> torch.<span class="built_in">abs</span>(output).<span class="built_in">max</span>()&gt;<span class="number">65504</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;from: &#x27;</span>, module.finspect_name)</span><br><span class="line">    <span class="keyword">if</span> torch.<span class="built_in">abs</span>(<span class="built_in">input</span>).<span class="built_in">max</span>()&gt;<span class="number">65504</span>  <span class="keyword">and</span> torch.<span class="built_in">abs</span>(output).<span class="built_in">max</span>()&lt;<span class="number">65504</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;to: &#x27;</span>, module.finspect_name)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FInspect</span>:</span><br><span class="line">    module_names = [<span class="string">&#x27;model&#x27;</span>]</span><br><span class="line">    handlers = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hook_all_impl</span>(<span class="params">cls, module: torch.nn.Module, hook_func: Function</span>)-&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">for</span> name, child <span class="keyword">in</span> module.named_children():</span><br><span class="line">            cls.module_names.append(name)</span><br><span class="line">            cls.hook_all_impl(cls, module=child, hook_func=hook_func)</span><br><span class="line">        linked_name=<span class="string">&#x27;-&gt;&#x27;</span>.join(cls.module_names)</span><br><span class="line">        <span class="built_in">setattr</span>(module, <span class="string">&#x27;finspect_name&#x27;</span>, linked_name)</span><br><span class="line">        cls.module_names.pop()</span><br><span class="line">        handler = module.register_forward_hook(hook=hook_func)</span><br><span class="line">        cls.handlers.append(handler)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line"><span class="meta">    @contextmanager</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hook_all</span>(<span class="params">cls, module: torch.nn.Module, hook_func: Function</span>)-&gt; <span class="literal">None</span>:</span><br><span class="line">        cls.hook_all_impl(cls, module, hook_func)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        [i.remove() <span class="keyword">for</span> i <span class="keyword">in</span> cls.handlers]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> FInspect.hook_all(patched_model, fp16_check):</span><br><span class="line">    patched_model(inputs)</span><br></pre></td></tr></table></figure>
+
+<h2><span id="尝试映射">尝试映射</span></h2><p>整个异常过程可以表达成：bn(conv(relu(bn(x) + residual)))。对于这样一个过程，能否通过类似上述的对卷积层和归一化层的处理方式解决数值溢出问题呢？</p>
+<h3><span id="relu一生之敌">relu一生之敌</span></h3><p>我们知道，一个初始值，经过多个线性运算后，结果可以用一次线性运算还原。比如：w2(w1x + b1) + b2 &#x3D; w1w2x + w2b1 + b2，结果还是个线性运算。这也是为什么神经网络需要激活函数————不然多个线性层的结果等效于一个线性层。</p>
+<p>那么，上面的异常过程可以简化成w2(relu(w1x + b1)) + b2。其中w1, w2, b1, b2都可以计算出来。可是，relu激活函数可以在输入缩放减小后，对输出进行还原得到吗？我们都知道，relu函数有个很好的性质，那就是relu(px) &#x3D; p*relu(x)。除此之外，再难有其他性质可以被利用，以对抗数值溢出。可是，如果计算过程是relu(wx + b)，缩放输入x以后得到的结果relu(wx&#x2F;p + b)不能再简单地恢复到relu(wx + b)。</p>
+<p>不过，我们可以通过整体缩放relu的输入，将计算过程变成relu((wx + b)&#x2F;p)，这样再乘以p就可以恢复成relu(wx + b)了。如此，relu函数也可以绕过，对抗数值溢出。</p>
+<h3><span id="公式">公式</span></h3><p>那么对于原公式w2(relu(w1x + b1)) + b2，就可以映射成 p * w2(relu((w1x + b1)&#x2F;p)) + b2 - (p-1)*b2。</p>
+<h2><span id="实施">实施</span></h2><p>在(MMDeploy)[<a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmdeploy]%E6%A1%86%E6%9E%B6%E4%B8%AD%EF%BC%8C%E5%8F%AA%E8%A6%81%E5%88%A9%E7%94%A8%E5%87%BD%E6%95%B0%E9%87%8D%E5%86%99%E5%8A%AB%E6%8C%81%E6%8E%89%E5%8E%9F%E5%A7%8B%E7%9A%84PANet%E4%B8%AD%E7%9A%84%E4%B8%A4%E6%AE%B5%E5%87%BD%E6%95%B0%60mmocr.models.textdet.necks.FPEM_FFM.forward%60%E5%92%8C%60mmdet.models.backbones.resnet.BasicBlock.forward%60%E5%8D%B3%E5%8F%AF%E3%80%82%E5%9C%A8%E5%8A%AB%E6%8C%81%E7%9A%84%E5%87%BD%E6%95%B0%E9%87%8C%EF%BC%8C%E6%9B%BF%E6%8D%A2%E5%8E%9F%E6%9C%89%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B%EF%BC%8C%E5%B0%86%E4%B8%8A%E8%BF%B0%E7%9A%84%E6%98%A0%E5%B0%84%E5%AE%9E%E7%8E%B0%E5%8D%B3%E5%8F%AF%E3%80%82">https://github.com/open-mmlab/mmdeploy]框架中，只要利用函数重写劫持掉原始的PANet中的两段函数`mmocr.models.textdet.necks.FPEM_FFM.forward`和`mmdet.models.backbones.resnet.BasicBlock.forward`即可。在劫持的函数里，替换原有的计算过程，将上述的映射实现即可。</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Copyright (c) OpenMMLab. All rights reserved.</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mmdeploy.core <span class="keyword">import</span> FUNCTION_REWRITER</span><br><span class="line"><span class="keyword">from</span> mmdeploy.utils.constants <span class="keyword">import</span> Backend</span><br><span class="line"></span><br><span class="line">FACTOR = <span class="number">32</span></span><br><span class="line">ENABLE = <span class="literal">False</span></span><br><span class="line">CHANNEL_THRESH = <span class="number">400</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@FUNCTION_REWRITER.register_rewriter(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="meta">    func_name=<span class="string">&#x27;mmocr.models.textdet.necks.FPEM_FFM.forward&#x27;</span>,</span></span></span><br><span class="line"><span class="params"><span class="meta">    backend=Backend.TENSORRT.value</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fpem_ffm__forward__trt</span>(<span class="params">ctx, self, x, *args, **kwargs</span>):</span><br><span class="line">    c2, c3, c4, c5 = x</span><br><span class="line">    <span class="comment"># reduce channel</span></span><br><span class="line">    c2 = self.reduce_conv_c2(c2)</span><br><span class="line">    c3 = self.reduce_conv_c3(c3)</span><br><span class="line">    c4 = self.reduce_conv_c4(c4)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ENABLE:</span><br><span class="line">        bn_w = self.reduce_conv_c5[<span class="number">1</span>].weight / torch.sqrt(</span><br><span class="line">            self.reduce_conv_c5[<span class="number">1</span>].running_var + self.reduce_conv_c5[<span class="number">1</span>].eps)</span><br><span class="line">        bn_b = self.reduce_conv_c5[</span><br><span class="line">            <span class="number">1</span>].bias - self.reduce_conv_c5[<span class="number">1</span>].running_mean * bn_w</span><br><span class="line">        bn_w = bn_w.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).repeat(<span class="number">1</span>, <span class="number">1</span>, c5.size(<span class="number">2</span>), c5.size(<span class="number">3</span>))</span><br><span class="line">        bn_b = bn_b.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).repeat(<span class="number">1</span>, <span class="number">1</span>, c5.size(<span class="number">2</span>), c5.size(<span class="number">3</span>))</span><br><span class="line">        conv_b = self.reduce_conv_c5[<span class="number">0</span>].bias.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).repeat(</span><br><span class="line">            <span class="number">1</span>, <span class="number">1</span>, c5.size(<span class="number">2</span>), c5.size(<span class="number">3</span>))</span><br><span class="line">        c5 = FACTOR * (self.reduce_conv_c5[:-<span class="number">1</span>](c5)) - (FACTOR - <span class="number">1</span>) * (</span><br><span class="line">            bn_w * conv_b + bn_b)</span><br><span class="line">        c5 = self.reduce_conv_c5[-<span class="number">1</span>](c5)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        c5 = self.reduce_conv_c5(c5)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># FPEM</span></span><br><span class="line">    <span class="keyword">for</span> i, fpem <span class="keyword">in</span> <span class="built_in">enumerate</span>(self.fpems):</span><br><span class="line">        c2, c3, c4, c5 = fpem(c2, c3, c4, c5)</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">            c2_ffm = c2</span><br><span class="line">            c3_ffm = c3</span><br><span class="line">            c4_ffm = c4</span><br><span class="line">            c5_ffm = c5</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            c2_ffm += c2</span><br><span class="line">            c3_ffm += c3</span><br><span class="line">            c4_ffm += c4</span><br><span class="line">            c5_ffm += c5</span><br><span class="line"></span><br><span class="line">    <span class="comment"># FFM</span></span><br><span class="line">    c5 = F.interpolate(</span><br><span class="line">        c5_ffm,</span><br><span class="line">        c2_ffm.size()[-<span class="number">2</span>:],</span><br><span class="line">        mode=<span class="string">&#x27;bilinear&#x27;</span>,</span><br><span class="line">        align_corners=self.align_corners)</span><br><span class="line">    c4 = F.interpolate(</span><br><span class="line">        c4_ffm,</span><br><span class="line">        c2_ffm.size()[-<span class="number">2</span>:],</span><br><span class="line">        mode=<span class="string">&#x27;bilinear&#x27;</span>,</span><br><span class="line">        align_corners=self.align_corners)</span><br><span class="line">    c3 = F.interpolate(</span><br><span class="line">        c3_ffm,</span><br><span class="line">        c2_ffm.size()[-<span class="number">2</span>:],</span><br><span class="line">        mode=<span class="string">&#x27;bilinear&#x27;</span>,</span><br><span class="line">        align_corners=self.align_corners)</span><br><span class="line">    outs = [c2_ffm, c3, c4, c5]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">tuple</span>(outs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@FUNCTION_REWRITER.register_rewriter(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="meta">    func_name=<span class="string">&#x27;mmdet.models.backbones.resnet.BasicBlock.forward&#x27;</span>,</span></span></span><br><span class="line"><span class="params"><span class="meta">    backend=Backend.TENSORRT.value</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">basic_block__forward__trt</span>(<span class="params">ctx, self, x</span>):</span><br><span class="line">    <span class="keyword">if</span> self.conv1.in_channels &lt; CHANNEL_THRESH:</span><br><span class="line">        <span class="keyword">return</span> ctx.origin_func(self, x)</span><br><span class="line"></span><br><span class="line">    identity = x</span><br><span class="line"></span><br><span class="line">    out = self.conv1(x)</span><br><span class="line">    out = self.norm1(out)</span><br><span class="line">    out = self.relu(out)</span><br><span class="line"></span><br><span class="line">    out = self.conv2(out)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> torch.<span class="built_in">abs</span>(self.norm2(out)).<span class="built_in">max</span>() &lt; <span class="number">65504</span>:</span><br><span class="line">        <span class="keyword">return</span> self.norm2(out)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">global</span> ENABLE</span><br><span class="line">        ENABLE = <span class="literal">True</span></span><br><span class="line">        <span class="comment"># the output of the last bn layer exceeds the range of fp16</span></span><br><span class="line">        w1 = self.norm2.weight / torch.sqrt(self.norm2.running_var +</span><br><span class="line">                                            self.norm2.eps)</span><br><span class="line">        bias = self.norm2.bias - self.norm2.running_mean * w1</span><br><span class="line">        w1 = w1.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).repeat(<span class="number">1</span>, <span class="number">1</span>, out.size(<span class="number">2</span>), out.size(<span class="number">3</span>))</span><br><span class="line">        bias = bias.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).repeat(<span class="number">1</span>, <span class="number">1</span>, out.size(<span class="number">2</span>),</span><br><span class="line">                                                out.size(<span class="number">3</span>)) + identity</span><br><span class="line">        out = self.relu(w1 * (out / FACTOR) + bias / FACTOR)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
+<p>通过上述的重写函数，最后导出PANet模型可以媲美原始PyTorch模型，甚至略有超过(数值误差)。</p>
+<p>注意，上述代码是比较初级的，并无代码规范和详实考虑。在MMDeploy框架里面直接替换后，如果有其他模型转到TensorRT，其中的<code>basic_block__forward__trt</code>也将会触发。真正实现是需要重写类实现。</p>
+<h2><span id="总结">总结</span></h2><p>总结一下这篇博客，分享了一般的FP16数值溢出情况下的处理方式。</p>
+<ul>
+<li>一个快速查找数值溢出算子的方法</li>
+<li>一个替换多个算子，从原始模型解决FP16数值溢出的方法。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MMDeploy/" rel="tag"># MMDeploy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/03/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89/" rel="next" title="libtorch教程（八）">
+                <i class="fa fa-chevron-left"></i> libtorch教程（八）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AllentDan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allentdan@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/65234485" target="_blank" title="Bilibili">
+                      
+                        <i class="fa fa-fw fa-bilibili"></i>Bilibili</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">排除法查找节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">卷积层映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">归一化层映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">整理思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">数值溢出的可能形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">多算子数值溢出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">寻找fp16失效的算子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">断点调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">尝试映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">relu一生之敌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">实施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Allent Dan</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

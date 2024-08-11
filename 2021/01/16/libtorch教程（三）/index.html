@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="libtorch,">
+  <meta name="keywords" content="libtorch," />
 
 
 
@@ -79,25 +79,25 @@
 
 
 
-<meta name="description" content="基本模块搭建模块化编程的思想非常重要，通过模块化编程可以大幅减少重复的敲代码过程，同时代码可读性也会增加。本章将讲述如何使用libtorch搭建一些MLP和CNN的基本模块。 MLP基本单元首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下：123456789101112131415161718192021class LinearBnReluImpl : public torch::nn">
-<meta name="keywords" content="libtorch">
+<meta name="description" content="基本模块搭建模块化编程的思想非常重要，通过模块化编程可以大幅减少重复的敲代码过程，同时代码可读性也会增加。本章将讲述如何使用libtorch搭建一些MLP和CNN的基本模块。 MLP基本单元首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下： 123456789101112131415161718192021class LinearBnReluImpl : public torch::n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="libtorch教程（三）">
-<meta property="og:url" content="https://allentdan.github.io/2021/01/16/libtorch教程（三）/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="基本模块搭建模块化编程的思想非常重要，通过模块化编程可以大幅减少重复的敲代码过程，同时代码可读性也会增加。本章将讲述如何使用libtorch搭建一些MLP和CNN的基本模块。 MLP基本单元首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下：123456789101112131415161718192021class LinearBnReluImpl : public torch::nn">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-05-04T09:41:30.263Z">
+<meta property="og:description" content="基本模块搭建模块化编程的思想非常重要，通过模块化编程可以大幅减少重复的敲代码过程，同时代码可读性也会增加。本章将讲述如何使用libtorch搭建一些MLP和CNN的基本模块。 MLP基本单元首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下： 123456789101112131415161718192021class LinearBnReluImpl : public torch::n">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-16T03:50:41.000Z">
+<meta property="article:modified_time" content="2021-05-04T09:41:30.263Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="libtorch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="libtorch教程（三）">
-<meta name="twitter:description" content="基本模块搭建模块化编程的思想非常重要，通过模块化编程可以大幅减少重复的敲代码过程，同时代码可读性也会增加。本章将讲述如何使用libtorch搭建一些MLP和CNN的基本模块。 MLP基本单元首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下：123456789101112131415161718192021class LinearBnReluImpl : public torch::nn">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2021/01/16/libtorch教程（三）/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/01/16/libtorch教程（三）/"/>
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -154,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -182,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -192,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -202,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -212,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -222,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -263,11 +263,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/16/libtorch教程（三）/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -311,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/01/16/libtorch教程（三）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/16/libtorch教程（三）/" itemprop="commentsCount"></span>
+                <a href="/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2021/01/16/libtorch教程（三）/" class="leancloud_visitors" data-flag-title="libtorch教程（三）">
+             <span id="/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89/" class="leancloud_visitors" data-flag-title="libtorch教程（三）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -335,7 +335,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -357,19 +357,26 @@
 
       
         <h1><span id="基本模块搭建">基本模块搭建</span></h1><p>模块化编程的思想非常重要，通过模块化编程可以大幅减少重复的敲代码过程，同时代码可读性也会增加。本章将讲述如何使用libtorch搭建一些MLP和CNN的基本模块。</p>
-<h2><span id="mlp基本单元">MLP基本单元</span></h2><p>首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearBnReluImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LinearBnReluImpl(<span class="keyword">int</span> intput_features, <span class="keyword">int</span> output_features);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//layers</span></span><br><span class="line">    torch::nn::Linear ln&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::BatchNorm1d bn&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">TORCH_MODULE(LinearBnRelu);</span><br><span class="line"></span><br><span class="line">LinearBnReluImpl::LinearBnReluImpl(<span class="keyword">int</span> in_features, <span class="keyword">int</span> out_features)&#123;</span><br><span class="line">    ln = register_module(<span class="string">"ln"</span>, torch::nn::Linear(torch::nn::LinearOptions(in_features, out_features)));</span><br><span class="line">    bn = register_module(<span class="string">"bn"</span>, torch::nn::BatchNorm1d(out_features));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor LinearBnReluImpl::forward(torch::Tensor x)&#123;</span><br><span class="line">    x = torch::relu(ln-&gt;forward(x));</span><br><span class="line">    x = bn(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="mlp基本单元">MLP基本单元</span></h2><p>首先是线性层的声明和定义，包括初始化和前向传播函数。代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LinearBnReluImpl</span> : <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">LinearBnReluImpl</span>(<span class="type">int</span> intput_features, <span class="type">int</span> output_features);</span><br><span class="line">    <span class="function">torch::Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">//layers</span></span><br><span class="line">    torch::nn::Linear ln&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::BatchNorm1d bn&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">TORCH_MODULE</span>(LinearBnRelu);</span><br><span class="line"></span><br><span class="line">LinearBnReluImpl::<span class="built_in">LinearBnReluImpl</span>(<span class="type">int</span> in_features, <span class="type">int</span> out_features)&#123;</span><br><span class="line">    ln = <span class="built_in">register_module</span>(<span class="string">&quot;ln&quot;</span>, torch::nn::<span class="built_in">Linear</span>(torch::nn::<span class="built_in">LinearOptions</span>(in_features, out_features)));</span><br><span class="line">    bn = <span class="built_in">register_module</span>(<span class="string">&quot;bn&quot;</span>, torch::nn::<span class="built_in">BatchNorm1d</span>(out_features));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">torch::Tensor <span class="title">LinearBnReluImpl::forward</span><span class="params">(torch::Tensor x)</span></span>&#123;</span><br><span class="line">    x = torch::<span class="built_in">relu</span>(ln-&gt;forward(x));</span><br><span class="line">    x = <span class="built_in">bn</span>(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在MLP的构造线性层模块类时，我们继承了torch::nn::Module类，将初始化和前向传播模块作为public，可以给对象使用，而里面的线性层torch::nn::Linear和归一化层torch::nn::BatchNorm1d被隐藏作为私有变量。</p>
 <p>定义初始化函数时，需要将原本的指针对象ln和bn进行赋值，同时将两者的名称也确定。前向传播函数就和pytorch中的forward类似。</p>
-<h2><span id="cnn基本单元">CNN基本单元</span></h2><p>CNN的基本单元构建和MLP的构建类似，但是又稍有不同，首先需要定义的时卷积超参数确定函数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> torch::nn::<span class="function">Conv2dOptions <span class="title">conv_options</span><span class="params">(<span class="keyword">int64_t</span> in_planes, <span class="keyword">int64_t</span> out_planes, <span class="keyword">int64_t</span> kerner_size,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="keyword">int64_t</span> stride = <span class="number">1</span>, <span class="keyword">int64_t</span> padding = <span class="number">0</span>, <span class="keyword">bool</span> with_bias = <span class="literal">false</span>)</span> </span>&#123;</span><br><span class="line">    torch::nn::Conv2dOptions conv_options = torch::nn::Conv2dOptions(in_planes, out_planes, kerner_size);</span><br><span class="line">    conv_options.stride(stride);</span><br><span class="line">    conv_options.padding(padding);</span><br><span class="line">    conv_options.bias(with_bias);</span><br><span class="line">    <span class="keyword">return</span> conv_options;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="cnn基本单元">CNN基本单元</span></h2><p>CNN的基本单元构建和MLP的构建类似，但是又稍有不同，首先需要定义的时卷积超参数确定函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> torch::<span class="function">nn::Conv2dOptions <span class="title">conv_options</span><span class="params">(<span class="type">int64_t</span> in_planes, <span class="type">int64_t</span> out_planes, <span class="type">int64_t</span> kerner_size,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">int64_t</span> stride = <span class="number">1</span>, <span class="type">int64_t</span> padding = <span class="number">0</span>, <span class="type">bool</span> with_bias = <span class="literal">false</span>)</span> </span>&#123;</span><br><span class="line">    torch::nn::Conv2dOptions conv_options = torch::nn::<span class="built_in">Conv2dOptions</span>(in_planes, out_planes, kerner_size);</span><br><span class="line">    conv_options.<span class="built_in">stride</span>(stride);</span><br><span class="line">    conv_options.<span class="built_in">padding</span>(padding);</span><br><span class="line">    conv_options.<span class="built_in">bias</span>(with_bias);</span><br><span class="line">    <span class="keyword">return</span> conv_options;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>该函数返回torch::nn::Conv2dOptions对象，对象的超参数由函数接口指定，这样可以方便使用。同时指定inline，提高Release模式下代码执行效率。</p>
-<p>随后则是和MLP的线性模块类似，CNN的基本模块由卷积层，激活函数和归一化层组成。代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConvReluBnImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ConvReluBnImpl(<span class="keyword">int</span> input_channel=<span class="number">3</span>, <span class="keyword">int</span> output_channel=<span class="number">64</span>, <span class="keyword">int</span> kernel_size = <span class="number">3</span>, <span class="keyword">int</span> stride = <span class="number">1</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// Declare layers</span></span><br><span class="line">    torch::nn::Conv2d conv&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">TORCH_MODULE(ConvReluBn);</span><br><span class="line"></span><br><span class="line">ConvReluBnImpl::ConvReluBnImpl(<span class="keyword">int</span> input_channel, <span class="keyword">int</span> output_channel, <span class="keyword">int</span> kernel_size, <span class="keyword">int</span> stride) &#123;</span><br><span class="line">    conv = register_module(<span class="string">"conv"</span>, torch::nn::Conv2d(conv_options(input_channel,output_channel,kernel_size,stride,kernel_size/<span class="number">2</span>)));</span><br><span class="line">    bn = register_module(<span class="string">"bn"</span>, torch::nn::BatchNorm2d(output_channel));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor ConvReluBnImpl::forward(torch::Tensor x) &#123;</span><br><span class="line">    x = torch::relu(conv-&gt;forward(x));</span><br><span class="line">    x = bn(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1><span id="简单mlp">简单MLP</span></h1><p>在MLP的例子中，我们以搭建一个四层感知机为例，介绍如何使用cpp实现深度学习模型。该感知机接受in_features个特征，输出out_features个编码后的特征。中间特征数定义为32，64和128，其实一般逆序效果更佳，但是只是作为例子也无关紧要。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MLP</span>:</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MLP(<span class="keyword">int</span> in_features, <span class="keyword">int</span> out_features);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> mid_features[<span class="number">3</span>] = &#123;<span class="number">32</span>,<span class="number">64</span>,<span class="number">128</span>&#125;;</span><br><span class="line">    LinearBnRelu ln1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    LinearBnRelu ln2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    LinearBnRelu ln3&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Linear out_ln&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">MLP::MLP(<span class="keyword">int</span> in_features, <span class="keyword">int</span> out_features)&#123;</span><br><span class="line">    ln1 = LinearBnRelu(in_features, mid_features[<span class="number">0</span>]);</span><br><span class="line">    ln2 = LinearBnRelu(mid_features[<span class="number">0</span>], mid_features[<span class="number">1</span>]);</span><br><span class="line">    ln3 = LinearBnRelu(mid_features[<span class="number">1</span>], mid_features[<span class="number">2</span>]);</span><br><span class="line">    out_ln = torch::nn::Linear(mid_features[<span class="number">2</span>], out_features);</span><br><span class="line"></span><br><span class="line">    ln1 = register_module(<span class="string">"ln1"</span>, ln1);</span><br><span class="line">    ln2 = register_module(<span class="string">"ln2"</span>, ln2);</span><br><span class="line">    ln3 = register_module(<span class="string">"ln3"</span>, ln3);</span><br><span class="line">    out_ln = register_module(<span class="string">"out_ln"</span>,out_ln);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor MLP::forward(torch::Tensor x)&#123;</span><br><span class="line">    x = ln1-&gt;forward(x);</span><br><span class="line">    x = ln2-&gt;forward(x);</span><br><span class="line">    x = ln3-&gt;forward(x);</span><br><span class="line">    x = out_ln-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>随后则是和MLP的线性模块类似，CNN的基本模块由卷积层，激活函数和归一化层组成。代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ConvReluBnImpl</span> : <span class="keyword">public</span> torch::nn::Module &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ConvReluBnImpl</span>(<span class="type">int</span> input_channel=<span class="number">3</span>, <span class="type">int</span> output_channel=<span class="number">64</span>, <span class="type">int</span> kernel_size = <span class="number">3</span>, <span class="type">int</span> stride = <span class="number">1</span>);</span><br><span class="line">    <span class="function">torch::Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// Declare layers</span></span><br><span class="line">    torch::nn::Conv2d conv&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">TORCH_MODULE</span>(ConvReluBn);</span><br><span class="line"></span><br><span class="line">ConvReluBnImpl::<span class="built_in">ConvReluBnImpl</span>(<span class="type">int</span> input_channel, <span class="type">int</span> output_channel, <span class="type">int</span> kernel_size, <span class="type">int</span> stride) &#123;</span><br><span class="line">    conv = <span class="built_in">register_module</span>(<span class="string">&quot;conv&quot;</span>, torch::nn::<span class="built_in">Conv2d</span>(<span class="built_in">conv_options</span>(input_channel,output_channel,kernel_size,stride,kernel_size/<span class="number">2</span>)));</span><br><span class="line">    bn = <span class="built_in">register_module</span>(<span class="string">&quot;bn&quot;</span>, torch::nn::<span class="built_in">BatchNorm2d</span>(output_channel));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">torch::Tensor <span class="title">ConvReluBnImpl::forward</span><span class="params">(torch::Tensor x)</span> </span>&#123;</span><br><span class="line">    x = torch::<span class="built_in">relu</span>(conv-&gt;forward(x));</span><br><span class="line">    x = <span class="built_in">bn</span>(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1><span id="简单mlp">简单MLP</span></h1><p>在MLP的例子中，我们以搭建一个四层感知机为例，介绍如何使用cpp实现深度学习模型。该感知机接受in_features个特征，输出out_features个编码后的特征。中间特征数定义为32，64和128，其实一般逆序效果更佳，但是只是作为例子也无关紧要。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MLP</span>: <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MLP</span>(<span class="type">int</span> in_features, <span class="type">int</span> out_features);</span><br><span class="line">    <span class="function">torch::Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> mid_features[<span class="number">3</span>] = &#123;<span class="number">32</span>,<span class="number">64</span>,<span class="number">128</span>&#125;;</span><br><span class="line">    LinearBnRelu ln1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    LinearBnRelu ln2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    LinearBnRelu ln3&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Linear out_ln&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">MLP::<span class="built_in">MLP</span>(<span class="type">int</span> in_features, <span class="type">int</span> out_features)&#123;</span><br><span class="line">    ln1 = <span class="built_in">LinearBnRelu</span>(in_features, mid_features[<span class="number">0</span>]);</span><br><span class="line">    ln2 = <span class="built_in">LinearBnRelu</span>(mid_features[<span class="number">0</span>], mid_features[<span class="number">1</span>]);</span><br><span class="line">    ln3 = <span class="built_in">LinearBnRelu</span>(mid_features[<span class="number">1</span>], mid_features[<span class="number">2</span>]);</span><br><span class="line">    out_ln = torch::nn::<span class="built_in">Linear</span>(mid_features[<span class="number">2</span>], out_features);</span><br><span class="line"></span><br><span class="line">    ln1 = <span class="built_in">register_module</span>(<span class="string">&quot;ln1&quot;</span>, ln1);</span><br><span class="line">    ln2 = <span class="built_in">register_module</span>(<span class="string">&quot;ln2&quot;</span>, ln2);</span><br><span class="line">    ln3 = <span class="built_in">register_module</span>(<span class="string">&quot;ln3&quot;</span>, ln3);</span><br><span class="line">    out_ln = <span class="built_in">register_module</span>(<span class="string">&quot;out_ln&quot;</span>,out_ln);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">torch::Tensor <span class="title">MLP::forward</span><span class="params">(torch::Tensor x)</span></span>&#123;</span><br><span class="line">    x = ln1-&gt;forward(x);</span><br><span class="line">    x = ln2-&gt;forward(x);</span><br><span class="line">    x = ln3-&gt;forward(x);</span><br><span class="line">    x = out_ln-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>每一层的实现均是通过前面定义的基本模块LinearBnRelu。</p>
-<h1><span id="简单cnn">简单CNN</span></h1><p>前面介绍了构建CNN的基本模块ConvReluBn，接下来尝试用c++搭建CNN模型。该CNN由三个stage组成，每个stage又由一个卷积层一个下采样层组成。这样相当于对原始输入图像进行了8倍下采样。中间层的通道数变化与前面MLP特征数变化相同，均为输入-&gt;32-&gt;64-&gt;128-&gt;输出。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">plainCNN</span> :</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    plainCNN(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> mid_channels[<span class="number">3</span>] = &#123;<span class="number">32</span>,<span class="number">64</span>,<span class="number">128</span>&#125;;</span><br><span class="line">    ConvReluBn conv1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn down1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn conv2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn down2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn conv3&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn down3&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Conv2d out_conv&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">plainCNN::plainCNN(<span class="keyword">int</span> in_channels, <span class="keyword">int</span> out_channels)&#123;</span><br><span class="line">    conv1 = ConvReluBn(in_channels,mid_channels[<span class="number">0</span>],<span class="number">3</span>);</span><br><span class="line">    down1 = ConvReluBn(mid_channels[<span class="number">0</span>],mid_channels[<span class="number">0</span>],<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">    conv2 = ConvReluBn(mid_channels[<span class="number">0</span>],mid_channels[<span class="number">1</span>],<span class="number">3</span>);</span><br><span class="line">    down2 = ConvReluBn(mid_channels[<span class="number">1</span>],mid_channels[<span class="number">1</span>],<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">    conv3 = ConvReluBn(mid_channels[<span class="number">1</span>],mid_channels[<span class="number">2</span>],<span class="number">3</span>);</span><br><span class="line">    down3 = ConvReluBn(mid_channels[<span class="number">2</span>],mid_channels[<span class="number">2</span>],<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">    out_conv = torch::nn::Conv2d(conv_options(mid_channels[<span class="number">2</span>],out_channels,<span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">    conv1 = register_module(<span class="string">"conv1"</span>,conv1);</span><br><span class="line">    down1 = register_module(<span class="string">"down1"</span>,down1);</span><br><span class="line">    conv2 = register_module(<span class="string">"conv2"</span>,conv2);</span><br><span class="line">    down2 = register_module(<span class="string">"down2"</span>,down2);</span><br><span class="line">    conv3 = register_module(<span class="string">"conv3"</span>,conv3);</span><br><span class="line">    down3 = register_module(<span class="string">"down3"</span>,down3);</span><br><span class="line">    out_conv = register_module(<span class="string">"out_conv"</span>,out_conv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor plainCNN::forward(torch::Tensor x)&#123;</span><br><span class="line">    x = conv1-&gt;forward(x);</span><br><span class="line">    x = down1-&gt;forward(x);</span><br><span class="line">    x = conv2-&gt;forward(x);</span><br><span class="line">    x = down2-&gt;forward(x);</span><br><span class="line">    x = conv3-&gt;forward(x);</span><br><span class="line">    x = down3-&gt;forward(x);</span><br><span class="line">    x = out_conv-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1><span id="简单cnn">简单CNN</span></h1><p>前面介绍了构建CNN的基本模块ConvReluBn，接下来尝试用c++搭建CNN模型。该CNN由三个stage组成，每个stage又由一个卷积层一个下采样层组成。这样相当于对原始输入图像进行了8倍下采样。中间层的通道数变化与前面MLP特征数变化相同，均为输入-&gt;32-&gt;64-&gt;128-&gt;输出。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">plainCNN</span> : <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">plainCNN</span>(<span class="type">int</span> in_channels, <span class="type">int</span> out_channels);</span><br><span class="line">    <span class="function">torch::Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> mid_channels[<span class="number">3</span>] = &#123;<span class="number">32</span>,<span class="number">64</span>,<span class="number">128</span>&#125;;</span><br><span class="line">    ConvReluBn conv1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn down1&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn conv2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn down2&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn conv3&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    ConvReluBn down3&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Conv2d out_conv&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">plainCNN::<span class="built_in">plainCNN</span>(<span class="type">int</span> in_channels, <span class="type">int</span> out_channels)&#123;</span><br><span class="line">    conv1 = <span class="built_in">ConvReluBn</span>(in_channels,mid_channels[<span class="number">0</span>],<span class="number">3</span>);</span><br><span class="line">    down1 = <span class="built_in">ConvReluBn</span>(mid_channels[<span class="number">0</span>],mid_channels[<span class="number">0</span>],<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">    conv2 = <span class="built_in">ConvReluBn</span>(mid_channels[<span class="number">0</span>],mid_channels[<span class="number">1</span>],<span class="number">3</span>);</span><br><span class="line">    down2 = <span class="built_in">ConvReluBn</span>(mid_channels[<span class="number">1</span>],mid_channels[<span class="number">1</span>],<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">    conv3 = <span class="built_in">ConvReluBn</span>(mid_channels[<span class="number">1</span>],mid_channels[<span class="number">2</span>],<span class="number">3</span>);</span><br><span class="line">    down3 = <span class="built_in">ConvReluBn</span>(mid_channels[<span class="number">2</span>],mid_channels[<span class="number">2</span>],<span class="number">3</span>,<span class="number">2</span>);</span><br><span class="line">    out_conv = torch::nn::<span class="built_in">Conv2d</span>(<span class="built_in">conv_options</span>(mid_channels[<span class="number">2</span>],out_channels,<span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">    conv1 = <span class="built_in">register_module</span>(<span class="string">&quot;conv1&quot;</span>,conv1);</span><br><span class="line">    down1 = <span class="built_in">register_module</span>(<span class="string">&quot;down1&quot;</span>,down1);</span><br><span class="line">    conv2 = <span class="built_in">register_module</span>(<span class="string">&quot;conv2&quot;</span>,conv2);</span><br><span class="line">    down2 = <span class="built_in">register_module</span>(<span class="string">&quot;down2&quot;</span>,down2);</span><br><span class="line">    conv3 = <span class="built_in">register_module</span>(<span class="string">&quot;conv3&quot;</span>,conv3);</span><br><span class="line">    down3 = <span class="built_in">register_module</span>(<span class="string">&quot;down3&quot;</span>,down3);</span><br><span class="line">    out_conv = <span class="built_in">register_module</span>(<span class="string">&quot;out_conv&quot;</span>,out_conv);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">torch::Tensor <span class="title">plainCNN::forward</span><span class="params">(torch::Tensor x)</span></span>&#123;</span><br><span class="line">    x = conv1-&gt;forward(x);</span><br><span class="line">    x = down1-&gt;forward(x);</span><br><span class="line">    x = conv2-&gt;forward(x);</span><br><span class="line">    x = down2-&gt;forward(x);</span><br><span class="line">    x = conv3-&gt;forward(x);</span><br><span class="line">    x = down3-&gt;forward(x);</span><br><span class="line">    x = out_conv-&gt;forward(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>假定输入一个三通道图片，输出通道数定义为n，输入表示一个[1,3,224,224]的张量，将得到一个[1,n,28,28]的输出张量。</p>
-<h1><span id="简单lstm">简单LSTM</span></h1><p>最后则是一个简单的LSTM的例子，用以处理时序型特征。在直接使用torch::nn::LSTM类之前，我们先顶一个返回torch::nn::LSTMOptions对象的函数，该函数接受关于LSTM的超参数，返回这些超参数定义的结果。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> torch::nn::<span class="function">LSTMOptions <span class="title">lstmOption</span><span class="params">(<span class="keyword">int</span> in_features, <span class="keyword">int</span> hidden_layer_size, <span class="keyword">int</span> num_layers, <span class="keyword">bool</span> batch_first = <span class="literal">false</span>, <span class="keyword">bool</span> bidirectional = <span class="literal">false</span>)</span></span>&#123;</span><br><span class="line">    torch::nn::LSTMOptions lstmOption = torch::nn::LSTMOptions(in_features, hidden_layer_size);</span><br><span class="line">    lstmOption.num_layers(num_layers).batch_first(batch_first).bidirectional(bidirectional);</span><br><span class="line">    <span class="keyword">return</span> lstmOption;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//batch_first: true for io(batch, seq, feature) else io(seq, batch, feature)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span>:</span> <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LSTM(<span class="keyword">int</span> in_features, <span class="keyword">int</span> hidden_layer_size, <span class="keyword">int</span> out_size, <span class="keyword">int</span> num_layers, <span class="keyword">bool</span> batch_first);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    torch::nn::LSTM lstm&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Linear ln&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::tuple&lt;torch::Tensor, torch::Tensor&gt; hidden_cell;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>声明好LSTM以后，我们将内部的初始化函数和前向传播函数实现如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LSTM::LSTM(<span class="keyword">int</span> in_features, <span class="keyword">int</span> hidden_layer_size, <span class="keyword">int</span> out_size, <span class="keyword">int</span> num_layers, <span class="keyword">bool</span> batch_first)&#123;</span><br><span class="line">    lstm = torch::nn::LSTM(lstmOption(in_features, hidden_layer_size, num_layers, batch_first));</span><br><span class="line">    ln = torch::nn::Linear(hidden_layer_size, out_size);</span><br><span class="line"></span><br><span class="line">    lstm = register_module(<span class="string">"lstm"</span>,lstm);</span><br><span class="line">    ln = register_module(<span class="string">"ln"</span>,ln);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor LSTM::forward(torch::Tensor x)&#123;</span><br><span class="line">    <span class="keyword">auto</span> lstm_out = lstm-&gt;forward(x);</span><br><span class="line">    <span class="keyword">auto</span> predictions = ln-&gt;forward(<span class="built_in">std</span>::get&lt;<span class="number">0</span>&gt;(lstm_out));</span><br><span class="line">    <span class="keyword">return</span> predictions.select(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代码见<a href="https://github.com/AllentDan/LibtorchTutorials" target="_blank" rel="noopener">github</a></p>
+<h1><span id="简单lstm">简单LSTM</span></h1><p>最后则是一个简单的LSTM的例子，用以处理时序型特征。在直接使用torch::nn::LSTM类之前，我们先顶一个返回torch::nn::LSTMOptions对象的函数，该函数接受关于LSTM的超参数，返回这些超参数定义的结果。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> torch::<span class="function">nn::LSTMOptions <span class="title">lstmOption</span><span class="params">(<span class="type">int</span> in_features, <span class="type">int</span> hidden_layer_size, <span class="type">int</span> num_layers, <span class="type">bool</span> batch_first = <span class="literal">false</span>, <span class="type">bool</span> bidirectional = <span class="literal">false</span>)</span></span>&#123;</span><br><span class="line">    torch::nn::LSTMOptions lstmOption = torch::nn::<span class="built_in">LSTMOptions</span>(in_features, hidden_layer_size);</span><br><span class="line">    lstmOption.<span class="built_in">num_layers</span>(num_layers).<span class="built_in">batch_first</span>(batch_first).<span class="built_in">bidirectional</span>(bidirectional);</span><br><span class="line">    <span class="keyword">return</span> lstmOption;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//batch_first: true for io(batch, seq, feature) else io(seq, batch, feature)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LSTM</span>: <span class="keyword">public</span> torch::nn::Module&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">LSTM</span>(<span class="type">int</span> in_features, <span class="type">int</span> hidden_layer_size, <span class="type">int</span> out_size, <span class="type">int</span> num_layers, <span class="type">bool</span> batch_first);</span><br><span class="line">    <span class="function">torch::Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    torch::nn::LSTM lstm&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    torch::nn::Linear ln&#123;<span class="literal">nullptr</span>&#125;;</span><br><span class="line">    std::tuple&lt;torch::Tensor, torch::Tensor&gt; hidden_cell;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>声明好LSTM以后，我们将内部的初始化函数和前向传播函数实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">LSTM::<span class="built_in">LSTM</span>(<span class="type">int</span> in_features, <span class="type">int</span> hidden_layer_size, <span class="type">int</span> out_size, <span class="type">int</span> num_layers, <span class="type">bool</span> batch_first)&#123;</span><br><span class="line">    lstm = torch::nn::<span class="built_in">LSTM</span>(<span class="built_in">lstmOption</span>(in_features, hidden_layer_size, num_layers, batch_first));</span><br><span class="line">    ln = torch::nn::<span class="built_in">Linear</span>(hidden_layer_size, out_size);</span><br><span class="line"></span><br><span class="line">    lstm = <span class="built_in">register_module</span>(<span class="string">&quot;lstm&quot;</span>,lstm);</span><br><span class="line">    ln = <span class="built_in">register_module</span>(<span class="string">&quot;ln&quot;</span>,ln);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">torch::Tensor <span class="title">LSTM::forward</span><span class="params">(torch::Tensor x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> lstm_out = lstm-&gt;forward(x);</span><br><span class="line">    <span class="keyword">auto</span> predictions = ln-&gt;forward(std::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(lstm_out));</span><br><span class="line">    <span class="keyword">return</span> predictions.<span class="built_in">select</span>(<span class="number">1</span>,<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码见<a target="_blank" rel="noopener" href="https://github.com/AllentDan/LibtorchTutorials">github</a></p>
 
       
     </div>
@@ -390,14 +397,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -429,7 +436,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/16/libtorch教程（二）/" rel="next" title="libtorch教程（二）">
+              <a href="/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="libtorch教程（二）">
                 <i class="fa fa-chevron-left"></i> libtorch教程（二）
               </a>
             
@@ -439,7 +446,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/01/18/libtorch教程（四）/" rel="prev" title="libtorch教程（四）">
+              <a href="/2021/01/18/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="prev" title="libtorch教程（四）">
                 libtorch教程（四） <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -514,9 +521,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -525,9 +534,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -549,7 +558,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -604,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">基本模块搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">MLP基本单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">CNN基本单元</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">简单MLP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">简单CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">简单LSTM</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">基本模块搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">MLP基本单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">CNN基本单元</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">简单MLP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">简单CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">简单LSTM</span></a></li></ol></div>
             
 
           </div>
@@ -624,7 +633,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

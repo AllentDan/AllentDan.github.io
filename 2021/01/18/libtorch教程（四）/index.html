@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="libtorch,">
+  <meta name="keywords" content="libtorch," />
 
 
 
@@ -80,24 +80,24 @@
 
 
 <meta name="description" content="本章将详细介绍如何使用libtorch自带的数据加载模块，使用该模块是实现模型训练的重要条件。除非这个数据加载模块功能不够，不然继承libtorch的数据加载类还是很有必要的，简单高效。 使用前置条件libtorch提供了丰富的基类供用户自定义派生类，torch::data::Dataset就是其中一个常用基类。使用该类需要明白基类和派生类，以及所谓的继承和多态。有c++编程经验者应该都不会陌生，">
-<meta name="keywords" content="libtorch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="libtorch教程（四）">
-<meta property="og:url" content="https://allentdan.github.io/2021/01/18/libtorch教程（四）/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2021/01/18/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="本章将详细介绍如何使用libtorch自带的数据加载模块，使用该模块是实现模型训练的重要条件。除非这个数据加载模块功能不够，不然继承libtorch的数据加载类还是很有必要的，简单高效。 使用前置条件libtorch提供了丰富的基类供用户自定义派生类，torch::data::Dataset就是其中一个常用基类。使用该类需要明白基类和派生类，以及所谓的继承和多态。有c++编程经验者应该都不会陌生，">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-27T15:34:40.896Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-18T11:50:16.000Z">
+<meta property="article:modified_time" content="2021-01-27T15:34:40.896Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="libtorch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="libtorch教程（四）">
-<meta name="twitter:description" content="本章将详细介绍如何使用libtorch自带的数据加载模块，使用该模块是实现模型训练的重要条件。除非这个数据加载模块功能不够，不然继承libtorch的数据加载类还是很有必要的，简单高效。 使用前置条件libtorch提供了丰富的基类供用户自定义派生类，torch::data::Dataset就是其中一个常用基类。使用该类需要明白基类和派生类，以及所谓的继承和多态。有c++编程经验者应该都不会陌生，">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2021/01/18/libtorch教程（四）/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/01/18/libtorch教程（四）/"/>
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -154,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -182,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -192,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -202,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -212,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -222,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -263,11 +263,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/18/libtorch教程（四）/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/18/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -311,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/01/18/libtorch教程（四）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/18/libtorch教程（四）/" itemprop="commentsCount"></span>
+                <a href="/2021/01/18/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/18/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2021/01/18/libtorch教程（四）/" class="leancloud_visitors" data-flag-title="libtorch教程（四）">
+             <span id="/2021/01/18/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89/" class="leancloud_visitors" data-flag-title="libtorch教程（四）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -335,7 +335,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -359,13 +359,17 @@
         <p>本章将详细介绍如何使用libtorch自带的数据加载模块，使用该模块是实现模型训练的重要条件。除非这个数据加载模块功能不够，不然继承libtorch的数据加载类还是很有必要的，简单高效。</p>
 <h1><span id="使用前置条件">使用前置条件</span></h1><p>libtorch提供了丰富的基类供用户自定义派生类，torch::data::Dataset就是其中一个常用基类。使用该类需要明白基类和派生类，以及所谓的继承和多态。有c++编程经验者应该都不会陌生，为方便不同阶段读者就简单解释一下吧。类就是父亲，可以生出不同的儿子，生儿子叫派生或者继承(看使用语境)，生不同的儿子就实现了多态。父亲就是基类，儿子就是派生类。现实中，父亲会把自身的一部分财产留下来养老，儿子们都不能碰，这就是private了，部分财产儿子能用，但是儿子的对象不能用，这叫protected，还有些财产谁都能用就是public。和现实中的父子类似，代码中，派生类可以使用父类的部分属性或者函数，全看父类怎样定义。</p>
 <p>然后理解一下虚函数，就是父亲指定了部分财产是public的，但是是用来买房的，不同的儿子可以买不同的房子，可以全款可以贷款，这就是财产在父亲那就是virtual的。子类要继承这个virtual财产可以自己重新规划使用方式。</p>
-<p>事实上，如果有过pytorch的编程经验者很快会发现，libtorch的Dataset类的使用和python下使用非常相像。pytorch自定义dataload，需要定义好Dataset的派生类，包括初始化函数<strong>init</strong>，获取函数<strong>getitem</strong>以及数据集大小函数<strong>len</strong>。类似的，libtorch中同样需要处理好初始化函数，get()函数和size()函数。</p>
-<h1><span id="图片文件遍历">图片文件遍历</span></h1><p>下面以分类任务为例，介绍libtorch的Dataset类的使用。使用pytorch官网提供的<a href="https://download.pytorch.org/tutorial/hymenoptera_data.zip" target="_blank" rel="noopener">昆虫分类数据集</a>，下载到本地解压。将该数据集根目录作为索引，实现Dataloader对图片的加载。</p>
-<p>首先定义一个加载图片的函数，使用网上出现较多的c++遍历文件夹的代码，将代码稍作修改如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历该目录下的.jpg图片</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">load_data_from_folder</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> image_dir, <span class="built_in">std</span>::<span class="built_in">string</span> type, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; &amp;list_images, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;list_labels, <span class="keyword">int</span> label)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">load_data_from_folder</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> path, <span class="built_in">std</span>::<span class="built_in">string</span> type, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; &amp;list_images, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;list_labels, <span class="keyword">int</span> label)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> hFile = <span class="number">0</span>; <span class="comment">//句柄</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">finddata_t</span> <span class="title">fileInfo</span>;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> pathName;</span><br><span class="line">    <span class="keyword">if</span> ((hFile = _findfirst(pathName.assign(path).append(<span class="string">"\\*.*"</span>).c_str(), &amp;fileInfo)) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* s = fileInfo.name;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span>* t = type.data();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fileInfo.attrib&amp;_A_SUBDIR) <span class="comment">//是子文件夹</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//遍历子文件夹中的文件(夹)</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strcmp</span>(s, <span class="string">"."</span>) == <span class="number">0</span> || <span class="built_in">strcmp</span>(s, <span class="string">".."</span>) == <span class="number">0</span>) <span class="comment">//子文件夹目录是.或者..</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">string</span> sub_path = path + <span class="string">"\\"</span> + fileInfo.name;</span><br><span class="line">            label++;</span><br><span class="line">            load_data_from_folder(sub_path, type, list_images, list_labels, label);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="comment">//判断是不是后缀为type文件</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strstr</span>(s, t))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">string</span> image_path = path + <span class="string">"\\"</span> + fileInfo.name;</span><br><span class="line">                list_images.push_back(image_path);</span><br><span class="line">                list_labels.push_back(label);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (_findnext(hFile, &amp;fileInfo) == <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>修改后的函数接受数据集文件夹路径image_dir和图片类型image_type，将遍历到的图片路径和其类别分别存储到list_images和list_labels，最后lable变量用于表示类别计数。传入lable=-1，返回的lable值加一后等于图片类别。</p>
-<h1><span id="自定义dataset">自定义Dataset</span></h1><p>定义dataSetClc，该类继承自torch::data::Dataset。定义私有变量image_paths和labels分别存储图片路径和类别，是两个vector变量。dataSetClc的初始化函数就是加载图片和类别。通过get()函数返回由图像和类别构成的张量列表。可以在get()函数中做任意针对图像的操作，如数据增强等。效果等价于pytorch中的<strong>getitem</strong>中的数据增强。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dataSetClc</span>:</span><span class="keyword">public</span> torch::data::Dataset&lt;dataSetClc&gt;&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> class_index = <span class="number">0</span>;</span><br><span class="line">    dataSetClc(<span class="built_in">std</span>::<span class="built_in">string</span> image_dir, <span class="built_in">std</span>::<span class="built_in">string</span> type)&#123;</span><br><span class="line">        load_data_from_folder(image_dir, <span class="built_in">std</span>::<span class="built_in">string</span>(type), image_paths, labels, class_index<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Override get() function to return tensor at location index</span></span><br><span class="line">    torch::data::Example&lt;&gt; get(<span class="keyword">size_t</span> index) override&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">string</span> image_path = image_paths.at(index);</span><br><span class="line">        cv::Mat image = cv::imread(image_path);</span><br><span class="line">        cv::resize(image, image, cv::Size(<span class="number">224</span>, <span class="number">224</span>)); <span class="comment">//尺寸统一，用于张量stack，否则不能使用stack</span></span><br><span class="line">        <span class="keyword">int</span> label = labels.at(index);</span><br><span class="line">        torch::Tensor img_tensor = torch::from_blob(image.data, &#123; image.rows, image.cols, <span class="number">3</span> &#125;, torch::kByte).permute(&#123; <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span> &#125;); <span class="comment">// Channels x Height x Width</span></span><br><span class="line">        torch::Tensor label_tensor = torch::full(&#123; <span class="number">1</span> &#125;, label);</span><br><span class="line">        <span class="keyword">return</span> &#123;img_tensor.clone(), label_tensor.clone()&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Override size() function, return the length of data</span></span><br><span class="line">    torch::optional&lt;<span class="keyword">size_t</span>&gt; size() <span class="keyword">const</span> override &#123;</span><br><span class="line">        <span class="keyword">return</span> image_paths.size();</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; image_paths;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; labels;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h1><span id="使用自定义的dataset">使用自定义的Dataset</span></h1><p>下面使用定义好的数据加载类，以昆虫分类中的训练集作为测试，代码如下。可以打印加载的图片张量和类别。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> batch_size = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> image_dir = <span class="string">"your path to\\hymenoptera_data\\train"</span>;</span><br><span class="line"><span class="keyword">auto</span> mdataset = myDataset(image_dir,<span class="string">".jpg"</span>).<span class="built_in">map</span>(torch::data::transforms::Stack&lt;&gt;());</span><br><span class="line"><span class="keyword">auto</span> mdataloader = torch::data::make_data_loader&lt;torch::data::samplers::RandomSampler&gt;(<span class="built_in">std</span>::move(mdataset), batch_size);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;batch: *mdataloader)&#123;</span><br><span class="line">    <span class="keyword">auto</span> data = batch.data;</span><br><span class="line">    <span class="keyword">auto</span> target = batch.target;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;data.sizes()&lt;&lt;target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代码见<a href="https://github.com/AllentDan/LibtorchTutorials" target="_blank" rel="noopener">github</a></p>
+<p>事实上，如果有过pytorch的编程经验者很快会发现，libtorch的Dataset类的使用和python下使用非常相像。pytorch自定义dataload，需要定义好Dataset的派生类，包括初始化函数__init__，获取函数__getitem__以及数据集大小函数__len__。类似的，libtorch中同样需要处理好初始化函数，get()函数和size()函数。</p>
+<h1><span id="图片文件遍历">图片文件遍历</span></h1><p>下面以分类任务为例，介绍libtorch的Dataset类的使用。使用pytorch官网提供的<a target="_blank" rel="noopener" href="https://download.pytorch.org/tutorial/hymenoptera_data.zip">昆虫分类数据集</a>，下载到本地解压。将该数据集根目录作为索引，实现Dataloader对图片的加载。</p>
+<p>首先定义一个加载图片的函数，使用网上出现较多的c++遍历文件夹的代码，将代码稍作修改如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历该目录下的.jpg图片</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">load_data_from_folder</span><span class="params">(std::string image_dir, std::string type, std::vector&lt;std::string&gt; &amp;list_images, std::vector&lt;<span class="type">int</span>&gt; &amp;list_labels, <span class="type">int</span> label)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">load_data_from_folder</span><span class="params">(std::string path, std::string type, std::vector&lt;std::string&gt; &amp;list_images, std::vector&lt;<span class="type">int</span>&gt; &amp;list_labels, <span class="type">int</span> label)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> hFile = <span class="number">0</span>; <span class="comment">//句柄</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">_finddata_t</span> fileInfo;</span><br><span class="line">    std::string pathName;</span><br><span class="line">    <span class="keyword">if</span> ((hFile = _findfirst(pathName.<span class="built_in">assign</span>(path).<span class="built_in">append</span>(<span class="string">&quot;\\*.*&quot;</span>).<span class="built_in">c_str</span>(), &amp;fileInfo)) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">char</span>* s = fileInfo.name;</span><br><span class="line">        <span class="type">const</span> <span class="type">char</span>* t = type.<span class="built_in">data</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fileInfo.attrib&amp;_A_SUBDIR) <span class="comment">//是子文件夹</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//遍历子文件夹中的文件(夹)</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strcmp</span>(s, <span class="string">&quot;.&quot;</span>) == <span class="number">0</span> || <span class="built_in">strcmp</span>(s, <span class="string">&quot;..&quot;</span>) == <span class="number">0</span>) <span class="comment">//子文件夹目录是.或者..</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            std::string sub_path = path + <span class="string">&quot;\\&quot;</span> + fileInfo.name;</span><br><span class="line">            label++;</span><br><span class="line">            <span class="built_in">load_data_from_folder</span>(sub_path, type, list_images, list_labels, label);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="comment">//判断是不是后缀为type文件</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strstr</span>(s, t))</span><br><span class="line">            &#123;</span><br><span class="line">                std::string image_path = path + <span class="string">&quot;\\&quot;</span> + fileInfo.name;</span><br><span class="line">                list_images.<span class="built_in">push_back</span>(image_path);</span><br><span class="line">                list_labels.<span class="built_in">push_back</span>(label);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (_findnext(hFile, &amp;fileInfo) == <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改后的函数接受数据集文件夹路径image_dir和图片类型image_type，将遍历到的图片路径和其类别分别存储到list_images和list_labels，最后lable变量用于表示类别计数。传入lable&#x3D;-1，返回的lable值加一后等于图片类别。</p>
+<h1><span id="自定义dataset">自定义Dataset</span></h1><p>定义dataSetClc，该类继承自torch::data::Dataset。定义私有变量image_paths和labels分别存储图片路径和类别，是两个vector变量。dataSetClc的初始化函数就是加载图片和类别。通过get()函数返回由图像和类别构成的张量列表。可以在get()函数中做任意针对图像的操作，如数据增强等。效果等价于pytorch中的__getitem__中的数据增强。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">dataSetClc</span>:<span class="keyword">public</span> torch::data::Dataset&lt;dataSetClc&gt;&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> class_index = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">dataSetClc</span>(std::string image_dir, std::string type)&#123;</span><br><span class="line">        <span class="built_in">load_data_from_folder</span>(image_dir, std::<span class="built_in">string</span>(type), image_paths, labels, class_index<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Override get() function to return tensor at location index</span></span><br><span class="line">    torch::data::Example&lt;&gt; <span class="built_in">get</span>(<span class="type">size_t</span> index) <span class="keyword">override</span>&#123;</span><br><span class="line">        std::string image_path = image_paths.<span class="built_in">at</span>(index);</span><br><span class="line">        cv::Mat image = cv::<span class="built_in">imread</span>(image_path);</span><br><span class="line">        cv::<span class="built_in">resize</span>(image, image, cv::<span class="built_in">Size</span>(<span class="number">224</span>, <span class="number">224</span>)); <span class="comment">//尺寸统一，用于张量stack，否则不能使用stack</span></span><br><span class="line">        <span class="type">int</span> label = labels.<span class="built_in">at</span>(index);</span><br><span class="line">        torch::Tensor img_tensor = torch::<span class="built_in">from_blob</span>(image.data, &#123; image.rows, image.cols, <span class="number">3</span> &#125;, torch::kByte).<span class="built_in">permute</span>(&#123; <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span> &#125;); <span class="comment">// Channels x Height x Width</span></span><br><span class="line">        torch::Tensor label_tensor = torch::<span class="built_in">full</span>(&#123; <span class="number">1</span> &#125;, label);</span><br><span class="line">        <span class="keyword">return</span> &#123;img_tensor.<span class="built_in">clone</span>(), label_tensor.<span class="built_in">clone</span>()&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Override size() function, return the length of data</span></span><br><span class="line">    <span class="function">torch::optional&lt;<span class="type">size_t</span>&gt; <span class="title">size</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> image_paths.<span class="built_in">size</span>();</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;std::string&gt; image_paths;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; labels;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1><span id="使用自定义的dataset">使用自定义的Dataset</span></h1><p>下面使用定义好的数据加载类，以昆虫分类中的训练集作为测试，代码如下。可以打印加载的图片张量和类别。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> batch_size = <span class="number">2</span>;</span><br><span class="line">std::string image_dir = <span class="string">&quot;your path to\\hymenoptera_data\\train&quot;</span>;</span><br><span class="line"><span class="keyword">auto</span> mdataset = <span class="built_in">myDataset</span>(image_dir,<span class="string">&quot;.jpg&quot;</span>).<span class="built_in">map</span>(torch::data::transforms::Stack&lt;&gt;());</span><br><span class="line"><span class="keyword">auto</span> mdataloader = torch::data::<span class="built_in">make_data_loader</span>&lt;torch::data::samplers::RandomSampler&gt;(std::<span class="built_in">move</span>(mdataset), batch_size);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;batch: *mdataloader)&#123;</span><br><span class="line">    <span class="keyword">auto</span> data = batch.data;</span><br><span class="line">    <span class="keyword">auto</span> target = batch.target;</span><br><span class="line">    std::cout&lt;&lt;data.<span class="built_in">sizes</span>()&lt;&lt;target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码见<a target="_blank" rel="noopener" href="https://github.com/AllentDan/LibtorchTutorials">github</a></p>
 
       
     </div>
@@ -386,14 +390,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -425,7 +429,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/16/libtorch教程（三）/" rel="next" title="libtorch教程（三）">
+              <a href="/2021/01/16/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89/" rel="next" title="libtorch教程（三）">
                 <i class="fa fa-chevron-left"></i> libtorch教程（三）
               </a>
             
@@ -435,7 +439,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/01/18/libtorch教程（五）/" rel="prev" title="libtorch教程（五）">
+              <a href="/2021/01/18/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89/" rel="prev" title="libtorch教程（五）">
                 libtorch教程（五） <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -510,9 +514,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -521,9 +527,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -545,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -600,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">使用前置条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">图片文件遍历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">自定义Dataset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">使用自定义的Dataset</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">使用前置条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">图片文件遍历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">自定义Dataset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">使用自定义的Dataset</span></a></li></ol></div>
             
 
           </div>
@@ -620,7 +626,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="TensorFlow,">
+  <meta name="keywords" content="TensorFlow," />
 
 
 
@@ -80,29 +80,24 @@
 
 
 <meta name="description" content="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测没啥好说，直接上代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182">
-<meta name="keywords" content="TensorFlow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测">
-<meta property="og:url" content="https://allentdan.github.io/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2019/05/10/Tensorflow-gpu%E8%AE%AD%E7%BB%83%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97pb%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%EF%BC%8CC-%E8%B0%83%E7%94%A8%E9%A2%84%E6%B5%8B/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测没啥好说，直接上代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://allentdan.github.io/images/3_mnist.png">
-<meta property="og:image" content="https://allentdan.github.io/images/normal.PNG">
-<meta property="og:image" content="https://allentdan.github.io/images/abnormal.PNG">
-<meta property="og:image" content="https://allentdan.github.io/images/c++预测.PNG">
-<meta property="og:updated_time" content="2019-07-03T06:33:00.178Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-10T02:47:11.000Z">
+<meta property="article:modified_time" content="2019-07-03T06:33:00.178Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="TensorFlow">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测">
-<meta name="twitter:description" content="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测没啥好说，直接上代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182">
-<meta name="twitter:image" content="https://allentdan.github.io/images/3_mnist.png">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -125,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/">
+  <link rel="canonical" href="https://allentdan.github.io/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/"/>
 
 
 
@@ -141,7 +136,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -159,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -187,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -197,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -207,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -217,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -227,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -268,11 +263,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2019/05/10/Tensorflow-gpu%E8%AE%AD%E7%BB%83%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97pb%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%EF%BC%8CC-%E8%B0%83%E7%94%A8%E9%A2%84%E6%B5%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -316,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/" itemprop="commentsCount"></span>
+                <a href="/2019/05/10/Tensorflow-gpu%E8%AE%AD%E7%BB%83%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97pb%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%EF%BC%8CC-%E8%B0%83%E7%94%A8%E9%A2%84%E6%B5%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/10/Tensorflow-gpu%E8%AE%AD%E7%BB%83%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97pb%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%EF%BC%8CC-%E8%B0%83%E7%94%A8%E9%A2%84%E6%B5%8B/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,7 +320,7 @@
 
           
           
-             <span id="/2019/05/10/Tensorflow-gpu训练手写数字pb模型文件，C-调用预测/" class="leancloud_visitors" data-flag-title="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测">
+             <span id="/2019/05/10/Tensorflow-gpu%E8%AE%AD%E7%BB%83%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97pb%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%EF%BC%8CC-%E8%B0%83%E7%94%A8%E9%A2%84%E6%B5%8B/" class="leancloud_visitors" data-flag-title="Tensorflow_gpu训练手写数字pb模型文件，C++调用预测">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -340,7 +335,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -362,23 +357,34 @@
 
       
         <h1><span id="tensorflow_gpu训练手写数字pb模型文件c调用预测">Tensorflow_gpu训练手写数字pb模型文件，C++调用预测</span></h1><p>没啥好说，直接上代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon May  6 09:50:41 2019</span><br><span class="line"></span><br><span class="line">@author: admin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># Python3</span><br><span class="line"></span><br><span class="line"># 使用LeNet5的七层卷积神经网络用于MNIST手写数字识别</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.examples.tutorials.mnist import input_data</span><br><span class="line"></span><br><span class="line">mnist = input_data.read_data_sets(&quot;MNIST_data&quot;, one_hot=True)</span><br><span class="line">pb_file_path = os.getcwd()   #获取当前代码路径</span><br><span class="line"></span><br><span class="line"># 为输入图像和目标输出类别创建节点</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line">x = tf.placeholder(tf.float32, shape=[None, 784],name=&apos;x&apos;) # 训练所需数据  占位符</span><br><span class="line">y_ = tf.placeholder(tf.float32, shape=[None, 10]) # 训练所需标签数据  占位符</span><br><span class="line"></span><br><span class="line"># *************** 构建多层卷积网络 *************** #</span><br><span class="line"></span><br><span class="line"># 权重、偏置、卷积及池化操作初始化,以避免在建立模型的时候反复做初始化操作</span><br><span class="line">def weight_variable(shape):</span><br><span class="line">  initial = tf.truncated_normal(shape, stddev=0.1) # 取随机值，符合均值为0，标准差stddev为0.1</span><br><span class="line">  return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">def bias_variable(shape):</span><br><span class="line">  initial = tf.constant(0.1, shape=shape)</span><br><span class="line">  return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"># x 的第一个参数为图片的数量，第二、三个参数分别为图片高度和宽度，第四个参数为图片通道数。</span><br><span class="line"># W 的前两个参数为卷积核尺寸，第三个参数为图像通道数，第四个参数为卷积核数量</span><br><span class="line"># strides为卷积步长，其第一、四个参数必须为1，因为卷积层的步长只对矩阵的长和宽有效</span><br><span class="line"># padding表示卷积的形式，即是否考虑边界。&quot;SAME&quot;是考虑边界，不足的时候用0去填充周围，&quot;VALID&quot;则不考虑</span><br><span class="line">def conv2d(x, W):</span><br><span class="line">  return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding=&apos;SAME&apos;)</span><br><span class="line"></span><br><span class="line"># x 参数的格式同tf.nn.conv2d中的x，ksize为池化层过滤器的尺度，strides为过滤器步长</span><br><span class="line">def max_pool_2x2(x):</span><br><span class="line">  return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&apos;SAME&apos;)</span><br><span class="line"></span><br><span class="line">#把x更改为4维张量，第1维代表样本数量，第2维和第3维代表图像长宽， 第4维代表图像通道数  </span><br><span class="line">x_image = tf.reshape(x, [-1,28,28,1]) # -1表示任意数量的样本数,大小为28x28，深度为1的张量</span><br><span class="line"></span><br><span class="line"># 第一层：卷积</span><br><span class="line">W_conv1 = weight_variable([5, 5, 1, 32]) # 卷积在每个5x5的patch中算出32个特征。</span><br><span class="line">b_conv1 = bias_variable([32])</span><br><span class="line"></span><br><span class="line">h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1) </span><br><span class="line"></span><br><span class="line"># 第二层：池化</span><br><span class="line">h_pool1 = max_pool_2x2(h_conv1)</span><br><span class="line"></span><br><span class="line"># 第三层：卷积</span><br><span class="line">W_conv2 = weight_variable([5, 5, 32, 64])</span><br><span class="line">b_conv2 = bias_variable([64])</span><br><span class="line"></span><br><span class="line">h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)</span><br><span class="line"></span><br><span class="line"># 第四层：池化</span><br><span class="line">h_pool2 = max_pool_2x2(h_conv2)</span><br><span class="line"></span><br><span class="line"># 第五层：全连接层</span><br><span class="line">W_fc1 = weight_variable([7 * 7 * 64, 1024])</span><br><span class="line">b_fc1 = bias_variable([1024])</span><br><span class="line"></span><br><span class="line">h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])</span><br><span class="line">h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)</span><br><span class="line"></span><br><span class="line"># 在输出层之前加入dropout以减少过拟合</span><br><span class="line">keep_prob = tf.placeholder(tf.float32, name=&quot;keep_prob&quot;)</span><br><span class="line">h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</span><br><span class="line"></span><br><span class="line"># 第六层：全连接层</span><br><span class="line">W_fc2 = weight_variable([1024, 10])</span><br><span class="line">b_fc2 = bias_variable([10])</span><br><span class="line"></span><br><span class="line"># 第七层：输出层</span><br><span class="line">y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2,name=&apos;y&apos;)</span><br><span class="line"></span><br><span class="line"># *************** 训练和评估模型 *************** #</span><br><span class="line"></span><br><span class="line"># 为训练过程指定最小化误差用的损失函数，即目标类别和预测类别之间的交叉熵</span><br><span class="line">cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))</span><br><span class="line"></span><br><span class="line"># 使用反向传播，利用优化器使损失函数最小化</span><br><span class="line">train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)</span><br><span class="line"></span><br><span class="line"># 检测我们的预测是否真实标签匹配(索引位置一样表示匹配)</span><br><span class="line"># tf.argmax(y_conv,dimension), 返回最大数值的下标 通常和tf.equal()一起使用，计算模型准确度</span><br><span class="line"># dimension=0 按列找  dimension=1 按行找</span><br><span class="line">correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))  </span><br><span class="line"></span><br><span class="line"># 统计测试准确率， 将correct_prediction的布尔值转换为浮点数来代表对、错，并取平均值。</span><br><span class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))</span><br><span class="line"></span><br><span class="line">saver = tf.train.Saver() # 定义saver</span><br><span class="line"></span><br><span class="line"># *************** 开始训练模型 *************** #</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">    for i in range(1002):</span><br><span class="line">      batch = mnist.train.next_batch(50)</span><br><span class="line">      if i%100 == 0:</span><br><span class="line">          </span><br><span class="line">          # 评估模型准确度，此阶段不使用Dropout</span><br><span class="line">          train_accuracy = accuracy.eval(feed_dict=&#123;x:batch[0], y_: batch[1], keep_prob: 1.0&#125;)</span><br><span class="line">          print(&quot;step %d, training accuracy %g&quot;%(i, train_accuracy))</span><br><span class="line">      # 训练模型，此阶段使用50%的Dropout</span><br><span class="line">      train_step.run(feed_dict=&#123;x: batch[0], y_: batch[1], keep_prob: 0.5&#125;) </span><br><span class="line">      if i%100 == 0:</span><br><span class="line">          constant_graph = tf.graph_util.convert_variables_to_constants(sess, sess.graph_def, [&apos;x&apos;,&apos;y&apos;,&apos;keep_prob&apos;])</span><br><span class="line">          with tf.gfile.FastGFile(&apos;e:\\model.pb&apos;, mode=&apos;wb&apos;) as f: #模型的名字是model.pb</span><br><span class="line">              f.write(constant_graph.SerializeToString())</span><br><span class="line">    saver.save(sess, &apos;./save/model.ckpt&apos;) #模型储存位置</span><br><span class="line"></span><br><span class="line">    print(&quot;test accuracy %g&quot;%accuracy.eval(feed_dict=&#123;x: mnist.test.images [0:2000], y_: mnist.test.labels [0:2000], keep_prob: 1.0&#125;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon May  6 09:50:41 2019</span><br><span class="line"></span><br><span class="line">@author: admin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"># Python3</span><br><span class="line"></span><br><span class="line"># 使用LeNet5的七层卷积神经网络用于MNIST手写数字识别</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.examples.tutorials.mnist import input_data</span><br><span class="line"></span><br><span class="line">mnist = input_data.read_data_sets(&quot;MNIST_data&quot;, one_hot=True)</span><br><span class="line">pb_file_path = os.getcwd()   #获取当前代码路径</span><br><span class="line"></span><br><span class="line"># 为输入图像和目标输出类别创建节点</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line">x = tf.placeholder(tf.float32, shape=[None, 784],name=&#x27;x&#x27;) # 训练所需数据  占位符</span><br><span class="line">y_ = tf.placeholder(tf.float32, shape=[None, 10]) # 训练所需标签数据  占位符</span><br><span class="line"></span><br><span class="line"># *************** 构建多层卷积网络 *************** #</span><br><span class="line"></span><br><span class="line"># 权重、偏置、卷积及池化操作初始化,以避免在建立模型的时候反复做初始化操作</span><br><span class="line">def weight_variable(shape):</span><br><span class="line">  initial = tf.truncated_normal(shape, stddev=0.1) # 取随机值，符合均值为0，标准差stddev为0.1</span><br><span class="line">  return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">def bias_variable(shape):</span><br><span class="line">  initial = tf.constant(0.1, shape=shape)</span><br><span class="line">  return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"># x 的第一个参数为图片的数量，第二、三个参数分别为图片高度和宽度，第四个参数为图片通道数。</span><br><span class="line"># W 的前两个参数为卷积核尺寸，第三个参数为图像通道数，第四个参数为卷积核数量</span><br><span class="line"># strides为卷积步长，其第一、四个参数必须为1，因为卷积层的步长只对矩阵的长和宽有效</span><br><span class="line"># padding表示卷积的形式，即是否考虑边界。&quot;SAME&quot;是考虑边界，不足的时候用0去填充周围，&quot;VALID&quot;则不考虑</span><br><span class="line">def conv2d(x, W):</span><br><span class="line">  return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding=&#x27;SAME&#x27;)</span><br><span class="line"></span><br><span class="line"># x 参数的格式同tf.nn.conv2d中的x，ksize为池化层过滤器的尺度，strides为过滤器步长</span><br><span class="line">def max_pool_2x2(x):</span><br><span class="line">  return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&#x27;SAME&#x27;)</span><br><span class="line"></span><br><span class="line">#把x更改为4维张量，第1维代表样本数量，第2维和第3维代表图像长宽， 第4维代表图像通道数  </span><br><span class="line">x_image = tf.reshape(x, [-1,28,28,1]) # -1表示任意数量的样本数,大小为28x28，深度为1的张量</span><br><span class="line"></span><br><span class="line"># 第一层：卷积</span><br><span class="line">W_conv1 = weight_variable([5, 5, 1, 32]) # 卷积在每个5x5的patch中算出32个特征。</span><br><span class="line">b_conv1 = bias_variable([32])</span><br><span class="line"></span><br><span class="line">h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1) </span><br><span class="line"></span><br><span class="line"># 第二层：池化</span><br><span class="line">h_pool1 = max_pool_2x2(h_conv1)</span><br><span class="line"></span><br><span class="line"># 第三层：卷积</span><br><span class="line">W_conv2 = weight_variable([5, 5, 32, 64])</span><br><span class="line">b_conv2 = bias_variable([64])</span><br><span class="line"></span><br><span class="line">h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)</span><br><span class="line"></span><br><span class="line"># 第四层：池化</span><br><span class="line">h_pool2 = max_pool_2x2(h_conv2)</span><br><span class="line"></span><br><span class="line"># 第五层：全连接层</span><br><span class="line">W_fc1 = weight_variable([7 * 7 * 64, 1024])</span><br><span class="line">b_fc1 = bias_variable([1024])</span><br><span class="line"></span><br><span class="line">h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])</span><br><span class="line">h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)</span><br><span class="line"></span><br><span class="line"># 在输出层之前加入dropout以减少过拟合</span><br><span class="line">keep_prob = tf.placeholder(tf.float32, name=&quot;keep_prob&quot;)</span><br><span class="line">h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</span><br><span class="line"></span><br><span class="line"># 第六层：全连接层</span><br><span class="line">W_fc2 = weight_variable([1024, 10])</span><br><span class="line">b_fc2 = bias_variable([10])</span><br><span class="line"></span><br><span class="line"># 第七层：输出层</span><br><span class="line">y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2,name=&#x27;y&#x27;)</span><br><span class="line"></span><br><span class="line"># *************** 训练和评估模型 *************** #</span><br><span class="line"></span><br><span class="line"># 为训练过程指定最小化误差用的损失函数，即目标类别和预测类别之间的交叉熵</span><br><span class="line">cross_entropy = -tf.reduce_sum(y_*tf.log(y_conv))</span><br><span class="line"></span><br><span class="line"># 使用反向传播，利用优化器使损失函数最小化</span><br><span class="line">train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)</span><br><span class="line"></span><br><span class="line"># 检测我们的预测是否真实标签匹配(索引位置一样表示匹配)</span><br><span class="line"># tf.argmax(y_conv,dimension), 返回最大数值的下标 通常和tf.equal()一起使用，计算模型准确度</span><br><span class="line"># dimension=0 按列找  dimension=1 按行找</span><br><span class="line">correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))  </span><br><span class="line"></span><br><span class="line"># 统计测试准确率， 将correct_prediction的布尔值转换为浮点数来代表对、错，并取平均值。</span><br><span class="line">accuracy = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))</span><br><span class="line"></span><br><span class="line">saver = tf.train.Saver() # 定义saver</span><br><span class="line"></span><br><span class="line"># *************** 开始训练模型 *************** #</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">    for i in range(1002):</span><br><span class="line">      batch = mnist.train.next_batch(50)</span><br><span class="line">      if i%100 == 0:</span><br><span class="line">          </span><br><span class="line">          # 评估模型准确度，此阶段不使用Dropout</span><br><span class="line">          train_accuracy = accuracy.eval(feed_dict=&#123;x:batch[0], y_: batch[1], keep_prob: 1.0&#125;)</span><br><span class="line">          print(&quot;step %d, training accuracy %g&quot;%(i, train_accuracy))</span><br><span class="line">      # 训练模型，此阶段使用50%的Dropout</span><br><span class="line">      train_step.run(feed_dict=&#123;x: batch[0], y_: batch[1], keep_prob: 0.5&#125;) </span><br><span class="line">      if i%100 == 0:</span><br><span class="line">          constant_graph = tf.graph_util.convert_variables_to_constants(sess, sess.graph_def, [&#x27;x&#x27;,&#x27;y&#x27;,&#x27;keep_prob&#x27;])</span><br><span class="line">          with tf.gfile.FastGFile(&#x27;e:\\model.pb&#x27;, mode=&#x27;wb&#x27;) as f: #模型的名字是model.pb</span><br><span class="line">              f.write(constant_graph.SerializeToString())</span><br><span class="line">    saver.save(sess, &#x27;./save/model.ckpt&#x27;) #模型储存位置</span><br><span class="line"></span><br><span class="line">    print(&quot;test accuracy %g&quot;%accuracy.eval(feed_dict=&#123;x: mnist.test.images [0:2000], y_: mnist.test.labels [0:2000], keep_prob: 1.0&#125;))</span><br></pre></td></tr></table></figure>
+
 <p>训练会生成pb文件，到e:\model.pb，随后用python调用，调用代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon May  6 10:21:40 2019</span><br><span class="line"></span><br><span class="line">@author: admin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">from PIL import Image</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.python.platform import gfile</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">im = Image.open(&apos;C:\\Users\\admin\\Pictures\\3.png&apos;)</span><br><span class="line">data = list(im.getdata())</span><br><span class="line">result = [(255-x)*1.0/255.0 for x in data] </span><br><span class="line">#print(result)</span><br><span class="line"></span><br><span class="line"># 为输入图像和目标输出类别创建节点</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line">#x = tf.placeholder(&quot;float&quot;, shape=[None, 784]) # 训练所需数据  占位符</span><br><span class="line"></span><br><span class="line"># *************** 开始识别 *************** #</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    with gfile.FastGFile(&apos;e:\\model.pb&apos;, &apos;rb&apos;) as f:</span><br><span class="line">        graph_def = tf.GraphDef()</span><br><span class="line">        graph_def.ParseFromString(f.read())</span><br><span class="line">        sess.graph.as_default()</span><br><span class="line">        tf.import_graph_def(graph_def, name=&apos;&apos;)</span><br><span class="line">    x = sess.graph.get_tensor_by_name(&quot;x:0&quot;)</span><br><span class="line">    y = sess.graph.get_tensor_by_name(&quot;y:0&quot;)</span><br><span class="line">    keep_prob = sess.graph.get_tensor_by_name(&quot;keep_prob:0&quot;)</span><br><span class="line">   # print(test) </span><br><span class="line">    #saver.restore(sess, &quot;./save/model.ckpt&quot;)#这里使用了之前保存的模型参数</span><br><span class="line"></span><br><span class="line">    prediction = tf.argmax(y,1)</span><br><span class="line">    predint = prediction.eval(feed_dict=&#123;x: [result],keep_prob: 1.0&#125;, session=sess)</span><br><span class="line"></span><br><span class="line">    print(&quot;recognize result: %d&quot; %predint[0])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Mon May  6 10:21:40 2019</span><br><span class="line"></span><br><span class="line">@author: admin</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">from PIL import Image</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from tensorflow.python.platform import gfile</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">im = Image.open(&#x27;C:\\Users\\admin\\Pictures\\3.png&#x27;)</span><br><span class="line">data = list(im.getdata())</span><br><span class="line">result = [(255-x)*1.0/255.0 for x in data] </span><br><span class="line">#print(result)</span><br><span class="line"></span><br><span class="line"># 为输入图像和目标输出类别创建节点</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line">#x = tf.placeholder(&quot;float&quot;, shape=[None, 784]) # 训练所需数据  占位符</span><br><span class="line"></span><br><span class="line"># *************** 开始识别 *************** #</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    with gfile.FastGFile(&#x27;e:\\model.pb&#x27;, &#x27;rb&#x27;) as f:</span><br><span class="line">        graph_def = tf.GraphDef()</span><br><span class="line">        graph_def.ParseFromString(f.read())</span><br><span class="line">        sess.graph.as_default()</span><br><span class="line">        tf.import_graph_def(graph_def, name=&#x27;&#x27;)</span><br><span class="line">    x = sess.graph.get_tensor_by_name(&quot;x:0&quot;)</span><br><span class="line">    y = sess.graph.get_tensor_by_name(&quot;y:0&quot;)</span><br><span class="line">    keep_prob = sess.graph.get_tensor_by_name(&quot;keep_prob:0&quot;)</span><br><span class="line">   # print(test) </span><br><span class="line">    #saver.restore(sess, &quot;./save/model.ckpt&quot;)#这里使用了之前保存的模型参数</span><br><span class="line"></span><br><span class="line">    prediction = tf.argmax(y,1)</span><br><span class="line">    predint = prediction.eval(feed_dict=&#123;x: [result],keep_prob: 1.0&#125;, session=sess)</span><br><span class="line"></span><br><span class="line">    print(&quot;recognize result: %d&quot; %predint[0])</span><br></pre></td></tr></table></figure>
+
 <p>使用到的图片是这个，你可以自己下载直接用，也可以手写然后用OpenCV处理得到28*28的灰度图片。</p>
-<div align="center"><br><img src="\images\3_mnist.png" alt="3"><br></div>
+<div align="center">
+![3](\images\3_mnist.png)
+</div>
 
 <h1><span id="visual-c调用pb文件预测">Visual C++调用pb文件预测</span></h1><p>也是直接上代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">#define COMPILER_MSVC</span><br><span class="line">#define NOMINMAX</span><br><span class="line">#define PLATFORM_WINDOWS</span><br><span class="line"></span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;utility&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;opencv2/opencv.hpp&gt;</span><br><span class="line">#include&quot;tensorflow/core/public/session.h&quot;</span><br><span class="line">#include &quot;tensorflow/core/platform/env.h&quot;</span><br><span class="line">#include &quot;tensorflow/core/graph/default_device.h&quot;</span><br><span class="line">#include &quot;tensorflow/cc/ops/standard_ops.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace tensorflow;</span><br><span class="line">using tensorflow::Tensor;</span><br><span class="line">using std::cout;</span><br><span class="line">using std::endl;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	// 设置输入图像</span><br><span class="line">	cv::Mat img = cv::imread(&quot;C:\\Users\\admin\\Pictures\\3.png&quot;);</span><br><span class="line">	cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);</span><br><span class="line">	int height = img.rows;</span><br><span class="line">	int width = img.cols;</span><br><span class="line">	int depth = img.channels();</span><br><span class="line">	cv::Mat img_transpose = img.t();</span><br><span class="line"></span><br><span class="line">	// 取图像数据，赋给tensorflow支持的Tensor变量中</span><br><span class="line">	const float* source_data = (float*)img.data;</span><br><span class="line">	cout&lt;&lt;source_data[1]&lt;&lt;endl;</span><br><span class="line">	tensorflow::Tensor input_tensor(DT_FLOAT, TensorShape(&#123; 1, height, width ,1 &#125;)); //这里只输入一张图片，参考tensorflow的数据格式NHWC</span><br><span class="line">	auto input_tensor_mapped = input_tensor.tensor&lt;float,4&gt;(); // input_tensor_mapped相当于input_tensor的数据接口，“4”表示数据是4维的。后面取出最终结果时也能看到这种用法                                                                                                      </span><br><span class="line"></span><br><span class="line">	// 把数据复制到input_tensor_mapped中，实际上就是遍历opencv的Mat数据</span><br><span class="line">	for (int i = 0; i &lt; height; i++) &#123;</span><br><span class="line">		for (int j = 0; j &lt; width; j++) &#123;</span><br><span class="line">			input_tensor_mapped(0, i, j ,0) = (255- img.at&lt;uchar&gt;(i, j))/255.0;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 初始化tensorflow session</span><br><span class="line">	Session* session;</span><br><span class="line">	Status status = NewSession(SessionOptions(), &amp;session);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Session created successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 读取二进制的模型文件到graph中</span><br><span class="line">	GraphDef graph_def;</span><br><span class="line">	status = ReadBinaryProto(Env::Default(), &quot;e:\\model.pb&quot;, &amp;graph_def);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Load graph protobuf successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 将graph加载到session</span><br><span class="line">	status = session-&gt;Create(graph_def);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Add graph to session successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tensorflow::Tensor keep_prob(DT_FLOAT, TensorShape());</span><br><span class="line">	keep_prob.scalar&lt;float&gt;()() = 1.0;</span><br><span class="line">	std::vector&lt;std::pair&lt;std::string, tensorflow::Tensor&gt;&gt; inputs = &#123;</span><br><span class="line">		&#123; &quot;x&quot;, input_tensor &#125;,</span><br><span class="line">		&#123; &quot;keep_prob&quot;, keep_prob &#125;,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	// 输出outputs</span><br><span class="line">	std::vector&lt;tensorflow::Tensor&gt; outputs;</span><br><span class="line"></span><br><span class="line">	// 运行会话，计算输出&quot;x_predict&quot;，即我在模型中定义的输出数据名称，最终结果保存在outputs中</span><br><span class="line">	auto input_shape = input_tensor.shape();</span><br><span class="line">	status = session-&gt;Run(inputs, &#123; &quot;y&quot; &#125;, &#123;&#125;, &amp;outputs);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		system(&quot;pause&quot;);</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Run session successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	// 下面进行输出结果的可视化</span><br><span class="line">	tensorflow::Tensor output = std::move(outputs.at(0)); // 模型只输出一个结果，这里首先把结果移出来（也为了更好的展示）</span><br><span class="line">	auto out_shape = output.shape(); // 这里的输出结果为1x4x16</span><br><span class="line">	auto out_val = output.tensor&lt;float, 2&gt;(); // 与开头的用法对应，3代表结果的维度</span><br><span class="line">	// cout &lt;&lt; out_val.argmax(2) &lt;&lt; &quot; &quot;; // 预测结果，与python一致，但具体数值有差异，猜测是计算精度不同造成的</span><br><span class="line">	cout &lt;&lt;&quot;Output tensor shape:&quot;&lt;&lt; output.shape()&lt;&lt;endl;</span><br><span class="line">	for (int j = 0; j &lt; out_shape.dim_size(1); j++) &#123;</span><br><span class="line">		cout &lt;&lt; out_val(0, j) &lt;&lt; &quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; &quot;size:&quot; &lt;&lt; out_shape.dim_size(1)&lt;&lt;endl;</span><br><span class="line">	cout &lt;&lt;&quot;Prediction value:&quot;&lt;&lt; out_val.argmax(1)&lt;&lt;endl;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">#define COMPILER_MSVC</span><br><span class="line">#define NOMINMAX</span><br><span class="line">#define PLATFORM_WINDOWS</span><br><span class="line"></span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;utility&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line"></span><br><span class="line">#include&lt;opencv2/opencv.hpp&gt;</span><br><span class="line">#include&quot;tensorflow/core/public/session.h&quot;</span><br><span class="line">#include &quot;tensorflow/core/platform/env.h&quot;</span><br><span class="line">#include &quot;tensorflow/core/graph/default_device.h&quot;</span><br><span class="line">#include &quot;tensorflow/cc/ops/standard_ops.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace tensorflow;</span><br><span class="line">using tensorflow::Tensor;</span><br><span class="line">using std::cout;</span><br><span class="line">using std::endl;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	// 设置输入图像</span><br><span class="line">	cv::Mat img = cv::imread(&quot;C:\\Users\\admin\\Pictures\\3.png&quot;);</span><br><span class="line">	cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);</span><br><span class="line">	int height = img.rows;</span><br><span class="line">	int width = img.cols;</span><br><span class="line">	int depth = img.channels();</span><br><span class="line">	cv::Mat img_transpose = img.t();</span><br><span class="line"></span><br><span class="line">	// 取图像数据，赋给tensorflow支持的Tensor变量中</span><br><span class="line">	const float* source_data = (float*)img.data;</span><br><span class="line">	cout&lt;&lt;source_data[1]&lt;&lt;endl;</span><br><span class="line">	tensorflow::Tensor input_tensor(DT_FLOAT, TensorShape(&#123; 1, height, width ,1 &#125;)); //这里只输入一张图片，参考tensorflow的数据格式NHWC</span><br><span class="line">	auto input_tensor_mapped = input_tensor.tensor&lt;float,4&gt;(); // input_tensor_mapped相当于input_tensor的数据接口，“4”表示数据是4维的。后面取出最终结果时也能看到这种用法                                                                                                      </span><br><span class="line"></span><br><span class="line">	// 把数据复制到input_tensor_mapped中，实际上就是遍历opencv的Mat数据</span><br><span class="line">	for (int i = 0; i &lt; height; i++) &#123;</span><br><span class="line">		for (int j = 0; j &lt; width; j++) &#123;</span><br><span class="line">			input_tensor_mapped(0, i, j ,0) = (255- img.at&lt;uchar&gt;(i, j))/255.0;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 初始化tensorflow session</span><br><span class="line">	Session* session;</span><br><span class="line">	Status status = NewSession(SessionOptions(), &amp;session);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Session created successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 读取二进制的模型文件到graph中</span><br><span class="line">	GraphDef graph_def;</span><br><span class="line">	status = ReadBinaryProto(Env::Default(), &quot;e:\\model.pb&quot;, &amp;graph_def);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Load graph protobuf successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	// 将graph加载到session</span><br><span class="line">	status = session-&gt;Create(graph_def);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Add graph to session successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tensorflow::Tensor keep_prob(DT_FLOAT, TensorShape());</span><br><span class="line">	keep_prob.scalar&lt;float&gt;()() = 1.0;</span><br><span class="line">	std::vector&lt;std::pair&lt;std::string, tensorflow::Tensor&gt;&gt; inputs = &#123;</span><br><span class="line">		&#123; &quot;x&quot;, input_tensor &#125;,</span><br><span class="line">		&#123; &quot;keep_prob&quot;, keep_prob &#125;,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	// 输出outputs</span><br><span class="line">	std::vector&lt;tensorflow::Tensor&gt; outputs;</span><br><span class="line"></span><br><span class="line">	// 运行会话，计算输出&quot;x_predict&quot;，即我在模型中定义的输出数据名称，最终结果保存在outputs中</span><br><span class="line">	auto input_shape = input_tensor.shape();</span><br><span class="line">	status = session-&gt;Run(inputs, &#123; &quot;y&quot; &#125;, &#123;&#125;, &amp;outputs);</span><br><span class="line">	if (!status.ok()) &#123;</span><br><span class="line">		std::cerr &lt;&lt; status.ToString() &lt;&lt; endl;</span><br><span class="line">		system(&quot;pause&quot;);</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Run session successfully&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	// 下面进行输出结果的可视化</span><br><span class="line">	tensorflow::Tensor output = std::move(outputs.at(0)); // 模型只输出一个结果，这里首先把结果移出来（也为了更好的展示）</span><br><span class="line">	auto out_shape = output.shape(); // 这里的输出结果为1x4x16</span><br><span class="line">	auto out_val = output.tensor&lt;float, 2&gt;(); // 与开头的用法对应，3代表结果的维度</span><br><span class="line">	// cout &lt;&lt; out_val.argmax(2) &lt;&lt; &quot; &quot;; // 预测结果，与python一致，但具体数值有差异，猜测是计算精度不同造成的</span><br><span class="line">	cout &lt;&lt;&quot;Output tensor shape:&quot;&lt;&lt; output.shape()&lt;&lt;endl;</span><br><span class="line">	for (int j = 0; j &lt; out_shape.dim_size(1); j++) &#123;</span><br><span class="line">		cout &lt;&lt; out_val(0, j) &lt;&lt; &quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; &quot;size:&quot; &lt;&lt; out_shape.dim_size(1)&lt;&lt;endl;</span><br><span class="line">	cout &lt;&lt;&quot;Prediction value:&quot;&lt;&lt; out_val.argmax(1)&lt;&lt;endl;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>相关配置都有在前两篇博客写过，就不赘述了。这里要说下CUDA配置完Tensorflow C++使用坑爹的地方，如果你同时开着python的tensorflowIDE环境，它会分出部分GPU内存给该环境，但是如果你用上面的代码运行测试，会发现报内存超出的错。</p>
-<div align="center"><br><img src="\images\normal.PNG" alt="normal"><br></div>
+<div align="center">
+![normal](\images\normal.PNG)
+</div>
 
 <p>正常调用会这样，但是开着其他环境，就报错：</p>
-<div align="center"><br><img src="\images\abnormal.PNG" alt="abnormal"><br></div>
+<div align="center">
+![abnormal](\images\abnormal.PNG)
+</div>
 
 <p>CUDA_ERROR_OF_MEMORY，然后更坑爹的是我的c++无法同python一样指定gpu内存分配，会报unresolved external symbol错误，也就是未解析的外部符号。解决办法就一个，关掉其他gpu进程。</p>
 <p>预测结果如下：</p>
-<div align="center"><br><img src="\images\c++预测.PNG" alt="c++预测"><br></div>
+<div align="center">
+![c++预测](\images\c++预测.PNG)
+</div>
 
 <p>细节回去再更….</p>
 
@@ -401,14 +407,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -440,7 +446,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/10/Anaconda-Tensorflow-gpu配置/" rel="next" title="Anaconda+Tensorflow_gpu配置">
+              <a href="/2019/05/10/Anaconda-Tensorflow-gpu%E9%85%8D%E7%BD%AE/" rel="next" title="Anaconda+Tensorflow_gpu配置">
                 <i class="fa fa-chevron-left"></i> Anaconda+Tensorflow_gpu配置
               </a>
             
@@ -450,7 +456,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/10/用InceptionV3迁移学习进行客流检测/" rel="prev" title="用InceptionV3迁移学习进行客流检测">
+              <a href="/2019/05/10/%E7%94%A8InceptionV3%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E8%BF%9B%E8%A1%8C%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/" rel="prev" title="用InceptionV3迁移学习进行客流检测">
                 用InceptionV3迁移学习进行客流检测 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -525,9 +531,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -536,9 +544,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -560,7 +568,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -615,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Tensorflow_gpu训练手写数字pb模型文件，C++调用预测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Visual C++调用pb文件预测</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Tensorflow_gpu训练手写数字pb模型文件，C++调用预测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Visual C++调用pb文件预测</span></a></li></ol></div>
             
 
           </div>
@@ -635,7 +643,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

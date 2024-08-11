@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="detection,">
+  <meta name="keywords" content="detection," />
 
 
 
@@ -79,25 +79,25 @@
 
 
 
-<meta name="description" content="NMS的numpy写法简单易懂的NMS的numpy写法目标检测中的NMS，输入：boxes形如N*5,N个(x1,y1,x2,y2,score), thresh阈值为float型。 计算时，首先获取基于分数的降序排序order，计算全部box的面积area，对每个得分最高的boxes[i]，计算与其余低分boxes[order[1:]]的交并比ious，去除ious高于阈值的box。1234567">
-<meta name="keywords" content="detection">
+<meta name="description" content="NMS的numpy写法简单易懂的NMS的numpy写法目标检测中的NMS，输入：boxes形如N*5,N个(x1,y1,x2,y2,score), thresh阈值为float型。 计算时，首先获取基于分数的降序排序order，计算全部box的面积area，对每个得分最高的boxes[i]，计算与其余低分boxes[order[1:]]的交并比ious，去除ious高于阈值的box。 123456">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NMS的几种写法">
-<meta property="og:url" content="https://allentdan.github.io/2020/12/24/NMS的几种写法/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2020/12/24/NMS%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="NMS的numpy写法简单易懂的NMS的numpy写法目标检测中的NMS，输入：boxes形如N*5,N个(x1,y1,x2,y2,score), thresh阈值为float型。 计算时，首先获取基于分数的降序排序order，计算全部box的面积area，对每个得分最高的boxes[i]，计算与其余低分boxes[order[1:]]的交并比ious，去除ious高于阈值的box。1234567">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-06T06:14:47.433Z">
+<meta property="og:description" content="NMS的numpy写法简单易懂的NMS的numpy写法目标检测中的NMS，输入：boxes形如N*5,N个(x1,y1,x2,y2,score), thresh阈值为float型。 计算时，首先获取基于分数的降序排序order，计算全部box的面积area，对每个得分最高的boxes[i]，计算与其余低分boxes[order[1:]]的交并比ious，去除ious高于阈值的box。 123456">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-24T01:10:24.000Z">
+<meta property="article:modified_time" content="2021-01-06T06:14:47.433Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="detection">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NMS的几种写法">
-<meta name="twitter:description" content="NMS的numpy写法简单易懂的NMS的numpy写法目标检测中的NMS，输入：boxes形如N*5,N个(x1,y1,x2,y2,score), thresh阈值为float型。 计算时，首先获取基于分数的降序排序order，计算全部box的面积area，对每个得分最高的boxes[i]，计算与其余低分boxes[order[1:]]的交并比ious，去除ious高于阈值的box。1234567">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2020/12/24/NMS的几种写法/">
+  <link rel="canonical" href="https://allentdan.github.io/2020/12/24/NMS的几种写法/"/>
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -154,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -182,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -192,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -202,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -212,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -222,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -263,11 +263,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/24/NMS的几种写法/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/24/NMS%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -303,7 +303,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -333,8 +333,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/12/24/NMS的几种写法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/24/NMS的几种写法/" itemprop="commentsCount"></span>
+                <a href="/2020/12/24/NMS%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/24/NMS%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,7 +342,7 @@
 
           
           
-             <span id="/2020/12/24/NMS的几种写法/" class="leancloud_visitors" data-flag-title="NMS的几种写法">
+             <span id="/2020/12/24/NMS%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/" class="leancloud_visitors" data-flag-title="NMS的几种写法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -357,7 +357,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -379,14 +379,22 @@
 
       
         <h1><span id="nms的numpy写法">NMS的numpy写法</span></h1><h2><span id="简单易懂的nms的numpy写法">简单易懂的NMS的numpy写法</span></h2><p>目标检测中的NMS，输入：boxes形如N*5,N个(x1,y1,x2,y2,score), thresh阈值为float型。</p>
-<p>计算时，首先获取基于分数的降序排序order，计算全部box的面积area，对每个得分最高的boxes[i]，计算与其余低分boxes[order[1:]]的交并比ious，去除ious高于阈值的box。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nms_plain</span><span class="params">(boxes, threshold)</span>:</span></span><br><span class="line">    x1 = boxes[:,<span class="number">0</span>]</span><br><span class="line">    y1 = boxes[:,<span class="number">1</span>]</span><br><span class="line">    x2 = boxes[:,<span class="number">2</span>]</span><br><span class="line">    y2 = boxes[:,<span class="number">3</span>]</span><br><span class="line">    scores = boxes[:,<span class="number">4</span>]</span><br><span class="line">    order = scores.argsort()[::<span class="number">-1</span>]</span><br><span class="line">    areas = (x2-x1+<span class="number">1</span>)*(y2-y1+<span class="number">1</span>)</span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.size&gt;<span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)</span><br><span class="line">        xx1 = np.maximum(x1[i],x1[order[<span class="number">1</span>:]] )</span><br><span class="line">        yy1 = np.maximum(y1[i],y1[order[<span class="number">1</span>:]] )</span><br><span class="line">        xx2 = np.minimum(x2[i],x2[order[<span class="number">1</span>:]] )</span><br><span class="line">        yy2 = np.minimum(y2[i],y2[order[<span class="number">1</span>:]] )</span><br><span class="line">        w = np.maximum(<span class="number">0</span>, xx2-xx1)</span><br><span class="line">        h = np.maximum(<span class="number">0</span>,yy2-yy1)</span><br><span class="line">        overlaps = w*h</span><br><span class="line">        ious = overlaps/(areas[i] + areas[order[<span class="number">1</span>:]] - overlaps)</span><br><span class="line">        inds = np.where(ious&lt;threshold)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds+<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure></p>
-<h2><span id="简洁的nms的numpy写法">简洁的NMS的numpy写法</span></h2><p>下面是一个简洁的NMS写法，主要是prod操作计算面积免去了许多多余行。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nms_neat</span><span class="params">(boxes, threshold)</span>:</span></span><br><span class="line">    areas = np.prod(boxes[:,<span class="number">2</span>:<span class="number">4</span>]-boxes[:,:<span class="number">2</span>],axis=<span class="number">1</span>)</span><br><span class="line">    order = boxes[:,<span class="number">4</span>].argsort()[::<span class="number">-1</span>]</span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.size&gt;<span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)</span><br><span class="line">        tl = np.maximum(boxes[i][:<span class="number">2</span>],boxes[order[<span class="number">1</span>:]][:,:<span class="number">2</span>])</span><br><span class="line">        br = np.minimum(boxes[i][<span class="number">2</span>:<span class="number">4</span>],boxes[order[<span class="number">1</span>:]][:,<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">        overlaps = np.prod(br-tl,axis=<span class="number">1</span>)*(br&gt;tl).all(axis=<span class="number">1</span>)</span><br><span class="line">        ious = overlaps/(areas[i]+areas[order[<span class="number">1</span>:]]-overlaps)</span><br><span class="line">        inds = np.where(ious&lt;threshold)[<span class="number">0</span>]</span><br><span class="line">        order=order[inds+<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure></p>
-<h2><span id="soft-nms的简洁的numpy写法">Soft-NMS的简洁的numpy写法</span></h2><p>和NMS相比，Soft-NMS把高于thresh的box置信度置为score*weight,而非直接置为0。weight有多种计算方式，linear和Gaussian都有。给出一个Soft-NMS的简洁写法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">soft_nms</span><span class="params">(boxes, method = <span class="string">'linear'</span>, thresh = <span class="number">0.001</span>, Nt = <span class="number">0.3</span>, sigma = <span class="number">0.5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    the soft nms implement using python</span></span><br><span class="line"><span class="string">    :param dets: the pred_bboxes</span></span><br><span class="line"><span class="string">    :param method: the policy of decay pred_bbox score in soft nms</span></span><br><span class="line"><span class="string">    :param thresh: the threshold</span></span><br><span class="line"><span class="string">    :param Nt: Nt</span></span><br><span class="line"><span class="string">    :return: the index of pred_bbox after soft nms</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    areas = np.prod(boxes[:,<span class="number">2</span>:<span class="number">4</span>]-boxes[:,:<span class="number">2</span>], axis=<span class="number">1</span>)</span><br><span class="line">    order = boxes[<span class="number">4</span>].argsort()[::<span class="number">-1</span>]</span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.size&gt;<span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)</span><br><span class="line">        tl = np.maximum(boxes[i][:<span class="number">2</span>], boxes[order[<span class="number">1</span>:]][:,:<span class="number">2</span>])</span><br><span class="line">        br = np.minimum(boxes[i][<span class="number">2</span>:<span class="number">4</span>], boxes[order[<span class="number">1</span>:]][:,<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">        overlaps = np.prod(br-tl, axis = <span class="number">1</span>)*(br&gt;tl).all(axis = <span class="number">1</span>)</span><br><span class="line">        ious = overlaps/(areas[i]+areas[order[<span class="number">1</span>:]]-overlaps)</span><br><span class="line">        weight = np.ones_like(overlaps)</span><br><span class="line">        <span class="keyword">if</span> method == <span class="string">'linear'</span>:</span><br><span class="line">            weight[np.where(ious&gt;Nt)] = <span class="number">1</span>-ious[np.where(ious&gt;Nt)]</span><br><span class="line">        <span class="keyword">elif</span> method == <span class="string">'gaussian'</span>:</span><br><span class="line">            weight = np.exp(-(ious*ious)/sigma)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            weight[np.where(ious&gt;Nt)] = <span class="number">0</span></span><br><span class="line">        boxes[order[<span class="number">1</span>:]][:,<span class="number">4</span>] *= weight</span><br><span class="line">        inds = np.where(boxes[order[<span class="number">1</span>:]][:,<span class="number">4</span>]&gt;thresh)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds+<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure></p>
-<p>最后是画图和主函数验证：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_bbox</span><span class="params">(boxes, c = <span class="string">'r'</span>)</span>:</span></span><br><span class="line">    x1 = boxes[:,<span class="number">0</span>]</span><br><span class="line">    y1 = boxes[:,<span class="number">1</span>]</span><br><span class="line">    x2 = boxes[:,<span class="number">2</span>]</span><br><span class="line">    y2 = boxes[:,<span class="number">3</span>]</span><br><span class="line">    plt.plot([x1,x2], [y1,y1], c)</span><br><span class="line">    plt.plot([x1,x1], [y1,y2], c)</span><br><span class="line">    plt.plot([x1,x2], [y2,y2], c)</span><br><span class="line">    plt.plot([x2,x2], [y1,y2], c)</span><br><span class="line">    plt.title(<span class="string">" nms"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    boxes=np.array([[<span class="number">100</span>,<span class="number">100</span>,<span class="number">210</span>,<span class="number">210</span>,<span class="number">0.72</span>],</span><br><span class="line">        [<span class="number">250</span>,<span class="number">250</span>,<span class="number">420</span>,<span class="number">420</span>,<span class="number">0.8</span>],</span><br><span class="line">        [<span class="number">220</span>,<span class="number">220</span>,<span class="number">320</span>,<span class="number">330</span>,<span class="number">0.92</span>],</span><br><span class="line">        [<span class="number">100</span>,<span class="number">100</span>,<span class="number">210</span>,<span class="number">210</span>,<span class="number">0.72</span>],</span><br><span class="line">        [<span class="number">230</span>,<span class="number">240</span>,<span class="number">325</span>,<span class="number">330</span>,<span class="number">0.81</span>],</span><br><span class="line">        [<span class="number">220</span>,<span class="number">230</span>,<span class="number">315</span>,<span class="number">340</span>,<span class="number">0.9</span>]])</span><br><span class="line">    </span><br><span class="line">    keep = nms_plain(boxes,<span class="number">0.5</span>)</span><br><span class="line">    plt.figure(<span class="number">1</span>)</span><br><span class="line">    ax1 = plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">    ax2 = plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">    plt.sca(ax1)</span><br><span class="line">    plot_bbox(boxes,<span class="string">'k'</span>)   <span class="comment"># before nms</span></span><br><span class="line">    </span><br><span class="line">    keep = nms_neat(boxes, <span class="number">0.5</span>)</span><br><span class="line">    <span class="comment"># keep = soft_nms(boxes,'dd')</span></span><br><span class="line">    plt.sca(ax2)</span><br><span class="line">    plot_bbox(boxes[keep], <span class="string">'r'</span>)<span class="comment"># after nms</span></span><br><span class="line"></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure></p>
-<h1><span id="nms的pytorch写法">NMS的pytorch写法</span></h1><p>NMS的pytorch写法和Numpy类似，稍有不同，代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nms_pytorch</span><span class="params">(bboxes, scores, threshold=<span class="number">0.5</span>)</span>:</span></span><br><span class="line">    x1 = bboxes[:,<span class="number">0</span>]</span><br><span class="line">    y1 = bboxes[:,<span class="number">1</span>]</span><br><span class="line">    x2 = bboxes[:,<span class="number">2</span>]</span><br><span class="line">    y2 = bboxes[:,<span class="number">3</span>]</span><br><span class="line">    areas = (x2-x1)*(y2-y1)   <span class="comment"># [N,] 每个bbox的面积</span></span><br><span class="line">    _, order = scores.sort(<span class="number">0</span>, descending=<span class="literal">True</span>)    <span class="comment"># 降序排列</span></span><br><span class="line"></span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.numel() &gt; <span class="number">0</span>:       <span class="comment"># torch.numel()返回张量元素个数</span></span><br><span class="line">        <span class="keyword">if</span> order.numel() == <span class="number">1</span>:     <span class="comment"># 保留框只剩一个</span></span><br><span class="line">            i = order.item()</span><br><span class="line">            keep.append(i)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i = order[<span class="number">0</span>].item()    <span class="comment"># 保留scores最大的那个框box[i]</span></span><br><span class="line">            keep.append(i)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算box[i]与其余各框的IOU(思路很好)</span></span><br><span class="line">        xx1 = x1[order[<span class="number">1</span>:]].clamp(min=x1[i])   <span class="comment"># [N-1,]</span></span><br><span class="line">        yy1 = y1[order[<span class="number">1</span>:]].clamp(min=y1[i])</span><br><span class="line">        xx2 = x2[order[<span class="number">1</span>:]].clamp(max=x2[i])</span><br><span class="line">        yy2 = y2[order[<span class="number">1</span>:]].clamp(max=y2[i])</span><br><span class="line">        inter = (xx2-xx1).clamp(min=<span class="number">0</span>) * (yy2-yy1).clamp(min=<span class="number">0</span>)   <span class="comment"># [N-1,]</span></span><br><span class="line"></span><br><span class="line">        iou = inter / (areas[i]+areas[order[<span class="number">1</span>:]]-inter)  <span class="comment"># [N-1,]</span></span><br><span class="line">        idx = (iou &lt;= threshold).nonzero().squeeze() <span class="comment"># 注意此时idx为[N-1,] 而order为[N,]</span></span><br><span class="line">        <span class="keyword">if</span> idx.numel() == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        order = order[idx+<span class="number">1</span>]  <span class="comment"># 修补索引之间的差值</span></span><br><span class="line">    <span class="keyword">return</span> torch.LongTensor(keep)   <span class="comment"># Pytorch的索引值为LongTensor</span></span><br></pre></td></tr></table></figure></p>
-<h1><span id="nms的cpp写法">NMS的cpp写法</span></h1><p>本文的cpp写法是基于libtorch（pytorch c++ api），仿照pytorch，输入boxes和scores以及thresh变量。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入boxes：Nx4; socres: N; thresh:介于(0,1)的float变量</span></span><br><span class="line"><span class="comment">//输出vector&lt;int&gt;向量，存储保留的box的index值</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nms_libtorch(torch::Tensor boxes, torch::Tensor scores, <span class="keyword">float</span> thresh);\\函数声明</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nms_libtorch(torch::Tensor bboxes, torch::Tensor scores, <span class="keyword">float</span> thresh) &#123;\\函数定义</span><br><span class="line">	<span class="keyword">auto</span> x1 = bboxes.select(<span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">auto</span> y1 = bboxes.select(<span class="number">-1</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">auto</span> x2 = bboxes.select(<span class="number">-1</span>, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">auto</span> y2 = bboxes.select(<span class="number">-1</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">auto</span> areas = (x2 - x1)*(y2 - y1);   <span class="comment">//[N, ] 每个bbox的面积</span></span><br><span class="line">	<span class="keyword">auto</span> tuple_sorted = scores.sort(<span class="number">0</span>, <span class="literal">true</span>);    <span class="comment">//降序排列</span></span><br><span class="line">	<span class="keyword">auto</span> order = <span class="built_in">std</span>::get&lt;<span class="number">1</span>&gt;(tuple_sorted);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;	keep;</span><br><span class="line">	<span class="keyword">while</span> (order.numel() &gt; <span class="number">0</span>) &#123;<span class="comment">// torch.numel()返回张量元素个数</span></span><br><span class="line">		<span class="keyword">if</span> (order.numel() == <span class="number">1</span>) &#123;<span class="comment">//    保留框只剩一个</span></span><br><span class="line">			<span class="keyword">auto</span> i = order.item();</span><br><span class="line">			keep.push_back(i.toInt());</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">auto</span> i = order[<span class="number">0</span>].item();<span class="comment">// 保留scores最大的那个框box[i]</span></span><br><span class="line">			keep.push_back(i.toInt());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//计算box[i]与其余各框的IOU(思路很好)</span></span><br><span class="line">		<span class="keyword">auto</span> order_mask = order.narrow(<span class="number">0</span>, <span class="number">1</span>, order.size(<span class="number">-1</span>) - <span class="number">1</span>);</span><br><span class="line">		x1.index(&#123; order_mask &#125;);</span><br><span class="line">		x1.index(&#123; order_mask &#125;).clamp(x1[keep.back()].item().toFloat(), <span class="number">1e10</span>);</span><br><span class="line">		<span class="keyword">auto</span> xx1 = x1.index(&#123; order_mask &#125;).clamp(x1[keep.back()].item().toFloat(),<span class="number">1e10</span>);<span class="comment">// [N - 1, ]</span></span><br><span class="line">		<span class="keyword">auto</span> yy1 = y1.index(&#123; order_mask &#125;).clamp(y1[keep.back()].item().toFloat(), <span class="number">1e10</span>);</span><br><span class="line">		<span class="keyword">auto</span> xx2 = x2.index(&#123; order_mask &#125;).clamp(<span class="number">0</span>, x2[keep.back()].item().toFloat());</span><br><span class="line">		<span class="keyword">auto</span> yy2 = y2.index(&#123; order_mask &#125;).clamp(<span class="number">0</span>, y2[keep.back()].item().toFloat());</span><br><span class="line">		<span class="keyword">auto</span> inter = (xx2 - xx1).clamp(<span class="number">0</span>, <span class="number">1e10</span>) * (yy2 - yy1).clamp(<span class="number">0</span>, <span class="number">1e10</span>);<span class="comment">// [N - 1, ]</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">auto</span> iou = inter / (areas[keep.back()] + areas.index(&#123; order.narrow(<span class="number">0</span>,<span class="number">1</span>,order.size(<span class="number">-1</span>) - <span class="number">1</span>) &#125;) - inter);<span class="comment">//[N - 1, ]</span></span><br><span class="line">		<span class="keyword">auto</span> idx = (iou &lt;= thresh).nonzero().squeeze();<span class="comment">//注意此时idx为[N - 1, ] 而order为[N, ]</span></span><br><span class="line">		<span class="keyword">if</span> (idx.numel() == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		order = order.index(&#123; idx + <span class="number">1</span> &#125;); <span class="comment">//修补索引之间的差值</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> keep;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>计算时，首先获取基于分数的降序排序order，计算全部box的面积area，对每个得分最高的boxes[i]，计算与其余低分boxes[order[1:]]的交并比ious，去除ious高于阈值的box。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">nms_plain</span>(<span class="params">boxes, threshold</span>):</span><br><span class="line">    x1 = boxes[:,<span class="number">0</span>]</span><br><span class="line">    y1 = boxes[:,<span class="number">1</span>]</span><br><span class="line">    x2 = boxes[:,<span class="number">2</span>]</span><br><span class="line">    y2 = boxes[:,<span class="number">3</span>]</span><br><span class="line">    scores = boxes[:,<span class="number">4</span>]</span><br><span class="line">    order = scores.argsort()[::-<span class="number">1</span>]</span><br><span class="line">    areas = (x2-x1+<span class="number">1</span>)*(y2-y1+<span class="number">1</span>)</span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.size&gt;<span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)</span><br><span class="line">        xx1 = np.maximum(x1[i],x1[order[<span class="number">1</span>:]] )</span><br><span class="line">        yy1 = np.maximum(y1[i],y1[order[<span class="number">1</span>:]] )</span><br><span class="line">        xx2 = np.minimum(x2[i],x2[order[<span class="number">1</span>:]] )</span><br><span class="line">        yy2 = np.minimum(y2[i],y2[order[<span class="number">1</span>:]] )</span><br><span class="line">        w = np.maximum(<span class="number">0</span>, xx2-xx1)</span><br><span class="line">        h = np.maximum(<span class="number">0</span>,yy2-yy1)</span><br><span class="line">        overlaps = w*h</span><br><span class="line">        ious = overlaps/(areas[i] + areas[order[<span class="number">1</span>:]] - overlaps)</span><br><span class="line">        inds = np.where(ious&lt;threshold)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds+<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
+<h2><span id="简洁的nms的numpy写法">简洁的NMS的numpy写法</span></h2><p>下面是一个简洁的NMS写法，主要是prod操作计算面积免去了许多多余行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">nms_neat</span>(<span class="params">boxes, threshold</span>):</span><br><span class="line">    areas = np.prod(boxes[:,<span class="number">2</span>:<span class="number">4</span>]-boxes[:,:<span class="number">2</span>],axis=<span class="number">1</span>)</span><br><span class="line">    order = boxes[:,<span class="number">4</span>].argsort()[::-<span class="number">1</span>]</span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.size&gt;<span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)</span><br><span class="line">        tl = np.maximum(boxes[i][:<span class="number">2</span>],boxes[order[<span class="number">1</span>:]][:,:<span class="number">2</span>])</span><br><span class="line">        br = np.minimum(boxes[i][<span class="number">2</span>:<span class="number">4</span>],boxes[order[<span class="number">1</span>:]][:,<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">        overlaps = np.prod(br-tl,axis=<span class="number">1</span>)*(br&gt;tl).<span class="built_in">all</span>(axis=<span class="number">1</span>)</span><br><span class="line">        ious = overlaps/(areas[i]+areas[order[<span class="number">1</span>:]]-overlaps)</span><br><span class="line">        inds = np.where(ious&lt;threshold)[<span class="number">0</span>]</span><br><span class="line">        order=order[inds+<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
+<h2><span id="soft-nms的简洁的numpy写法">Soft-NMS的简洁的numpy写法</span></h2><p>和NMS相比，Soft-NMS把高于thresh的box置信度置为score*weight,而非直接置为0。weight有多种计算方式，linear和Gaussian都有。给出一个Soft-NMS的简洁写法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">soft_nms</span>(<span class="params">boxes, method = <span class="string">&#x27;linear&#x27;</span>, thresh = <span class="number">0.001</span>, Nt = <span class="number">0.3</span>, sigma = <span class="number">0.5</span></span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    the soft nms implement using python</span></span><br><span class="line"><span class="string">    :param dets: the pred_bboxes</span></span><br><span class="line"><span class="string">    :param method: the policy of decay pred_bbox score in soft nms</span></span><br><span class="line"><span class="string">    :param thresh: the threshold</span></span><br><span class="line"><span class="string">    :param Nt: Nt</span></span><br><span class="line"><span class="string">    :return: the index of pred_bbox after soft nms</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    areas = np.prod(boxes[:,<span class="number">2</span>:<span class="number">4</span>]-boxes[:,:<span class="number">2</span>], axis=<span class="number">1</span>)</span><br><span class="line">    order = boxes[<span class="number">4</span>].argsort()[::-<span class="number">1</span>]</span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.size&gt;<span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)</span><br><span class="line">        tl = np.maximum(boxes[i][:<span class="number">2</span>], boxes[order[<span class="number">1</span>:]][:,:<span class="number">2</span>])</span><br><span class="line">        br = np.minimum(boxes[i][<span class="number">2</span>:<span class="number">4</span>], boxes[order[<span class="number">1</span>:]][:,<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">        overlaps = np.prod(br-tl, axis = <span class="number">1</span>)*(br&gt;tl).<span class="built_in">all</span>(axis = <span class="number">1</span>)</span><br><span class="line">        ious = overlaps/(areas[i]+areas[order[<span class="number">1</span>:]]-overlaps)</span><br><span class="line">        weight = np.ones_like(overlaps)</span><br><span class="line">        <span class="keyword">if</span> method == <span class="string">&#x27;linear&#x27;</span>:</span><br><span class="line">            weight[np.where(ious&gt;Nt)] = <span class="number">1</span>-ious[np.where(ious&gt;Nt)]</span><br><span class="line">        <span class="keyword">elif</span> method == <span class="string">&#x27;gaussian&#x27;</span>:</span><br><span class="line">            weight = np.exp(-(ious*ious)/sigma)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            weight[np.where(ious&gt;Nt)] = <span class="number">0</span></span><br><span class="line">        boxes[order[<span class="number">1</span>:]][:,<span class="number">4</span>] *= weight</span><br><span class="line">        inds = np.where(boxes[order[<span class="number">1</span>:]][:,<span class="number">4</span>]&gt;thresh)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds+<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
+<p>最后是画图和主函数验证：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plot_bbox</span>(<span class="params">boxes, c = <span class="string">&#x27;r&#x27;</span></span>):</span><br><span class="line">    x1 = boxes[:,<span class="number">0</span>]</span><br><span class="line">    y1 = boxes[:,<span class="number">1</span>]</span><br><span class="line">    x2 = boxes[:,<span class="number">2</span>]</span><br><span class="line">    y2 = boxes[:,<span class="number">3</span>]</span><br><span class="line">    plt.plot([x1,x2], [y1,y1], c)</span><br><span class="line">    plt.plot([x1,x1], [y1,y2], c)</span><br><span class="line">    plt.plot([x1,x2], [y2,y2], c)</span><br><span class="line">    plt.plot([x2,x2], [y1,y2], c)</span><br><span class="line">    plt.title(<span class="string">&quot; nms&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    boxes=np.array([[<span class="number">100</span>,<span class="number">100</span>,<span class="number">210</span>,<span class="number">210</span>,<span class="number">0.72</span>],</span><br><span class="line">        [<span class="number">250</span>,<span class="number">250</span>,<span class="number">420</span>,<span class="number">420</span>,<span class="number">0.8</span>],</span><br><span class="line">        [<span class="number">220</span>,<span class="number">220</span>,<span class="number">320</span>,<span class="number">330</span>,<span class="number">0.92</span>],</span><br><span class="line">        [<span class="number">100</span>,<span class="number">100</span>,<span class="number">210</span>,<span class="number">210</span>,<span class="number">0.72</span>],</span><br><span class="line">        [<span class="number">230</span>,<span class="number">240</span>,<span class="number">325</span>,<span class="number">330</span>,<span class="number">0.81</span>],</span><br><span class="line">        [<span class="number">220</span>,<span class="number">230</span>,<span class="number">315</span>,<span class="number">340</span>,<span class="number">0.9</span>]])</span><br><span class="line">    </span><br><span class="line">    keep = nms_plain(boxes,<span class="number">0.5</span>)</span><br><span class="line">    plt.figure(<span class="number">1</span>)</span><br><span class="line">    ax1 = plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">    ax2 = plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">    plt.sca(ax1)</span><br><span class="line">    plot_bbox(boxes,<span class="string">&#x27;k&#x27;</span>)   <span class="comment"># before nms</span></span><br><span class="line">    </span><br><span class="line">    keep = nms_neat(boxes, <span class="number">0.5</span>)</span><br><span class="line">    <span class="comment"># keep = soft_nms(boxes,&#x27;dd&#x27;)</span></span><br><span class="line">    plt.sca(ax2)</span><br><span class="line">    plot_bbox(boxes[keep], <span class="string">&#x27;r&#x27;</span>)<span class="comment"># after nms</span></span><br><span class="line"></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<h1><span id="nms的pytorch写法">NMS的pytorch写法</span></h1><p>NMS的pytorch写法和Numpy类似，稍有不同，代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">nms_pytorch</span>(<span class="params">bboxes, scores, threshold=<span class="number">0.5</span></span>):</span><br><span class="line">    x1 = bboxes[:,<span class="number">0</span>]</span><br><span class="line">    y1 = bboxes[:,<span class="number">1</span>]</span><br><span class="line">    x2 = bboxes[:,<span class="number">2</span>]</span><br><span class="line">    y2 = bboxes[:,<span class="number">3</span>]</span><br><span class="line">    areas = (x2-x1)*(y2-y1)   <span class="comment"># [N,] 每个bbox的面积</span></span><br><span class="line">    _, order = scores.sort(<span class="number">0</span>, descending=<span class="literal">True</span>)    <span class="comment"># 降序排列</span></span><br><span class="line"></span><br><span class="line">    keep = []</span><br><span class="line">    <span class="keyword">while</span> order.numel() &gt; <span class="number">0</span>:       <span class="comment"># torch.numel()返回张量元素个数</span></span><br><span class="line">        <span class="keyword">if</span> order.numel() == <span class="number">1</span>:     <span class="comment"># 保留框只剩一个</span></span><br><span class="line">            i = order.item()</span><br><span class="line">            keep.append(i)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i = order[<span class="number">0</span>].item()    <span class="comment"># 保留scores最大的那个框box[i]</span></span><br><span class="line">            keep.append(i)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算box[i]与其余各框的IOU(思路很好)</span></span><br><span class="line">        xx1 = x1[order[<span class="number">1</span>:]].clamp(<span class="built_in">min</span>=x1[i])   <span class="comment"># [N-1,]</span></span><br><span class="line">        yy1 = y1[order[<span class="number">1</span>:]].clamp(<span class="built_in">min</span>=y1[i])</span><br><span class="line">        xx2 = x2[order[<span class="number">1</span>:]].clamp(<span class="built_in">max</span>=x2[i])</span><br><span class="line">        yy2 = y2[order[<span class="number">1</span>:]].clamp(<span class="built_in">max</span>=y2[i])</span><br><span class="line">        inter = (xx2-xx1).clamp(<span class="built_in">min</span>=<span class="number">0</span>) * (yy2-yy1).clamp(<span class="built_in">min</span>=<span class="number">0</span>)   <span class="comment"># [N-1,]</span></span><br><span class="line"></span><br><span class="line">        iou = inter / (areas[i]+areas[order[<span class="number">1</span>:]]-inter)  <span class="comment"># [N-1,]</span></span><br><span class="line">        idx = (iou &lt;= threshold).nonzero().squeeze() <span class="comment"># 注意此时idx为[N-1,] 而order为[N,]</span></span><br><span class="line">        <span class="keyword">if</span> idx.numel() == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        order = order[idx+<span class="number">1</span>]  <span class="comment"># 修补索引之间的差值</span></span><br><span class="line">    <span class="keyword">return</span> torch.LongTensor(keep)   <span class="comment"># Pytorch的索引值为LongTensor</span></span><br></pre></td></tr></table></figure>
+
+<h1><span id="nms的cpp写法">NMS的cpp写法</span></h1><p>本文的cpp写法是基于libtorch（pytorch c++ api），仿照pytorch，输入boxes和scores以及thresh变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入boxes：Nx4; socres: N; thresh:介于(0,1)的float变量</span></span><br><span class="line"><span class="comment">//输出vector&lt;int&gt;向量，存储保留的box的index值</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nms_libtorch</span><span class="params">(torch::Tensor boxes, torch::Tensor scores, <span class="type">float</span> thresh)</span></span>;\\函数声明</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nms_libtorch</span><span class="params">(torch::Tensor bboxes, torch::Tensor scores, <span class="type">float</span> thresh)</span> </span>&#123;\\函数定义</span><br><span class="line">	<span class="keyword">auto</span> x1 = bboxes.<span class="built_in">select</span>(<span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">auto</span> y1 = bboxes.<span class="built_in">select</span>(<span class="number">-1</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">auto</span> x2 = bboxes.<span class="built_in">select</span>(<span class="number">-1</span>, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">auto</span> y2 = bboxes.<span class="built_in">select</span>(<span class="number">-1</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">auto</span> areas = (x2 - x1)*(y2 - y1);   <span class="comment">//[N, ] 每个bbox的面积</span></span><br><span class="line">	<span class="keyword">auto</span> tuple_sorted = scores.<span class="built_in">sort</span>(<span class="number">0</span>, <span class="literal">true</span>);    <span class="comment">//降序排列</span></span><br><span class="line">	<span class="keyword">auto</span> order = std::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(tuple_sorted);</span><br><span class="line"></span><br><span class="line">	vector&lt;<span class="type">int</span>&gt;	keep;</span><br><span class="line">	<span class="keyword">while</span> (order.<span class="built_in">numel</span>() &gt; <span class="number">0</span>) &#123;<span class="comment">// torch.numel()返回张量元素个数</span></span><br><span class="line">		<span class="keyword">if</span> (order.<span class="built_in">numel</span>() == <span class="number">1</span>) &#123;<span class="comment">//    保留框只剩一个</span></span><br><span class="line">			<span class="keyword">auto</span> i = order.<span class="built_in">item</span>();</span><br><span class="line">			keep.<span class="built_in">push_back</span>(i.<span class="built_in">toInt</span>());</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">auto</span> i = order[<span class="number">0</span>].<span class="built_in">item</span>();<span class="comment">// 保留scores最大的那个框box[i]</span></span><br><span class="line">			keep.<span class="built_in">push_back</span>(i.<span class="built_in">toInt</span>());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//计算box[i]与其余各框的IOU(思路很好)</span></span><br><span class="line">		<span class="keyword">auto</span> order_mask = order.<span class="built_in">narrow</span>(<span class="number">0</span>, <span class="number">1</span>, order.<span class="built_in">size</span>(<span class="number">-1</span>) - <span class="number">1</span>);</span><br><span class="line">		x1.<span class="built_in">index</span>(&#123; order_mask &#125;);</span><br><span class="line">		x1.<span class="built_in">index</span>(&#123; order_mask &#125;).<span class="built_in">clamp</span>(x1[keep.<span class="built_in">back</span>()].<span class="built_in">item</span>().<span class="built_in">toFloat</span>(), <span class="number">1e10</span>);</span><br><span class="line">		<span class="keyword">auto</span> xx1 = x1.<span class="built_in">index</span>(&#123; order_mask &#125;).<span class="built_in">clamp</span>(x1[keep.<span class="built_in">back</span>()].<span class="built_in">item</span>().<span class="built_in">toFloat</span>(),<span class="number">1e10</span>);<span class="comment">// [N - 1, ]</span></span><br><span class="line">		<span class="keyword">auto</span> yy1 = y1.<span class="built_in">index</span>(&#123; order_mask &#125;).<span class="built_in">clamp</span>(y1[keep.<span class="built_in">back</span>()].<span class="built_in">item</span>().<span class="built_in">toFloat</span>(), <span class="number">1e10</span>);</span><br><span class="line">		<span class="keyword">auto</span> xx2 = x2.<span class="built_in">index</span>(&#123; order_mask &#125;).<span class="built_in">clamp</span>(<span class="number">0</span>, x2[keep.<span class="built_in">back</span>()].<span class="built_in">item</span>().<span class="built_in">toFloat</span>());</span><br><span class="line">		<span class="keyword">auto</span> yy2 = y2.<span class="built_in">index</span>(&#123; order_mask &#125;).<span class="built_in">clamp</span>(<span class="number">0</span>, y2[keep.<span class="built_in">back</span>()].<span class="built_in">item</span>().<span class="built_in">toFloat</span>());</span><br><span class="line">		<span class="keyword">auto</span> inter = (xx2 - xx1).<span class="built_in">clamp</span>(<span class="number">0</span>, <span class="number">1e10</span>) * (yy2 - yy1).<span class="built_in">clamp</span>(<span class="number">0</span>, <span class="number">1e10</span>);<span class="comment">// [N - 1, ]</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">auto</span> iou = inter / (areas[keep.<span class="built_in">back</span>()] + areas.<span class="built_in">index</span>(&#123; order.<span class="built_in">narrow</span>(<span class="number">0</span>,<span class="number">1</span>,order.<span class="built_in">size</span>(<span class="number">-1</span>) - <span class="number">1</span>) &#125;) - inter);<span class="comment">//[N - 1, ]</span></span><br><span class="line">		<span class="keyword">auto</span> idx = (iou &lt;= thresh).<span class="built_in">nonzero</span>().<span class="built_in">squeeze</span>();<span class="comment">//注意此时idx为[N - 1, ] 而order为[N, ]</span></span><br><span class="line">		<span class="keyword">if</span> (idx.<span class="built_in">numel</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		order = order.<span class="built_in">index</span>(&#123; idx + <span class="number">1</span> &#125;); <span class="comment">//修补索引之间的差值</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> keep;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>事实上，除了使用libtorch的写法，将libtorch张量存储到c++的其他数据结构中，比如vector或者数组中同样可以实现NMS功能，本文不再赘述。</p>
-<h1><span id="referece">Referece</span></h1><p><a href="https://zhuanlan.zhihu.com/p/61350298" target="_blank" rel="noopener">numpy链接1</a><br><a href="https://zhuanlan.zhihu.com/p/64423753" target="_blank" rel="noopener">numpy链接2</a><br><a href="https://zhuanlan.zhihu.com/p/54709759" target="_blank" rel="noopener">pytorch链接1</a></p>
+<h1><span id="referece">Referece</span></h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61350298">numpy链接1</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64423753">numpy链接2</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/54709759">pytorch链接1</a></p>
 
       
     </div>
@@ -407,14 +415,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -446,7 +454,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/12/23/computer_ABC_堆栈列/" rel="next" title="computer ABC">
+              <a href="/2020/12/23/computer_ABC_%E5%A0%86%E6%A0%88%E5%88%97/" rel="next" title="computer ABC">
                 <i class="fa fa-chevron-left"></i> computer ABC
               </a>
             
@@ -456,7 +464,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/01/06/一些cpp常见错误报错/" rel="prev" title="一些cpp常见错误报错">
+              <a href="/2021/01/06/%E4%B8%80%E4%BA%9Bcpp%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E6%8A%A5%E9%94%99/" rel="prev" title="一些cpp常见错误报错">
                 一些cpp常见错误报错 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -531,9 +539,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -542,9 +552,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +576,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -621,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">NMS的numpy写法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">简单易懂的NMS的numpy写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">简洁的NMS的numpy写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Soft-NMS的简洁的numpy写法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">NMS的pytorch写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">NMS的cpp写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Referece</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">NMS的numpy写法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">简单易懂的NMS的numpy写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">简洁的NMS的numpy写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">Soft-NMS的简洁的numpy写法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">NMS的pytorch写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">NMS的cpp写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Referece</span></a></li></ol></div>
             
 
           </div>
@@ -641,7 +651,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

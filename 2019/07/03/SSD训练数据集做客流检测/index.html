@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="detection,">
+  <meta name="keywords" content="detection," />
 
 
 
@@ -79,28 +79,25 @@
 
 
 
-<meta name="description" content="Windows下使用spyder训练SSD-TensorFlow，并进行客流检测背景 之前的尝试中，用yolo v3训练自己的模型并进行客流检测。得到的结果其实已经很好，增加训练样本和训练周期，最后也取得了如下的效果，但是实际在视频中检测时候，抖动现象还是比较严重的。     尝试使用另一种实时检测模型SSD，SSD综合了yolo的快捷和Faster RCNN的准确，同时兼备快捷和准确率。  过程">
-<meta name="keywords" content="detection">
+<meta name="description" content="Windows下使用spyder训练SSD-TensorFlow，并进行客流检测背景 之前的尝试中，用yolo v3训练自己的模型并进行客流检测。得到的结果其实已经很好，增加训练样本和训练周期，最后也取得了如下的效果，但是实际在视频中检测时候，抖动现象还是比较严重的。   ![yolo结果](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;AllentDan&#x2F;Pedestria">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSD训练数据集做客流检测">
-<meta property="og:url" content="https://allentdan.github.io/2019/07/03/SSD训练数据集做客流检测/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2019/07/03/SSD%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86%E5%81%9A%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
-<meta property="og:description" content="Windows下使用spyder训练SSD-TensorFlow，并进行客流检测背景 之前的尝试中，用yolo v3训练自己的模型并进行客流检测。得到的结果其实已经很好，增加训练样本和训练周期，最后也取得了如下的效果，但是实际在视频中检测时候，抖动现象还是比较严重的。     尝试使用另一种实时检测模型SSD，SSD综合了yolo的快捷和Faster RCNN的准确，同时兼备快捷和准确率。  过程">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/PedestrianDetection/master/yoloImage/result.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/detection/mytest6.gif">
-<meta property="og:updated_time" content="2021-01-22T11:50:30.232Z">
+<meta property="og:description" content="Windows下使用spyder训练SSD-TensorFlow，并进行客流检测背景 之前的尝试中，用yolo v3训练自己的模型并进行客流检测。得到的结果其实已经很好，增加训练样本和训练周期，最后也取得了如下的效果，但是实际在视频中检测时候，抖动现象还是比较严重的。   ![yolo结果](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;AllentDan&#x2F;Pedestria">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-03T06:17:38.000Z">
+<meta property="article:modified_time" content="2021-01-22T11:50:30.232Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="detection">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSD训练数据集做客流检测">
-<meta name="twitter:description" content="Windows下使用spyder训练SSD-TensorFlow，并进行客流检测背景 之前的尝试中，用yolo v3训练自己的模型并进行客流检测。得到的结果其实已经很好，增加训练样本和训练周期，最后也取得了如下的效果，但是实际在视频中检测时候，抖动现象还是比较严重的。     尝试使用另一种实时检测模型SSD，SSD综合了yolo的快捷和Faster RCNN的准确，同时兼备快捷和准确率。  过程">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/AllentDan/PedestrianDetection/master/yoloImage/result.png">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -123,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2019/07/03/SSD训练数据集做客流检测/">
+  <link rel="canonical" href="https://allentdan.github.io/2019/07/03/SSD训练数据集做客流检测/"/>
 
 
 
@@ -139,7 +136,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -157,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -185,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -195,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -205,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -215,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -225,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -266,11 +263,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2019/07/03/SSD训练数据集做客流检测/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2019/07/03/SSD%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86%E5%81%9A%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -314,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/07/03/SSD训练数据集做客流检测/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/07/03/SSD训练数据集做客流检测/" itemprop="commentsCount"></span>
+                <a href="/2019/07/03/SSD%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86%E5%81%9A%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/07/03/SSD%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86%E5%81%9A%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,7 +320,7 @@
 
           
           
-             <span id="/2019/07/03/SSD训练数据集做客流检测/" class="leancloud_visitors" data-flag-title="SSD训练数据集做客流检测">
+             <span id="/2019/07/03/SSD%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86%E5%81%9A%E5%AE%A2%E6%B5%81%E6%A3%80%E6%B5%8B/" class="leancloud_visitors" data-flag-title="SSD训练数据集做客流检测">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,7 +335,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -362,36 +359,39 @@
         <h2><span id="windows下使用spyder训练ssd-tensorflow并进行客流检测">Windows下使用spyder训练SSD-TensorFlow，并进行客流检测</span></h2><h3><span id="背景">背景</span></h3><ul>
 <li>之前的尝试中，<a href="https://allentdan.github.io/2019/06/08/%E7%94%A8YOLO3%E6%95%B0%E4%BA%BA%E5%A4%B4/">用yolo v3训练自己的模型并进行客流检测</a>。得到的结果其实已经很好，增加训练样本和训练周期，最后也取得了如下的效果，但是实际在视频中检测时候，抖动现象还是比较严重的。</li>
 </ul>
-<div><br><img src="https://raw.githubusercontent.com/AllentDan/PedestrianDetection/master/yoloImage/result.png" alt="yolo结果"><br></div>
+<div>
+![yolo结果](https://raw.githubusercontent.com/AllentDan/PedestrianDetection/master/yoloImage/result.png)
+</div>
 
 <ul>
 <li>尝试使用另一种实时检测模型SSD，SSD综合了yolo的快捷和Faster RCNN的准确，同时兼备快捷和准确率。</li>
 </ul>
 <h3><span id="过程">过程</span></h3><ol>
-<li><p>先后参考<a href="https://blog.csdn.net/zzz_cming/article/details/81131523" target="_blank" rel="noopener">博客一</a>，<a href="https://blog.csdn.net/duanyajun987/article/details/81564081" target="_blank" rel="noopener">博客二</a>和<a href="https://blog.csdn.net/ngy321/article/details/79901516" target="_blank" rel="noopener">博客三</a>以及对SSD迁移到TensorFlow上的<a href="https://github.com/balancap/SSD-Tensorflow" target="_blank" rel="noopener">工程</a>。其中第三篇博客对我帮助很大，主要是SSD-TensorFlow都是部署在Linux上，或者在windlows使用pycharm的IDE工具，所以对使用其他工具和环境的造成许多困扰。</p>
+<li><p>先后参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/zzz_cming/article/details/81131523">博客一</a>，<a target="_blank" rel="noopener" href="https://blog.csdn.net/duanyajun987/article/details/81564081">博客二</a>和<a target="_blank" rel="noopener" href="https://blog.csdn.net/ngy321/article/details/79901516">博客三</a>以及对SSD迁移到TensorFlow上的<a target="_blank" rel="noopener" href="https://github.com/balancap/SSD-Tensorflow">工程</a>。其中第三篇博客对我帮助很大，主要是SSD-TensorFlow都是部署在Linux上，或者在windlows使用pycharm的IDE工具，所以对使用其他工具和环境的造成许多困扰。</p>
 </li>
 <li><p>可以完全按照第二篇博客一步一步向下做，直到第七步。因为不是使用的pycharm，导致无法直接转换文件生成tfrecord。就做了些修改，将linux下的.sh批处理文件改成Windows下的.bat批处理文件。文件内如如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">python tf_convert_data.py ^</span><br><span class="line">--dataset_name pascalvoc ^</span><br><span class="line">--dataset_dir VOCdevkit/VOC2007/ ^</span><br><span class="line">--output_name voc_2007_train ^</span><br><span class="line">--output_dir tfrecords/</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">python tf_convert_data.py ^</span><br><span class="line">--dataset_name pascalvoc ^</span><br><span class="line">--dataset_dir VOCdevkit/VOC2007/ ^</span><br><span class="line">--output_name voc_2007_train ^</span><br><span class="line">--output_dir tfrecords/</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
 <p>读者可以新建TXT文件，然后输入上面内容，换成自己对应的路径，再修改文件名.txt为.bat文件。直接双击运行即可，报错的话，根据内容修改即可。</p>
-<ol start="3">
-<li>同样，受限于Windows环境和IDE的辣鸡，只好自己编写.bat批处理文件，内如如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">python train_ssd_network.py ^</span><br><span class="line">    --train_dir log2/ ^</span><br><span class="line">    --dataset_dir tfrecords/ ^</span><br><span class="line">    --dataset_name pascalvoc_2007 ^</span><br><span class="line">    --dataset_split_name train ^</span><br><span class="line">    --model_name ssd_300_vgg ^</span><br><span class="line">    --checkpoint_path checkpoints/VGG_VOC0712_SSD_300x300_ft_iter_120000.ckpt ^</span><br><span class="line">    --save_summaries_secs 60 ^</span><br><span class="line">    --save_interval_secs 300 ^</span><br><span class="line">    --weight_decay 0.0005 ^</span><br><span class="line">    --optimizer adam ^</span><br><span class="line">    --learning_rate 0.00003 ^</span><br><span class="line">    --batch_size 16</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同样，受限于Windows环境和IDE的辣鸡，只好自己编写.bat批处理文件，内如如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">python train_ssd_network.py ^</span><br><span class="line">    --train_dir log2/ ^</span><br><span class="line">    --dataset_dir tfrecords/ ^</span><br><span class="line">    --dataset_name pascalvoc_2007 ^</span><br><span class="line">    --dataset_split_name train ^</span><br><span class="line">    --model_name ssd_300_vgg ^</span><br><span class="line">    --checkpoint_path checkpoints/VGG_VOC0712_SSD_300x300_ft_iter_120000.ckpt ^</span><br><span class="line">    --save_summaries_secs 60 ^</span><br><span class="line">    --save_interval_secs 300 ^</span><br><span class="line">    --weight_decay 0.0005 ^</span><br><span class="line">    --optimizer adam ^</span><br><span class="line">    --learning_rate 0.00003 ^</span><br><span class="line">    --batch_size 16</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<p>同样，参照上一个过程做你自己的修改，然后双击运行.bat文件即可，报错修改。训练过程中想终止，按Ctr+C即可。</p>
 </li>
 </ol>
-<p>同样，参照上一个过程做你自己的修改，然后双击运行.bat文件即可，报错修改。训练过程中想终止，按Ctr+C即可。</p>
 <h3><span id="问题">问题</span></h3><ul>
 <li>问题：训练不收敛，导致很容易像博客一中存在的问题。此外，我本人的训练不收敛情况严重许多，loss可以在10~150间抖动震荡。但是最后测试图片的时候，仍然像第一篇参考博客一样。</li>
 <li>办法：后面将所有的图片按最大可能生成tfrecords文件，并且增多图片数量和训练次数。中间还做了其他修改，但是已经忘记了，可以自行尝试。</li>
 </ul>
-<h3><span id="结果">结果</span></h3><div><br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/detection/mytest6.gif" alt="GIF"><br></div>
+<h3><span id="结果">结果</span></h3><div>
+![GIF](https://raw.githubusercontent.com/AllentDan/ImageBase/main/detection/mytest6.gif)
+</div>
 
 <h3><span id="补充">补充</span></h3><ul>
 <li>动图是因为调试数人数的时候，需要一幅图片一幅图片地测试。所以用imageio将几百张图片生成了GIF</li>
 <li>考虑到SSD检测效果是比较稳定的，就不做目标跟踪，直接对检测到的人物框处理。</li>
 <li>思想就是，下车的人对应的框的位置是相对集中的。所以统计方框的中心点的位置，可以是中心点到原点的欧氏距离，也可以是其他距离。此外，还存在某些人下车不够顺，所以不能直接用方框的y坐标位置，就对y减小到一定值开始算该人下车，当出现该人的框往回时候，又将该人视为上车。以此统计人数，具体仍然有很多细节，就直接贴代码吧。</li>
 </ul>
-<h3><span id="代码">代码</span></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Created on Wed Jun 19 10:13:53 2019</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: admin</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">slim = tf.contrib.slim</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">sys.path.append(<span class="string">'../'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> nets <span class="keyword">import</span> ssd_vgg_300, ssd_common, np_methods</span><br><span class="line"><span class="keyword">from</span> preprocessing <span class="keyword">import</span> ssd_vgg_preprocessing</span><br><span class="line"><span class="keyword">from</span> notebooks <span class="keyword">import</span> visualization</span><br><span class="line"></span><br><span class="line"><span class="comment"># TensorFlow session: grow memory when needed. TF, DO NOT USE ALL MY GPU MEMORY!!!</span></span><br><span class="line">gpu_options = tf.GPUOptions(allow_growth=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">config = tf.ConfigProto(log_device_placement=<span class="literal">False</span>, gpu_options=gpu_options)</span><br><span class="line"></span><br><span class="line">isess = tf.InteractiveSession(config=config)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Input placeholder.</span></span><br><span class="line"></span><br><span class="line">net_shape = (<span class="number">300</span>, <span class="number">300</span>)</span><br><span class="line"></span><br><span class="line">data_format = <span class="string">'NHWC'</span></span><br><span class="line"></span><br><span class="line">img_input = tf.placeholder(tf.uint8, shape=(<span class="literal">None</span>, <span class="literal">None</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluation pre-processing: resize to SSD net shape.</span></span><br><span class="line"></span><br><span class="line">image_pre, labels_pre, bboxes_pre, bbox_img = ssd_vgg_preprocessing.preprocess_for_eval(</span><br><span class="line"></span><br><span class="line">    img_input, <span class="literal">None</span>, <span class="literal">None</span>, net_shape, data_format, resize=ssd_vgg_preprocessing.Resize.WARP_RESIZE)</span><br><span class="line"></span><br><span class="line">image_4d = tf.expand_dims(image_pre, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the SSD model.</span></span><br><span class="line"></span><br><span class="line">reuse = <span class="literal">True</span> <span class="keyword">if</span> <span class="string">'ssd_net'</span> <span class="keyword">in</span> locals() <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">ssd_net = ssd_vgg_300.SSDNet()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> slim.arg_scope(ssd_net.arg_scope(data_format=data_format)):</span><br><span class="line"></span><br><span class="line">    predictions, localisations, _, _ = ssd_net.net(image_4d, is_training=<span class="literal">False</span>, reuse=reuse)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Restore SSD model.</span></span><br><span class="line"></span><br><span class="line">ckpt_filename = <span class="string">'E:\\Python\\ssd\\log2\\model.ckpt-3380'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ckpt_filename = '../checkpoints/VGG_VOC0712_SSD_300x300_ft_iter_120000.ckpt'</span></span><br><span class="line"></span><br><span class="line">isess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line">saver.restore(isess, ckpt_filename)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># SSD default anchor boxes.</span></span><br><span class="line"></span><br><span class="line">ssd_anchors = ssd_net.anchors(net_shape)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Main image processing routine.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_image</span><span class="params">(img, select_threshold=<span class="number">0.65</span>, nms_threshold=<span class="number">.15</span>, net_shape=<span class="params">(<span class="number">300</span>, <span class="number">300</span>)</span>)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Run SSD network.</span></span><br><span class="line"></span><br><span class="line">    rimg, rpredictions, rlocalisations, rbbox_img = isess.run([image_4d, predictions, localisations, bbox_img],</span><br><span class="line"></span><br><span class="line">                                                              feed_dict=&#123;img_input: img&#125;)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="comment"># Get classes and bboxes from the net outputs.</span></span><br><span class="line"></span><br><span class="line">    rclasses, rscores, rbboxes = np_methods.ssd_bboxes_select(</span><br><span class="line"></span><br><span class="line">        rpredictions, rlocalisations, ssd_anchors,</span><br><span class="line"></span><br><span class="line">        select_threshold=select_threshold, img_shape=net_shape, num_classes=<span class="number">21</span>, decode=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    rbboxes = np_methods.bboxes_clip(rbbox_img, rbboxes)</span><br><span class="line"></span><br><span class="line">    rclasses, rscores, rbboxes = np_methods.bboxes_sort(rclasses, rscores, rbboxes, top_k=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">    rclasses, rscores, rbboxes = np_methods.bboxes_nms(rclasses, rscores, rbboxes, nms_threshold=nms_threshold)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Resize bboxes to original image shape. Note: useless for Resize.WARP!</span></span><br><span class="line"></span><br><span class="line">    rbboxes = np_methods.bboxes_resize(rbbox_img, rbboxes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> rclasses, rscores, rbboxes</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plt_bboxes</span><span class="params">(img, classes, scores, bboxes, pathIndex,out, figsize=<span class="params">(<span class="number">10</span>,<span class="number">10</span>)</span>, linewidth=<span class="number">1.5</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Visualize bounding boxes. Largely inspired by SSD-MXNET!</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    fig = plt.figure(figsize=figsize)</span><br><span class="line">    fig=plt.gcf</span><br><span class="line">    plt.imshow(img)</span><br><span class="line">    height = img.shape[<span class="number">0</span>]</span><br><span class="line">    width = img.shape[<span class="number">1</span>]</span><br><span class="line">    colors = dict()</span><br><span class="line">    outnum=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(classes.shape[<span class="number">0</span>]):</span><br><span class="line">        cls_id = int(classes[i])</span><br><span class="line">        <span class="keyword">if</span> cls_id &gt;= <span class="number">0</span>:</span><br><span class="line">            score = scores[i]</span><br><span class="line">            <span class="keyword">if</span> cls_id <span class="keyword">not</span> <span class="keyword">in</span> colors:</span><br><span class="line">                colors[cls_id] = (random.random(), random.random(), random.random())</span><br><span class="line">            ymin = int(bboxes[i, <span class="number">0</span>] * height)</span><br><span class="line">            xmin = int(bboxes[i, <span class="number">1</span>] * width)</span><br><span class="line">            ymax = int(bboxes[i, <span class="number">2</span>] * height)</span><br><span class="line">            xmax = int(bboxes[i, <span class="number">3</span>] * width)</span><br><span class="line">            color=<span class="string">"green"</span></span><br><span class="line">            <span class="keyword">if</span> ymin+ymax&lt;<span class="number">132</span>:</span><br><span class="line">                outnum=outnum++<span class="number">1</span></span><br><span class="line">                color=<span class="string">"red"</span></span><br><span class="line">                linewidth=<span class="number">4</span></span><br><span class="line">            rect = plt.Rectangle((xmin, ymin), xmax - xmin,</span><br><span class="line">                                ymax - ymin, fill=<span class="literal">False</span>,</span><br><span class="line">                                edgecolor=color,</span><br><span class="line">                                linewidth=linewidth)</span><br><span class="line">            plt.gca().add_patch(rect)</span><br><span class="line">            class_name = <span class="string">"person"</span></span><br><span class="line">            plt.gca().text(xmin, ymin - <span class="number">2</span>,</span><br><span class="line">                          <span class="string">'&#123;:s&#125; | &#123;:.3f&#125;'</span>.format(class_name, score),</span><br><span class="line">                          bbox=dict(facecolor=color, alpha=<span class="number">0.5</span>),</span><br><span class="line">                          fontsize=<span class="number">12</span>, color=<span class="string">'white'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">"当前车内人数："</span>+str(len(bboxes)-outnum)+<span class="string">"    已下车人数："</span>+str(out),fontproperties=<span class="string">"SimSun"</span>,size=<span class="number">20</span>)</span><br><span class="line">    plt.savefig(pathIndex)</span><br><span class="line">    <span class="comment"># plt.show()</span></span><br><span class="line">path = <span class="string">'E:/Python/opencv/test2/'</span></span><br><span class="line">image_names = sorted(os.listdir(path))</span><br><span class="line">previous=[<span class="string">"start"</span>]</span><br><span class="line">out=<span class="number">0</span></span><br><span class="line">distance_list=[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">thresh=<span class="number">132</span>/<span class="number">288</span><span class="comment">#判断该乘客是否下车的阈值，该值表示y方向距离</span></span><br><span class="line">thresh_ychange=<span class="number">0.4</span><span class="comment">#y方向的跳动，因为检测到的人物框是有抖动的，可以后面自行增加限制条件</span></span><br><span class="line"><span class="keyword">for</span> image_name <span class="keyword">in</span> image_names:</span><br><span class="line">    img = mpimg.imread(path+image_name)</span><br><span class="line">    rclasses, rscores, rbboxes =  process_image(img)</span><br><span class="line">    now=[]<span class="comment">#存储当前帧</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> rbboxes:</span><br><span class="line">        now.append(&#123;<span class="string">"distance"</span>:i.sum(),<span class="string">"y"</span>:i[<span class="number">0</span>]+i[<span class="number">2</span>]&#125;)</span><br><span class="line">    now=sorted(now, key=<span class="keyword">lambda</span> now : now[<span class="string">"distance"</span>])</span><br><span class="line">    <span class="keyword">if</span> previous==[<span class="string">"start"</span>]:</span><br><span class="line">        previous=now</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> m,n <span class="keyword">in</span> enumerate(now):</span><br><span class="line">            <span class="keyword">if</span> m&lt;len(previous):</span><br><span class="line">                <span class="keyword">if</span> n[<span class="string">"y"</span>]&lt;thresh <span class="keyword">and</span> previous[m][<span class="string">"y"</span>]&gt;thresh:</span><br><span class="line">                    out=out+<span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> n[<span class="string">"y"</span>]&gt;thresh <span class="keyword">and</span> previous[m][<span class="string">"y"</span>]&lt;thresh <span class="keyword">and</span> n[<span class="string">"y"</span>]-previous[m][<span class="string">"y"</span>]&lt;thresh_ychange:</span><br><span class="line">                    out=out<span class="number">-1</span></span><br><span class="line">    previous=now</span><br><span class="line">    plt_bboxes(img,rclasses, rscores, rbboxes, path+<span class="string">'out_'</span>+image_name,out)</span><br></pre></td></tr></table></figure>
+<h3><span id="代码">代码</span></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Wed Jun 19 10:13:53 2019</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: admin</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">slim = tf.contrib.slim</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">sys.path.append(<span class="string">&#x27;../&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> nets <span class="keyword">import</span> ssd_vgg_300, ssd_common, np_methods</span><br><span class="line"><span class="keyword">from</span> preprocessing <span class="keyword">import</span> ssd_vgg_preprocessing</span><br><span class="line"><span class="keyword">from</span> notebooks <span class="keyword">import</span> visualization</span><br><span class="line"></span><br><span class="line"><span class="comment"># TensorFlow session: grow memory when needed. TF, DO NOT USE ALL MY GPU MEMORY!!!</span></span><br><span class="line">gpu_options = tf.GPUOptions(allow_growth=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">config = tf.ConfigProto(log_device_placement=<span class="literal">False</span>, gpu_options=gpu_options)</span><br><span class="line"></span><br><span class="line">isess = tf.InteractiveSession(config=config)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Input placeholder.</span></span><br><span class="line"></span><br><span class="line">net_shape = (<span class="number">300</span>, <span class="number">300</span>)</span><br><span class="line"></span><br><span class="line">data_format = <span class="string">&#x27;NHWC&#x27;</span></span><br><span class="line"></span><br><span class="line">img_input = tf.placeholder(tf.uint8, shape=(<span class="literal">None</span>, <span class="literal">None</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluation pre-processing: resize to SSD net shape.</span></span><br><span class="line"></span><br><span class="line">image_pre, labels_pre, bboxes_pre, bbox_img = ssd_vgg_preprocessing.preprocess_for_eval(</span><br><span class="line"></span><br><span class="line">    img_input, <span class="literal">None</span>, <span class="literal">None</span>, net_shape, data_format, resize=ssd_vgg_preprocessing.Resize.WARP_RESIZE)</span><br><span class="line"></span><br><span class="line">image_4d = tf.expand_dims(image_pre, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the SSD model.</span></span><br><span class="line"></span><br><span class="line">reuse = <span class="literal">True</span> <span class="keyword">if</span> <span class="string">&#x27;ssd_net&#x27;</span> <span class="keyword">in</span> <span class="built_in">locals</span>() <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">ssd_net = ssd_vgg_300.SSDNet()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> slim.arg_scope(ssd_net.arg_scope(data_format=data_format)):</span><br><span class="line"></span><br><span class="line">    predictions, localisations, _, _ = ssd_net.net(image_4d, is_training=<span class="literal">False</span>, reuse=reuse)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Restore SSD model.</span></span><br><span class="line"></span><br><span class="line">ckpt_filename = <span class="string">&#x27;E:\\Python\\ssd\\log2\\model.ckpt-3380&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ckpt_filename = &#x27;../checkpoints/VGG_VOC0712_SSD_300x300_ft_iter_120000.ckpt&#x27;</span></span><br><span class="line"></span><br><span class="line">isess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line">saver.restore(isess, ckpt_filename)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># SSD default anchor boxes.</span></span><br><span class="line"></span><br><span class="line">ssd_anchors = ssd_net.anchors(net_shape)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Main image processing routine.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_image</span>(<span class="params">img, select_threshold=<span class="number">0.65</span>, nms_threshold=<span class="number">.15</span>, net_shape=(<span class="params"><span class="number">300</span>, <span class="number">300</span></span>)</span>):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Run SSD network.</span></span><br><span class="line"></span><br><span class="line">    rimg, rpredictions, rlocalisations, rbbox_img = isess.run([image_4d, predictions, localisations, bbox_img],</span><br><span class="line"></span><br><span class="line">                                                              feed_dict=&#123;img_input: img&#125;)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="comment"># Get classes and bboxes from the net outputs.</span></span><br><span class="line"></span><br><span class="line">    rclasses, rscores, rbboxes = np_methods.ssd_bboxes_select(</span><br><span class="line"></span><br><span class="line">        rpredictions, rlocalisations, ssd_anchors,</span><br><span class="line"></span><br><span class="line">        select_threshold=select_threshold, img_shape=net_shape, num_classes=<span class="number">21</span>, decode=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    rbboxes = np_methods.bboxes_clip(rbbox_img, rbboxes)</span><br><span class="line"></span><br><span class="line">    rclasses, rscores, rbboxes = np_methods.bboxes_sort(rclasses, rscores, rbboxes, top_k=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">    rclasses, rscores, rbboxes = np_methods.bboxes_nms(rclasses, rscores, rbboxes, nms_threshold=nms_threshold)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Resize bboxes to original image shape. Note: useless for Resize.WARP!</span></span><br><span class="line"></span><br><span class="line">    rbboxes = np_methods.bboxes_resize(rbbox_img, rbboxes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> rclasses, rscores, rbboxes</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plt_bboxes</span>(<span class="params">img, classes, scores, bboxes, pathIndex,out, figsize=(<span class="params"><span class="number">10</span>,<span class="number">10</span></span>), linewidth=<span class="number">1.5</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Visualize bounding boxes. Largely inspired by SSD-MXNET!</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    fig = plt.figure(figsize=figsize)</span><br><span class="line">    fig=plt.gcf</span><br><span class="line">    plt.imshow(img)</span><br><span class="line">    height = img.shape[<span class="number">0</span>]</span><br><span class="line">    width = img.shape[<span class="number">1</span>]</span><br><span class="line">    colors = <span class="built_in">dict</span>()</span><br><span class="line">    outnum=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(classes.shape[<span class="number">0</span>]):</span><br><span class="line">        cls_id = <span class="built_in">int</span>(classes[i])</span><br><span class="line">        <span class="keyword">if</span> cls_id &gt;= <span class="number">0</span>:</span><br><span class="line">            score = scores[i]</span><br><span class="line">            <span class="keyword">if</span> cls_id <span class="keyword">not</span> <span class="keyword">in</span> colors:</span><br><span class="line">                colors[cls_id] = (random.random(), random.random(), random.random())</span><br><span class="line">            ymin = <span class="built_in">int</span>(bboxes[i, <span class="number">0</span>] * height)</span><br><span class="line">            xmin = <span class="built_in">int</span>(bboxes[i, <span class="number">1</span>] * width)</span><br><span class="line">            ymax = <span class="built_in">int</span>(bboxes[i, <span class="number">2</span>] * height)</span><br><span class="line">            xmax = <span class="built_in">int</span>(bboxes[i, <span class="number">3</span>] * width)</span><br><span class="line">            color=<span class="string">&quot;green&quot;</span></span><br><span class="line">            <span class="keyword">if</span> ymin+ymax&lt;<span class="number">132</span>:</span><br><span class="line">                outnum=outnum++<span class="number">1</span></span><br><span class="line">                color=<span class="string">&quot;red&quot;</span></span><br><span class="line">                linewidth=<span class="number">4</span></span><br><span class="line">            rect = plt.Rectangle((xmin, ymin), xmax - xmin,</span><br><span class="line">                                ymax - ymin, fill=<span class="literal">False</span>,</span><br><span class="line">                                edgecolor=color,</span><br><span class="line">                                linewidth=linewidth)</span><br><span class="line">            plt.gca().add_patch(rect)</span><br><span class="line">            class_name = <span class="string">&quot;person&quot;</span></span><br><span class="line">            plt.gca().text(xmin, ymin - <span class="number">2</span>,</span><br><span class="line">                          <span class="string">&#x27;&#123;:s&#125; | &#123;:.3f&#125;&#x27;</span>.<span class="built_in">format</span>(class_name, score),</span><br><span class="line">                          bbox=<span class="built_in">dict</span>(facecolor=color, alpha=<span class="number">0.5</span>),</span><br><span class="line">                          fontsize=<span class="number">12</span>, color=<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&quot;当前车内人数：&quot;</span>+<span class="built_in">str</span>(<span class="built_in">len</span>(bboxes)-outnum)+<span class="string">&quot;    已下车人数：&quot;</span>+<span class="built_in">str</span>(out),fontproperties=<span class="string">&quot;SimSun&quot;</span>,size=<span class="number">20</span>)</span><br><span class="line">    plt.savefig(pathIndex)</span><br><span class="line">    <span class="comment"># plt.show()</span></span><br><span class="line">path = <span class="string">&#x27;E:/Python/opencv/test2/&#x27;</span></span><br><span class="line">image_names = <span class="built_in">sorted</span>(os.listdir(path))</span><br><span class="line">previous=[<span class="string">&quot;start&quot;</span>]</span><br><span class="line">out=<span class="number">0</span></span><br><span class="line">distance_list=[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">thresh=<span class="number">132</span>/<span class="number">288</span><span class="comment">#判断该乘客是否下车的阈值，该值表示y方向距离</span></span><br><span class="line">thresh_ychange=<span class="number">0.4</span><span class="comment">#y方向的跳动，因为检测到的人物框是有抖动的，可以后面自行增加限制条件</span></span><br><span class="line"><span class="keyword">for</span> image_name <span class="keyword">in</span> image_names:</span><br><span class="line">    img = mpimg.imread(path+image_name)</span><br><span class="line">    rclasses, rscores, rbboxes =  process_image(img)</span><br><span class="line">    now=[]<span class="comment">#存储当前帧</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> rbboxes:</span><br><span class="line">        now.append(&#123;<span class="string">&quot;distance&quot;</span>:i.<span class="built_in">sum</span>(),<span class="string">&quot;y&quot;</span>:i[<span class="number">0</span>]+i[<span class="number">2</span>]&#125;)</span><br><span class="line">    now=<span class="built_in">sorted</span>(now, key=<span class="keyword">lambda</span> now : now[<span class="string">&quot;distance&quot;</span>])</span><br><span class="line">    <span class="keyword">if</span> previous==[<span class="string">&quot;start&quot;</span>]:</span><br><span class="line">        previous=now</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> m,n <span class="keyword">in</span> <span class="built_in">enumerate</span>(now):</span><br><span class="line">            <span class="keyword">if</span> m&lt;<span class="built_in">len</span>(previous):</span><br><span class="line">                <span class="keyword">if</span> n[<span class="string">&quot;y&quot;</span>]&lt;thresh <span class="keyword">and</span> previous[m][<span class="string">&quot;y&quot;</span>]&gt;thresh:</span><br><span class="line">                    out=out+<span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> n[<span class="string">&quot;y&quot;</span>]&gt;thresh <span class="keyword">and</span> previous[m][<span class="string">&quot;y&quot;</span>]&lt;thresh <span class="keyword">and</span> n[<span class="string">&quot;y&quot;</span>]-previous[m][<span class="string">&quot;y&quot;</span>]&lt;thresh_ychange:</span><br><span class="line">                    out=out-<span class="number">1</span></span><br><span class="line">    previous=now</span><br><span class="line">    plt_bboxes(img,rclasses, rscores, rbboxes, path+<span class="string">&#x27;out_&#x27;</span>+image_name,out)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -412,14 +412,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -451,7 +451,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/08/用YOLO3数人头/" rel="next" title="用yolo v3训练自己的模型并进行客流检测">
+              <a href="/2019/06/08/%E7%94%A8YOLO3%E6%95%B0%E4%BA%BA%E5%A4%B4/" rel="next" title="用yolo v3训练自己的模型并进行客流检测">
                 <i class="fa fa-chevron-left"></i> 用yolo v3训练自己的模型并进行客流检测
               </a>
             
@@ -461,7 +461,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/03/python训练pb模型文件，C-使用模型预测生成dll，C-调用dll/" rel="prev" title="python训练pb模型文件，C++使用模型预测生成dll，C#调用dll">
+              <a href="/2019/07/03/python%E8%AE%AD%E7%BB%83pb%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%EF%BC%8CC-%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%94%9F%E6%88%90dll%EF%BC%8CC-%E8%B0%83%E7%94%A8dll/" rel="prev" title="python训练pb模型文件，C++使用模型预测生成dll，C#调用dll">
                 python训练pb模型文件，C++使用模型预测生成dll，C#调用dll <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -536,9 +536,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -547,9 +549,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -571,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -626,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Windows下使用spyder训练SSD-TensorFlow，并进行客流检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">Windows下使用spyder训练SSD-TensorFlow，并进行客流检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -646,7 +648,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

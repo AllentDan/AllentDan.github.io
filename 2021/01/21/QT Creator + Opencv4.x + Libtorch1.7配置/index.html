@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="配置,">
+  <meta name="keywords" content="配置," />
 
 
 
@@ -80,24 +80,24 @@
 
 
 <meta name="description" content="前言纯c++用户而言如果要自研产品，会一个图形界面编程工具还是有必要的。大多数c++用户，如果在Windows平台开发则多使用微软全家桶，如果是Linux平台则可能是其他工具再cmake。这篇博客将记录Windows平台，QT Creator中Opencv和Libtorch的配置。网上有较多关于使用Mingw编译Opencv源码以供QT Creator使用的，事实上，只是基于Opencv和Libt">
-<meta name="keywords" content="配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="QT Creator + Opencv + Libtorch +CUDA深度学习最全配置">
-<meta property="og:url" content="https://allentdan.github.io/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2021/01/21/QT%20Creator%20+%20Opencv4.x%20+%20Libtorch1.7%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="前言纯c++用户而言如果要自研产品，会一个图形界面编程工具还是有必要的。大多数c++用户，如果在Windows平台开发则多使用微软全家桶，如果是Linux平台则可能是其他工具再cmake。这篇博客将记录Windows平台，QT Creator中Opencv和Libtorch的配置。网上有较多关于使用Mingw编译Opencv源码以供QT Creator使用的，事实上，只是基于Opencv和Libt">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-22T11:54:59.791Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-21T01:28:28.000Z">
+<meta property="article:modified_time" content="2021-01-22T11:54:59.791Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="配置">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="QT Creator + Opencv + Libtorch +CUDA深度学习最全配置">
-<meta name="twitter:description" content="前言纯c++用户而言如果要自研产品，会一个图形界面编程工具还是有必要的。大多数c++用户，如果在Windows平台开发则多使用微软全家桶，如果是Linux平台则可能是其他工具再cmake。这篇博客将记录Windows平台，QT Creator中Opencv和Libtorch的配置。网上有较多关于使用Mingw编译Opencv源码以供QT Creator使用的，事实上，只是基于Opencv和Libt">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/">
+  <link rel="canonical" href="https://allentdan.github.io/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/"/>
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -154,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -182,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -192,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -202,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -212,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -222,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -263,11 +263,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2021/01/21/QT%20Creator%20+%20Opencv4.x%20+%20Libtorch1.7%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -311,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/" itemprop="commentsCount"></span>
+                <a href="/2021/01/21/QT%20Creator%20+%20Opencv4.x%20+%20Libtorch1.7%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/01/21/QT%20Creator%20+%20Opencv4.x%20+%20Libtorch1.7%E9%85%8D%E7%BD%AE/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,7 +320,7 @@
 
           
           
-             <span id="/2021/01/21/QT Creator + Opencv4.x + Libtorch1.7配置/" class="leancloud_visitors" data-flag-title="QT Creator + Opencv + Libtorch +CUDA深度学习最全配置">
+             <span id="/2021/01/21/QT%20Creator%20+%20Opencv4.x%20+%20Libtorch1.7%E9%85%8D%E7%BD%AE/" class="leancloud_visitors" data-flag-title="QT Creator + Opencv + Libtorch +CUDA深度学习最全配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -335,7 +335,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -365,25 +365,28 @@
 <li>CUDA 10.2</li>
 <li>CUDNN(适配CUDA10.2版本)</li>
 </ul>
-<h1><span id="qt-creator安装不全编译器选择错误opencv使用困难">QT Creator安装不全，编译器选择错误，OpenCv使用困难</span></h1><p>由于自己以前主力开发工具是微软全家桶，主要Visual Studio写c++，VS code写python这样，QT Creator大致了解后简单装了下，只有MingW x64编译器，这导致OpenCV不能像在Visual Studio一样直接<a href="https://opencv.org/releases/" target="_blank" rel="noopener">官网</a>下载.exe解压添加动态库即可。由于不了解QT Creator，配置时直接按照网上部分博客在.pro中修改，导致出错。</p>
+<h1><span id="qt-creator安装不全编译器选择错误opencv使用困难">QT Creator安装不全，编译器选择错误，OpenCv使用困难</span></h1><p>由于自己以前主力开发工具是微软全家桶，主要Visual Studio写c++，VS code写python这样，QT Creator大致了解后简单装了下，只有MingW x64编译器，这导致OpenCV不能像在Visual Studio一样直接<a target="_blank" rel="noopener" href="https://opencv.org/releases/">官网</a>下载.exe解压添加动态库即可。由于不了解QT Creator，配置时直接按照网上部分博客在.pro中修改，导致出错。</p>
 <p>直接下载opencv官网.exe，使用MingW编译主要错误表现为：</p>
 <ol>
 <li>控制台无法输出，即QT Creator最下方3 应用程序输出只有Debugging starts和Debugging has finished字样。</li>
-<li>cv::Mat可以使用，但是imread和imshow均无法使用，右键项目重新构建时出现 undefined reference to `cv::imread(cv::String const….</li>
+<li>cv::Mat可以使用，但是imread和imshow均无法使用，右键项目重新构建时出现 undefined reference to &#96;cv::imread(cv::String const….</li>
 </ol>
-<p>错误undefined reference to也就是“未定义的标识符”错误，这是因为没有正确关联.lib文件，工程只能找到函数声明，无法找到定义。然后一顿折腾，以为自己.pro文件中的INCLUDEPATH和LIBS配置不对，各种魔改都没有效果。最后看某个<a href="https://blog.csdn.net/xiaolong1126626497/article/details/105339663" target="_blank" rel="noopener">博客</a>说因为OpenCV官网提供的是MSVC编译的，如果想基于MingW开发，需要前往<a href="https://github.com/huihut/OpenCV-MinGW-Build" target="_blank" rel="noopener">这个GitHub</a>上下载需要版本。OpenCV在2.4.10及之后版本不再提供MingW编译的Lib。如果要跨平台做基于OpenCV的开发，要么自己用MingW编译一次OpenCV源码，要么用网上已有的轮子。</p>
-<p>选用<a href="https://github.com/huihut/OpenCV-MinGW-Build" target="_blank" rel="noopener">轮子库</a>里的MinGW-OpenCV-4.1.1-x64，在.pro文件中配置好库文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\MinGW-OpenCV-4.1.1-x64\include</span><br><span class="line"></span><br><span class="line">LIBS+=your path to\MinGW-OpenCV-4.1.1-x64\x64\mingw\lib\libopencv_*.a</span><br></pre></td></tr></table></figure></p>
-<p>*是正则表示任意字符串。QT Creator中的配置路径很有趣，同时接受/，//，\和\。在.pro文件改好后，选择构建build，执行qmake，然后再右键项目，选择重新构建，此时无论项目配置使用Release或者Debug编译均可通过。同时，也可以在Linux中做OpenCV开发。</p>
-<h1><span id="libtorch只能用msvc编译器直接调用">Libtorch只能用MSVC编译器直接调用</span></h1><p>有了配置成功OpenCV的经验，就自然想继续用MingW配置Libtorch，找到pytorch官网提供的<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">libtorch</a>下载Debug或者Release版本。以Release版本为例配置.pro如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\MinGW-OpenCV-4.1.1-x64\include \</span><br><span class="line">your path to\libtorch17release\include \</span><br><span class="line">your path to\libtorch17release\include\torch\csrc\api\include</span><br><span class="line"></span><br><span class="line">LIBS+=your path to\MinGW-OpenCV-4.1.1-x64\x64\mingw\lib\libopencv_*.a \</span><br><span class="line">your path to\libtorch17release\lib\*.lib \</span><br><span class="line">your path to\libtorch17release\lib\*.dll</span><br></pre></td></tr></table></figure></p>
+<p>错误undefined reference to也就是“未定义的标识符”错误，这是因为没有正确关联.lib文件，工程只能找到函数声明，无法找到定义。然后一顿折腾，以为自己.pro文件中的INCLUDEPATH和LIBS配置不对，各种魔改都没有效果。最后看某个<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaolong1126626497/article/details/105339663">博客</a>说因为OpenCV官网提供的是MSVC编译的，如果想基于MingW开发，需要前往<a target="_blank" rel="noopener" href="https://github.com/huihut/OpenCV-MinGW-Build">这个GitHub</a>上下载需要版本。OpenCV在2.4.10及之后版本不再提供MingW编译的Lib。如果要跨平台做基于OpenCV的开发，要么自己用MingW编译一次OpenCV源码，要么用网上已有的轮子。</p>
+<p>选用<a target="_blank" rel="noopener" href="https://github.com/huihut/OpenCV-MinGW-Build">轮子库</a>里的MinGW-OpenCV-4.1.1-x64，在.pro文件中配置好库文件如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\MinGW-OpenCV-4.1.1-x64\include</span><br><span class="line"></span><br><span class="line">LIBS+=your path to\MinGW-OpenCV-4.1.1-x64\x64\mingw\lib\libopencv_*.a</span><br></pre></td></tr></table></figure>
+<p>*是正则表示任意字符串。QT Creator中的配置路径很有趣，同时接受&#x2F;，&#x2F;&#x2F;，\和\。在.pro文件改好后，选择构建build，执行qmake，然后再右键项目，选择重新构建，此时无论项目配置使用Release或者Debug编译均可通过。同时，也可以在Linux中做OpenCV开发。</p>
+<h1><span id="libtorch只能用msvc编译器直接调用">Libtorch只能用MSVC编译器直接调用</span></h1><p>有了配置成功OpenCV的经验，就自然想继续用MingW配置Libtorch，找到pytorch官网提供的<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">libtorch</a>下载Debug或者Release版本。以Release版本为例配置.pro如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\MinGW-OpenCV-4.1.1-x64\include \</span><br><span class="line">your path to\libtorch17release\include \</span><br><span class="line">your path to\libtorch17release\include\torch\csrc\api\include</span><br><span class="line"></span><br><span class="line">LIBS+=your path to\MinGW-OpenCV-4.1.1-x64\x64\mingw\lib\libopencv_*.a \</span><br><span class="line">your path to\libtorch17release\lib\*.lib \</span><br><span class="line">your path to\libtorch17release\lib\*.dll</span><br></pre></td></tr></table></figure>
 <p>qmake, 重新构建，产生159个warning，12个error。警告不用管，项目配置Debug或者Release编译，错误都有有：</p>
 <ol>
-<li>include\c10\macros\Macros.h:287: error: ‘<strong>assert_fail’ was not declared in this scope </strong>assert_fail</li>
-<li>include\ATen\core\ivalue_inl.h:719: error: expected unqualified-id before ‘(‘ token TORCH_CHECK(obj-&gt;slots().size() == 1,</li>
+<li>include\c10\macros\Macros.h:287: error: ‘__assert_fail’ was not declared in this scope __assert_fail</li>
+<li>include\ATen\core\ivalue_inl.h:719: error: expected unqualified-id before ‘(‘ token TORCH_CHECK(obj-&gt;slots().size() &#x3D;&#x3D; 1,</li>
 </ol>
-<h1><span id="重装qt-creator配置msvc编译器">重装QT Creator，配置MSVC编译器</span></h1><p>可以在QT安装路径中使用QT manager补装，但是比较麻烦。直接在控制面版中卸载QT Creator，<a href="http://download.qt.io/archive/qtcreator/" target="_blank" rel="noopener">官网</a>下载或者搜索其他网址下载，官网加载很慢可以搜索下载。</p>
-<p>参考<a href="https://zhuanlan.zhihu.com/p/96844304" target="_blank" rel="noopener">QT Creator安装</a>，重装时，在选择组件部分除了默认的Develper and Designer Tools中的MingW和CDB，还要勾选MSVC部分。</p>
-<p>安装好MSVC编译器，还要配置，配置时需要cdb.exe。选择工具-&gt;选项-&gt;构建套件(Kits)-&gt;MSVC 2017 x64-&gt;调式器，添加cdb.exe。如果没有，<a href="https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk" target="_blank" rel="noopener">下载安装</a>即可。装好后在添加cdb调试器。</p>
-<h1><span id="重新用msvc-2017编译器配置opencv和libtorch">重新用MSVC 2017编译器，配置OpenCV和Libtorch</span></h1><p>配置好MSVC编译器后，在.pro文件加入配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\opencv-4.5.0-vc14_vc15\opencv\build\include \</span><br><span class="line">your path to\libtorch17debug\include \</span><br><span class="line">your path to\libtorch17debug\include\torch\csrc\api\include</span><br><span class="line"></span><br><span class="line">LIBS+=your path to\opencv-4.5.0-vc14_vc15\opencv\build\x64\vc15\lib\opencv_world450d.lib \</span><br><span class="line">your path to\libtorch17debug\lib\*.lib</span><br></pre></td></tr></table></figure></p>
+<h1><span id="重装qt-creator配置msvc编译器">重装QT Creator，配置MSVC编译器</span></h1><p>可以在QT安装路径中使用QT manager补装，但是比较麻烦。直接在控制面版中卸载QT Creator，<a target="_blank" rel="noopener" href="http://download.qt.io/archive/qtcreator/">官网</a>下载或者搜索其他网址下载，官网加载很慢可以搜索下载。</p>
+<p>参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/96844304">QT Creator安装</a>，重装时，在选择组件部分除了默认的Develper and Designer Tools中的MingW和CDB，还要勾选MSVC部分。</p>
+<p>安装好MSVC编译器，还要配置，配置时需要cdb.exe。选择工具-&gt;选项-&gt;构建套件(Kits)-&gt;MSVC 2017 x64-&gt;调式器，添加cdb.exe。如果没有，<a target="_blank" rel="noopener" href="https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk">下载安装</a>即可。装好后在添加cdb调试器。</p>
+<h1><span id="重新用msvc-2017编译器配置opencv和libtorch">重新用MSVC 2017编译器，配置OpenCV和Libtorch</span></h1><p>配置好MSVC编译器后，在.pro文件加入配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\opencv-4.5.0-vc14_vc15\opencv\build\include \</span><br><span class="line">your path to\libtorch17debug\include \</span><br><span class="line">your path to\libtorch17debug\include\torch\csrc\api\include</span><br><span class="line"></span><br><span class="line">LIBS+=your path to\opencv-4.5.0-vc14_vc15\opencv\build\x64\vc15\lib\opencv_world450d.lib \</span><br><span class="line">your path to\libtorch17debug\lib\*.lib</span><br></pre></td></tr></table></figure>
 <p>执行qmake，重新构建。发现报错主要来自IValue.h和IValue_init.h文件，显示7个错误</p>
 <ul>
 <li>语法错误: 标识符“IValue”</li>
@@ -392,45 +395,39 @@
 <li>“Tag”：不是类或命名空间名称</li>
 <li>语法错误，缺少“;”等。</li>
 </ul>
-<p>解决方法参考<a href="https://blog.csdn.net/Lynettenana/article/details/105135939" target="_blank" rel="noopener">引用3</a>，分两步</p>
+<p>解决方法参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/Lynettenana/article/details/105135939">引用3</a>，分两步</p>
 <ol>
-<li><p>在引用 #include &lt;torch/torch.h&gt; 的地方，这样写</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> slots</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> slots Q_SLOTS</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在报错的D:\libtorch\include\ATen/core/ivalue.h头文件和IValue_init.h文件中<br>找出如下3行内容，注释掉。共有多处</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// \cond DOXYGEN_CANNOT_HANDLE_CONSTRUCTORS_WITH_MACROS_SO_EXCLUDE_THIS_LINE_FROM_DOXYGEN</span></span><br><span class="line">C10_DEPRECATED_MESSAGE(<span class="string">"IValues based on std::vector&lt;T&gt; are potentially slow and deprecated. Please use c10::List&lt;T&gt; instead."</span>)</span><br><span class="line"><span class="comment">/// \endcond</span></span><br></pre></td></tr></table></figure>
-</li>
+<li>在引用 #include &lt;torch&#x2F;torch.h&gt; 的地方，这样写<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">undef</span> slots</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> slots Q_SLOTS</span></span><br></pre></td></tr></table></figure></li>
+<li>在报错的D:\libtorch\include\ATen&#x2F;core&#x2F;ivalue.h头文件和IValue_init.h文件中<br>找出如下3行内容，注释掉。共有多处<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// \cond DOXYGEN_CANNOT_HANDLE_CONSTRUCTORS_WITH_MACROS_SO_EXCLUDE_THIS_LINE_FROM_DOXYGEN</span></span><br><span class="line"><span class="built_in">C10_DEPRECATED_MESSAGE</span>(<span class="string">&quot;IValues based on std::vector&lt;T&gt; are potentially slow and deprecated. Please use c10::List&lt;T&gt; instead.&quot;</span>)</span><br><span class="line"><span class="comment">/// \endcond</span></span><br></pre></td></tr></table></figure>
+至此，重新构建不再出错。但是运行报错：cdb process terminated。排查错误来源，发现只使用OpenCV是没有问题的，但是加入libtorch则出错。没办法，只能将项目配置Debug转成Release。或者运行也不报错，但是当运行代码中有libtorch相关的模型操作，无论加载或者forward，均会终止运行。</li>
 </ol>
-<p>至此，重新构建不再出错。但是运行报错：cdb process terminated。排查错误来源，发现只使用OpenCV是没有问题的，但是加入libtorch则出错。没办法，只能将项目配置Debug转成Release。或者运行也不报错，但是当运行代码中有libtorch相关的模型操作，无论加载或者forward，均会终止运行。</p>
 <h1><span id="正确步骤">正确步骤</span></h1><p>至此，坑已经全部踩完。CUDA和CUDNN的安装网上方法很多，就不赘述。安装好后，QT完整的深度学习配置步骤为：</p>
 <ol>
-<li><p>下载安装QT Creator，配置好环境。<a href="http://download.qt.io/archive/qtcreator/" target="_blank" rel="noopener">官网</a>下载或者搜索其他网址下载，官网加载很慢可以搜索下载。注意安装时勾选MSVC编译器组件。项目选用MSVC编译，在工具-&gt;选项-&gt;构建套件(Kits)-&gt;MSVC 2017 x64配置MSVC 2017 x64，选择c和c++编译器为amd64。</p>
+<li><p>下载安装QT Creator，配置好环境。<a target="_blank" rel="noopener" href="http://download.qt.io/archive/qtcreator/">官网</a>下载或者搜索其他网址下载，官网加载很慢可以搜索下载。注意安装时勾选MSVC编译器组件。项目选用MSVC编译，在工具-&gt;选项-&gt;构建套件(Kits)-&gt;MSVC 2017 x64配置MSVC 2017 x64，选择c和c++编译器为amd64。</p>
 </li>
-<li><p>如果电脑没有cdb.exe文件(Everything搜查)，则<a href="https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk" target="_blank" rel="noopener">下载安装</a>，安装完毕后选择工具-&gt;选项-&gt;构建套件(Kits)-&gt;MSVC 2017 x64-&gt;Debugger(调式器)，添加cdb.exe。</p>
+<li><p>如果电脑没有cdb.exe文件(Everything搜查)，则<a target="_blank" rel="noopener" href="https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk">下载安装</a>，安装完毕后选择工具-&gt;选项-&gt;构建套件(Kits)-&gt;MSVC 2017 x64-&gt;Debugger(调式器)，添加cdb.exe。</p>
 </li>
-<li><p>下载<a href="https://opencv.org/releases/" target="_blank" rel="noopener">OpenCV</a>和<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">libtorch</a>。将正确路径配置到项目的.pro文件中，在.pro文件末尾添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\opencv-4.5.0-vc14_vc15\opencv\build\include \</span><br><span class="line">your path to\libtorch17release\include \</span><br><span class="line">your path to\libtorch17release\include\torch\csrc\api\include</span><br><span class="line"></span><br><span class="line">LIBS += -Lyour path to\opencv-4.5.0-vc14_vc15\opencv\build\x64\vc15\lib -lopencv_world450 \</span><br><span class="line">-Lyour path to\libtorch17release\lib -lc10 -ltorch -lc10_cuda -lcaffe2_detectron_ops_gpu -lc10d -ltorch_cpu \</span><br><span class="line">-ltorch_cuda -lgloo -lcaffe2_module_test_dynamic -lasmjit -lcaffe2_nvrtc -lclog -lcpuinfo -ldnnl -lfbgemm -lgloo_cuda \</span><br><span class="line">-lmkldnn -INCLUDE:?warp_size@cuda@at@@YAHXZ</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<li><p>下载<a target="_blank" rel="noopener" href="https://opencv.org/releases/">OpenCV</a>和<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">libtorch</a>。将正确路径配置到项目的.pro文件中，在.pro文件末尾添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">INCLUDEPATH += your path to\opencv-4.5.0-vc14_vc15\opencv\build\include \</span><br><span class="line">your path to\libtorch17release\include \</span><br><span class="line">your path to\libtorch17release\include\torch\csrc\api\include</span><br><span class="line"></span><br><span class="line">LIBS += -Lyour path to\opencv-4.5.0-vc14_vc15\opencv\build\x64\vc15\lib -lopencv_world450 \</span><br><span class="line">-Lyour path to\libtorch17release\lib -lc10 -ltorch -lc10_cuda -lcaffe2_detectron_ops_gpu -lc10d -ltorch_cpu \</span><br><span class="line">-ltorch_cuda -lgloo -lcaffe2_module_test_dynamic -lasmjit -lcaffe2_nvrtc -lclog -lcpuinfo -ldnnl -lfbgemm -lgloo_cuda \</span><br><span class="line">-lmkldnn -INCLUDE:?warp_size@cuda@at@@YAHXZ</span><br></pre></td></tr></table></figure>
 <p>将your path to替换为你本地路径。</p>
-<ol start="4">
-<li>项目配置为Release模式，运行qmake成功，右键项目重新构建。可能产生错误有：<br>语法错误: 标识符“IValue”；<br>意外的标记位于“;”之前；<br>“c10::IValue”:非法的成员初始化；<br>“Tag”：不是类或命名空间名称；<br>语法错误，缺少“;”。<br>解决方法参考<a href="https://blog.csdn.net/Lynettenana/article/details/105135939" target="_blank" rel="noopener">引用3</a>，在引用 #include &lt;torch/torch.h&gt; 的地方，这样写<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> slots</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> slots Q_SLOTS</span></span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>在报错的D:\libtorch\include\ATen/core/ivalue.h头文件和IValue_init.h文件中<br>找出如下3行内容，注释掉。共有多处<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// \cond DOXYGEN_CANNOT_HANDLE_CONSTRUCTORS_WITH_MACROS_SO_EXCLUDE_THIS_LINE_FROM_DOXYGEN</span></span><br><span class="line">C10_DEPRECATED_MESSAGE(<span class="string">"IValues based on std::vector&lt;T&gt; are potentially slow and deprecated. Please use c10::List&lt;T&gt; instead."</span>)</span><br><span class="line"><span class="comment">/// \endcond</span></span><br></pre></td></tr></table></figure></p>
+<li><p>项目配置为Release模式，运行qmake成功，右键项目重新构建。可能产生错误有：<br>语法错误: 标识符“IValue”；<br>意外的标记位于“;”之前；<br>“c10::IValue”:非法的成员初始化；<br>“Tag”：不是类或命名空间名称；<br>语法错误，缺少“;”。<br>解决方法参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/Lynettenana/article/details/105135939">引用3</a>，在引用 #include &lt;torch&#x2F;torch.h&gt; 的地方，这样写</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">undef</span> slots</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> slots Q_SLOTS</span></span><br></pre></td></tr></table></figure>
+<p>在报错的D:\libtorch\include\ATen&#x2F;core&#x2F;ivalue.h头文件和IValue_init.h文件中<br>找出如下3行内容，注释掉。共有多处</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// \cond DOXYGEN_CANNOT_HANDLE_CONSTRUCTORS_WITH_MACROS_SO_EXCLUDE_THIS_LINE_FROM_DOXYGEN</span></span><br><span class="line"><span class="built_in">C10_DEPRECATED_MESSAGE</span>(<span class="string">&quot;IValues based on std::vector&lt;T&gt; are potentially slow and deprecated. Please use c10::List&lt;T&gt; instead.&quot;</span>)</span><br><span class="line"><span class="comment">/// \endcond</span></span><br></pre></td></tr></table></figure>
 <p>至此，重新构建不再出错</p>
-<ol start="5">
-<li>成功运行，测试的main.cpp文件代码如下：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mainwindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> slots</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;torch/script.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> slots Q_SLOTS</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConvReluBnImpl</span> :</span> <span class="keyword">public</span> torch::nn::Module &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ConvReluBnImpl(<span class="keyword">int</span> input_channel=<span class="number">3</span>, <span class="keyword">int</span> output_channel=<span class="number">64</span>, <span class="keyword">int</span> kernel_size = <span class="number">3</span>);</span><br><span class="line">    torch::<span class="function">Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// Declare layers</span></span><br><span class="line">    torch::nn::Conv2d conv&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">TORCH_MODULE(ConvReluBn);</span><br><span class="line"></span><br><span class="line">ConvReluBnImpl::ConvReluBnImpl(<span class="keyword">int</span> input_channel, <span class="keyword">int</span> output_channel, <span class="keyword">int</span> kernel_size) &#123;</span><br><span class="line">    conv = register_module(<span class="string">"conv"</span>, torch::nn::Conv2d(torch::nn::Conv2dOptions(input_channel, output_channel, kernel_size).padding(<span class="number">1</span>)));</span><br><span class="line">    bn = register_module(<span class="string">"bn"</span>, torch::nn::BatchNorm2d(output_channel));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">torch::Tensor ConvReluBnImpl::forward(torch::Tensor x) &#123;</span><br><span class="line">    x = torch::relu(conv-&gt;forward(x));</span><br><span class="line">    x = bn(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//test torch</span></span><br><span class="line">    <span class="keyword">auto</span> device = torch::Device(torch::kCUDA);</span><br><span class="line">    <span class="keyword">auto</span> model = ConvReluBn(<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>);</span><br><span class="line">    model-&gt;to(device);</span><br><span class="line">    <span class="keyword">auto</span> input = torch::zeros(&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">12</span>,<span class="number">12</span>&#125;,torch::kFloat).to(device);</span><br><span class="line">    <span class="keyword">auto</span> output = model-&gt;forward(input);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;output.sizes()&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//test opencv</span></span><br><span class="line">    cv::Mat image = cv::imread(<span class="string">"C:\\Users\\Administrator\\Pictures\\1.jpg"</span>);</span><br><span class="line">    cv::<span class="function">Mat <span class="title">M</span><span class="params">(<span class="number">200</span>, <span class="number">200</span>, CV_8UC3, cv::Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>))</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!M.data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    cv::imshow(<span class="string">"fff"</span>,image);</span><br><span class="line">    cv::imshow(<span class="string">"ddd"</span>,M);</span><br><span class="line">    cv::waitKey(<span class="number">0</span>);</span><br><span class="line">    cv::destroyAllWindows();</span><br><span class="line">    <span class="comment">//test qt</span></span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    MainWindow w;</span><br><span class="line">    w.show();</span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+<li><p>成功运行，测试的main.cpp文件代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mainwindow.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">undef</span> slots</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;torch/script.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> slots Q_SLOTS</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ConvReluBnImpl</span> : <span class="keyword">public</span> torch::nn::Module &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ConvReluBnImpl</span>(<span class="type">int</span> input_channel=<span class="number">3</span>, <span class="type">int</span> output_channel=<span class="number">64</span>, <span class="type">int</span> kernel_size = <span class="number">3</span>);</span><br><span class="line">    <span class="function">torch::Tensor <span class="title">forward</span><span class="params">(torch::Tensor x)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// Declare layers</span></span><br><span class="line">    torch::nn::Conv2d conv&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">    torch::nn::BatchNorm2d bn&#123; <span class="literal">nullptr</span> &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">TORCH_MODULE</span>(ConvReluBn);</span><br><span class="line"></span><br><span class="line">ConvReluBnImpl::<span class="built_in">ConvReluBnImpl</span>(<span class="type">int</span> input_channel, <span class="type">int</span> output_channel, <span class="type">int</span> kernel_size) &#123;</span><br><span class="line">    conv = <span class="built_in">register_module</span>(<span class="string">&quot;conv&quot;</span>, torch::nn::<span class="built_in">Conv2d</span>(torch::nn::<span class="built_in">Conv2dOptions</span>(input_channel, output_channel, kernel_size).<span class="built_in">padding</span>(<span class="number">1</span>)));</span><br><span class="line">    bn = <span class="built_in">register_module</span>(<span class="string">&quot;bn&quot;</span>, torch::nn::<span class="built_in">BatchNorm2d</span>(output_channel));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">torch::Tensor <span class="title">ConvReluBnImpl::forward</span><span class="params">(torch::Tensor x)</span> </span>&#123;</span><br><span class="line">    x = torch::<span class="built_in">relu</span>(conv-&gt;forward(x));</span><br><span class="line">    x = <span class="built_in">bn</span>(x);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//test torch</span></span><br><span class="line">    <span class="keyword">auto</span> device = torch::<span class="built_in">Device</span>(torch::kCUDA);</span><br><span class="line">    <span class="keyword">auto</span> model = <span class="built_in">ConvReluBn</span>(<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>);</span><br><span class="line">    model-&gt;<span class="built_in">to</span>(device);</span><br><span class="line">    <span class="keyword">auto</span> input = torch::<span class="built_in">zeros</span>(&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">12</span>,<span class="number">12</span>&#125;,torch::kFloat).<span class="built_in">to</span>(device);</span><br><span class="line">    <span class="keyword">auto</span> output = model-&gt;forward(input);</span><br><span class="line">    std::cout&lt;&lt;output.<span class="built_in">sizes</span>()&lt;&lt;std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//test opencv</span></span><br><span class="line">    cv::Mat image = cv::<span class="built_in">imread</span>(<span class="string">&quot;C:\\Users\\Administrator\\Pictures\\1.jpg&quot;</span>);</span><br><span class="line">    <span class="function">cv::Mat <span class="title">M</span><span class="params">(<span class="number">200</span>, <span class="number">200</span>, CV_8UC3, cv::Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>))</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!M.data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;fff&quot;</span>,image);</span><br><span class="line">    cv::<span class="built_in">imshow</span>(<span class="string">&quot;ddd&quot;</span>,M);</span><br><span class="line">    cv::<span class="built_in">waitKey</span>(<span class="number">0</span>);</span><br><span class="line">    cv::<span class="built_in">destroyAllWindows</span>();</span><br><span class="line">    <span class="comment">//test qt</span></span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    MainWindow w;</span><br><span class="line">    w.<span class="built_in">show</span>();</span><br><span class="line">    <span class="keyword">return</span> a.<span class="built_in">exec</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>运行成功，并且显示200*200的红色图案。</p>
-<ol start="6">
-<li>然而，仍然存在两个问题，一个是cout无输出，一个是无法调试。解决办法为：第一个在.pro文件后添加一句<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIG += console</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>然而，仍然存在两个问题，一个是cout无输出，一个是无法调试。解决办法为：第一个在.pro文件后添加一句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIG += console</span><br></pre></td></tr></table></figure>
+<p>第二个则相对复杂，参考<a target="_blank" rel="noopener" href="https://www.yuque.com/lengyuezuixue/togedc/krb68k">博客</a>修改。如果需要查看变量，则用博客中方法修改QT安装路径下的msvc-desktop.conf，如果不需要查看变量，能断点就行，则直接在.pro文件添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QMAKE_CXXFLAGS_RELEASE = $$QMAKE_CFLAGS_RELEASE_WITH_DEBUGINFO</span><br><span class="line">QMAKE_CFLAGS_RELEASE = $$QMAKE_LFLAGS_RELEASE_WITH_DEBUGINFO</span><br><span class="line">QMAKE_LFLAGS_RELEASE = $$QMAKE_LFLAGS_RELEASE_WITH_DEBUGINFO</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>第二个则相对复杂，参考<a href="https://www.yuque.com/lengyuezuixue/togedc/krb68k" target="_blank" rel="noopener">博客</a>修改。如果需要查看变量，则用博客中方法修改QT安装路径下的msvc-desktop.conf，如果不需要查看变量，能断点就行，则直接在.pro文件添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QMAKE_CXXFLAGS_RELEASE = $$QMAKE_CFLAGS_RELEASE_WITH_DEBUGINFO</span><br><span class="line">QMAKE_CFLAGS_RELEASE = $$QMAKE_LFLAGS_RELEASE_WITH_DEBUGINFO</span><br><span class="line">QMAKE_LFLAGS_RELEASE = $$QMAKE_LFLAGS_RELEASE_WITH_DEBUGINFO</span><br></pre></td></tr></table></figure></p>
 <p>至此，配置完成。</p>
-<h1><span id="references">References</span></h1><p><a href="https://blog.csdn.net/xiaolong1126626497/article/details/105339663" target="_blank" rel="noopener">OpenCV+MingW编译</a><br><a href="https://zhuanlan.zhihu.com/p/96844304" target="_blank" rel="noopener">QT Creator安装</a><br><a href="https://blog.csdn.net/Lynettenana/article/details/105135939" target="_blank" rel="noopener">win10 64bit+ qt5.12.0 + msvc2017 + libtorch(pytorch)+cuda10.1+cudnn7.6配置</a><br><a href="https://www.yuque.com/lengyuezuixue/togedc/krb68k" target="_blank" rel="noopener">QT creator Release模式下可调试</a></p>
+<h1><span id="references">References</span></h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaolong1126626497/article/details/105339663">OpenCV+MingW编译</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/96844304">QT Creator安装</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Lynettenana/article/details/105135939">win10 64bit+ qt5.12.0 + msvc2017 + libtorch(pytorch)+cuda10.1+cudnn7.6配置</a><br><a target="_blank" rel="noopener" href="https://www.yuque.com/lengyuezuixue/togedc/krb68k">QT creator Release模式下可调试</a></p>
 
       
     </div>
@@ -451,14 +448,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -477,7 +474,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/配置/" rel="tag"># 配置</a>
+            <a href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag"># 配置</a>
           
         </div>
       
@@ -490,7 +487,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/18/c++函数的传参/" rel="next" title="c++函数的传参">
+              <a href="/2021/01/18/c++%E5%87%BD%E6%95%B0%E7%9A%84%E4%BC%A0%E5%8F%82/" rel="next" title="c++函数的传参">
                 <i class="fa fa-chevron-left"></i> c++函数的传参
               </a>
             
@@ -500,7 +497,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/02/10/libtorch教程（六）/" rel="prev" title="libtorch教程（六）">
+              <a href="/2021/02/10/libtorch%E6%95%99%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89/" rel="prev" title="libtorch教程（六）">
                 libtorch教程（六） <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -575,9 +572,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -586,9 +585,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -610,7 +609,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -665,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">QT Creator安装不全，编译器选择错误，OpenCv使用困难</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">Libtorch只能用MSVC编译器直接调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">重装QT Creator，配置MSVC编译器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">重新用MSVC 2017编译器，配置OpenCV和Libtorch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">正确步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">References</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">QT Creator安装不全，编译器选择错误，OpenCv使用困难</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">Libtorch只能用MSVC编译器直接调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">重装QT Creator，配置MSVC编译器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">重新用MSVC 2017编译器，配置OpenCV和Libtorch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">正确步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">References</span></a></li></ol></div>
             
 
           </div>
@@ -685,7 +684,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

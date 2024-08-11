@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="libtorch,">
+  <meta name="keywords" content="libtorch," />
 
 
 
@@ -80,13 +80,12 @@
 
 
 <meta name="description" content="引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡Gtx 10">
-<meta name="keywords" content="libtorch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pytorch部署torchscript篇">
-<meta property="og:url" content="https://allentdan.github.io/2020/12/16/pytorch部署torchscript篇/index.html">
+<meta property="og:url" content="https://allentdan.github.io/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87/index.html">
 <meta property="og:site_name" content="Allent&#39;s Blogs">
 <meta property="og:description" content="引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡Gtx 10">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/libtorch_download_scene.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/my_dependency.PNG">
@@ -95,10 +94,11 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vsRelease64.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/include.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/lib.PNG">
-<meta property="og:updated_time" content="2021-01-24T14:18:30.491Z">
+<meta property="article:published_time" content="2020-12-16T14:23:29.000Z">
+<meta property="article:modified_time" content="2021-01-24T14:18:30.491Z">
+<meta property="article:author" content="Allent Dan">
+<meta property="article:tag" content="libtorch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pytorch部署torchscript篇">
-<meta name="twitter:description" content="引言本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有visual studio，opencv，libtorch。 环境本文环境如下：win10平台cuda10.2+cudnn7.6.5双显卡Gtx 10">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG">
 
 
@@ -106,7 +106,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -129,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://allentdan.github.io/2020/12/16/pytorch部署torchscript篇/">
+  <link rel="canonical" href="https://allentdan.github.io/2020/12/16/pytorch部署torchscript篇/"/>
 
 
 
@@ -145,7 +145,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -163,7 +163,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Allent's Blogs</span>
         <span class="logo-line-after"><i></i></span>
@@ -191,9 +191,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
           </a>
@@ -201,9 +201,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
           </a>
@@ -211,9 +211,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
           </a>
@@ -221,9 +221,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             Categories
           </a>
@@ -231,9 +231,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
           </a>
@@ -272,11 +272,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/16/pytorch部署torchscript篇/">
+    <link itemprop="mainEntityOfPage" href="https://allentdan.github.io/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Allent Dan">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/jiegeng.jpg">
     </span>
 
@@ -312,7 +312,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -342,8 +342,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/12/16/pytorch部署torchscript篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/16/pytorch部署torchscript篇/" itemprop="commentsCount"></span>
+                <a href="/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -351,7 +351,7 @@
 
           
           
-             <span id="/2020/12/16/pytorch部署torchscript篇/" class="leancloud_visitors" data-flag-title="pytorch部署torchscript篇">
+             <span id="/2020/12/16/pytorch%E9%83%A8%E7%BD%B2torchscript%E7%AF%87/" class="leancloud_visitors" data-flag-title="pytorch部署torchscript篇">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -366,7 +366,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv">本文总阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
             </span>
           
 
@@ -387,22 +387,27 @@
       
 
       
-        <h1><span id="引言">引言</span></h1><p>本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有<a href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs" target="_blank" rel="noopener">visual studio</a>，<a href="https://opencv.org/" target="_blank" rel="noopener">opencv</a>，<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">libtorch</a>。</p>
+        <h1><span id="引言">引言</span></h1><p>本文旨在介绍如何在Windows平台使用pytorch的c++ api部署pytorch的CNN模型，本文的部署的模型只有推理功能，这是由于torch::jit不支持部分层或者操作的反向传播。当然即使只是推理也足够许多项目运行了，部署使用的工具有<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs">visual studio</a>，<a target="_blank" rel="noopener" href="https://opencv.org/">opencv</a>，<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">libtorch</a>。</p>
 <h1><span id="环境">环境</span></h1><p>本文环境如下：<br>win10平台<br>cuda10.2+cudnn7.6.5<br>双显卡Gtx 1080Ti<br>visual studio 2017 community version<br>opencv 4.5.0<br>libtorch 1.7<br>事实上，除了libtorch是版本有强制要求不低于pytorch版本外（主要是可能存在的api问题，否则也不必）和visual studio的版本要求外，其他如opencv并无版本要求，甚至如果只部署cpu的话，显卡都不是必须。</p>
-<h2><span id="visual-studio">visual studio</span></h2><p>visual studio版本最好在2015及以上，本文用2017版本。下载链接在<a href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs" target="_blank" rel="noopener">链接1</a>，具体安装过程可以参考<a href="https://www.jianshu.com/p/320aefbc582d" target="_blank" rel="noopener">链接2</a>。打开链接1下载社区版本即可，安装时对于c++程序设计只需安装对应部分，勾选如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG" alt><br>visual studio的安装并无太多需要赘述，按照教程操作就好。</p>
-<h2><span id="opencv">opencv</span></h2><p>截止成文时，opencv版本已到4.5.0。去<a href="https://opencv.org/releases/" target="_blank" rel="noopener">官网</a>下载你想要的版本即可，当然限定平台为Windows平台。opencv的版本如若读者没有特别需要均无影响，本文也试过不同版本，不影响部署。opencv安装也容易，虽然是exe文件，但是实际就是个压缩包，解压到你想要的目录最好。值得注意的是，好的编程习惯很重要，所有程序涉及路径以英文路径为佳，避免出错。</p>
+<h2><span id="visual-studio">visual studio</span></h2><p>visual studio版本最好在2015及以上，本文用2017版本。下载链接在<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/visualstudio/productinfo/vs2017-system-requirements-vs">链接1</a>，具体安装过程可以参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/320aefbc582d">链接2</a>。打开链接1下载社区版本即可，安装时对于c++程序设计只需安装对应部分，勾选如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vs.PNG"><br>visual studio的安装并无太多需要赘述，按照教程操作就好。</p>
+<h2><span id="opencv">opencv</span></h2><p>截止成文时，opencv版本已到4.5.0。去<a target="_blank" rel="noopener" href="https://opencv.org/releases/">官网</a>下载你想要的版本即可，当然限定平台为Windows平台。opencv的版本如若读者没有特别需要均无影响，本文也试过不同版本，不影响部署。opencv安装也容易，虽然是exe文件，但是实际就是个压缩包，解压到你想要的目录最好。值得注意的是，好的编程习惯很重要，所有程序涉及路径以英文路径为佳，避免出错。</p>
 <h2><span id="libtorch">libtorch</span></h2><p>libtorch使用所需要的环境和训练最好保持一致，其中cuda，显卡驱动以及libtorch版本配置一般不应低于训练环境。尤其是libtorch版本要求更为严格，否则部分pytorch的api无法在libtorch中使用。</p>
-<p>本文中以libtorch1.7为例介绍，读者最新版1.7.1使用，亲测可用。下载时以release版本为佳，避免一些不必要的错误。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/libtorch_download_scene.PNG" alt><br>下载后同样解压到读者想要路径，可以更改好解压名称如下以方便版本管理。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/my_dependency.PNG" alt><br>这样下来就已经准备好部署所需要的依赖项。</p>
-<h1><span id="例子">例子</span></h1><h2><span id="生成pt文件">生成.pt文件</span></h2><p>接下来以ResNet34分类模型为例尝试部署分类模型。准备一张图片用以判断是否部署成功，本文用例图如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/flower.jpg" alt><br>接下来先和官网类似生成torchscript模型，亦即本文中的pt文件。本文使用代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision.models <span class="keyword">import</span> resnet34</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取一张图片，并转换成[1,3,224,224]的float张量并归一化</span></span><br><span class="line">image = cv2.imread(<span class="string">"flower.jpg"</span>)</span><br><span class="line">image = cv2.resize(image,(<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">input_tensor = torch.tensor(image).permute(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>).unsqueeze(<span class="number">0</span>).float()/<span class="number">225.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义并加载resnet34模型在imagenet预训练的权重</span></span><br><span class="line">model = resnet34(pretrained=<span class="literal">True</span>)</span><br><span class="line">model.eval()</span><br><span class="line"><span class="comment">#查看模型预测该付图的结果</span></span><br><span class="line">output = model(input_tensor)</span><br><span class="line">output = F.softmax(output,<span class="number">1</span>)</span><br><span class="line">print(<span class="string">"模型预测结果为第&#123;&#125;类，置信度为&#123;&#125;"</span>.format(torch.argmax(output),output.max()))</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成pt模型，按照官网来即可</span></span><br><span class="line">model=model.to(torch.device(<span class="string">"cpu"</span>))</span><br><span class="line">model.eval()</span><br><span class="line">var=torch.ones((<span class="number">1</span>,<span class="number">3</span>,<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">traced_script_module = torch.jit.trace(model, var)</span><br><span class="line">traced_script_module.save(<span class="string">"resnet34.pt"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>输出结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模型预测结果为第723类，置信度为0.5916505455970764</span><br></pre></td></tr></table></figure></p>
+<p>本文中以libtorch1.7为例介绍，读者最新版1.7.1使用，亲测可用。下载时以release版本为佳，避免一些不必要的错误。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/libtorch_download_scene.PNG"><br>下载后同样解压到读者想要路径，可以更改好解压名称如下以方便版本管理。<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/my_dependency.PNG"><br>这样下来就已经准备好部署所需要的依赖项。</p>
+<h1><span id="例子">例子</span></h1><h2><span id="生成pt文件">生成.pt文件</span></h2><p>接下来以ResNet34分类模型为例尝试部署分类模型。准备一张图片用以判断是否部署成功，本文用例图如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/flower.jpg"><br>接下来先和官网类似生成torchscript模型，亦即本文中的pt文件。本文使用代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision.models <span class="keyword">import</span> resnet34</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取一张图片，并转换成[1,3,224,224]的float张量并归一化</span></span><br><span class="line">image = cv2.imread(<span class="string">&quot;flower.jpg&quot;</span>)</span><br><span class="line">image = cv2.resize(image,(<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">input_tensor = torch.tensor(image).permute(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>).unsqueeze(<span class="number">0</span>).<span class="built_in">float</span>()/<span class="number">225.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#定义并加载resnet34模型在imagenet预训练的权重</span></span><br><span class="line">model = resnet34(pretrained=<span class="literal">True</span>)</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"><span class="comment">#查看模型预测该付图的结果</span></span><br><span class="line">output = model(input_tensor)</span><br><span class="line">output = F.softmax(output,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型预测结果为第&#123;&#125;类，置信度为&#123;&#125;&quot;</span>.<span class="built_in">format</span>(torch.argmax(output),output.<span class="built_in">max</span>()))</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成pt模型，按照官网来即可</span></span><br><span class="line">model=model.to(torch.device(<span class="string">&quot;cpu&quot;</span>))</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line">var=torch.ones((<span class="number">1</span>,<span class="number">3</span>,<span class="number">224</span>,<span class="number">224</span>))</span><br><span class="line">traced_script_module = torch.jit.trace(model, var)</span><br><span class="line">traced_script_module.save(<span class="string">&quot;resnet34.pt&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模型预测结果为第723类，置信度为0.5916505455970764</span><br></pre></td></tr></table></figure>
 <p>代码运行结束即可生成.pt文件。</p>
-<h2><span id="visual-studio项目配置">Visual Studio项目配置</span></h2><h3><span id="新建visual-studio工程项目">新建Visual Studio工程项目。</span></h3><p>打开Visual Studio 2017，点击文件-&gt;新建-&gt;项目，新建空白的c++项目如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/newAProject.PNG" alt><br>本文新建项目名称为deploy_test，新建空白项目后右键源文件，点击添加新建项，生成main.cpp。至此，Visual Studio项目的准备工作已做好，接下来时配置项目环境。</p>
-<h3><span id="编译环境配置">编译环境配置</span></h3><p>在项目的管理器中设置项目的编译为Release，平台选择x64。如图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vsRelease64.PNG" alt></p>
-<h3><span id="配置项目属性">配置项目属性</span></h3><h4><span id="include">include</span></h4><p>右键项目deploy_test，选择属性进入属性页的配置属性。选择VC++目录，需要添加包含目录和库目录。包含目录配置路径为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">your path to libtorch\include\torch\csrc\api\include</span><br><span class="line">your path to libtorch\include</span><br><span class="line">your path to opencv\build\include</span><br></pre></td></tr></table></figure></p>
-<p>本文的配置结果如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/include.PNG" alt></p>
-<h4><span id="lib">lib</span></h4><p>库目录的配置路径为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">your path to libtorch\lib</span><br><span class="line">your path to opencv\build\x64\vc14\lib</span><br></pre></td></tr></table></figure></p>
-<p>其中，vc版本与vs版本对应关系以及opencv与vc版本间的关系见<a href="https://blog.csdn.net/yefcion/article/details/81067030" target="_blank" rel="noopener">链接</a>。VS2017对应版本为vc15，opencv的\build\x64文件夹下同时有vc14和vc15，本文选择了vc14也是可用的（VS高版本向下兼容）。库目录具体配置如下图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/lib.PNG" alt></p>
-<h4><span id="link">link</span></h4><p>最后添加链接器，点击链接器-&gt;输入-&gt;附加依赖项，编辑添加库目录中libtorch库目录下所有的.lib文件名。此外，为使用opencv还需添加opencv的.lib文件。本文添加如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">opencv_world450.lib</span><br><span class="line">asmjit.lib</span><br><span class="line">c10.lib</span><br><span class="line">c10d.lib</span><br><span class="line">c10_cuda.lib</span><br><span class="line">caffe2_detectron_ops_gpu.lib</span><br><span class="line">caffe2_module_test_dynamic.lib</span><br><span class="line">caffe2_nvrtc.lib</span><br><span class="line">clog.lib</span><br><span class="line">cpuinfo.lib</span><br><span class="line">dnnl.lib</span><br><span class="line">fbgemm.lib</span><br><span class="line">gloo.lib</span><br><span class="line">gloo_cuda.lib</span><br><span class="line">libprotobuf-lite.lib</span><br><span class="line">libprotobuf.lib</span><br><span class="line">libprotoc.lib</span><br><span class="line">mkldnn.lib</span><br><span class="line">torch.lib</span><br><span class="line">torch_cpu.lib</span><br><span class="line">torch_cuda.lib</span><br></pre></td></tr></table></figure></p>
+<h2><span id="visual-studio项目配置">Visual Studio项目配置</span></h2><h3><span id="新建visual-studio工程项目">新建Visual Studio工程项目。</span></h3><p>打开Visual Studio 2017，点击文件-&gt;新建-&gt;项目，新建空白的c++项目如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/newAProject.PNG"><br>本文新建项目名称为deploy_test，新建空白项目后右键源文件，点击添加新建项，生成main.cpp。至此，Visual Studio项目的准备工作已做好，接下来时配置项目环境。</p>
+<h3><span id="编译环境配置">编译环境配置</span></h3><p>在项目的管理器中设置项目的编译为Release，平台选择x64。如图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/vsRelease64.PNG"></p>
+<h3><span id="配置项目属性">配置项目属性</span></h3><h4><span id="include">include</span></h4><p>右键项目deploy_test，选择属性进入属性页的配置属性。选择VC++目录，需要添加包含目录和库目录。包含目录配置路径为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">your path to libtorch\include\torch\csrc\api\include</span><br><span class="line">your path to libtorch\include</span><br><span class="line">your path to opencv\build\include</span><br></pre></td></tr></table></figure>
+<p>本文的配置结果如下：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/include.PNG"></p>
+<h4><span id="lib">lib</span></h4><p>库目录的配置路径为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">your path to libtorch\lib</span><br><span class="line">your path to opencv\build\x64\vc14\lib</span><br></pre></td></tr></table></figure>
+<p>其中，vc版本与vs版本对应关系以及opencv与vc版本间的关系见<a target="_blank" rel="noopener" href="https://blog.csdn.net/yefcion/article/details/81067030">链接</a>。VS2017对应版本为vc15，opencv的\build\x64文件夹下同时有vc14和vc15，本文选择了vc14也是可用的（VS高版本向下兼容）。库目录具体配置如下图：<br><img src="https://raw.githubusercontent.com/AllentDan/ImageBase/main/libtorch_deploy/lib.PNG"></p>
+<h4><span id="link">link</span></h4><p>最后添加链接器，点击链接器-&gt;输入-&gt;附加依赖项，编辑添加库目录中libtorch库目录下所有的.lib文件名。此外，为使用opencv还需添加opencv的.lib文件。本文添加如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">opencv_world450.lib</span><br><span class="line">asmjit.lib</span><br><span class="line">c10.lib</span><br><span class="line">c10d.lib</span><br><span class="line">c10_cuda.lib</span><br><span class="line">caffe2_detectron_ops_gpu.lib</span><br><span class="line">caffe2_module_test_dynamic.lib</span><br><span class="line">caffe2_nvrtc.lib</span><br><span class="line">clog.lib</span><br><span class="line">cpuinfo.lib</span><br><span class="line">dnnl.lib</span><br><span class="line">fbgemm.lib</span><br><span class="line">gloo.lib</span><br><span class="line">gloo_cuda.lib</span><br><span class="line">libprotobuf-lite.lib</span><br><span class="line">libprotobuf.lib</span><br><span class="line">libprotoc.lib</span><br><span class="line">mkldnn.lib</span><br><span class="line">torch.lib</span><br><span class="line">torch_cpu.lib</span><br><span class="line">torch_cuda.lib</span><br></pre></td></tr></table></figure>
 <h4><span id="dll">dll</span></h4><p>动态链接库需要放入指定位置，有三种做法：</p>
 <ul>
 <li>将opencv中的\build\x64\vc14\bin文件夹路径放入环境变量path中，libtorch中的lib文件夹同样如此；</li>
@@ -411,12 +416,14 @@
 </ul>
 <p>从省事角度和工程需要角度，一般都是直接拷贝dll到执行目录中。读者可以在项目编译后执行时报错缺啥拷贝啥。</p>
 <p>至此，VS项目的配置内容已经完成，下面开始c++代码。</p>
-<h3><span id="cpp代码">cpp代码</span></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;torch/script.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//定义使用cuda</span></span><br><span class="line">	<span class="keyword">auto</span> device = torch::Device(torch::kCUDA,<span class="number">0</span>);</span><br><span class="line">	<span class="comment">//读取图片</span></span><br><span class="line">	<span class="keyword">auto</span> image = cv::imread(<span class="string">"your path to\\flower.jpg"</span>);</span><br><span class="line">	<span class="comment">//缩放至指定大小</span></span><br><span class="line">	cv::resize(image, image, cv::Size(<span class="number">224</span>, <span class="number">224</span>));</span><br><span class="line">	<span class="comment">//转成张量</span></span><br><span class="line">	<span class="keyword">auto</span> input_tensor = torch::from_blob(image.data, &#123; image.rows, image.cols, <span class="number">3</span> &#125;, torch::kByte).permute(&#123; <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span> &#125;).unsqueeze(<span class="number">0</span>).to(torch::kFloat32) / <span class="number">225.0</span>;</span><br><span class="line">	<span class="comment">//加载模型</span></span><br><span class="line">	<span class="keyword">auto</span> model = torch::jit::load(<span class="string">"your path to\\resnet34.pt"</span>);</span><br><span class="line">	model.to(device);</span><br><span class="line">	model.eval();</span><br><span class="line">	<span class="comment">//前向传播</span></span><br><span class="line">	<span class="keyword">auto</span> output = model.forward(&#123;input_tensor.to(device)&#125;).toTensor();</span><br><span class="line">	output = torch::softmax(output, <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"模型预测结果为第"</span> &lt;&lt; torch::argmax(output) &lt;&lt; <span class="string">"类，置信度为"</span> &lt;&lt; output.max() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译执行，代码的输出结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">模型预测结果为第723</span><br><span class="line">[ CUDALongType&#123;&#125; ]类，置信度为0.591652</span><br><span class="line">[ CUDAFloatType&#123;&#125; ]</span><br></pre></td></tr></table></figure></p>
+<h3><span id="cpp代码">cpp代码</span></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;torch/torch.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;torch/script.h&gt;</span> </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//定义使用cuda</span></span><br><span class="line">	<span class="keyword">auto</span> device = torch::<span class="built_in">Device</span>(torch::kCUDA,<span class="number">0</span>);</span><br><span class="line">	<span class="comment">//读取图片</span></span><br><span class="line">	<span class="keyword">auto</span> image = cv::<span class="built_in">imread</span>(<span class="string">&quot;your path to\\flower.jpg&quot;</span>);</span><br><span class="line">	<span class="comment">//缩放至指定大小</span></span><br><span class="line">	cv::<span class="built_in">resize</span>(image, image, cv::<span class="built_in">Size</span>(<span class="number">224</span>, <span class="number">224</span>));</span><br><span class="line">	<span class="comment">//转成张量</span></span><br><span class="line">	<span class="keyword">auto</span> input_tensor = torch::<span class="built_in">from_blob</span>(image.data, &#123; image.rows, image.cols, <span class="number">3</span> &#125;, torch::kByte).<span class="built_in">permute</span>(&#123; <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span> &#125;).<span class="built_in">unsqueeze</span>(<span class="number">0</span>).<span class="built_in">to</span>(torch::kFloat32) / <span class="number">225.0</span>;</span><br><span class="line">	<span class="comment">//加载模型</span></span><br><span class="line">	<span class="keyword">auto</span> model = torch::jit::<span class="built_in">load</span>(<span class="string">&quot;your path to\\resnet34.pt&quot;</span>);</span><br><span class="line">	model.<span class="built_in">to</span>(device);</span><br><span class="line">	model.<span class="built_in">eval</span>();</span><br><span class="line">	<span class="comment">//前向传播</span></span><br><span class="line">	<span class="keyword">auto</span> output = model.forward(&#123;input_tensor.<span class="built_in">to</span>(device)&#125;).<span class="built_in">toTensor</span>();</span><br><span class="line">	output = torch::<span class="built_in">softmax</span>(output, <span class="number">1</span>);</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;模型预测结果为第&quot;</span> &lt;&lt; torch::<span class="built_in">argmax</span>(output) &lt;&lt; <span class="string">&quot;类，置信度为&quot;</span> &lt;&lt; output.<span class="built_in">max</span>() &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译执行，代码的输出结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">模型预测结果为第723</span><br><span class="line">[ CUDALongType&#123;&#125; ]类，置信度为0.591652</span><br><span class="line">[ CUDAFloatType&#123;&#125; ]</span><br></pre></td></tr></table></figure>
 <p>可以发现，torchscript文件推理的结果还是和python的略有不同，不过也已经时小数点后第6位了，一般不会影响最后结果判定。</p>
-<h1><span id="一些报错">一些报错</span></h1><h2><span id="错误1无法使用gpu">错误1：无法使用GPU</span></h2><p>目前最新的libtorch依据是1.7+cuda10.2，我也有使用，但是目前发布的版本编译的并不完美。如果官方仍然没有更新的话，以该版本运行的程序可以在CPU中正常使用，但是将模型移至GPU时会出错。相比于正常添加lib文件名，1.7版本的需要在链接器里多添加一句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/INCLUDE:?warp_size@cuda@at@@YAHXZ</span><br></pre></td></tr></table></figure></p>
-<p>其他版本如有遇到类似问题可以同样方式解决，该错误似乎是windows平台导致，此解决方法参考了<a href="https://github.com/pytorch/pytorch/issues/31611" target="_blank" rel="noopener">此链接</a>。</p>
-<h2><span id="错误2编译时报错std-不明确的符号">错误2：编译时报错“std”: 不明确的符号</span></h2><p>调整属性页-&gt;属性配置-&gt;c/c++-&gt;语言-&gt;符合模式设置为否即可编译成功。</p>
+<h1><span id="一些报错">一些报错</span></h1><h2><span id="错误1无法使用gpu">错误1：无法使用GPU</span></h2><p>目前最新的libtorch依据是1.7+cuda10.2，我也有使用，但是目前发布的版本编译的并不完美。如果官方仍然没有更新的话，以该版本运行的程序可以在CPU中正常使用，但是将模型移至GPU时会出错。相比于正常添加lib文件名，1.7版本的需要在链接器里多添加一句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/INCLUDE:?warp_size@cuda@at@@YAHXZ</span><br></pre></td></tr></table></figure>
+<p>其他版本如有遇到类似问题可以同样方式解决，该错误似乎是windows平台导致，此解决方法参考了<a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/issues/31611">此链接</a>。</p>
+<h2><span id="错误2编译时报错std-不明确的符号">错误2：编译时报错“std”: 不明确的符号</span></h2><p>调整属性页-&gt;属性配置-&gt;c&#x2F;c++-&gt;语言-&gt;符合模式设置为否即可编译成功。</p>
 <h2><span id="错误3缺少dll">错误3：缺少dll</span></h2><p>如果编译成功，执行报错由于找不到xxxx.dll，无法继续执行代码。则解决方式有三：</p>
 <ul>
 <li>添加对应dll的目录到系统环境变量的path中</li>
@@ -443,14 +450,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Allent Dan WeChat Pay">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Allent Dan Alipay">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -492,7 +499,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/12/20/L1,L2正则化与损失/" rel="prev" title="L1,L2损失与L1,L2正则化">
+              <a href="/2020/12/20/L1,L2%E6%AD%A3%E5%88%99%E5%8C%96%E4%B8%8E%E6%8D%9F%E5%A4%B1/" rel="prev" title="L1,L2损失与L1,L2正则化">
                 L1,L2损失与L1,L2正则化 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -567,9 +574,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/jiegeng.jpg" alt="Allent Dan">
+              <img class="site-author-image" itemprop="image"
+                src="/images/jiegeng.jpg"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Allent Dan</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -578,9 +587,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -602,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -657,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">visual studio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">libtorch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">生成.pt文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Visual Studio项目配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">新建Visual Studio工程项目。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">编译环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">配置项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">include</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">lib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-text">dll</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-text">cpp代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-text">一些报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">错误1：无法使用GPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">错误2：编译时报错“std”: 不明确的符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">错误3：缺少dll</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">visual studio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">libtorch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">生成.pt文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">Visual Studio项目配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">新建Visual Studio工程项目。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">编译环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">配置项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">include</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">lib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">dll</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text">cpp代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text">一些报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">错误1：无法使用GPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">错误2：编译时报错“std”: 不明确的符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text">错误3：缺少dll</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -677,7 +686,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
